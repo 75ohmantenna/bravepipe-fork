@@ -71,7 +71,7 @@ class PresetListDialogFragment : DialogFragment() {
             MENU_ID_SORT_MODIFIED,
             R.string.sort_by_modified,
             SortType.MODIFIED
-        ),
+        )
     )
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

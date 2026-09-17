@@ -180,7 +180,8 @@ class ErrorUtil {
         private fun getIsErrorReportsDisabled(context: Context): Boolean {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             return prefs.getBoolean(
-                context.getString(R.string.disable_error_reports_key), false
+                context.getString(R.string.disable_error_reports_key),
+                false
             )
         }
     }

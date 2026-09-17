@@ -19,8 +19,8 @@
 
 package org.schabi.newpipe.local.feed.service
 
-import android.app.Service
 import android.app.PendingIntent
+import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -150,7 +150,10 @@ class FeedLoadService : Service() {
 
     private fun createNotification(): NotificationCompat.Builder {
         val cancelActionIntent = PendingIntent.getBroadcast(
-            this, NOTIFICATION_ID, Intent(ACTION_CANCEL).setPackage(packageName), PendingIntent.FLAG_IMMUTABLE
+            this,
+            NOTIFICATION_ID,
+            Intent(ACTION_CANCEL).setPackage(packageName),
+            PendingIntent.FLAG_IMMUTABLE
         )
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))

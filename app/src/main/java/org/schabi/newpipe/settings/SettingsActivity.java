@@ -106,10 +106,10 @@ public class SettingsActivity extends AppCompatActivity implements
                 SettingsLayoutBinding.inflate(getLayoutInflater());
         setContentView(settingsLayoutBinding.getRoot());
         WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
-        ViewCompat.setOnApplyWindowInsetsListener(settingsLayoutBinding.getRoot(), (view, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(settingsLayoutBinding.getRoot(), (v, insets) -> {
             final var safe = insets.getInsets(WindowInsetsCompat.Type.systemBars()
                     | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
-            view.setPadding(safe.left, safe.top, safe.right, safe.bottom);
+            v.setPadding(safe.left, safe.top, safe.right, safe.bottom);
             return WindowInsetsCompat.CONSUMED;
         });
         ViewCompat.requestApplyInsets(settingsLayoutBinding.getRoot());

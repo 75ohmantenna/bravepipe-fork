@@ -237,13 +237,13 @@ final class DetailContentCoordinator {
 
     public void scrollToComment(final CommentsInfoItem comment) {
         final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
-        final Fragment fragment = pageAdapter.getItem(commentsTabPos);
-        if (!(fragment instanceof CommentsFragment)) {
+        final Fragment tabFragment = pageAdapter.getItem(commentsTabPos);
+        if (!(tabFragment instanceof CommentsFragment)) {
             return;
         }
 
         // unexpand the app bar only if scrolling to the comment succeeded
-        if (((CommentsFragment) fragment).scrollToComment(comment)) {
+        if (((CommentsFragment) tabFragment).scrollToComment(comment)) {
             binding.appBarLayout.setExpanded(false, false);
             binding.viewPager.setCurrentItem(commentsTabPos, false);
         }

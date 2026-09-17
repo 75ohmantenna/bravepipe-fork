@@ -221,7 +221,8 @@ public final class SponsorBlockUtils {
                 if (!prefs.getBoolean(context.getString(definition.enabledKey()), false)) {
                     return null;
                 }
-                final String color = prefs.getString(context.getString(definition.colorKey()), null);
+                final String color = prefs.getString(
+                        context.getString(definition.colorKey()), null);
                 return color == null ? context.getColor(definition.defaultColor())
                         : Color.parseColor(color);
             }

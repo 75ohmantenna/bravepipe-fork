@@ -743,7 +743,8 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    /** Owns extraction across rotation, without retaining an Activity or launching from background. */
+    /** Owns extraction across rotation, without retaining an Activity or
+     * launching from background. */
     public static class FetcherViewModel extends ViewModel {
         private final CompositeDisposable disposables = new CompositeDisposable();
         private final MutableLiveData<Boolean> ready = new MutableLiveData<>(false);
@@ -804,9 +805,11 @@ public class RouterActivity extends AppCompatActivity {
                     }, throwable -> fail(choice, action, throwable)));
         }
 
-        private void fail(final Choice choice, final UserAction action, final Throwable throwable) {
+        private void fail(final Choice choice, final UserAction action,
+                          final Throwable throwable) {
             error = new ErrorInfo(throwable, action,
-                    choice.url + " opened with " + choice.playerChoice, choice.serviceId, choice.url);
+                    choice.url + " opened with " + choice.playerChoice,
+                    choice.serviceId, choice.url);
             ready.setValue(true);
         }
 

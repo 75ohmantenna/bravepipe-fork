@@ -36,16 +36,27 @@ object KioskTranslator {
     fun getKioskIcon(kioskId: String): Int {
         return when (kioskId) {
             "Trending", "Top 50", "New & hot", "conferences" -> R.drawable.ic_whatshot
+
             "Local" -> R.drawable.ic_home
+
             "Recently added", "recent" -> R.drawable.ic_add_circle_outline
+
             "Most liked" -> R.drawable.ic_thumb_up
+
             "live" -> R.drawable.ic_live_tv
+
             "Featured" -> R.drawable.ic_stars
+
             "Radio" -> R.drawable.ic_radio
+
             "trending_gaming" -> R.drawable.ic_videogame_asset
+
             "trending_music" -> R.drawable.ic_music_note
+
             "trending_movies_and_shows" -> R.drawable.ic_movie
+
             "trending_podcasts_episodes" -> R.drawable.ic_podcasts
+
             // BravePipe: In case you have additional platforms eg. rumble you
             // need to supply icons. If you won't you get a weird crash that is not
             // easy to see where it originates from. Solution: we give back

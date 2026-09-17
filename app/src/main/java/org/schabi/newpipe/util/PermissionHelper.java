@@ -36,11 +36,18 @@ public final class PermissionHelper {
         }
         return false;
     }
-
+    /**
+     * Returns whether the local-network (nearby devices) permission is granted.
+     *
+     * @param context the context to check with
+     * @return true if ACCESS_LOCAL_NETWORK is granted
+     */
     public static boolean hasLocalNetworkPermission(final Context context) {
         return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK)
                 == PackageManager.PERMISSION_GRANTED;
     }
+
+
 
 
     /** Requests overlay access when it has not been granted. */

@@ -121,13 +121,16 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return ComponentDialog(requireActivity(), theme).apply {
-            onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    if (!this@FeedGroupDialog.onBackPressed()) {
-                        cancel()
+            onBackPressedDispatcher.addCallback(
+                this,
+                object : OnBackPressedCallback(true) {
+                    override fun handleOnBackPressed() {
+                        if (!this@FeedGroupDialog.onBackPressed()) {
+                            cancel()
+                        }
                     }
                 }
-            })
+            )
         }
     }
 

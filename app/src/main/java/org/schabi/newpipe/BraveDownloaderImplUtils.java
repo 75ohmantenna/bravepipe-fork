@@ -73,7 +73,13 @@ public final class BraveDownloaderImplUtils {
         }
     }
 
-    /** Resolves custom endpoint hosts; callers must run this off the main thread. */
+    /**
+     * Resolves whether a custom endpoint host targets the local network.
+     * Callers must run this off the main thread.
+     *
+     * @param host the endpoint host to resolve
+     * @return true when the host resolves to a local network address
+     */
     public static boolean requiresLocalNetwork(final String host) throws UnknownHostException {
         if (isLocalHost(host)) {
             return true;
@@ -127,7 +133,8 @@ public final class BraveDownloaderImplUtils {
 
         @NonNull
         @Override
-        public List<InetAddress> lookup(@NonNull final String hostname) throws UnknownHostException {
+        public List<InetAddress> lookup(@NonNull final String hostname)
+                throws UnknownHostException {
             if (isLocalHost(hostname)) {
                 requireLocalNetworkPermission(context);
             }

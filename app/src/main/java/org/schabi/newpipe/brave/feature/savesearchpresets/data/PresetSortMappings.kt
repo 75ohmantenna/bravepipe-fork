@@ -9,7 +9,7 @@ object PresetSortMappings {
         SortType.NAME to EntryDbKeys.SORT_BY_NAME,
         SortType.LAST_USED to EntryDbKeys.SORT_BY_LAST_USED,
         SortType.CREATED to EntryDbKeys.SORT_BY_CREATED,
-        SortType.MODIFIED to EntryDbKeys.SORT_BY_MODIFIED//,
+        SortType.MODIFIED to EntryDbKeys.SORT_BY_MODIFIED // ,
     )
     val dbKeyToSort = sortToDbKey.entries.associate { (k, v) -> v to k }
 
