@@ -1550,4 +1550,19 @@
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
     </string-array>
+    <string name="brave_settings_host_replace_entry_youtube_image_host">yt3.ggpht.com -> yt4.ggpht.com</string>
+    <string name="brave_settings_host_replace_value_youtube_image_host">yt3.ggpht.com:yt4.ggpht.com</string>
+    <string-array name="brave_settings_host_replace_entries">
+        <item>@string/brave_settings_host_replace_entry_youtube_image_host</item>
+    </string-array>
+    <string-array name="brave_settings_host_replace_values">
+        <item>@string/brave_settings_host_replace_value_youtube_image_host</item>
+    </string-array>
+    <string-array name="brave_settings_host_replace_default_values"></string-array>
+    <string name="show_channel_tabs_podcasts">show_channel_tabs_podcasts</string>
+    <string name="fetch_channel_tabs_podcasts">fetch_channel_tabs_podcasts</string>
+    <string name="brave_settings_handle_cloudflare_challenge_enable_key">brave_settings_handle_cloudflare_challenge_enable_key</string>
+    <string name="brave_settings_handle_cloudflare_challenge_interactive_enable_key">brave_settings_handle_cloudflare_challenge_interactive_enable_key</string>
+    <string name="brave_settings_debug_logcat_viewer_key">brave_settings_debug_logcat_viewer_key</string>
+    <string name="brave_settings_debug_logcat_dumper_key">brave_settings_debug_logcat_dumper_key</string>
 </resources>

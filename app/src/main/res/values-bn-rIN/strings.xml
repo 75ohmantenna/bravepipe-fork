@@ -14,7 +14,7 @@
     <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করুন…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
-    <string name="msg_running">NewPipe ডাউনলোড হচ্ছে</string>
+    <string name="msg_running">BravePipe ডাউনলোড হচ্ছে</string>
     <string name="msg_error">ত্রুটি</string>
     <string name="msg_threads">থ্রেড</string>
     <string name="msg_name">ফাইলের নাম</string>
@@ -169,9 +169,9 @@
     <string name="select_a_channel">একটি চ্যানেল পছন্দ করুন</string>
     <string name="channel_page_summary">চ্যানেল এর পাতা</string>
     <string name="blank_page_summary">খালি পাতা</string>
-    <string name="app_license_title">নিউপাইপ এর লাইসেন্স</string>
+    <string name="app_license_title">ব্রেভপাইপ এর লাইসেন্স</string>
     <string name="read_privacy_policy">প্রাইভেসি পলিসি পড়ুন</string>
-    <string name="privacy_policy_title">নিউপাইপ এর প্রাইভেসি পলিসি</string>
+    <string name="privacy_policy_title">ব্রেভপাইপ এর প্রাইভেসি পলিসি</string>
     <string name="view_on_github">গিটহাব এ দেখুন</string>
     <string name="tab_licenses">লাইসেন্স</string>
     <string name="settings_category_downloads_title">ডাউনলোড</string>

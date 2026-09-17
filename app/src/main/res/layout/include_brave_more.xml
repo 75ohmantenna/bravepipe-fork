@@ -15,10 +15,10 @@
         tools:text="com.github.bravepipe" />
 
     <org.schabi.newpipe.views.NewPipeTextView
-        android:id="@+id/about_app_flavor"
+        android:id="@+id/about_app_build_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textAppearance="@android:style/TextAppearance.Small"
-        tools:text="braveLegacy" />
+        tools:text="release" />
 </LinearLayout>

@@ -108,7 +108,7 @@ class NewVersionWorker(
 
     @Throws(IOException::class, ReCaptchaException::class)
     private fun checkNewVersion() {
-        // Check if the current apk is a github one or not.
+        // Only official BravePipe-signed APKs can install release updates.
         if (!ReleaseVersionUtil.isReleaseApk) {
             return
         }
@@ -123,8 +123,8 @@ class NewVersionWorker(
             }
         }
 
-        // Make a network request to get latest NewPipe data.
-        val response = DownloaderImpl.getInstance().get(NEWPIPE_API_URL)
+        // Fetch the latest BravePipe release metadata from GitHub.
+        val response = DownloaderImpl.getInstance().get(BRAVEPIPE_API_URL)
         handleResponse(response)
     }
 
@@ -146,8 +146,7 @@ class NewVersionWorker(
         // Parse the json from the response.
         try {
             val newpipeVersionInfo = BraveNewVersionWorkerHelper.getVersionInfo(
-                response.responseBody(),
-                BuildConfig.FLAVOR
+                response.responseBody()
             )
 
             val versionName = newpipeVersionInfo.getString("version")
@@ -156,10 +155,10 @@ class NewVersionWorker(
             val changeLog = newpipeVersionInfo.getString("change_log")
             compareAppVersionAndShowNotification(versionName, apkLocationUrl, versionCode, changeLog)
         } catch (e: JsonParserException) {
-            // Most likely something is wrong in data received from NEWPIPE_API_URL.
+            // Most likely something is wrong in data received from BRAVEPIPE_API_URL.
             // Do not alarm user and fail silently.
             if (DEBUG) {
-                Log.w(TAG, "Could not get NewPipe API: invalid json", e)
+                Log.w(TAG, "Could not get BravePipe release metadata: invalid json", e)
             }
         }
     }
@@ -169,7 +168,7 @@ class NewVersionWorker(
             checkNewVersion()
             Result.success()
         } catch (e: IOException) {
-            Log.w(TAG, "Could not fetch NewPipe API: probably network problem", e)
+            Log.w(TAG, "Could not fetch BravePipe release metadata: probably network problem", e)
             Result.failure()
         } catch (e: ReCaptchaException) {
             Log.e(TAG, "ReCaptchaException should never happen here.", e)
@@ -180,18 +179,19 @@ class NewVersionWorker(
     companion object {
         private val DEBUG = MainActivity.DEBUG
         private val TAG = NewVersionWorker::class.java.simpleName
-        private const val NEWPIPE_API_URL = "https://newpipe.net/api/data.json"
+        private const val BRAVEPIPE_API_URL =
+            "https://raw.githubusercontent.com/bravepipeproject/bnp-r-mgr/master/api/data.json"
         private const val IS_MANUAL = "isManual"
 
         /**
          * Start a new worker which checks if all conditions for performing a version check are met,
-         * fetches the API endpoint [.NEWPIPE_API_URL] containing info about the latest NewPipe
+         * fetches the API endpoint [.BRAVEPIPE_API_URL] containing info about the latest BravePipe
          * version and displays a notification about an available update if one is available.
          * <br></br>
          * Following conditions need to be met, before data is requested from the server:
          *
-         *  *  The app is signed with the correct signing key (by TeamNewPipe / schabi).
-         * If the signing key differs from the one used upstream, the update cannot be installed.
+         *  * The app is signed with the official BravePipe release signing key.
+         * If the signing key differs, the update cannot be installed.
          *  * The user enabled searching for and notifying about updates in the settings.
          *  * The app did not recently check for updates.
          * We do not want to make unnecessary connections and DOS our servers.

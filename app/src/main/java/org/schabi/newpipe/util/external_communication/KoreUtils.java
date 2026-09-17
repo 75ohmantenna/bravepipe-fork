@@ -1,6 +1,5 @@
 package org.schabi.newpipe.util.external_communication;
 
-import static org.schabi.newpipe.util.external_communication.ShareUtils.installApp;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.tryOpenIntentInApp;
 
 import android.content.Context;
@@ -34,12 +33,12 @@ public final class KoreUtils {
     }
 
     /**
-     * Start an activity to install Kore.
+     * Open the Kore website, where the user can download Kore.
      *
      * @param context the context to use
      */
     public static void installKore(final Context context) {
-        installApp(context, context.getString(R.string.kore_package));
+        ShareUtils.openUrlInApp(context, context.getString(R.string.kore_website));
     }
 
     /**

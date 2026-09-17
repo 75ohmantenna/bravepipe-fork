@@ -11,13 +11,12 @@ import org.schabi.newpipe.error.ErrorUtil.Companion.createNotification
 import org.schabi.newpipe.error.UserAction
 
 object ReleaseVersionUtil {
-    // Public key of the certificate that is used in NewPipe release versions
+    // SHA-256 digest of the certificate used to sign official BravePipe releases.
     private const val RELEASE_CERT_PUBLIC_KEY_SHA256 =
-        "cb84069bd68116bafae5ee4ee5b08a567aa6d898404e7cb12f9e756df5cf5cab"
+        "2f0c31d07f701416b2943376491cb16ebb718156defc2b1269aac04b94396c85"
 
     @OptIn(ExperimentalStdlibApi::class)
     val isReleaseApk by lazy {
-        @Suppress("NewApi")
         val certificates = mapOf(
             RELEASE_CERT_PUBLIC_KEY_SHA256.hexToByteArray() to PackageManager.CERT_INPUT_SHA256
         )

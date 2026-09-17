@@ -50,7 +50,7 @@ class BraveLogFileFormat : LogFileFormat {
 
 open class BraveLogFileName : LogFileName {
     protected val dateFormat =
-        SimpleDateFormat("'${BuildConfig.FLAVOR}_'yyyy-MM-dd_HH-mm-ss-SSS'.log'", Locale.ROOT)
+        SimpleDateFormat("'BravePipe_${BuildConfig.BUILD_TYPE}_'yyyy-MM-dd_HH-mm-ss-SSS'.log'", Locale.ROOT)
 
     override fun getLogFileName(): String {
         return dateFormat.format(Date())

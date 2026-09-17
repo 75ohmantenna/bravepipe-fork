@@ -78,15 +78,6 @@ open class BraveAboutFragment : Fragment() {
         )
         softwareComponents.add(
             SoftwareComponent(
-                "OsExt",
-                "2024",
-                "evermind-zz",
-                "https://github.com/evermind-zz/OsExt",
-                StandardLicenses.GPL3
-            )
-        )
-        softwareComponents.add(
-            SoftwareComponent(
                 "HlsDownloader",
                 "2025",
                 "evermind-zz",

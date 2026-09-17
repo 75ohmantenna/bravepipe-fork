@@ -48,11 +48,7 @@ class ErrorActivity : BraveErrorActivity() {
     private val osString: String
         get() {
             val name = System.getProperty("os.name")!!
-            val osBase = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Build.VERSION.BASE_OS.ifEmpty { "Android" }
-            } else {
-                "Android"
-            }
+            val osBase = Build.VERSION.BASE_OS.ifEmpty { "Android" }
             return "$name $osBase ${Build.VERSION.RELEASE} - ${Build.VERSION.SDK_INT}"
         }
 
@@ -286,9 +282,9 @@ class ErrorActivity : BraveErrorActivity() {
         // BUNDLE TAGS
         const val ERROR_INFO = "error_info"
 
-        private const val ERROR_EMAIL_ADDRESS = "crashreport@newpipe.schabi.org"
+        private const val ERROR_EMAIL_ADDRESS = "crashreport@gmx.com"
         private const val ERROR_EMAIL_SUBJECT = "Exception in "
 
-        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/TeamNewPipe/NewPipe/issues"
+        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/bravenewpipe/NewPipeExtractor/issues"
     }
 }

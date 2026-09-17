@@ -72,7 +72,7 @@ class AboutActivity : AppCompatActivity() {
                 braveAddSoftwareComponents(SOFTWARE_COMPONENTS)
                 aboutAppVersion.text = BuildConfig.VERSION_NAME
                 braveMore.braveAppSignature.text = BuildConfig.APPLICATION_ID
-                braveMore.aboutAppFlavor.text = BuildConfig.FLAVOR
+                braveMore.aboutAppBuildType.text = BuildConfig.BUILD_TYPE
                 braveAbout.braveAboutGithubLink.openLink(R.string.brave_github_url)
                 aboutGithubLink.openLink(R.string.github_url)
                 aboutDonationLink.openLink(R.string.donation_url)
