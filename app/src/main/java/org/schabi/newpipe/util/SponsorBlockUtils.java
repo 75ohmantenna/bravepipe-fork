@@ -38,6 +38,36 @@ public final class SponsorBlockUtils {
     private static final boolean DEBUG = MainActivity.DEBUG;
     private static Map<String, VideoSegment[]> videoSegmentsCache = new HashMap<>();
 
+    private record Category(String name, int enabledKey, int colorKey, int defaultColor,
+                            int skipToast) { }
+
+    private static final Category[] CATEGORIES = {
+        new Category("sponsor", R.string.sponsor_block_category_sponsor_key,
+                R.string.sponsor_block_category_sponsor_color_key, R.color.sponsor_segment,
+                R.string.sponsor_block_skip_sponsor_toast),
+        new Category("intro", R.string.sponsor_block_category_intro_key,
+                R.string.sponsor_block_category_intro_color_key, R.color.intro_segment,
+                R.string.sponsor_block_skip_intro_toast),
+        new Category("outro", R.string.sponsor_block_category_outro_key,
+                R.string.sponsor_block_category_outro_color_key, R.color.outro_segment,
+                R.string.sponsor_block_skip_outro_toast),
+        new Category("interaction", R.string.sponsor_block_category_interaction_key,
+                R.string.sponsor_block_category_interaction_color_key, R.color.interaction_segment,
+                R.string.sponsor_block_skip_interaction_toast),
+        new Category("selfpromo", R.string.sponsor_block_category_self_promo_key,
+                R.string.sponsor_block_category_self_promo_color_key, R.color.self_promo_segment,
+                R.string.sponsor_block_skip_self_promo_toast),
+        new Category("music_offtopic", R.string.sponsor_block_category_non_music_key,
+                R.string.sponsor_block_category_non_music_color_key, R.color.non_music_segment,
+                R.string.sponsor_block_skip_non_music_toast),
+        new Category("preview", R.string.sponsor_block_category_preview_key,
+                R.string.sponsor_block_category_preview_color_key, R.color.preview_segment,
+                R.string.sponsor_block_skip_preview_toast),
+        new Category("filler", R.string.sponsor_block_category_filler_key,
+                R.string.sponsor_block_category_filler_color_key, R.color.filler_segment,
+                R.string.sponsor_block_skip_filler_toast)
+    };
+
     private SponsorBlockUtils() {
     }
 
@@ -63,52 +93,14 @@ public final class SponsorBlockUtils {
             return null;
         }
 
-        final boolean includeSponsorCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_sponsor_key), false);
-        final boolean includeIntroCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_intro_key), false);
-        final boolean includeOutroCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_outro_key), false);
-        final boolean includeInteractionCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_interaction_key), false);
-        final boolean includeSelfPromoCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_self_promo_key), false);
-        final boolean includeMusicCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_non_music_key), false);
-        final boolean includePreviewCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_preview_key), false);
-        final boolean includeFillerCategory = prefs.getBoolean(context
-                .getString(R.string.sponsor_block_category_filler_key), false);
-
         final ArrayList<String> categoryParamList = new ArrayList<>();
-
-        if (includeSponsorCategory) {
-            categoryParamList.add("sponsor");
-        }
-        if (includeIntroCategory) {
-            categoryParamList.add("intro");
-        }
-        if (includeOutroCategory) {
-            categoryParamList.add("outro");
-        }
-        if (includeInteractionCategory) {
-            categoryParamList.add("interaction");
-        }
-        if (includeSelfPromoCategory) {
-            categoryParamList.add("selfpromo");
-        }
-        if (includeMusicCategory) {
-            categoryParamList.add("music_offtopic");
-        }
-        if (includePreviewCategory) {
-            categoryParamList.add("preview");
+        for (final Category category : CATEGORIES) {
+            if (prefs.getBoolean(context.getString(category.enabledKey()), false)) {
+                categoryParamList.add(category.name());
+            }
         }
 
-        if (includeFillerCategory) {
-            categoryParamList.add("filler");
-        }
-
-        if (categoryParamList.size() == 0) {
+        if (categoryParamList.isEmpty()) {
             return null;
         }
 
@@ -224,92 +216,27 @@ public final class SponsorBlockUtils {
             final Context context,
             final SharedPreferences prefs
     ) {
-        String key;
-        final String colorStr;
-        switch (category) {
-            case "sponsor":
-                key = context.getString(R.string.sponsor_block_category_sponsor_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_sponsor_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.sponsor_segment)
-                            : Color.parseColor(colorStr);
+        for (final Category definition : CATEGORIES) {
+            if (category.equals(definition.name())) {
+                if (!prefs.getBoolean(context.getString(definition.enabledKey()), false)) {
+                    return null;
                 }
-                break;
-            case "intro":
-                key = context.getString(R.string.sponsor_block_category_intro_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_intro_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.intro_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "outro":
-                key = context.getString(R.string.sponsor_block_category_outro_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_outro_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.outro_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "interaction":
-                key = context.getString(R.string.sponsor_block_category_interaction_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_interaction_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.interaction_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "selfpromo":
-                key = context.getString(R.string.sponsor_block_category_self_promo_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_self_promo_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.self_promo_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "music_offtopic":
-                key = context.getString(R.string.sponsor_block_category_non_music_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_non_music_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.non_music_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "preview":
-                key = context.getString(R.string.sponsor_block_category_preview_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_preview_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.preview_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
-            case "filler":
-                key = context.getString(R.string.sponsor_block_category_filler_key);
-                if (prefs.getBoolean(key, false)) {
-                    key = context.getString(R.string.sponsor_block_category_filler_color_key);
-                    colorStr = prefs.getString(key, null);
-                    return colorStr == null
-                            ? context.getResources().getColor(R.color.filler_segment)
-                            : Color.parseColor(colorStr);
-                }
-                break;
+                final String color = prefs.getString(context.getString(definition.colorKey()), null);
+                return color == null ? context.getColor(definition.defaultColor())
+                        : Color.parseColor(color);
+            }
         }
 
         return null;
+    }
+
+    public static String getSkipToast(final Context context, final String category) {
+        for (final Category definition : CATEGORIES) {
+            if (category.equals(definition.name())) {
+                return context.getString(definition.skipToast());
+            }
+        }
+        return "";
     }
 
     public static void markSegments(

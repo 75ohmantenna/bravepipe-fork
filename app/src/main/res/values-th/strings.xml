@@ -127,8 +127,6 @@
     <string name="delete_search_history_alert">ลบประวัติการค้นหาทั้งหมดหรือไม่\?</string>
     <string name="search_history_deleted">ลบประวัติการค้นหาแล้ว</string>
     <string name="general_error">เกิดข้อผิดพลาด</string>
-    <string name="download_to_sdcard_error_title">พื้นที่เก็บข้อมูลภายนอกไม่พร้อมใช้งาน</string>
-    <string name="download_to_sdcard_error_message">การดาวน์โหลดไปยังการ์ดความจำภายนอกยังไม่สามารถทำได้ รีเซ็ตตำแหน่งโฟลเดอร์ดาวน์โหลดหรือไม่\?</string>
     <string name="network_error">ข้อผิดพลาดของเครือข่าย</string>
     <string name="could_not_load_thumbnails">ไม่สามารถโหลดรูปขนาดย่อทั้งหมด</string>
     <string name="parsing_error">ไม่สามารถแยกวิเคราะห์เว็บไซต์</string>
@@ -142,10 +140,6 @@
     <string name="video_streams_empty">ไม่พบสตรีมวิดีโอ</string>
     <string name="audio_streams_empty">ไม่พบสตรีมเสียง</string>
     <string name="invalid_directory">ไม่มีโฟลเดอร์ตามที่ระบุ</string>
-    <string name="invalid_source">ไม่มีแหล่งแฟ้ม/เนื้อหาดังกล่าว</string>
-    <string name="invalid_file">ไฟล์นี้ไม่มีอยู่หรือไม่ได้รับอนุญาตให้อ่านหรือเขียนไฟล์</string>
-    <string name="file_name_empty_error">ชื่อไฟล์ต้องไม่ว่างเปล่า</string>
-    <string name="error_occurred_detail">เกิดข้อผิดพลาด: %1$s</string>
     <string name="no_streams_available_download">ไม่มีสตรีมให้ดาวน์โหลด</string>
     <string name="saved_tabs_invalid_json">เรียกคืนการวางตำแหน่งแท็บเป็นค่าเดิม เนื่องจากพบข้อผิดพลาดในการอ่านการวางตำแหน่งแท็บที่บันทึกไว้</string>
     <string name="restore_defaults">คืนค่าเริ่มต้น</string>
@@ -186,7 +180,6 @@
     <string name="msg_running">BravePipe กำลังดาวน์โหลด</string>
     <string name="msg_running_detail">แตะเพื่อดูรายละเอียด</string>
     <string name="msg_wait">โปรดรอ…</string>
-    <string name="msg_copied">คัดลอกไปที่คลิปบอร์ดแล้ว</string>
     <string name="no_available_dir">โปรดเลือกโฟลเดอร์ดาวน์โหลดที่พร้อมใช้งาน</string>
     <string name="msg_popup_permission">การอนุญาตนี้เป็นสิ่งจำเป็นเพื่อ
 \nเปิดในโหมดป๊อปอัป</string>
@@ -276,8 +269,6 @@
     <string name="import_title">นำเข้า</string>
     <string name="import_from">นำเข้าจาก</string>
     <string name="export_to">ส่งออกไปยัง</string>
-    <string name="import_ongoing">กำลังนำเข้า…</string>
-    <string name="export_ongoing">กำลังส่งออก…</string>
     <string name="import_file_title">นำเข้าไฟล์</string>
     <string name="previous_export">การส่งออกก่อนหน้านี้</string>
     <string name="subscriptions_import_unsuccessful">ไม่สามารถนำเข้าการสมัครรับข้อมูล</string>
@@ -359,14 +350,10 @@
     <string name="mark_as_watched">ทำเครื่องหมายว่าดูแล้ว</string>
     <string name="ok">ตกลง</string>
     <string name="notification_action_3_title">ปุ่มคำสั่งที่สี่</string>
-    <string name="notification_action_0_title">ปุ่มคำสั่งแรก</string>
-    <string name="notification_action_2_title">ปุ่มคำสั่งที่สาม</string>
     <string name="notification_action_4_title">ปุ่มคำสั่งที่ห้า</string>
-    <string name="notification_actions_summary">แก้ไขคำสั่งของการแต่การแจ้งเตือนด้วยการแตะไปที่มัน เลือกสามรายการที่จะแสดงในการแจ้งเตือนในการแจ้งเตือนแบบกระทัดรัดโดยใช้ปุ่มกาเครื่องหมายทางขวา</string>
     <string name="notification_scale_to_square_image_title">ตัดหน้าปกวิดีโอเป็นอัตราส่วน 1:1</string>
     <string name="notification_scale_to_square_image_summary">ตัดหน้าปกวิดีโอที่แสดงในการแจ้งเตือนจากอัตราส่วน 16:9 เป็น 1:1</string>
     <string name="crash_the_player">เครื่องเล่นวิดีโอแครช</string>
-    <string name="notification_action_1_title">ปุ่มคำสั่งที่สอง</string>
     <string name="night_theme_title">โหมดกลางคืน</string>
     <string name="prefer_original_audio_summary">เลือกเสียงต้นฉบับโดยไม่คำนึงถึงภาษาที่ใช้</string>
     <string name="show_description_summary">ปิดเพื่อซ่อนคำอธิบายของวิดีโอและข้อมูลเพิ่มเติมอื่นๆ</string>

@@ -134,10 +134,6 @@
     <string name="video_streams_empty">Non foi encontrada ningunha emisión de vídeo</string>
     <string name="audio_streams_empty">Non foi encontrada ningunha emisión de audio</string>
     <string name="invalid_directory">Non hai ningún cartafol</string>
-    <string name="invalid_source">Non hai ningún ficheiro / fonte de contido</string>
-    <string name="invalid_file">O ficheiro non existe ou falta permiso para lelo ou escribilo</string>
-    <string name="file_name_empty_error">O nome do ficheiro non pode estar baleiro</string>
-    <string name="error_occurred_detail">Ocorreu un erro: %1$s</string>
     <string name="no_streams_available_download">Non hai emisións para descargar</string>
     <string name="sorry_string">Deculpe, isto non debería ter acontecido.</string>
     <string name="error_report_button_text">Informar por correo electrónico</string>
@@ -187,7 +183,6 @@
     <string name="msg_running">Descarga do BravePipe</string>
     <string name="msg_running_detail">Toque para ver detalles</string>
     <string name="msg_wait">Por favor, agarde…</string>
-    <string name="msg_copied">Copiado para o portarretallos</string>
     <string name="no_available_dir">Selecciona un cartafol de descarga máis tarde na configuración</string>
     <string name="msg_popup_permission">Esta permisión é necesaria
 \npara abrir o vídeo no modo «popup»</string>
@@ -282,8 +277,6 @@
     <string name="import_title">Importar</string>
     <string name="import_from">Importar de</string>
     <string name="export_to">Exportar a</string>
-    <string name="import_ongoing">Importando…</string>
-    <string name="export_ongoing">Exportando…</string>
     <string name="import_file_title">Importar un ficheiro</string>
     <string name="previous_export">Exportación anterior</string>
     <string name="subscriptions_import_unsuccessful">Non foi posíbel importar as subscricións</string>
@@ -394,10 +387,6 @@
     <string name="systems_language">Sistema predeterminado</string>
     <string name="app_language_title">Lingua do aplicativo</string>
     <string name="choose_instance_prompt">Elixir unha instancia</string>
-    <string name="downloads_storage_use_saf_summary">O \'Framework Access Framework\' permite a descarga a unha tarxeta SD externa</string>
-    <string name="downloads_storage_use_saf_title">Usar selector de cartafois do sistema (SAF)</string>
-    <string name="downloads_storage_ask_summary">Preguntaralle onde gardar cada descarga.
-\nPermita o Sistema de Escolla de Cartafois (SAF) se desexar descarregar para un SD externo</string>
     <string name="downloads_storage_ask_title">Pregunta onde se descarga</string>
     <string name="pause_downloads">Parar as descagas</string>
     <string name="start_downloads">Comezar as descargas</string>
@@ -489,8 +478,6 @@
     <string name="restore_defaults">Restaurar os valores predeterminados</string>
     <string name="saved_tabs_invalid_json">Non se puideron ler as pestanas gardadas, polo que usar as predeterminadas</string>
     <string name="missing_file">Ficheiro movido ou eliminado</string>
-    <string name="download_to_sdcard_error_message">Non é posible descargar na tarxeta SD externa. Restaurar a localización do cartafol de descarga\?</string>
-    <string name="download_to_sdcard_error_title">Non hai dispoñible almacenamento externo</string>
     <string name="watch_history_states_deleted">Elimináronse as posicións de reprodución</string>
     <string name="delete_playback_states_alert">Eliminas todas as posicións de reprodución\?</string>
     <string name="clear_playback_states_summary">Elimina todas as posicións de reprodución</string>
@@ -527,10 +514,6 @@
     <string name="search_showing_result_for">Amosando resultados para: %s</string>
     <string name="notification_action_buffering">Procesando</string>
     <string name="notification_action_repeat">Repetir</string>
-    <string name="notification_actions_at_most_three">Pode seleccionar como máximo tres accións para amosar na notificación compacta!</string>
-    <string name="notification_action_0_title">Primeiro botón de acción</string>
-    <string name="notification_action_1_title">Segundo botón de acción</string>
-    <string name="notification_action_2_title">Terceiro botón de acción</string>
     <string name="notification_action_3_title">Cuarto botón de acción</string>
     <string name="notification_action_4_title">Quinto botón de acción</string>
     <string name="notification_scale_to_square_image_summary">Cortar a miniatura do vídeo amosado na notificación da relación de aspecto 16:9 a 1:1</string>
@@ -633,13 +616,10 @@
     <string name="clear_queue_confirmation_description">A cola de reprodución activa será substituída</string>
     <string name="clear_queue_confirmation_summary">Cambiar dun reprodutor a outro pode substituír a súa cola</string>
     <string name="notification_action_shuffle">Barallar</string>
-    <string name="notification_actions_summary">Edite cada acción da notificación premendo nela. Seleccione ata tres delas para seren mostradas na notificación compacta usando as checkboxes da dereita.</string>
     <string name="enqueue_next_stream">Enfileirar o seguinte vídeo</string>
     <string name="start_main_player_fullscreen_title">Inciar reprodutor principal en pantalla completa</string>
     <string name="start_main_player_fullscreen_summary">Non iniciar vídeos no reprodutor mini, mais cambiar a pantalla completa directamente, se a rotación estiver bloqueada. Aínda pode acceder o reprodutor mini ao saír da pantalla completa</string>
     <string name="main_page_content_swipe_remove">Deslice os elementos para removelos</string>
-    <string name="no_appropriate_file_manager_message">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
-\nPor favor instala un xestor de ficheiros ou intenta desactivar \'%s\' na configuración de descarga</string>
     <string name="no_appropriate_file_manager_message_android_10">Non se atopou ningún xestor de ficheiros axeitado para esta acción. 
 \nPor favor instala un xestor de ficheiros compatible con Storage Access Framework</string>
     <string name="detail_heart_img_view_description">Valorado polo creador</string>
@@ -654,7 +634,6 @@
     <string name="check_for_updates">Procurar actualizacións</string>
     <string name="manual_update_description">Procurar manualmente novas versións</string>
     <string name="checking_updates_toast">A procurar actualizacións…</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, só o \'Sistema de Acceso ao Almacenamento\' está soportado</string>
     <string name="processing_may_take_a_moment">Procesando... Pode devagar un momento</string>
     <string name="create_error_notification">Crear unha notificación de erro</string>
     <string name="feed_new_items">Novos elementos</string>
@@ -812,9 +791,6 @@
     <string name="channel_tab_tracks">Pistas</string>
     <string name="feed_fetch_channel_tabs_summary">Lapelas a recuperar ao actualizar o feed. Esta opción non ten efecto se a canle se actualiza no modo rápido.</string>
     <string name="always_use_exoplayer_set_output_surface_workaround_summary">Esta solución alternativa libera os códecs de video e os re-instancia cando muda a máscara, no canto de configurar a máscara directamente no códec. ExoPlayer xa emprega esta configuración nalgúns dispositivos con este problema e só afecta a Android 6 e versións posteriores.\n\nActivar esta opción pode minimizar erros de reprodución ao mudar o reprodutor de video actual ou mudar ao modo de pantalla completa</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sMM</string>
     <string name="search_with_service_name">Procurar %1$s</string>
     <string name="search_with_service_name_and_filter">Procurar %1$s (%2$s)</string>
     <string name="tab_bookmarks_short">Listas de reprodución</string>

@@ -3,14 +3,10 @@ package org.schabi.newpipe;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.AUDIO;
 import static org.schabi.newpipe.extractor.StreamingService.ServiceInfo.MediaCapability.VIDEO;
 
-import android.annotation.SuppressLint;
-import android.app.IntentService;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ContextThemeWrapper;
@@ -30,15 +26,14 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.ServiceCompat;
 import androidx.core.math.MathUtils;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.evernote.android.state.State;
@@ -82,19 +77,15 @@ import org.schabi.newpipe.util.urlfinder.UrlFinder;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.io.Serializable;
-import java.lang.ref.Reference;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -111,8 +102,11 @@ public class RouterActivity extends AppCompatActivity {
     protected int selectedPreviously = -1;
     protected String currentUrl;
     private StreamingService currentService;
-    private boolean selectionIsDownload = false;
-    private boolean selectionIsAddToPlaylist = false;
+    @State
+    Choice pendingChoice;
+    private FetcherViewModel fetcher;
+    private Runnable whenResumed;
+    private boolean dispatchingResult;
     private AlertDialog alertDialogChoice = null;
     private FragmentManager.FragmentLifecycleCallbacks dismissListener = null;
 
@@ -142,6 +136,8 @@ public class RouterActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         Bridge.restoreInstanceState(this, savedInstanceState);
+        fetcher = new ViewModelProvider(this).get(FetcherViewModel.class);
+        fetcher.ready.observe(this, ready -> dispatchResult());
 
         // FragmentManager will take care to recreate (Playlist|Download)Dialog when screen rotates
         // We used to .setOnDismissListener(dialog -> finish()); when creating these DialogFragments
@@ -155,7 +151,8 @@ public class RouterActivity extends AppCompatActivity {
                 public void onFragmentDestroyed(@NonNull final FragmentManager fm,
                                                 @NonNull final Fragment f) {
                     super.onFragmentDestroyed(fm, f);
-                    if (f instanceof DialogFragment && fm.getFragments().isEmpty()) {
+                    if (f instanceof DialogFragment && fm.getFragments().isEmpty()
+                            && !dispatchingResult) {
                         // No more DialogFragments, we're done
                         finish();
                     }
@@ -177,8 +174,10 @@ public class RouterActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        disposables.clear();
         // we need to dismiss the dialog before leaving the activity or we get leaks
         if (alertDialogChoice != null) {
+            alertDialogChoice.setOnDismissListener(null);
             alertDialogChoice.dismiss();
         }
     }
@@ -196,9 +195,32 @@ public class RouterActivity extends AppCompatActivity {
         // Don't overlap the DialogFragment after rotating the screen
         // If there's no DialogFragment, we're either starting afresh
         // or we didn't make it to PlaylistDialog or DownloadDialog before the orientation change
-        if (getSupportFragmentManager().getFragments().isEmpty()) {
+        if (!isFinishing() && pendingChoice == null && whenResumed == null
+                && getSupportFragmentManager().getFragments().isEmpty()) {
             // Start over from scratch
             handleUrl(currentUrl);
+        }
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        if (whenResumed != null) {
+            final Runnable action = whenResumed;
+            whenResumed = null;
+            action.run();
+        }
+        if (pendingChoice != null) {
+            fetcher.load(getApplicationContext(), pendingChoice);
+            dispatchResult();
+        }
+    }
+
+    private void runWhenResumed(final Runnable action) {
+        if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
+            action.run();
+        } else {
+            whenResumed = action;
         }
     }
 
@@ -243,15 +265,15 @@ public class RouterActivity extends AppCompatActivity {
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(isUrlSupported -> {
+                .subscribe(isUrlSupported -> runWhenResumed(() -> {
                     if (isUrlSupported) {
                         onSuccess();
                     } else {
                         showUnsupportedUrlDialog(url);
                     }
-                }, throwable -> handleError(this, new ErrorInfo(throwable,
+                }), throwable -> runWhenResumed(() -> handleError(this, new ErrorInfo(throwable,
                         UserAction.SHARE_TO_NEWPIPE, "Getting service from url: " + url,
-                        null, url))));
+                        null, url)))));
     }
 
     /**
@@ -441,7 +463,7 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener(dialog -> {
-                    if (!selectionIsDownload && !selectionIsAddToPlaylist) {
+                    if (pendingChoice == null) {
                         finish();
                     }
                 })
@@ -622,265 +644,66 @@ public class RouterActivity extends AppCompatActivity {
             return;
         }
 
+        startExtraction(selectedChoiceKey);
+    }
+
+    private void startExtraction(final String selectedChoiceKey) {
+        pendingChoice = new Choice(currentServiceId, currentLinkType, currentUrl,
+                selectedChoiceKey, canHandleChoiceLikeShowInfo(selectedChoiceKey));
+        fetcher.load(getApplicationContext(), pendingChoice);
         if (selectedChoiceKey.equals(getString(R.string.download_key))) {
-            if (PermissionHelper.checkStoragePermissions(this,
-                    PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-                selectionIsDownload = true;
-                openDownloadDialog();
-            }
-            return;
+            new LoadingDialog(R.string.loading_metadata_title)
+                    .show(getSupportFragmentManager(), "loadingDialog");
+        } else {
+            Toast.makeText(this, R.string.processing_may_take_a_moment, Toast.LENGTH_LONG).show();
         }
-
-        if (selectedChoiceKey.equals(getString(R.string.add_to_playlist_key))) {
-            selectionIsAddToPlaylist = true;
-            openAddToPlaylistDialog();
-            return;
-        }
-
-        // stop and bypass FetcherService if InfoScreen was selected since
-        // StreamDetailFragment can fetch data itself
-        if (selectedChoiceKey.equals(getString(R.string.show_info_key))
-                || canHandleChoiceLikeShowInfo(selectedChoiceKey)) {
-            disposables.add(Observable
-                    .fromCallable(() -> NavigationHelper.getIntentByLink(this, currentUrl))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(intent -> {
-                        startActivity(intent);
-                        finish();
-                    }, throwable -> handleError(this, new ErrorInfo(throwable,
-                            UserAction.SHARE_TO_NEWPIPE, "Starting info activity: " + currentUrl,
-                            null, currentUrl)))
-            );
-            return;
-        }
-
-        final Intent intent = new Intent(this, FetcherService.class);
-        final Choice choice = new Choice(currentService.getServiceId(), currentLinkType,
-                currentUrl, selectedChoiceKey);
-        intent.putExtra(FetcherService.KEY_CHOICE, choice);
-        startService(intent);
-
-        finish();
     }
 
     private boolean canHandleChoiceLikeShowInfo(final String selectedChoiceKey) {
-        if (!selectedChoiceKey.equals(getString(R.string.video_player_key))) {
+        if (!selectedChoiceKey.equals(getString(R.string.video_player_key))
+                || !PlayerHelper.isAutoplayAllowedByUser(getThemeWrapperContext())
+                || PreferenceManager.getDefaultSharedPreferences(this).getBoolean(
+                        getString(R.string.use_external_video_player_key), false)) {
             return false;
         }
-        // "video player" can be handled like "show info" (because VideoDetailFragment can load
-        // the stream instead of FetcherService) when...
-
-        // ...Autoplay is enabled
-        if (!PlayerHelper.isAutoplayAllowedByUser(getThemeWrapperContext())) {
-            return false;
-        }
-
-        final boolean isExtVideoEnabled = PreferenceManager.getDefaultSharedPreferences(this)
-                .getBoolean(getString(R.string.use_external_video_player_key), false);
-        // ...it's not done via an external player
-        if (isExtVideoEnabled) {
-            return false;
-        }
-
-        // ...the player is not running or in normal Video-mode/type
-        final PlayerType playerType = PlayerHolder.getInstance().getType();
-        return playerType == null || playerType == PlayerType.MAIN;
+        final PlayerType type = PlayerHolder.getInstance().getType();
+        return type == null || type == PlayerType.MAIN;
     }
 
-    public static class PersistentFragment extends Fragment {
-        private WeakReference<AppCompatActivity> weakContext;
-        private final CompositeDisposable disposables = new CompositeDisposable();
-        private int running = 0;
-
-        private synchronized void inFlight(final boolean started) {
-            if (started) {
-                running++;
+    private void dispatchResult() {
+        if (pendingChoice == null || !Boolean.TRUE.equals(fetcher.ready.getValue())
+                || !getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)
+                || getSupportFragmentManager().isStateSaved() || isFinishing()) {
+            return;
+        }
+        final Choice choice = pendingChoice;
+        pendingChoice = null;
+        final Fragment loading = getSupportFragmentManager().findFragmentByTag("loadingDialog");
+        if (loading instanceof DialogFragment) {
+            dispatchingResult = true;
+            try {
+                ((DialogFragment) loading).dismissNow();
+            } finally {
+                dispatchingResult = false;
+            }
+        }
+        if (fetcher.error != null) {
+            if (choice.playerChoice.equals(getString(R.string.download_key))) {
+                showUnsupportedUrlDialog(choice.url);
             } else {
-                running--;
-                if (running <= 0) {
-                    getActivityContext().ifPresent(context -> context.getSupportFragmentManager()
-                            .beginTransaction().remove(this).commit());
-                }
+                handleError(this, fetcher.error);
             }
-        }
-
-        @Override
-        public void onAttach(@NonNull final Context activityContext) {
-            super.onAttach(activityContext);
-            weakContext = new WeakReference<>((AppCompatActivity) activityContext);
-        }
-
-        @Override
-        public void onDetach() {
-            super.onDetach();
-            weakContext = null;
-        }
-
-        @SuppressWarnings("deprecation")
-        @Override
-        public void onCreate(final Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setRetainInstance(true);
-        }
-
-        @Override
-        public void onDestroy() {
-            super.onDestroy();
-            disposables.clear();
-        }
-
-        /**
-         * @return the activity context, if there is one and the activity is not finishing
-         */
-        private Optional<AppCompatActivity> getActivityContext() {
-            return Optional.ofNullable(weakContext)
-                    .map(Reference::get)
-                    .filter(context -> !context.isFinishing());
-        }
-
-        // guard against IllegalStateException in calling DialogFragment.show() whilst in background
-        // (which could happen, say, when the user pressed the home button while waiting for
-        // the network request to return) when it internally calls FragmentTransaction.commit()
-        // after the FragmentManager has saved its states (isStateSaved() == true)
-        // (ref: https://stackoverflow.com/a/39813506)
-        private void runOnVisible(final Consumer<AppCompatActivity> runnable) {
-            getActivityContext().ifPresentOrElse(context -> {
-                if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                    context.runOnUiThread(() -> {
-                        runnable.accept(context);
-                        inFlight(false);
-                    });
-                } else {
-                    getLifecycle().addObserver(new DefaultLifecycleObserver() {
-                        @Override
-                        public void onResume(@NonNull final LifecycleOwner owner) {
-                            getLifecycle().removeObserver(this);
-                            getActivityContext().ifPresentOrElse(context ->
-                                    context.runOnUiThread(() -> {
-                                        runnable.accept(context);
-                                        inFlight(false);
-                                    }),
-                                    () -> inFlight(false)
-                            );
-                        }
-                    });
-                    // this trick doesn't seem to work on Android 10+ (API 29)
-                    // which places restrictions on starting activities from the background
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q
-                            && !context.isChangingConfigurations()) {
-                        // try to bring the activity back to front if minimised
-                        final Intent i = new Intent(context, RouterActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivity(i);
-                    }
-                }
-
-            }, () ->
-                // this branch is executed if there is no activity context
-                inFlight(false)
-            );
-        }
-
-        <T> Single<T> pleaseWait(final Single<T> single) {
-            // 'abuse' ambWith() here to cancel the toast for us when the wait is over
-            return single.ambWith(Single.create(emitter -> getActivityContext().ifPresent(context ->
-                    context.runOnUiThread(() -> {
-                        // Getting the stream info usually takes a moment
-                        // Notifying the user here to ensure that no confusion arises
-                        final Toast toast = Toast.makeText(context,
-                                getString(R.string.processing_may_take_a_moment),
-                                Toast.LENGTH_LONG);
-                        toast.show();
-                        emitter.setCancellable(toast::cancel);
-            }))));
-        }
-
-        @SuppressLint("CheckResult")
-        private void openDownloadDialog(final int currentServiceId, final String currentUrl) {
-            inFlight(true);
-            final LoadingDialog loadingDialog = new LoadingDialog(R.string.loading_metadata_title);
-            loadingDialog.show(getParentFragmentManager(), "loadingDialog");
-            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, true)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .compose(this::pleaseWait)
-                    .subscribe(result ->
-                        runOnVisible(ctx -> {
-                            loadingDialog.dismiss();
-                            final FragmentManager fm = ctx.getSupportFragmentManager();
-                            final DownloadDialog downloadDialog = new DownloadDialog(ctx, result);
-                            // dismiss listener to be handled by FragmentManager
-                            downloadDialog.show(fm, "downloadDialog");
-                        }
-                        ), throwable -> runOnVisible(ctx -> {
-                        loadingDialog.dismiss();
-                        ((RouterActivity) ctx).showUnsupportedUrlDialog(currentUrl);
-                    })));
-        }
-
-        private void openAddToPlaylistDialog(final int currentServiceId, final String currentUrl) {
-            inFlight(true);
-            disposables.add(ExtractorHelper.getStreamInfo(currentServiceId, currentUrl, false)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .compose(this::pleaseWait)
-                    .subscribe(
-                            info -> getActivityContext().ifPresent(context ->
-                                    PlaylistDialog.createCorrespondingDialog(context,
-                                            List.of(new StreamEntity(info)),
-                                            playlistDialog -> runOnVisible(ctx -> {
-                                                // dismiss listener to be handled by FragmentManager
-                                                final FragmentManager fm =
-                                                        ctx.getSupportFragmentManager();
-                                                playlistDialog.show(fm, "addToPlaylistDialog");
-                                            })
-                                    )),
-                            throwable -> runOnVisible(ctx -> handleError(ctx, new ErrorInfo(
-                                    throwable, UserAction.REQUESTED_STREAM,
-                                    "Tried to add " + currentUrl + " to a playlist",
-                                    ((RouterActivity) ctx).currentService.getServiceId(),
-                                    currentUrl)
-                            ))
-                    )
-            );
-        }
-    }
-
-    private void openAddToPlaylistDialog() {
-        getPersistFragment().openAddToPlaylistDialog(currentServiceId, currentUrl);
-    }
-
-    private void openDownloadDialog() {
-        getPersistFragment().openDownloadDialog(currentServiceId, currentUrl);
-    }
-
-    private PersistentFragment getPersistFragment() {
-        final FragmentManager fm = getSupportFragmentManager();
-        PersistentFragment persistFragment =
-                (PersistentFragment) fm.findFragmentByTag("PERSIST_FRAGMENT");
-        if (persistFragment == null) {
-            persistFragment = new PersistentFragment();
-            fm.beginTransaction()
-                    .add(persistFragment, "PERSIST_FRAGMENT")
-                    .commitNow();
-        }
-        return persistFragment;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(final int requestCode,
-                                           @NonNull final String[] permissions,
-                                           @NonNull final int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        for (final int i : grantResults) {
-            if (i == PackageManager.PERMISSION_DENIED) {
-                finish();
-                return;
-            }
-        }
-        if (requestCode == PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE) {
-            openDownloadDialog();
+        } else if (fetcher.intent != null) {
+            startActivity(fetcher.intent);
+            finish();
+        } else if (choice.playerChoice.equals(getString(R.string.download_key))) {
+            new DownloadDialog(this, (StreamInfo) fetcher.info)
+                    .show(getSupportFragmentManager(), "downloadDialog");
+        } else if (fetcher.playlistDialog != null) {
+            fetcher.playlistDialog.show(getSupportFragmentManager(), "addToPlaylistDialog");
+        } else {
+            playResult(choice, fetcher.info);
+            finish();
         }
     }
 
@@ -897,18 +720,20 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    private static class Choice implements Serializable {
+    static class Choice implements Serializable {
         final int serviceId;
         final String url;
         final String playerChoice;
         final LinkType linkType;
+        final boolean showInfo;
 
         Choice(final int serviceId, final LinkType linkType,
-               final String url, final String playerChoice) {
+               final String url, final String playerChoice, final boolean showInfo) {
             this.serviceId = serviceId;
             this.linkType = linkType;
             this.url = url;
             this.playerChoice = playerChoice;
+            this.showInfo = showInfo;
         }
 
         @NonNull
@@ -918,142 +743,115 @@ public class RouterActivity extends AppCompatActivity {
         }
     }
 
-    public static class FetcherService extends IntentService {
+    /** Owns extraction across rotation, without retaining an Activity or launching from background. */
+    public static class FetcherViewModel extends ViewModel {
+        private final CompositeDisposable disposables = new CompositeDisposable();
+        private final MutableLiveData<Boolean> ready = new MutableLiveData<>(false);
+        private boolean started;
+        private Info info;
+        private Intent intent;
+        private ErrorInfo error;
+        private PlaylistDialog playlistDialog;
 
-        public static final String KEY_CHOICE = "key_choice";
-        private static final int ID = 456;
-        private Disposable fetcher;
-
-        public FetcherService() {
-            super(FetcherService.class.getSimpleName());
-        }
-
-        @Override
-        public void onCreate() {
-            super.onCreate();
-            startForeground(ID, createNotification().build());
-        }
-
-        @Override
-        protected void onHandleIntent(@Nullable final Intent intent) {
-            if (intent == null) {
+        void load(final Context context, final Choice choice) {
+            if (started) {
                 return;
             }
-
-            final Serializable serializable = intent.getSerializableExtra(KEY_CHOICE);
-            if (!(serializable instanceof Choice)) {
+            started = true;
+            if (choice.showInfo
+                    || choice.playerChoice.equals(context.getString(R.string.show_info_key))) {
+                disposables.add(Single.fromCallable(() ->
+                        NavigationHelper.getIntentByLink(context, choice.url))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(result -> {
+                            intent = result;
+                            ready.setValue(true);
+                        }, throwable -> fail(choice, UserAction.SHARE_TO_NEWPIPE, throwable)));
                 return;
             }
-            final Choice playerChoice = (Choice) serializable;
-            handleChoice(playerChoice);
-        }
-
-        public void handleChoice(final Choice choice) {
-            Single<? extends Info> single = null;
-            UserAction userAction = UserAction.SOMETHING_ELSE;
-
+            final Single<? extends Info> request;
+            final UserAction action;
             switch (choice.linkType) {
-                case STREAM:
-                    single = ExtractorHelper.getStreamInfo(choice.serviceId, choice.url, false);
-                    userAction = UserAction.REQUESTED_STREAM;
-                    break;
                 case CHANNEL:
-                    single = ExtractorHelper.getChannelInfo(choice.serviceId, choice.url, false);
-                    userAction = UserAction.REQUESTED_CHANNEL;
+                    request = ExtractorHelper.getChannelInfo(choice.serviceId, choice.url, false);
+                    action = UserAction.REQUESTED_CHANNEL;
                     break;
                 case PLAYLIST:
-                    single = ExtractorHelper.getPlaylistInfo(choice.serviceId, choice.url, false);
-                    userAction = UserAction.REQUESTED_PLAYLIST;
+                    request = ExtractorHelper.getPlaylistInfo(choice.serviceId, choice.url, false);
+                    action = UserAction.REQUESTED_PLAYLIST;
+                    break;
+                default:
+                    request = ExtractorHelper.getStreamInfo(choice.serviceId, choice.url,
+                            choice.playerChoice.equals(context.getString(R.string.download_key)));
+                    action = UserAction.REQUESTED_STREAM;
                     break;
             }
-
-
-            if (single != null) {
-                final UserAction finalUserAction = userAction;
-                final Consumer<Info> resultHandler = getResultHandler(choice);
-                fetcher = single
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(info -> {
-                            resultHandler.accept(info);
-                            if (fetcher != null) {
-                                fetcher.dispose();
-                            }
-                        }, throwable -> handleError(this, new ErrorInfo(throwable, finalUserAction,
-                                choice.url + " opened with " + choice.playerChoice,
-                                choice.serviceId, choice.url)));
-            }
+            disposables.add(request.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(result -> {
+                        info = result;
+                        if (choice.playerChoice.equals(context.getString(
+                                R.string.add_to_playlist_key))) {
+                            disposables.add(PlaylistDialog.createCorrespondingDialog(context,
+                                    List.of(new StreamEntity((StreamInfo) result)), dialog -> {
+                                        playlistDialog = dialog;
+                                        ready.setValue(true);
+                                    }));
+                        } else {
+                            ready.setValue(true);
+                        }
+                    }, throwable -> fail(choice, action, throwable)));
         }
 
-        public Consumer<Info> getResultHandler(final Choice choice) {
-            return info -> {
-                final String videoPlayerKey = getString(R.string.video_player_key);
-                final String backgroundPlayerKey = getString(R.string.background_player_key);
-                final String popupPlayerKey = getString(R.string.popup_player_key);
-
-                final SharedPreferences preferences = PreferenceManager
-                        .getDefaultSharedPreferences(this);
-                final boolean isExtVideoEnabled = preferences.getBoolean(
-                        getString(R.string.use_external_video_player_key), false);
-                final boolean isExtAudioEnabled = preferences.getBoolean(
-                        getString(R.string.use_external_audio_player_key), false);
-
-                final PlayQueue playQueue;
-                if (info instanceof StreamInfo) {
-                    if (choice.playerChoice.equals(backgroundPlayerKey) && isExtAudioEnabled) {
-                        NavigationHelper.playOnExternalAudioPlayer(this, (StreamInfo) info);
-                        return;
-                    } else if (choice.playerChoice.equals(videoPlayerKey) && isExtVideoEnabled) {
-                        NavigationHelper.playOnExternalVideoPlayer(this, (StreamInfo) info);
-                        return;
-                    }
-                    playQueue = new SinglePlayQueue((StreamInfo) info);
-                } else if (info instanceof ChannelInfo) {
-                    final Optional<ListLinkHandler> playableTab = ((ChannelInfo) info).getTabs()
-                            .stream()
-                            .filter(ChannelTabHelper::isStreamsTab)
-                            .findFirst();
-
-                    if (playableTab.isPresent()) {
-                        playQueue = new ChannelTabPlayQueue(info.getServiceId(), playableTab.get());
-                    } else {
-                        return; // there is no playable tab
-                    }
-                } else if (info instanceof PlaylistInfo) {
-                    playQueue = new PlaylistPlayQueue((PlaylistInfo) info);
-                } else {
-                    return;
-                }
-
-                if (choice.playerChoice.equals(videoPlayerKey)) {
-                    NavigationHelper.playOnMainPlayer(this, playQueue, false);
-                } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
-                    NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
-                } else if (choice.playerChoice.equals(popupPlayerKey)) {
-                    NavigationHelper.playOnPopupPlayer(this, playQueue, true);
-                } else if (choice.playerChoice.equals(getString(R.string.enqueue_key))) {
-                    NavigationHelper.enqueueOnPlayer(this, playQueue);
-                }
-            };
+        private void fail(final Choice choice, final UserAction action, final Throwable throwable) {
+            error = new ErrorInfo(throwable, action,
+                    choice.url + " opened with " + choice.playerChoice, choice.serviceId, choice.url);
+            ready.setValue(true);
         }
 
         @Override
-        public void onDestroy() {
-            super.onDestroy();
-            ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE);
-            if (fetcher != null) {
-                fetcher.dispose();
-            }
+        protected void onCleared() {
+            disposables.dispose();
         }
+    }
 
-        private NotificationCompat.Builder createNotification() {
-            return new NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
-                    .setOngoing(true)
-                    .setSmallIcon(R.drawable.ic_newpipe_triangle_white)
-                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                    .setContentTitle(
-                            getString(R.string.preferred_player_fetcher_notification_title))
-                    .setContentText(
-                            getString(R.string.preferred_player_fetcher_notification_message));
+    private void playResult(final Choice choice, final Info info) {
+        final String videoPlayerKey = getString(R.string.video_player_key);
+        final String backgroundPlayerKey = getString(R.string.background_player_key);
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        final PlayQueue playQueue;
+        if (info instanceof StreamInfo) {
+            if (choice.playerChoice.equals(backgroundPlayerKey) && preferences.getBoolean(
+                    getString(R.string.use_external_audio_player_key), false)) {
+                NavigationHelper.playOnExternalAudioPlayer(this, (StreamInfo) info);
+                return;
+            } else if (choice.playerChoice.equals(videoPlayerKey) && preferences.getBoolean(
+                    getString(R.string.use_external_video_player_key), false)) {
+                NavigationHelper.playOnExternalVideoPlayer(this, (StreamInfo) info);
+                return;
+            }
+            playQueue = new SinglePlayQueue((StreamInfo) info);
+        } else if (info instanceof ChannelInfo) {
+            final Optional<ListLinkHandler> playableTab = ((ChannelInfo) info).getTabs().stream()
+                    .filter(ChannelTabHelper::isStreamsTab).findFirst();
+            if (playableTab.isEmpty()) {
+                return;
+            }
+            playQueue = new ChannelTabPlayQueue(info.getServiceId(), playableTab.get());
+        } else if (info instanceof PlaylistInfo) {
+            playQueue = new PlaylistPlayQueue((PlaylistInfo) info);
+        } else {
+            return;
+        }
+        if (choice.playerChoice.equals(videoPlayerKey)) {
+            NavigationHelper.playOnMainPlayer(this, playQueue, false);
+        } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
+            NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
+        } else if (choice.playerChoice.equals(getString(R.string.popup_player_key))) {
+            NavigationHelper.playOnPopupPlayer(this, playQueue, true);
+        } else if (choice.playerChoice.equals(getString(R.string.enqueue_key))) {
+            NavigationHelper.enqueueOnPlayer(this, playQueue);
         }
     }
 

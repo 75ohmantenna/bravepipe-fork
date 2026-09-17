@@ -150,7 +150,6 @@
     <string name="msg_running">न्यूपाइप डाउनलोड कर रही है</string>
     <string name="msg_running_detail">विवरण के लिए टैप करें</string>
     <string name="msg_wait">कृपया प्रतीक्षा करें…</string>
-    <string name="msg_copied">क्लिपबोर्ड पर कॉपी हो गया है</string>
     <string name="no_available_dir">कृपया बाद में सेटिंग्स में डाउनलोड स्थान चुनें</string>
     <string name="msg_popup_permission">पॉपअप मोड में खोलने के लिए
 \nइस अनुमति की जरुरत है</string>
@@ -263,10 +262,6 @@
     <string name="delete_search_history_alert">पूरे खोज इतिहास को मिटा दें\?</string>
     <string name="search_history_deleted">खोज इतिहास मिटाया गया</string>
     <string name="invalid_directory">ऐसा कोई फ़ोल्डर मौजूद नहीं</string>
-    <string name="invalid_source">अमान्य फाइल/विषय - वस्तु का स्रोत</string>
-    <string name="invalid_file">फ़ाइल मौजूद नहीं है या उसे पढ़ने या लिखने की पर्याप्त अनुमति नहीं है</string>
-    <string name="file_name_empty_error">फ़ाइल का नाम खाली नहीं हो सकता</string>
-    <string name="error_occurred_detail">एक त्रुटी उत्पन्न हुई: %1$s</string>
     <string name="no_streams_available_download">डाउनलोड करने के लिए कोई स्ट्रीम उपलब्ध नहीं है</string>
     <string name="one_item_deleted">एक आइटम मिटा दी गई।</string>
     <string name="privacy_policy_title">न्यूपाइप की गोपनीयता नीति</string>
@@ -281,8 +276,6 @@
     <string name="import_title">आयात</string>
     <string name="import_from">से आयात करें</string>
     <string name="export_to">पर निर्यात करे</string>
-    <string name="import_ongoing">आयात किया जा रहा है…</string>
-    <string name="export_ongoing">निर्यात किया जा रहा है…</string>
     <string name="import_file_title">फाइल आयात करें</string>
     <string name="previous_export">पहले वाला निर्यात</string>
     <string name="subscriptions_import_unsuccessful">सब्सक्रिप्शन आयात नहीं कर सके</string>
@@ -324,8 +317,6 @@
     <string name="file_deleted">फाइल मिटा दी गयी</string>
     <string name="app_update_notification_channel_name">ऐप अपडेट नोटीफिकेशन</string>
     <string name="app_update_notification_channel_description">नए नयूपाईप अपडेट का नोटीफिकेशन</string>
-    <string name="download_to_sdcard_error_title">एक्सटर्नल स्टोरेज अनुपलब्ध</string>
-    <string name="download_to_sdcard_error_message">SD कार्ड पर डाउनलोड करना संभव नहीं। डाउनलोड स्थान पुनः चुनें\?</string>
     <string name="restore_defaults">डिफ़ॉल्टस पुन: स्थापित करें</string>
     <string name="restore_defaults_confirmation">क्या आप डिफ़ॉल्टस पर लौटना चाहते है\?</string>
     <string name="subscribers_count_not_available">सब्सक्राइबर संख्या अनुपलब्ध</string>
@@ -385,9 +376,6 @@
     <string name="start_downloads">डाउनलोड प्रारंभ करें</string>
     <string name="pause_downloads">डाउनलोड रोकें</string>
     <string name="downloads_storage_ask_title">डाउनलोड कहाँ करना है, के लिए पूछें</string>
-    <string name="downloads_storage_ask_summary">आपको हर डाउनलोड का स्थान पूछा जाएगा
-\nयदि आप बाहरी एसडी कार्ड में डाउनलोड करना चाहते हैं तो सिस्टम फोल्डर पिकर (SAF) को सक्षम करें</string>
-    <string name="downloads_storage_use_saf_title">सिस्टम फोल्डर पिकर (SAF) का प्रयोग करें</string>
     <string name="clear_playback_states_title">प्लेबैक स्थानों को मिटाएं</string>
     <string name="clear_playback_states_summary">सारे प्लेबैक स्थानों को मिटाता है</string>
     <string name="delete_playback_states_alert">सारे प्लेबैक स्थानों को मिटाएं\?</string>
@@ -407,7 +395,6 @@
     <string name="auto">ऑटो</string>
     <string name="show_error">त्रुटि दिखाएं</string>
     <string name="error_http_unsupported_range">सर्वर मल्टी थ्रेडेड डाउनलोड स्वीकार नहीं करता, @string/msg_threads = 1 के साथ पुनः कोशिश करें</string>
-    <string name="downloads_storage_use_saf_summary">\'स्टोरेज एक्सेस फ्रेमवर्क\' आपको बाहरी एसडी कार्ड पर डाउनलोड करने देता है</string>
     <string name="drawer_header_description">सेवा चुनें, वर्तमान चुनाव :</string>
     <string name="default_kiosk_page_summary">डिफ़ॉल्ट कियोस्क</string>
     <string name="no_one_watching">कोई दर्शक नहीं देख रहा</string>
@@ -466,13 +453,8 @@
     <string name="notification_action_buffering">बफरिंग</string>
     <string name="notification_action_shuffle">शफल करें</string>
     <string name="notification_action_repeat">दोहराएं</string>
-    <string name="notification_actions_at_most_three">आप कंपैकट नोटीफिकेशन में दिखाए जाने वाले विकल्प में से अधिकतम 3 को चुन सकते है !</string>
-    <string name="notification_actions_summary">नीचे दी गई प्रत्येक नोटीफिकेशन क्रिया को उस पर टैप करके संपादित करें। दाईं ओर चेकबॉक्स का उपयोग करके उनमें से अधिकतम तीन का चयन करें जिन्हें कंपैकट नोटीफिकेशन में दिखाया जाना है।</string>
     <string name="notification_action_4_title">पांचवा एक्शन बटन</string>
     <string name="notification_action_3_title">चतुर्थी एक्शन बटन</string>
-    <string name="notification_action_2_title">तृतीय एक्शन बटन</string>
-    <string name="notification_action_1_title">द्वितीय एक्शन बटन</string>
-    <string name="notification_action_0_title">प्रथम एक्शन बटन</string>
     <string name="notification_scale_to_square_image_summary">नोटीफिकेशन में दिखाए गए वीडियो थंमनेल को 16:9 के बजाय 1:1 के अनुपात में दिखाएँ</string>
     <string name="notification_scale_to_square_image_title">थंमनेल को 1:1 के अनुपात में करें</string>
     <plurals name="hours">
@@ -581,7 +563,6 @@
     <string name="checking_updates_toast">अपडेटस के लिए जांच हो रही है…</string>
     <string name="recovering">पुन: प्राप्ति हो रही</string>
     <string name="delete_downloaded_files_confirm">डिस्क से सभी डाउनलोड की गई फ़ाइलें मिटाएं\?</string>
-    <string name="downloads_storage_use_saf_summary_api_29">एंड्रॉइड 10 से शुरू होकर केवल \'स्टोरेज एक्सेस फ्रेमवर्क\' समर्थित है</string>
     <string name="choose_instance_prompt">एक इंस्टेंस चुनें</string>
     <string name="remove_watched_popup_partially_watched_streams">हां, और आंशिक रूप से देखे गए वीडियो भी</string>
     <string name="feed_notification_loading">फ़ीड लोड हो रही है…</string>
@@ -694,8 +675,6 @@
     <string name="no_video_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई वीडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="no_audio_streams_available_for_external_players">बाहरी प्लेयरस के लिए कोई ऑडियो स्ट्रीम उपलब्ध नहीं है</string>
     <string name="feed_use_dedicated_fetch_method_summary">कुछ सेवाओं में उपलब्ध, यह आमतौर पर बहुत तेज होता है लेकिन सीमित मात्रा में जानकारी प्रदान कर पाता है और वह भी अक्सर अधूरी जानकारी (जैसे कि अवधि, आइटम की किसम, स्ट्रीम लाइव है, नहीं बता पाता)</string>
-    <string name="no_appropriate_file_manager_message">इस क्रिया के लिए कोई उपयुक्त फ़ाइल प्रबंधक नहीं मिला।
-\nकृपया फ़ाइल प्रबंधक इंस्टॉल करें या डाउनलोड सेटिंग में \'%s\' को अक्षम करने का प्रयास करें</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">%1$s डाउनलोड हटाए गए</item>
         <item quantity="other">%1$s डाउनलोड्स हटाए गए</item>
@@ -828,11 +807,8 @@
     <string name="entry_deleted">एंटरी मिटा दी गई</string>
     <string name="delete_file">फाईल डिलीट करें</string>
     <string name="delete_entry">एंटरी मिटाऐं</string>
-    <string name="short_thousand">%sहज़ार</string>
     <string name="permission_display_over_apps_message">पॉपअप प्लेयर इस्तेमाल करने के लिए, कृपया नीचे दिए गए Android सेटिंग्स मेनू में %1$s चुनें और %2$s चालू करें।</string>
     <string name="permission_display_over_apps_permission_name">“अन्य ऐप्स पर डिस्प्ले की अनुमति दें”</string>
-    <string name="short_million">%sमिलीअन</string>
-    <string name="short_billion">%sअरब</string>
     <string name="account_terminated_service_provides_reason">अकाउंट बंद कर दिया गया\n\n%1$s यह कारण बताता है: %2$s</string>
     <string name="migration_info_6_7_title">साउंडक्लाउड टॉप 50 पेज हटा दिया गया</string>
     <string name="migration_info_6_7_message">साउंडक्लाउड ने ओरिजिनल टॉप 50 चार्ट बंद कर दिए हैं। इससे जुड़ा टैब आपके मेन पेज से हटा दिया गया है।</string>

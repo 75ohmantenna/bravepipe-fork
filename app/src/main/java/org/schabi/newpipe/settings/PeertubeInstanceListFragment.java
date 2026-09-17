@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +55,8 @@ public class PeertubeInstanceListFragment extends Fragment {
     private SharedPreferences sharedPreferences;
 
     private CompositeDisposable disposables = new CompositeDisposable();
+    private final LocalNetworkPermissionGate localNetworkPermission =
+            new LocalNetworkPermissionGate(this);
 
     /*//////////////////////////////////////////////////////////////////////////
     // Lifecycle
@@ -95,6 +96,11 @@ public class PeertubeInstanceListFragment extends Fragment {
         instanceListAdapter = new InstanceListAdapter(requireContext(), itemTouchHelper);
         binding.instances.setAdapter(instanceListAdapter);
         instanceListAdapter.submitList(PeertubeHelper.getInstanceList(requireContext()));
+        // Existing custom instances also need a grant after upgrade or permission revocation.
+        if (!selectedInstance.getUrl().equals(PeertubeInstance.DEFAULT_INSTANCE.getUrl())) {
+            localNetworkPermission.run(selectedInstance.getUrl(),
+                    () -> selectInstance(selectedInstance));
+        }
     }
 
     @Override
@@ -121,6 +127,8 @@ public class PeertubeInstanceListFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
+        localNetworkPermission.clear();
+        disposables.clear();
         binding = null;
         super.onDestroyView();
     }
@@ -153,6 +161,7 @@ public class PeertubeInstanceListFragment extends Fragment {
     private void selectInstance(final PeertubeInstance instance) {
         selectedInstance = PeertubeHelper.selectInstance(instance, requireContext());
         sharedPreferences.edit().putBoolean(Constants.KEY_MAIN_PAGE_CHANGE, true).apply();
+        instanceListAdapter.notifyDataSetChanged();
     }
 
     private void saveChanges() {
@@ -204,6 +213,10 @@ public class PeertubeInstanceListFragment extends Fragment {
         if (cleanUrl == null) {
             return;
         }
+        localNetworkPermission.run(cleanUrl, () -> fetchInstance(cleanUrl));
+    }
+
+    private void fetchInstance(final String cleanUrl) {
         binding.loadingProgressBar.setVisibility(View.VISIBLE);
         final Disposable disposable = Single.fromCallable(() -> {
             final PeertubeInstance instance = new PeertubeInstance(cleanUrl);
@@ -323,7 +336,6 @@ public class PeertubeInstanceListFragment extends Fragment {
             extends ListAdapter<PeertubeInstance, InstanceListAdapter.TabViewHolder> {
         private final LayoutInflater inflater;
         private final ItemTouchHelper itemTouchHelper;
-        private RadioButton lastChecked;
 
         InstanceListAdapter(final Context context, final ItemTouchHelper itemTouchHelper) {
             super(new PeertubeInstanceCallback());
@@ -374,22 +386,13 @@ public class PeertubeInstanceListFragment extends Fragment {
                 final PeertubeInstance instance = getItem(position);
                 itemBinding.instanceName.setText(instance.getName());
                 itemBinding.instanceUrl.setText(instance.getUrl());
-                itemBinding.selectInstanceRB.setOnCheckedChangeListener(null);
-                if (selectedInstance.getUrl().equals(instance.getUrl())) {
-                    if (lastChecked != null && lastChecked != itemBinding.selectInstanceRB) {
-                        lastChecked.setChecked(false);
-                    }
-                    itemBinding.selectInstanceRB.setChecked(true);
-                    lastChecked = itemBinding.selectInstanceRB;
-                }
-                itemBinding.selectInstanceRB.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    if (isChecked) {
-                        selectInstance(instance);
-                        if (lastChecked != null && lastChecked != itemBinding.selectInstanceRB) {
-                            lastChecked.setChecked(false);
-                        }
-                        lastChecked = itemBinding.selectInstanceRB;
-                    }
+                itemBinding.selectInstanceRB.setChecked(
+                        selectedInstance.getUrl().equals(instance.getUrl()));
+                itemBinding.selectInstanceRB.setOnClickListener(view -> {
+                    // Keep the previous selection until resolution and permission succeed.
+                    itemBinding.selectInstanceRB.setChecked(
+                            selectedInstance.getUrl().equals(instance.getUrl()));
+                    localNetworkPermission.run(instance.getUrl(), () -> selectInstance(instance));
                 });
                 itemBinding.instanceIcon.setImageResource(R.drawable.ic_placeholder_peertube);
             }

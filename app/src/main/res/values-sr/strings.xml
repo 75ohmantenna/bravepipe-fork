@@ -72,7 +72,6 @@
     <string name="msg_running">BravePipe преузима</string>
     <string name="msg_running_detail">Додирните за детаље</string>
     <string name="msg_wait">Сачекајте…</string>
-    <string name="msg_copied">Копирано у привремену меморију</string>
     <string name="no_available_dir">Одредите фолдер за преузимање касније у подешавањима</string>
     <string name="downloads">Преузимања</string>
     <string name="downloads_title">Преузимања</string>
@@ -212,10 +211,6 @@
     <string name="systems_language">Системски подразумевано</string>
     <string name="app_language_title">Језик апликације</string>
     <string name="choose_instance_prompt">Изаберите инстанцу</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ омогућава преузимање на спољну, SD (меморијску), картицу</string>
-    <string name="downloads_storage_use_saf_title">Користи системски бирач фолдера (SAF)</string>
-    <string name="downloads_storage_ask_summary">Бићете упитани где желите да сачувате свако преузимање.
-\nОмогућите системски бирач фолдера (SAF), ако желите да преузмете на спољну, SD (меморијску), картицу</string>
     <string name="downloads_storage_ask_title">Питај где да се преузме</string>
     <string name="pause_downloads">Паузирај преузимања</string>
     <string name="start_downloads">Започни преузимања</string>
@@ -312,8 +307,6 @@
     <string name="subscriptions_import_unsuccessful">Није могуће увести праћења</string>
     <string name="previous_export">Претходни извоз</string>
     <string name="import_file_title">Увези фајл</string>
-    <string name="import_ongoing">Увоз…</string>
-    <string name="export_ongoing">Извоз…</string>
     <string name="export_to">Извоз у</string>
     <string name="import_from">Увоз из</string>
     <string name="import_title">Увоз</string>
@@ -418,17 +411,11 @@
     <string name="restore_defaults_confirmation">Желите ли да вратите подразумеване вредности\?</string>
     <string name="saved_tabs_invalid_json">Није могуће прочитати сачуване картице, тако да се користе подразумеване</string>
     <string name="no_streams_available_download">Нема токова доступних за преузимање</string>
-    <string name="error_occurred_detail">Дошло је до грешке: %1$s</string>
-    <string name="invalid_file">Фајл не постоји или нема дозволе за читање или писање</string>
-    <string name="file_name_empty_error">Назив фајла не може бити празан</string>
-    <string name="invalid_source">Нема таквог фајла/извора садржаја</string>
     <string name="invalid_directory">Нема таквог фолдера</string>
     <string name="missing_file">Фајл је премештен или избрисан</string>
     <string name="video_streams_empty">Нису пронађени видео токови</string>
     <string name="audio_streams_empty">Нису пронађени аудио токови</string>
     <string name="external_player_unsupported_link_type">Спољни плејери не подржавају ове врсте линкова</string>
-    <string name="download_to_sdcard_error_message">Преузимање на спољну, SD (меморијску), картицу није могуће. Ресетовати локацију фолдера за преузимање\?</string>
-    <string name="download_to_sdcard_error_title">Спољна меморија није доступна</string>
     <string name="search_history_deleted">Историја претраге је избрисана</string>
     <string name="delete_search_history_alert">Избрисати целу историју претраге\?</string>
     <string name="clear_search_history_summary">Брише историју кључних речи за претрагу</string>
@@ -509,13 +496,8 @@
     <string name="notification_action_buffering">Учитавање</string>
     <string name="notification_action_shuffle">Мешање</string>
     <string name="notification_action_repeat">Понављање</string>
-    <string name="notification_actions_at_most_three">Можете да изаберете највише три радње за приказ у компактном обавештењу!</string>
-    <string name="notification_actions_summary">Измените сваку радњу обавештења додиром на њу. Означите до три радње које ће се приказивати у компактном обавештењу помоћу поља за потврду са десне стране.</string>
     <string name="notification_action_4_title">Дугме пете радње</string>
     <string name="notification_action_3_title">Дугме четврте радње</string>
-    <string name="notification_action_2_title">Дугме треће радње</string>
-    <string name="notification_action_1_title">Дугме друге радње</string>
-    <string name="notification_action_0_title">Дугме прве радње</string>
     <string name="notification_scale_to_square_image_summary">Исеците сличицу видео снимка приказану у обавештењу с размере 16:9 на размеру 1:1</string>
     <string name="notification_scale_to_square_image_title">Исеци сличицу на размеру 1:1</string>
     <string name="search_showing_result_for">Приказивање резултата за: %s</string>
@@ -625,7 +607,6 @@
 \nЖелите ли да прекинете праћење овог канала\?</string>
     <string name="feed_load_error_account_info">Није могуће учитати фид за „%s“.</string>
     <string name="feed_load_error">Грешка при учитавању фида</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Од Android-а 10 само „Storage Access Framework“ је подржан</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Бићете упитани где желите да сачувате свако преузимање</string>
     <string name="no_dir_yet">Фолдер за преузимање није одређен, изаберите подразумевани фолдер</string>
     <string name="off">Искључи</string>
@@ -737,8 +718,6 @@
     <string name="percent">Проценат</string>
     <string name="app_update_unavailable_toast">Користите најновију верзију BravePipe-а</string>
     <string name="dont_show">Не приказуј</string>
-    <string name="no_appropriate_file_manager_message">Није пронађен одговарајући менаџер фајлова за ову радњу.
-\nИнсталирајте менаџер фајлова или покушајте да онемогућите „%s“ у подешавањима преузимања</string>
     <string name="faq_title">Често постављана питања</string>
     <string name="show_crash_the_player_summary">Приказује опцију рушења, када користите плејер</string>
     <plurals name="deleted_downloads_toast">
@@ -841,9 +820,6 @@
     <string name="search_with_service_name_and_filter">Претрага %1$s (%2$s)</string>
     <string name="permission_display_over_apps_message">Да бисте користили искачући плејер, изаберите %1$s у следећем менију подешавања Android-а и омогућите %2$s.</string>
     <string name="permission_display_over_apps_permission_name">„Дозволи приказ преко других апликација“</string>
-    <string name="short_thousand">%sк</string>
-    <string name="short_million">%sмлн.</string>
-    <string name="short_billion">%sмлрд.</string>
     <string name="delete_file">Избриши фајл</string>
     <string name="delete_entry">Избриши унос</string>
     <string name="account_terminated_service_provides_reason">Налог је укинут\n\n%1$s наводи овај разлог: %2$s</string>

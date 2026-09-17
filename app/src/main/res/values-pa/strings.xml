@@ -129,10 +129,6 @@
     <string name="video_streams_empty">ਕੋਈ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
     <string name="audio_streams_empty">ਕੋਈ ਆਡੀਓ ਸਟ੍ਰੀਮ ਨਹੀਂ ਮਿਲੀ</string>
     <string name="invalid_directory">ਅਜਿਹਾ ਕੋਈ ਫੋਲਡਰ ਨਹੀਂ</string>
-    <string name="invalid_source">ਅਜਿਹਾ ਕੋਈ ਫਾਈਲ/ਸਮੱਗਰੀ ਸਰੋਤ ਨਹੀਂ ਹੈ</string>
-    <string name="invalid_file">ਫਾਈਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ ਜਾਂ ਇਸ ਨੂੰ ਪੜ੍ਹਨ ਜਾਂ ਲਿਖਣ ਦੀ ਆਗਿਆ ਨਹੀਂ ਹੈ</string>
-    <string name="file_name_empty_error">ਫਾਈਲ ਨਾਮ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ</string>
-    <string name="error_occurred_detail">ਇੱਕ ਤਰੁੱਟੀ ਆਈ ਹੈ: %1$s</string>
     <string name="no_streams_available_download">ਡਾਊਨਲੋਡ ਕਰਨ ਲਈ ਕੋਈ ਸਟ੍ਰੀਮ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="sorry_string">ਮੁਆਫ ਕਰਨਾ, ਅਜਿਹਾ ਨਹੀਂ ਹੋਣਾ ਚਾਹੀਦਾ ਸੀ।</string>
     <string name="error_report_button_text">ਈ-ਮੇਲ ਦੁਆਰਾ ਇਤਲਾਹ ਦਿਓ</string>
@@ -182,7 +178,6 @@
     <string name="msg_running">ਨਿਊਪਾਈਪ ਡਾਊਨਲੋਡ ਕਰ ਰਹੀ ਹੈ</string>
     <string name="msg_running_detail">ਵੇਰਵਿਆਂ ਲਈ ਟੈਪ ਕਰੋ</string>
     <string name="msg_wait">ਕ੍ਰਿਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ…</string>
-    <string name="msg_copied">ਕਲਿਪ-ਬੋਰਡ ਵਿੱਚ ਕਾਪੀ ਹੋ ਗਿਆ ਹੈ</string>
     <string name="no_available_dir">ਬਾਅਦ ਵਿੱਚ ਸੈਟਿੰਗਾਂ ਵਿਚੋਂ ਇੱਕ ਡਾਊਨਲੋਡ ਫੋਲਡਰ ਨੂੰ ਚੁਣੋ</string>
     <string name="msg_popup_permission">ਪੌਪ-ਅਪ ਮੋਡ ਵਿੱਚ ਖੋਲ੍ਹਣ ਵਾਸਤੇ\nਇਸ ਇਜਾਜ਼ਤ ਦੀ ਲੋੜ ਹੈ</string>
     <string name="one_item_deleted">1 ਆਈਟਮ ਮਿਟਾਈ ਗਈ।</string>
@@ -271,8 +266,6 @@
     <string name="import_title">ਇੰਪੋਰਟ</string>
     <string name="import_from">ਤੋਂ ਇੰਪੋਰਟ ਕਰੋ</string>
     <string name="export_to">ਤੇ ਐਕਸਪੋਰਟ ਕਰੋ</string>
-    <string name="import_ongoing">ਇੰਪੋਰਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
-    <string name="export_ongoing">ਐਕਸਪੋਰਟ ਹੋ ਰਿਹਾ ਹੈ…</string>
     <string name="import_file_title">ਫ਼ਾਈਲ ਇੰਪੋਰਟ ਕਰੋ</string>
     <string name="previous_export">ਪਿੱਛਲਾ ਐਕਸਪੋਰਟ</string>
     <string name="subscriptions_import_unsuccessful">ਸਬਸਕ੍ਰਿਪਸ਼ਨਾਂ ਇੰਪੋਰਟ ਨਹੀਂ ਹੋ ਸਕੀਆਂ</string>
@@ -313,8 +306,6 @@
     <string name="file_deleted">ਫਾਈਲ ਮਿਟਾ ਦਿੱਤੀ ਗਈ ਹੈ</string>
     <string name="app_update_notification_channel_name">ਐਪ ਅੱਪਡੇਟ ਨੋਟੀਫਿਕੇਸ਼ਨ</string>
     <string name="app_update_notification_channel_description">ਨਵੇਂ ਨਿਊਪਾਈਪ ਸੰਸਕਰਣਾਂ ਲਈ ਪ੍ਰਾਪਤ ਸੂਚਨਾਵਾਂ</string>
-    <string name="download_to_sdcard_error_title">ਬਾਹਰੀ ਸਟੋਰੇਜ ਉਪਲਬਧ ਨਹੀਂ ਹੈ</string>
-    <string name="download_to_sdcard_error_message">ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਡਾਊਨਲੋਡ ਕਰਨਾ ਸੰਭਵ ਨਹੀਂ ਹੈ। ਕੀ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਦੀ ਸਥਿਤੀ ਨੂੰ ਰੀਸੈਟ ਕੀਤਾ ਜਾਵੇ \?</string>
     <string name="saved_tabs_invalid_json">ਸਾਂਭੀਆਂ ਟੈਬਾਂ ਨਹੀਂ ਪੜ੍ਹ ਹੋਈਆਂ, ਇਸ ਲਈ ਡਿਫਾਲਟ ਟੈਬਾਂ ਦੀ ਵਰਤੋਂ ਹੋ ਰਹੀ ਹੈ</string>
     <string name="restore_defaults">ਡੀਫ਼ਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰੋ</string>
     <string name="restore_defaults_confirmation">ਕੀ ਤੁਸੀਂ ਡਿਫਾਲਟ ਮੁੜ-ਸਥਾਪਿਤ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ\?</string>
@@ -383,10 +374,6 @@
     <string name="start_downloads">ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕਰੋ</string>
     <string name="pause_downloads">ਡਾਊਨਲੋਡਸ ਰੋਕੋ</string>
     <string name="downloads_storage_ask_title">ਡਾਊਨਲੋਡ ਕਿੱਥੇ ਕਰਨਾ ਹੈ, ਦੇ ਲਈ ਪੁੱਛੋ</string>
-    <string name="downloads_storage_ask_summary">ਤੁਹਾਨੂੰ ਹਰ ਵਾਰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ।
-\nਜੇ ਤੁਸੀਂ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿਸੇ ਬਾਹਰੀ SD ਕਾਰਡ ਤੇ ਸਾਂਭਣਾ ਚਾਹੁੰਦੇ ਹੋ ਤਾਂ ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਚਾਲੂ ਕਰੋ</string>
-    <string name="downloads_storage_use_saf_title">ਸਿਸਟਮ ਡਾਊਨਲੋਡ ਫ਼ੋਲਡਰ ਚੋਣਕਾਰ (SAF) ਦੀ ਵਰਤੋਂ ਕਰੋ</string>
-    <string name="downloads_storage_use_saf_summary">\'ਸਟੋਰੇਜ ਐਕਸੈਸ ਫ਼ਰੇਮਵਰਕ\' ਬਾਹਰੀ SD ਕਾਰਡ ਵਿੱਚ ਡਾਊਨਲੋਡ ਕਰਨ ਦਿੰਦਾ ਹੈ</string>
     <string name="notification_scale_to_square_image_title">ਥੰਮਨੇਲ ਨੂੰ 1:1 ਮਾਪ ਦਾ ਕਰੋ</string>
     <string name="search_showing_result_for">%s : ਲਈ ਨਤੀਜੇ ਵਿਖਾਏ ਜਾ ਰਹੇ ਹਨ</string>
     <string name="feed_use_dedicated_fetch_method_title">ਜਦੋਂ ਉਪਲਬਧ ਹੋਵੇ ਤਾਂ ਖ਼ਾਸ ਫ਼ੀਡ ਤੋਂ ਮੰਗਵਾਓ</string>
@@ -500,7 +487,6 @@
     <string name="systems_language">ਸਿਸਟਮ ਡਿਫ਼ਾਲਟ</string>
     <string name="app_language_title">ਐਪ ਦੀ ਭਾਸ਼ਾ</string>
     <string name="choose_instance_prompt">ਕੋਈ ਇੰਸਟੈਂਸ ਚੁਣੋ</string>
-    <string name="downloads_storage_use_saf_summary_api_29">ਐਂਡਰਾਇਡ 10 ਤੋਂ ਸ਼ੁਰੂ ਹੋ ਕੇ ਕੇਵਲ \'ਸਟੋਰੇਜ ਐਕਸੈੱਸ ਫ਼ਰੇਮਵਰਕ\' ਸਮਰਥਿਤ ਹੈ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ਤੁਹਾਨੂੰ ਪੁੱਛਿਆ ਜਾਵੇਗਾ ਕਿ ਹਰ ਡਾਊਨਲੋਡ ਨੂੰ ਕਿੱਥੇ ਸਾਂਭਣਾ ਹੈ</string>
     <string name="delete_downloaded_files">ਡਾਊਨਲੋਡ ਕੀਤੀਆਂ ਫ਼ਾਈਲਾਂ ਮਿਟਾਓ</string>
     <string name="clear_download_history">ਡਾਊਨਲੋਡ ਇਤਿਹਾਸ ਹਟਾਓ</string>
@@ -578,13 +564,8 @@
     <string name="notification_action_buffering">ਬਫ਼ਰਿੰਗ</string>
     <string name="notification_action_shuffle">ਸ਼ਫਲ ਕਰੋ</string>
     <string name="notification_action_repeat">ਦੁਹਰਾਓ</string>
-    <string name="notification_actions_summary">ਹੇਠਾਂ ਹਰੇਕ ਨੋਟੀਫਿਕੇਸ਼ਨ ਕਾਰਵਾਈ ਤੇ ਨੱਪਦਿਆਂ ਇਹਨਾਂ ਨੂੰ ਬਦਲੋ। ਇਹਨਾਂ ਦੇ ਸੱਜੇ ਪਾਸੇ ਬਣੇ ਚੈੱਕਬਾਕਸ ਵਰਤਦਿਆਂ ਇਹਨਾਂ ਵਿਚੋਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਤੁਸੀਂ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ।</string>
-    <string name="notification_actions_at_most_three">ਤੁਸੀਂ ਵੱਧ-ਤੋਂ-ਵੱਧ ਤਿੰਨ ਕਾਰਵਾਈਆਂ ਨੂੰ ਕੰਪੈਕਟ ਨੋਟੀਫਿਕੇਸ਼ਨ ਵਿੱਚ ਵਿਖਾਉਣ ਲਈ ਚੁਣ ਸਕਦੇ ਹੋ!</string>
     <string name="notification_action_4_title">ਪੰਜਵਾਂ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="notification_action_3_title">ਚੌਥਾ ਕਾਰਵਾਈ ਬਟਨ</string>
-    <string name="notification_action_2_title">ਤੀਜਾ ਕਾਰਵਾਈ ਬਟਨ</string>
-    <string name="notification_action_1_title">ਦੂਜਾ ਕਾਰਵਾਈ ਬਟਨ</string>
-    <string name="notification_action_0_title">ਪਹਿਲਾ ਕਾਰਵਾਈ ਬਟਨ</string>
     <string name="dont_show">ਨਾਂ ਵਿਖਾਓ</string>
     <string name="on">ਆਨ</string>
     <string name="enumeration_comma">,</string>
@@ -666,8 +647,6 @@
     <string name="streams_notifications_network_title">ਨੈੱਟਵਰਕ ਦੀ ਕਿਸਮ</string>
     <string name="manual_update_description">ਨਵੇਂ ਸੰਸਕਰਣਾਂ ਲਈ ਹੱਥੀਂ ਜਾਂਚ ਕਰੋ</string>
     <string name="high_quality_larger">ਵਧੀਆ ਗੁਣਵੱਤਾ (ਵੱਡਾ ਆਕਾਰ)</string>
-    <string name="no_appropriate_file_manager_message">ਇਸ ਕਾਰਜ ਲਈ ਕੋਈ ਢੁਕਵਾਂ ਫਾਈਲ ਮੈਨੇਜਰ ਨਹੀਂ ਮਿਲਿਆ।
-\nਕ੍ਰਿਪਾ ਕਰਕੇ ਫਾਈਲ ਮੈਨੇਜਰ ਇੰਨਸਟਾਲ ਕਰੋ ਜਾਂ ਡਾਊਨਲੋਡ ਸੈਟਿੰਗ ਵਿੱਚ \'%s\' ਅਸਮਰੱਥ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰੋ</string>
     <string name="you_successfully_subscribed">ਤੁਸੀਂ ਇਸ ਚੈਨਲ ਨੂੰ ਸਬਸਕ੍ਰਾਈਬ ਕਰ ਲਿਆ ਹੈ</string>
     <string name="no_video_streams_available_for_external_players">ਕੋਈ ਵੀਡੀਓ ਸਟ੍ਰੀਮ ਬਾਹਰੀ ਪਲੇਅਰਾਂ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ ਹੈ</string>
     <string name="progressive_load_interval_exoplayer_default">ਐਕਸੋਪਲੇਅਰ ਡਿਫ਼ਾਲਟ</string>
@@ -812,9 +791,6 @@
     <string name="entry_deleted">ਐਂਟਰੀ ਮਿਟਾ ਦਿੱਤੀ ਗਈ</string>
     <string name="permission_display_over_apps_message">ਪੌਪਅੱਪ ਪਲੇਅਰ ਦੀ ਵਰਤੋਂ ਕਰਨ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਹੇਠਾਂ ਦਿੱਤੇ Android ਸੈਟਿੰਗ ਮੀਨੂ ਵਿੱਚ %1$s ਚੁਣੋ ਅਤੇ %2$s ਨੂੰ ਇਨੇਬਲ ਕਰੋ।</string>
     <string name="permission_display_over_apps_permission_name">\"ਹੋਰ ਐਪਾਂ ਉੱਤੇ ਡਿਸਪਲੇ ਦੀ ਆਗਿਆ ਦਿਓ\"</string>
-    <string name="short_thousand">%sਹਜ਼ਾਰ</string>
-    <string name="short_million">%sਮਿਲੀਅਨ</string>
-    <string name="short_billion">%sਅਰਬ</string>
     <string name="migration_info_6_7_title">SoundCloud ਟੌਪ 50 ਪੰਨਾ ਹਟਾ ਦਿੱਤਾ ਗਿਆ</string>
     <string name="migration_info_6_7_message">SoundCloud ਨੇ ਮੂਲ ਟੌਪ 50 ਚਾਰਟਾਂ ਨੂੰ ਬੰਦ ਕਰ ਦਿੱਤਾ ਹੈ। ਸੰਬੰਧਿਤ ਟੈਬ ਨੂੰ ਤੁਹਾਡੇ ਮੁੱਖ ਪੰਨੇ ਤੋਂ ਹਟਾ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
     <string name="migration_info_7_8_title">YouTube ਸੰਯੁਕਤ ਰੁਝਾਨ ਹਟਾਇਆ ਗਿਆ</string>

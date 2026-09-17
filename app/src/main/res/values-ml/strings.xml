@@ -29,8 +29,6 @@
     <string name="subscriptions_import_unsuccessful">സബ്‌സ്‌ക്രിപ്‌ഷനുകൾ ഇറക്കുമതി ചെയ്യാൻ കഴിഞ്ഞില്ല</string>
     <string name="previous_export">മുമ്പത്തെ എക്സ്പോർട്ട്</string>
     <string name="import_file_title">ഫയൽ ഇമ്പോർട്ടുചെയ്യുക</string>
-    <string name="export_ongoing">എക്സ്പോർട്ട് ചെയ്യുന്നു…</string>
-    <string name="import_ongoing">ഇമ്പോർട്ട് ചെയ്യുന്നു…</string>
     <string name="export_to">ലേക്ക് എക്സ്പോർട്ട്</string>
     <string name="import_from">ഇമ്പോർട്ട് ന്ന്</string>
     <string name="import_title">ഇമ്പോർട്ട്</string>
@@ -138,7 +136,6 @@
     <string name="msg_popup_permission">പോപപ് മോഡിന്ഈ
 \nഅനുമതി ആവിശ്യമാണ്</string>
     <string name="no_available_dir">പിന്നീട് ക്രമീകരണങ്ങളിൽ ഒരു ഡൗൺലോഡ് ഫോൾഡർ തിരഞ്ഞെടുക്കണം</string>
-    <string name="msg_copied">ക്ലിപ്ബോർഡിലേക്ക് പകർത്തി</string>
     <string name="msg_wait">കാത്തിരിക്കു…</string>
     <string name="msg_running_detail">വിശദാംശങ്ങൾക്കായി തൊടൂ</string>
     <string name="msg_running">ന്യൂപൈപ്പ് ഡൗൺലോഡിങ്ങ്</string>
@@ -206,10 +203,6 @@
     <string name="restore_defaults">പഴയപടി എല്ലാം പുനസ്ഥാപിക്കുക</string>
     <string name="saved_tabs_invalid_json">സേവ് ആയ ടാബുകൾ വായിക്കാൻ സാധിക്കുന്നില്ല, സ്ഥിര ടാബുകൾ ഉപയോഗെടുത്തുക</string>
     <string name="no_streams_available_download">ഡൗൺലോഡ് ചെയ്യാൻ സ്‌ട്രീമുകൾ ലഭ്യമല്ല</string>
-    <string name="error_occurred_detail">ഒരു പിശക് സംഭവിച്ചു: %1$s</string>
-    <string name="file_name_empty_error">ഫയലിന്റെ പേര് ശൂന്യമാകാൻ പാടില്ല</string>
-    <string name="invalid_file">ഒന്നിൽ അങ്ങനൊരു ഫയൽ ഇല്ല, അല്ലെങ്കിൽ അത് തുറക്കാനുള്ള അനുമതിയില്ല</string>
-    <string name="invalid_source">അങ്ങനെയൊരു ഫയൽ/കന്റെന്റ് ഉറവിടം ഇല്ല</string>
     <string name="invalid_directory">അങ്ങനെയൊരു ഫോൾഡർ ഇല്ല</string>
     <string name="missing_file">ഫയൽ മാറ്റപ്പെടുകയോ ഡിലീറ്റ് ആവുകയോ ചെയ്തിട്ടുണ്ട്</string>
     <string name="audio_streams_empty">ഓഡിയോ സ്ട്രീമുകൾ കണ്ടെത്താനായില്ല</string>
@@ -224,8 +217,6 @@
     <string name="parsing_error">വെബ്സൈറ്റ് വ്യാപരിക്കാനായില്ല</string>
     <string name="could_not_load_thumbnails">ലഘുചിത്രങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</string>
     <string name="network_error">നെറ്റ്‌വർക്ക് പിശക്</string>
-    <string name="download_to_sdcard_error_message">എസ്ഡി കാർഡിലേക്ക്‌ ഡൗൺലോഡ് അസാധ്യം. ഡൗൺലോഡ് ഫോൾഡർ മാറ്റട്ടെ\?</string>
-    <string name="download_to_sdcard_error_title">എസ്ഡി സൗകര്യം ലഭ്യമല്ല</string>
     <string name="general_error">പിശക്</string>
     <string name="search_history_deleted">സെർച്ച് ചരിത്രം നീക്കം ചെയ്തു</string>
     <string name="delete_search_history_alert">സെർച്ച് ചരിത്രം നീക്കം ചെയ്യട്ടെയോ\?</string>
@@ -468,10 +459,6 @@
     <string name="systems_language">സിസ്റ്റം ഡിഫോൾട്ട്</string>
     <string name="app_language_title">അപ്ലിക്കേഷൻ ഭാഷ</string>
     <string name="choose_instance_prompt">ഒരു സ്ഥിതി തിരഞ്ഞെടുക്കുക</string>
-    <string name="downloads_storage_use_saf_summary">സ്റ്റോറേജ് ആക്സസ് ഫ്രെയിംവർക്ക്\' ഒരു ബാഹ്യ SD കാർഡിലേക്ക് ഡൗൺലോഡുകൾ അനുവദിക്കുന്നു</string>
-    <string name="downloads_storage_use_saf_title">സിസ്റ്റം ഫോൾഡർ പിക്കർ (SAF) ഉപയോഗിക്കുക</string>
-    <string name="downloads_storage_ask_summary">ഓരോ ഡൗൺ‌ലോഡും എവിടെ സംരക്ഷിക്കണമെന്ന് നിങ്ങളോട് ചോദിക്കും.
-\nതാങ്കൾക്ക് എക്സ്റ്റർനെൽ SD കാർഡിലേക് ഡൌൺലോഡ് ചെയ്യണം എന്ന് ഉണ്ടെങ്കിൽ സിസ്റ്റം ഫോൾഡർ പിക്കർ (SAF) സജ്ജമാക്കുക</string>
     <string name="downloads_storage_ask_title">എവിടെ നിന്ന് ഡൗൺലോഡ് ചെയ്യണമെന്ന് ചോദിക്കുക</string>
     <string name="pause_downloads">ഡൗൺലോഡുകൾ താൽക്കാലികമായി നിർത്തുക</string>
     <string name="start_downloads">ഡൗൺലോഡുകൾ ആരംഭിക്കുക</string>
@@ -530,7 +517,6 @@
     <string name="notification_action_nothing">ഒന്നുമില്ല</string>
     <string name="notification_action_shuffle">ക്രമരഹിതം</string>
     <string name="notification_action_repeat">ആവർത്തിക്കുക</string>
-    <string name="notification_actions_at_most_three">കോം‌പാക്റ്റ് അറിയിപ്പിൽ‌ കാണിക്കുന്നതിന് നിങ്ങൾക്ക് പരമാവധി മൂന്ന് പ്രവർ‌ത്തനങ്ങൾ‌ തിരഞ്ഞെടുക്കാനാകും!</string>
     <string name="open_with">ഇതിനോടൊപ്പം തുറക്കുക</string>
     <string name="notification_scale_to_square_image_summary">നോട്ടിഫിക്കേഷനിൽ കാണിക്കുന്ന വീഡിയോ കവർ ചിത്രം 16:9 എന്ന അനുപാതത്തിൽ നിന്നും 1:1 ലേക്ക് ക്രോപ് ചെയ്യുക</string>
     <string name="download_has_started">ഡൗൺലോഡ് ആരംഭിച്ചു</string>
@@ -583,12 +569,8 @@
     <string name="clear_queue_confirmation_title">ഒരു ക്യൂ മായ്‌ക്കുന്നതിന് മുമ്പ് സ്ഥിരീകരണത്തിനായി ആവശ്യപ്പെടുക</string>
     <string name="night_theme_title">രാത്രി തീം</string>
     <string name="notification_action_buffering">ബഫറിംഗ്</string>
-    <string name="notification_actions_summary">ചുവടെയുള്ള ഓരോ അറിയിപ്പ് പ്രവർത്തനവും ടാപ്പുചെയ്ത് എഡിറ്റുചെയ്യുക. വലതുവശത്തുള്ള ചെക്ക്ബോക്സുകൾ ഉപയോഗിച്ച് കോംപാക്റ്റ് അറിയിപ്പിൽ കാണിക്കുന്നതിന് അവയിൽ മൂന്നെണ്ണം വരെ തിരഞ്ഞെടുക്കുക</string>
     <string name="notification_action_4_title">അഞ്ചാം പ്രവർത്തന ബട്ടൺ</string>
     <string name="notification_action_3_title">നാലാം പ്രവർത്തന ബട്ടൺ</string>
-    <string name="notification_action_2_title">മൂന്നാം പ്രവർത്തന ബട്ടൺ</string>
-    <string name="notification_action_1_title">രണ്ടാം പ്രവർത്തന ബട്ടൺ</string>
-    <string name="notification_action_0_title">ആദ്യ പ്രവർത്തന ബട്ടൺ</string>
     <string name="disable_media_tunneling_summary">വീഡിയോ കാണുമ്പോൾ കറുത്ത സ്ക്രീൻ, അവ്യക്തത അനുഭവിക്കുന്നു എങ്കിൽ മീഡിയ ട്യൂൺലിങ് പ്രവർത്തനരഹിതമാക്കുക</string>
     <string name="seekbar_preview_thumbnail_title">സീക്ബാർ ചെറുചിത്രം പ്രദർശനം</string>
     <string name="detail_heart_img_view_description">സ്നേഹത്തോടെ സൃഷ്ടാവ്</string>
@@ -618,7 +600,6 @@
 \nതാക്കൾക്ക് ഈ ചാനൽ അൺ സബ്സ്ക്രൈബ് ചെയ്യണോ\?</string>
     <string name="feed_load_error_account_info">\'%s\' ലെ ഫീഡ് ലോഡ് ചെയ്യാൻ സാധികില്ല.</string>
     <string name="feed_load_error">ഫീഡ് ലോഡ് ചെയ്യുന്നതിൽ പിശക് സംഭവിച്ചിരിക്കുന്നു</string>
-    <string name="downloads_storage_use_saf_summary_api_29">ആൻഡ്രോയ്ഡ് 10 മുതൽ മാത്രമേ \"സ്റ്റോറേജ് അക്സസ് ഫ്രെയിംവർക്ക്\" പിന്തുണക്കു</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">എവിടെ ആണ് ഡൌൺലോഡ് ചെയ്യ്യപെടുന്ന ഓരോ ഫയൽലും സംരക്ഷിക്കപ്പെടേണ്ടത് എന്ന് തങ്കളോട് ചോദിക്കും</string>
     <string name="dont_show">കാണിക്കരുത്</string>
     <string name="low_quality_smaller">കുറഞ്ഞ നിലവാരം (ചെറുത് )</string>

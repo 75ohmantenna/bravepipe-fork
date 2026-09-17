@@ -27,12 +27,8 @@
     <string name="show_play_with_kodi_title">”کوڈی نال چلاؤ“ چݨ دِکھاؤ</string>
     <string name="show_play_with_kodi_summary">کوڈی میڈیا کیندر نہیں ویڈیو چلاؤݨ دی چݨ وِکھاؤ</string>
     <string name="crash_the_player">ویڈیو پلیئر کریش کرو</string>
-    <string name="notification_action_0_title">پہلا کاروائی بٹن</string>
-    <string name="notification_action_1_title">دوجا کاروائی بٹن</string>
-    <string name="notification_action_2_title">تیجا کاردائی بٹن</string>
     <string name="notification_action_3_title">چوتھا کاروائی بٹن</string>
     <string name="notification_action_4_title">پنجواں کاروائی بٹن</string>
-    <string name="notification_actions_at_most_three">تسیں ودھ توں ودھ تِن کاروائیاں نوں پچیڑیاں اِطلاعاں وچ وِکھاؤݨ لئی چݨ سکدے او!</string>
     <string name="notification_action_shuffle">پھینٹݨا</string>
     <string name="light_theme_title">روشنی</string>
     <string name="dark_theme_title">گوڑی</string>

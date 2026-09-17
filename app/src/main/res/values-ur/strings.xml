@@ -122,10 +122,6 @@
     <string name="video_streams_empty">کوئی ویڈیو سلسلے نہیں ملے</string>
     <string name="audio_streams_empty">کوئی آڈیو سلسلے نہیں ملے</string>
     <string name="invalid_directory">ایسا کوئی فولڈر نہیں</string>
-    <string name="invalid_source">ایسی کوئی فائل/مواد کا ذریعہ نہیں</string>
-    <string name="invalid_file">فائل موجود نہیں ہے یا اسے پڑھنے یا لکھنے کی اجازت کا فقدان ہے</string>
-    <string name="file_name_empty_error">فائل کا نام ضروری ہے</string>
-    <string name="error_occurred_detail">ایک خامی پیش آگئی: %1$s</string>
     <string name="no_streams_available_download">کوئی سلسلسہ ڈاؤن لوڈ کرنے کے لئے دستیاب نہیں</string>
     <string name="sorry_string">معذرت، ایسا نہیں ہونا چاہئے تھا۔</string>
     <string name="error_report_button_text">ای میل کے ذریعے اطلاع دیں</string>
@@ -175,7 +171,6 @@
     <string name="msg_running">نیو پائپ ڈاؤن لوڈ ہو رہا ہے</string>
     <string name="msg_running_detail">تفصیلات کے لیے ٹیپ کریں</string>
     <string name="msg_wait">براۓ مہربانی انتظار کريں…</string>
-    <string name="msg_copied">کلپ بورڈ میں نقل ہوا</string>
     <string name="no_available_dir">براہ کرم بعد میں ترتیبات میں ڈاؤن لوڈ فولڈر کی وضاحت رکھیں</string>
     <string name="msg_popup_permission">پوپ اپ موڈ میں کھولنے کیلئے اس اجازت کی ضرورت ہے</string>
     <string name="recaptcha_request_toast">reCAPTCHA چیلینج کی درخواست کی گئی</string>
@@ -259,8 +254,6 @@
     <string name="import_title">در آمد</string>
     <string name="import_from">سے درآمد کریں</string>
     <string name="export_to">کو بر آمد کریں</string>
-    <string name="import_ongoing">در آمد کیا جا رہا ہے…</string>
-    <string name="export_ongoing">بر آمد کر رہا ہے…</string>
     <string name="import_file_title">فائل در آمد کریں</string>
     <string name="previous_export">پچھلی بر آمد</string>
     <string name="subscriptions_import_unsuccessful">رکنیتوں کو در آمد نہیں کیا جا سکا</string>
@@ -326,8 +319,6 @@
     <string name="file_deleted">فائل حذف ہوگئی</string>
     <string name="app_update_notification_channel_name">ایپ اَپ ڈیٹ کی اطلاع</string>
     <string name="app_update_notification_channel_description">جدید نیو پائپ ورژن کے لیے اطلاعات</string>
-    <string name="download_to_sdcard_error_title">بیرونی ذخیرہ دستیاب نہیں</string>
-    <string name="download_to_sdcard_error_message">بیرونی ایسڈی کارڈ پر ڈاؤن لوڈ ممکن نہیں۔ ڈاؤن لوڈ فولڈر کے مقام کو دوبارہ ترتیب دیں؟</string>
     <string name="saved_tabs_invalid_json">محفوظ شدہ ٹیبز نہیں پڑھ سکے لہذا پہلے سے طے شدہ کا استعمال کر رہے ہیں</string>
     <string name="restore_defaults">طے شدہ بحال کریں</string>
     <string name="restore_defaults_confirmation">کیا آپ پہلے سے طے شدہ کو بحال کرنا چاہتے ہیں؟</string>
@@ -396,10 +387,6 @@
     <string name="start_downloads">ڈاؤن لوڈ شروع کریں</string>
     <string name="pause_downloads">ڈاؤن لوڈ روکیں</string>
     <string name="downloads_storage_ask_title">ڈاؤن لوڈ کہاں کریں، پوچھیں</string>
-    <string name="downloads_storage_ask_summary">ہر ڈاؤن لوڈ کو کہاں محفوظ کرنا ہے آپ سے پوچھا جائے گا</string>
-    <string name="downloads_storage_use_saf_title">SAF استعمال کریں</string>
-    <string name="downloads_storage_use_saf_summary">اسٹوریج ایکسیس فریم ورک ایک بیرونی SD کارڈ میں ڈاؤن لوڈ کی اجازت دیتا ہے۔
-\nنوٹ: کچھ آلات مطابقت نہیں رکھتے ہیں</string>
     <string name="clear_playback_states_title">پلے بیک پوزیشن حذف کریں</string>
     <string name="clear_playback_states_summary">تمام پلے بیک پوزیشن حذف کی گئی</string>
     <string name="delete_playback_states_alert">تمام پلے بیک پوزیشنس حذف کریں؟</string>
@@ -473,13 +460,8 @@
     <string name="notification_action_buffering">بفرینگ</string>
     <string name="notification_action_shuffle">شفل</string>
     <string name="notification_action_repeat">دوہرائیں</string>
-    <string name="notification_actions_at_most_three">آپ کومپیکٹ نوٹیفکیشن میں زیادہ سے زیادہ تین ایکشن منتخب کرسکتے ہیں!</string>
-    <string name="notification_actions_summary">ذیل میں ہر اطلاع کی کارروائی پر ٹیپ کرکے اس میں ترمیم کریں۔ دائیں طرف کے چیک باکسز کا استعمال کرکے کمپیکٹ نوٹیفکیشن میں دکھائے جانے والے ان میں سے تین تک کا انتخاب کریں۔</string>
     <string name="notification_action_4_title">پانچواں ایکشن بٹن</string>
     <string name="notification_action_3_title">چوتھا ایکشن بٹن</string>
-    <string name="notification_action_2_title">تیسرا ایکشن بٹن</string>
-    <string name="notification_action_1_title">دوسرا ایکشن بٹن</string>
-    <string name="notification_action_0_title">پہلا ایکشن بٹن</string>
     <string name="notification_scale_to_square_image_summary">نوٹیفیکیشن میں دکھائے جانے والے ویڈیو تھمب نیل کو 16: 9 سے 1:1 پہلو تناسب میں اسکیل کریں</string>
     <string name="notification_scale_to_square_image_title">تھمب نیل کو 1:1 کی تناسب میں تراشیں</string>
     <string name="search_showing_result_for">%s کے لئے نتائج دکھا رہا ہے</string>

@@ -138,7 +138,6 @@
     <string name="msg_running">يقوم نيوبايب بالتنزيل</string>
     <string name="msg_running_detail">انقر للحصول على التفاصيل</string>
     <string name="msg_wait">يُرجى الإنتظار…</string>
-    <string name="msg_copied">تم نسخه إلى الحافظة</string>
     <string name="no_available_dir">يرجى تحديد مجلد التنزيل لاحقا في الإعدادات</string>
     <string name="msg_popup_permission">هذا الإذن مطلوب
 \nللفتح في وضع النافذة المنبثقة</string>
@@ -242,8 +241,6 @@
     <string name="thumbnail_cache_wipe_complete_notice">تم إفراغ مساحة ذاكرة التخزين المؤقتة الخاصة بالصور</string>
     <string name="file">الملف</string>
     <string name="invalid_directory">لا يوجد مثل هذا المجلد</string>
-    <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغًا</string>
-    <string name="error_occurred_detail">حدث خطأٌ ما: %1$s</string>
     <string name="no_valid_zip_file">ملف مضغوط ZIP غير صالح</string>
     <string name="unbookmark_playlist">إزالة الإشارة المرجعية</string>
     <string name="resize_fit">تناسب مع الشاشة</string>
@@ -251,8 +248,6 @@
     <string name="import_title">إستيراد</string>
     <string name="import_from">استعادة مِن</string>
     <string name="export_to">تصدير إلى</string>
-    <string name="import_ongoing">عملية الاستعادة جارية …</string>
-    <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="import_file_title">إستيراد ملف</string>
     <string name="import_soundcloud_instructions_hint">معرفك, soundcloud.com/هويتك</string>
     <string name="metadata_cache_wipe_title">امسح البيانات الوصفيّة المخزّنة مؤقّتًا</string>
@@ -278,8 +273,6 @@
     <string name="delete_search_history_alert">حذف سِجل البحث بالكامل؟</string>
     <string name="search_history_deleted">تم حذف سجل البحث</string>
     <string name="external_player_unsupported_link_type">المشغل الخارجي لا يدعم هذه الأنواع من الروابط</string>
-    <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
-    <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
     <string name="no_streams_available_download">لا يوجد بث متاح للتنزيل</string>
     <string name="one_item_deleted">تم حذف عنصر واحد.</string>
     <string name="app_license">BravePipe هو برنامج مفتوح المصدر وبحقوق متروكة: يمكنك استخدام الكود ودراسته وتحسينه كما شئت. وعلى وجه التحديد يمكنك إعادة توزيعه / أو تعديله تحت شروط رخصة GNU العمومية والتي نشرتها مؤسسة البرمجيات الحرة، سواء الإصدار 3 من الرخصة، أو (باختيارك) أي إصدار أحدث.</string>
@@ -345,8 +338,6 @@
     <string name="app_update_notification_channel_name">تنبيه تحديث التطبيق</string>
     <string name="events">الأحداث</string>
     <string name="app_update_notification_channel_description">إشعارات لإصدار BravePipe الجديد</string>
-    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
-    <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
     <string name="saved_tabs_invalid_json">يتم الان استخدام علامات التبويب الافتراضية بعد حدوث خطأ أثناء قراءة علامات التبويب المحفوظة</string>
     <string name="restore_defaults">استعادة الضبط الافتراضي</string>
     <string name="restore_defaults_confirmation">هل تريد استعادة الإعدادات الافتراضية؟</string>
@@ -413,10 +404,6 @@
     <string name="start_downloads">بدء التنزيلات</string>
     <string name="pause_downloads">إيقاف التحميل مؤقتًا</string>
     <string name="downloads_storage_ask_title">اسأل عن مكان التنزيل</string>
-    <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل.
-\nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
-    <string name="downloads_storage_use_saf_title">استخدام منتقي مجلد النظام (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">يسمح \"Storage Access Framework\" بالتنزيل على بطاقة SD خارجية</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
     <string name="clear_playback_states_summary">حذف كل مواقف التشغيل</string>
     <string name="delete_playback_states_alert">حذف كل مواقف التشغيل؟</string>
@@ -578,13 +565,8 @@
     <string name="notification_action_buffering">جارٍ التحميل</string>
     <string name="notification_action_shuffle">خلط</string>
     <string name="notification_action_repeat">تكرار</string>
-    <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
-    <string name="notification_actions_summary">قم بتحرير كل إجراء إعلام أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها ليتم عرضها في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين.</string>
     <string name="notification_action_4_title">زر الإجراء الخامس</string>
     <string name="notification_action_3_title">زر الإجراء الرابع</string>
-    <string name="notification_action_2_title">زر الإجراء الثالث</string>
-    <string name="notification_action_1_title">زر الإجراء الثاني</string>
-    <string name="notification_action_0_title">زر الإجراء الأول</string>
     <string name="notification_scale_to_square_image_summary">قم بقص الصورة المصغرة للفيديو الموضحة في الإشعار من نسبة العرض إلى الارتفاع 16: 9 إلى 1: 1</string>
     <string name="notification_scale_to_square_image_title">اقتصاص الصورة المصغرة إلى نسبة العرض إلى الارتفاع 1:1</string>
     <string name="clear_cookie_summary">امسح ملفات تعريف الارتباط التي يخزنها BravePipe عند حل reCAPTCHA</string>
@@ -655,7 +637,6 @@
 \nهل تريد إلغاء الاشتراك من هذه القناة؟</string>
     <string name="feed_load_error_account_info">تعذر تحميل تغذية لـ\'%s\'.</string>
     <string name="feed_load_error">خطأ في تحميل الخلاصة</string>
-    <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">سيتم سؤالك عن مكان حفظ كل تنزيل</string>
     <string name="no_dir_yet">لم يتم تعيين مجلد التحميل، الرجاء اختيار مجلد التحميل الافتراضي الآن</string>
     <string name="off">إيقاف</string>
@@ -704,8 +685,6 @@
     <string name="error_report_notification_title">واجه BravePipe خطأ، اضغط للتقرير</string>
     <string name="error_report_notification_toast">حدث خطأ، انظر للإشعار</string>
     <string name="create_error_notification">قم بإنشاء تنبيه بالخطأ</string>
-    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nيرجى تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل</string>
     <string name="show_error_snackbar">إظهار خطأ snackbar</string>
     <string name="no_appropriate_file_manager_message_android_10">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
 \nالرجاء تثبيت مدير ملفات متوافق مع إطار عمل الوصول إلى التخزين</string>
@@ -889,9 +868,6 @@
     <string name="trending_podcasts">توجهات البث الصوتي</string>
     <string name="trending_movies">الأفلام والعروض الأكثر رواجاً</string>
     <string name="trending_music">الموسيقى الرائجة</string>
-    <string name="short_thousand">%s الف</string>
-    <string name="short_million">%s مليون</string>
-    <string name="short_billion">%sمليار</string>
     <string name="permission_display_over_apps_message">لاستخدام المشغل المنبثق، يرجى تحديد %1$s في قائمة إعدادات اندرويد التالية وتمكين %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“السماح بالعرض فوق التطبيقات الاخرى”</string>
     <string name="delete_file">حذف ملف</string>

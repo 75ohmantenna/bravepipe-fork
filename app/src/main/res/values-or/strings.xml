@@ -81,7 +81,6 @@
     <string name="download_path_dialog_title">ଭିଡିଓ ଫାଇଲ୍ ପାଇଁ ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ବାଛନ୍ତୁ</string>
     <string name="default_resolution_title">ଡିଫଲ୍ଟ ରେଜୋଲୁସନ</string>
     <string name="play_with_kodi_title">କୋଡି ସହିତ ଖୋଲନ୍ତୁ</string>
-    <string name="notification_action_1_title">ଦ୍ୱିତୀୟ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_repeat">ପୁନର୍ବାର କରନ୍ତୁ</string>
     <string name="notification_colorize_title">ବିଜ୍ଞପ୍ତିକୁ ରଙ୍ଗ କରନ୍ତୁ</string>
     <string name="popup_remember_size_pos_summary">ପପ୍ଅପ୍ ର ଶେଷ ଆକାର ଏବଂ ସ୍ଥିତି ମନେରଖ</string>
@@ -128,11 +127,9 @@
     <string name="settings_category_debug_title">ତ୍ରୁଟି ନିବାରଣ କରନ୍ତୁ</string>
     <string name="settings_category_updates_title">ଅଦ୍ୟତନଗୁଡିକ</string>
     <string name="progressive_load_interval_title">ପ୍ଲେବେକ୍ ଲୋଡ୍ ବ୍ୟବଧାନ ଆକାର</string>
-    <string name="file_name_empty_error">ଫାଇଲନାମ ଖାଲି ହୋଇପାରିବ ନାହିଁ</string>
     <string name="show_play_with_kodi_summary">କୋଡି ମିଡିଆ ସେଣ୍ଟର ମାଧ୍ୟମରେ ଏକ ଭିଡିଓ ଚଲାଇବା ପାଇଁ ଏକ ବିକଳ୍ପ ପ୍ରଦର୍ଶନ କରନ୍ତୁ</string>
     <string name="notification_scale_to_square_image_summary">16: 9 ରୁ 1: 1 ଆସପେକ୍ଟ ଅନୁପାତରେ ବିଜ୍ଞପ୍ତିରେ ଦେଖାଯାଇଥିବା ଭିଡିଓ ଥମ୍ବନେଲକୁ କ୍ରପ୍ କରନ୍ତୁ</string>
     <string name="auto_queue_summary">ଏକ ସଂପୃକ୍ତ ଷ୍ଟ୍ରିମ୍ ଯୋଡି ପ୍ଲେବ୍ୟାକ୍ କ୍ୟୁ ଶେଷ କରିବା (ପୁନରାବୃତ୍ତି ନକରିବା) ଜାରି ରଖ</string>
-    <string name="notification_actions_at_most_three">କମ୍ପାକ୍ଟ ନୋଟିଫିକେସନ୍ ରେ ଦେଖାଇବାକୁ ଆପଣ ପ୍ରାୟ ତିନୋଟି କ୍ରିୟା ଚୟନ କରିପାରିବେ!</string>
     <string name="notification_colorize_summary">ଥମ୍ବନେଲରେ ଥିବା ମୁଖ୍ୟ ରଙ୍ଗ ଅନୁଯାୟୀ ଆଣ୍ଡ୍ରଏଡ୍ ବିଜ୍ଞପ୍ତିର ରଙ୍ଗ କଷ୍ଟୋମାଇଜ୍ କରନ୍ତୁ (ଧ୍ୟାନ ଦିଅନ୍ତୁ ଯେ ଏହା ସମସ୍ତ ଡିଭାଇସରେ ଉପଲବ୍ଧ ନୁହେଁ)</string>
     <string name="metadata_cache_wipe_title">କ୍ୟାଚ୍ ହୋଇଥିବା ମେଟାଡାଟା ପୋଛି ଦିଅ</string>
     <string name="show_meta_info_title">ମେଟା ସୂଚନା ଦେଖାନ୍ତୁ</string>
@@ -146,7 +143,6 @@
     <string name="settings_category_player_behavior_title">ବ୍ୟବହାର</string>
     <string name="settings_category_video_audio_title">ଵିଡ଼ିଓ ଓ ଅଡ଼ିଓ</string>
     <string name="start_main_player_fullscreen_summary">ମିନି ପ୍ଲେୟାରରେ ଭିଡିଓ ଆରମ୍ଭ କରନ୍ତୁ ନାହିଁ, କିନ୍ତୁ ଅଟୋ ଘୂର୍ଣ୍ଣନ ବନ୍ଦ ହୋଇଗଲେ ସିଧାସଳଖ ଫୁଲ୍ ସ୍କ୍ରିନ୍ ମୋଡ୍ କୁ ଯାଆନ୍ତୁ। ଫୁଲ୍ ସ୍କ୍ରିନ୍ ଛାଡି ଆପଣ ଏପର୍ଯ୍ୟନ୍ତ ମିନି ପ୍ଲେୟାରକୁ ପ୍ରବେଶ କରିପାରିବେ</string>
-    <string name="notification_actions_summary">ଏହା ଉପରେ ଟ୍ୟାପ କରି ନିମ୍ନରେ ଦିଆଯାଇଥିବା ପ୍ରତ୍ୟେକ ବିଜ୍ଞପ୍ତି କାର୍ଯ୍ୟକୁ ସମ୍ପାଦନ କରନ୍ତୁ । ଡାହାଣ ପଟେ ଥିବା ଚେକବକ୍ସଗୁଡ଼ିକୁ ବ୍ୟବହାର କରି କମ୍ପାକ୍ଟ ବିଜ୍ଞପ୍ତିରେ ଦର୍ଶାଇବା ପାଇଁ ସେଗୁଡ଼ିକ ମଧ୍ୟରୁ ତିନିଟି ଚୟନ କରନ୍ତୁ ।</string>
     <string name="show_meta_info_summary">ଷ୍ଟ୍ରିମ୍ ସୃଷ୍ଟିକର୍ତ୍ତା, ଷ୍ଟ୍ରିମ୍ ବିଷୟବସ୍ତୁ କିମ୍ବା ଏକ ସନ୍ଧାନ ଅନୁରୋଧ ବିଷୟରେ ଅତିରିକ୍ତ ସୂଚନା ସହିତ ମେଟା ସୂଚନା ବାକ୍ସଗୁଡ଼ିକୁ ଲୁଚାଇବାକୁ ବନ୍ଦ କରନ୍ତୁ</string>
     <string name="show_age_restricted_content_summary">ପିଲାମାନଙ୍କ ପାଇଁ ସମ୍ଭବତ content ଅନୁପଯୁକ୍ତ ବିଷୟବସ୍ତୁ ଦେଖାନ୍ତୁ କାରଣ ଏହାର ବୟସ ସୀମା ଅଛି (ଯେପରିକି 18+)</string>
     <string name="restricted_video_no_stream">ଏହି ଭିଡିଓ ବୟସ-ସୀମିତ ଅଟେ ।
@@ -175,8 +171,6 @@
 \nୟୁଟ୍ୟୁବ୍ ହେଉଛି ଏକ ସେବାର ଏକ ଉଦାହରଣ ଯାହା ଏହାର RSS ଫିଡ୍ ସହିତ ଏହି ଦ୍ରୁତ ପଦ୍ଧତି ପ୍ରଦାନ କରେ ।
 \n
 \nତେଣୁ ଆପଣ ଯାହା ପସନ୍ଦ କରନ୍ତି ତାହା ପସନ୍ଦ ଫୁଟିବ: ଗତି କିମ୍ବା ସଠିକ୍ ସୂଚନା ।</string>
-    <string name="no_appropriate_file_manager_message">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
-\nଦୟାକରି ଏକ ଫାଇଲ୍ ମ୍ୟାନେଜର୍ ସଂସ୍ଥାପନ କରନ୍ତୁ କିମ୍ବା ଡାଉନଲୋଡ୍ ସେଟିଂସମୂହରେ \'%s\' ଅକ୍ଷମ କରିବାକୁ ଚେଷ୍ଟା କରନ୍ତୁ</string>
     <string name="youtube_music_premium_content">ଏହି ଭିଡିଓ କେବଳ ୟୁଟ୍ୟୁବ୍ ମ୍ୟୁଜିକ୍ ପ୍ରିମିୟମ୍ ସଦସ୍ୟଙ୍କ ପାଇଁ ଉପଲବ୍ଧ, ତେଣୁ ଏହାକୁ ନ୍ୟୁପାଇପ୍ ଦ୍ୱାରା ଷ୍ଟ୍ରିମ୍ କିମ୍ବା ଡାଉନଲୋଡ୍ କରାଯାଇପାରିବ ନାହିଁ ।</string>
     <string name="progressive_load_interval_summary">ଧାରଣ ଅନ୍ତରାଳର ଆକାରକୁ ପ୍ରଗତିଶୀଳ ବିଷୟବସ୍ତୁ (ବର୍ତ୍ତମାନ %s) ରେ ପରିବର୍ତ୍ତନ କରନ୍ତୁ । ଗୋଟିଏ ନିମ୍ନମାନ ସେମାନଙ୍କର ପ୍ରାରମ୍ଭିକ ଧାରଣକୁ ତ୍ୱରାନ୍ୱିତ କରିପାରେ</string>
     <string name="no_appropriate_file_manager_message_android_10">ଏହି କାର୍ଯ୍ୟ ପାଇଁ କୌଣସି ଉପଯୁକ୍ତ ଫାଇଲ ପରିଚାଳକ ମିଳିଲା ନାହିଁ ।
@@ -206,8 +200,6 @@
     <string name="show_higher_resolutions_summary">କେବଳ କିଛି ଡିଭାଇସ୍ 2K / 4K ଭିଡିଓ ଚଲାଇ ପାରିବେ</string>
     <string name="kore_not_found">ନିଖୋଜ କୋର ଆପ୍ ସଂସ୍ଥାପନ କରିବେ\?</string>
     <string name="notification_scale_to_square_image_title">ଥମ୍ୱନେଲ କୁ 1:1 ଅନୁପାତରେ କ୍ରୋପ୍ କରନ୍ତୁ</string>
-    <string name="notification_action_0_title">ପ୍ରଥମ କୃତ୍ୟ ବଟନ୍</string>
-    <string name="notification_action_2_title">ତୃତୀୟ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_3_title">ଚତୁର୍ଥ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_4_title">ପଞ୍ଚମ କୃତ୍ୟ ବଟନ୍</string>
     <string name="notification_action_shuffle">ଶଫଲ୍</string>
@@ -265,7 +257,6 @@
     <string name="clear_playback_states_summary">ସମସ୍ତ ପ୍ଲେକ୍ ପୋଜିସନ୍ ଡିଲିଟ୍ କରେ</string>
     <string name="clear_search_history_title">ସନ୍ଧାନ ଇତିହାସ ସଫା କରନ୍ତୁ</string>
     <string name="delete_search_history_alert">ସମଗ୍ର ସନ୍ଧାନ ଇତିହାସ ବିଲୋପ କରିବେ କି\?</string>
-    <string name="download_to_sdcard_error_title">ବହିଃ-ଷ୍ଟୋରେଜ୍ ଅନୁପଲବ୍ଧ</string>
     <string name="network_error">ନେଟୱର୍କ ତ୍ରୁଟି</string>
     <string name="could_not_load_thumbnails">ସମସ୍ତ ଥମ୍ୱନେଲ୍ ଲୋଡ୍ କରିପାରିଲା ନାହିଁ</string>
     <string name="parsing_error">ୱେବସାଇଟ୍ ପାର୍ସ କରିପାରିଲା ନାହିଁ</string>
@@ -274,7 +265,6 @@
     <string name="player_recoverable_failure">ପ୍ଲେୟାର ତ୍ରୁଟିରୁ ପୁନରୁଦ୍ଧାର</string>
     <string name="video_streams_empty">କୌଣସି ଭିଡିଓ ଷ୍ଟ୍ରିମ୍ ମିଳିଲା ନାହିଁ</string>
     <string name="audio_streams_empty">କୌଣସି ଅଡିଓ ଷ୍ଟ୍ରିମ୍ ମିଳିଲା ନାହିଁ</string>
-    <string name="error_occurred_detail">ଏକ ତ୍ରୁଟି ଘଟିଲା:%1$s</string>
     <string name="no_streams_available_download">ଡାଉନଲୋଡ୍ କରିବାକୁ କୌଣସି ଷ୍ଟ୍ରିମ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="restore_defaults_confirmation">ଆପଣ ଡିଫଲ୍ଟ ପୁନଃସ୍ଥାପନ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
     <string name="error_report_notification_title">BravePipe ଏକ ତ୍ରୁଟିର ସମ୍ମୁଖୀନ ହେଲା, ରିପୋର୍ଟ କରିବାକୁ ଟ୍ୟାପ୍ କରନ୍ତୁ</string>
@@ -299,7 +289,6 @@
     <string name="msg_error">ତ୍ରୁଟି</string>
     <string name="msg_running">ନୂତନ ପାଇପ୍ ଡାଉନଲୋଡ୍ କରୁଛି</string>
     <string name="msg_calculating_hash">ହ୍ୟାସ୍ ଗଣନା</string>
-    <string name="msg_copied">କ୍ଲିପବୋର୍ଡରେ କପି କରାଯାଇଛି</string>
     <string name="one_item_deleted">1 ଆଇଟମ୍ ଡିଲିଟ୍ ହୋଇଛି ।</string>
     <string name="title_activity_recaptcha">reCAPTCHA ଆହ୍ୱାନ</string>
     <string name="done">ସମାପ୍ତ</string>
@@ -342,8 +331,6 @@
     <string name="disable_media_tunneling_summary">ଯଦି ଆପଣ ଏକ କଳା ପରଦା ଅନୁଭବ କରନ୍ତି କିମ୍ବା ଭିଡିଓ ପ୍ଲେବେକ୍ ଉପରେ ଝୁଣ୍ଟି ପଡ଼ନ୍ତି ତେବେ ମିଡିଆ ଟନେଲିଂକୁ ଅକ୍ଷମ କରନ୍ତୁ ।</string>
     <string name="import_title">ଆମଦାନି କରନ୍ତୁ</string>
     <string name="import_from">ଠାରୁ ଆମଦାନୀ କରନ୍ତୁ</string>
-    <string name="import_ongoing">ଆମଦାନି…</string>
-    <string name="export_ongoing">ରପ୍ତାନି…</string>
     <string name="import_file_title">ଫାଇଲ୍ ଆମଦାନୀ କରନ୍ତୁ</string>
     <string name="previous_export">ପୂର୍ବ ରପ୍ତାନି</string>
     <string name="import_network_expensive_warning">ମନେରଖନ୍ତୁ ଏହି ଅପରେସନ୍ ନେଟୱାର୍କ ମହଙ୍ଗା ହୋଇପାରେ ।
@@ -383,8 +370,6 @@
     <string name="close">ବନ୍ଦ କର</string>
     <string name="pause_downloads">ଡାଉନଲୋଡ୍ ବିରତି କରନ୍ତୁ</string>
     <string name="downloads_storage_ask_title">କେଉଁଠାରେ ଡାଉନଲୋଡ୍ କରିବେ ପଚାରନ୍ତୁ</string>
-    <string name="downloads_storage_use_saf_summary">\'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଅନୁମତି ଦିଏ</string>
-    <string name="downloads_storage_use_saf_summary_api_29">ଆଣ୍ଡ୍ରଏଡ୍ 10 ରୁ କେବଳ \'ଷ୍ଟୋରେଜ୍ ଆକ୍ସେସ୍ ଫ୍ରେମୱାର୍କ\' ସମର୍ଥିତ</string>
     <string name="choose_instance_prompt">ଏକ ଉଦାହରଣ ବାଛନ୍ତୁ</string>
     <string name="new_seek_duration_toast">ExoPlayer ପ୍ରତିବନ୍ଧକ ହେତୁ ସନ୍ଧାନ ସମୟସୀମା %d ସେକେଣ୍ଡରେ ସେଟ୍ ହୋଇଥିଲା</string>
     <string name="feed_group_dialog_delete_message">ଆପଣ ଏହି ଗୋଷ୍ଠୀ ବିଲୋପ କରିବାକୁ ଚାହୁଁଛନ୍ତି କି\?</string>
@@ -457,7 +442,6 @@
     <string name="events">ଘଟଣା</string>
     <string name="artists">କଳାକାର ମାନେ</string>
     <string name="player_stream_failure">ଏହି ଷ୍ଟ୍ରିମ୍ ଚଲାଇ ପାରିଲା ନାହିଁ</string>
-    <string name="invalid_file">ଫାଇଲ୍ ବିଦ୍ୟମାନ ନାହିଁ କିମ୍ବା ଏହାକୁ ପଢ଼ିବା କିମ୍ବା ଲେଖିବା ପାଇଁ ଅନୁମତି ଅଭାବ</string>
     <string name="invalid_directory">ଏପରି ଫୋଲ୍ଡର ନାହିଁ</string>
     <string name="saved_tabs_invalid_json">ସଞ୍ଚିତ ଟ୍ୟାବଗୁଡିକ ପଢ଼ି ପାରିଲା ନାହିଁ, ତେଣୁ ଡିଫଲ୍ଟଗୁଡିକ ବ୍ୟବହାର କରି</string>
     <string name="info_labels">କଣ:\nRequest:\nContent Language:\nContent Country:\nApp Language:\nService:\nGMT Time:\nPackage:\nVersion:\nOS ସଂସ୍କରଣ:</string>
@@ -495,7 +479,6 @@
 \nଯଦି ଆପଣ ଏହାକୁ ଦେଖିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସେଟିଂସମୂହରେ \"%1$s\" ଟର୍ନ୍ ଅନ୍ କରନ୍ତୁ ।</string>
     <string name="error_report_title">ତ୍ରୁଟି ରିପୋର୍ଟ</string>
     <string name="albums">ଆଲବମ୍ ଗୁଡ଼ିକ</string>
-    <string name="download_to_sdcard_error_message">ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବା ସମ୍ଭଵ ନୁହେଁ। ଡାଉନଲୋଡ୍ ଫୋଲ୍ଡର୍ ଅବସ୍ଥାନ ପୁନଃସେଟ୍ କରିବେ କି\?</string>
     <string name="file_deleted">ଫାଇଲ୍ ଡିଲିଟ୍ ହୋଇଛି</string>
     <string name="just_once">କେବଳ ଥରେ</string>
     <string name="notification_channel_name">ନୂତନ ପାଇପ୍ ବିଜ୍ଞପ୍ତି</string>
@@ -514,7 +497,6 @@
     <string name="external_player_unsupported_link_type">ବହିଃ-ଚାଳକ ଏଭଳି ଲିଙ୍କ୍ ସମର୍ଥନ କରେନି</string>
     <string name="missing_file">ଫାଇଲ୍ ଘୁଞ୍ଚିଗଲା କିମ୍ବା ଡିଲିଟ୍ ହେଲା</string>
     <string name="no_playlist_bookmarked_yet">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ପ୍ଲେଲିଷ୍ଟ ବୁକମାର୍କ ନାହିଁ</string>
-    <string name="invalid_source">ସେପରି କୌଣସି ଫାଇଲ / ବିଷୟବସ୍ତୁ ଉତ୍ସ ନାହିଁ</string>
     <string name="restore_defaults">ଡିଫଲ୍ଟଗୁଡିକ ପୁନରୁଦ୍ଧାର କରନ୍ତୁ</string>
     <string name="error_report_notification_toast">ଏକ ତ୍ରୁଟି ଘଟିଛି, ବିଜ୍ଞପ୍ତିକୁ ଦେଖନ୍ତୁ</string>
     <string name="copy_for_github">ଫର୍ମାଟ୍ ହୋଇଥିବା ରିପୋର୍ଟ କପି କରନ୍ତୁ</string>
@@ -580,8 +562,6 @@
     <string name="detail_heart_img_view_description">ସୃଷ୍ଟିକର୍ତ୍ତାଙ୍କ ଦ୍ୱାରା ହୃଦୟ</string>
     <string name="streams_not_yet_supported_removed">ଷ୍ଟ୍ରିମ୍ ଯାହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡର୍ ଦ୍ୱାରା ସମର୍ଥିତ ନୁହେଁ</string>
     <string name="unknown_format">ଅଜ୍ଞାତ ଫର୍ମାଟ୍</string>
-    <string name="downloads_storage_ask_summary">ପ୍ରତ୍ୟେକ ଡାଉନଲୋଡ୍‍କୁ କେଉଁଠାରେ ସଞ୍ଚୟ କରାଯିବ ତା\' ଆପଣଙ୍କୁ ପଚରାଯିବ।
-\nଯଦି ଆପଣ ଏକ ବହିଃ SD କାର୍ଡରେ ଡାଉନଲୋଡ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି ତେବେ ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ଚୟକ (SAF)କୁ ସକ୍ଷମ କରନ୍ତୁ</string>
     <string name="show_memory_leaks">ମେମୋରୀ ଲିକ୍ ଦେଖାନ୍ତୁ</string>
     <string name="show_original_time_ago_title">ଆଇଟମଗୁଡିକରେ ମୂଳ ସମୟ ପୂର୍ବରୁ ଦେଖାନ୍ତୁ</string>
     <string name="enable_disposed_exceptions_summary">ବିସର୍ଜନ ପରେ ଖଣ୍ଡ କିମ୍ବା କାର୍ଯ୍ୟକଳାପ ଜୀବନଚକ୍ର ବାହାରେ ଅଣସଂରକ୍ଷିତ Rx ବ୍ୟତିକ୍ରମଗୁଡିକର ଫୋର୍ସ ରିପୋର୍ଟିଂ</string>
@@ -592,7 +572,6 @@
     <string name="post_processing">ପରବର୍ତ୍ତୀ ପ୍ରକ୍ରିୟାକରଣ</string>
     <string name="overwrite_finished_warning">ଏହି ନାମ ସହିତ ଏକ ଡାଉନଲୋଡ୍ ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି</string>
     <string name="delete_downloaded_files">ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡିକ ଡିଲିଟ୍ କରନ୍ତୁ</string>
-    <string name="downloads_storage_use_saf_title">ସିଷ୍ଟମ୍ ଫୋଲ୍ଡର୍ ପିକର୍ (SAF) ବ୍ୟବହାର କରନ୍ତୁ</string>
     <string name="remove_watched_popup_partially_watched_streams">ହଁ, ଏବଂ ଆଂଶିକ ଦେଖାଯାଇଥିବା ଭିଡିଓଗୁଡିକ</string>
     <string name="feed_group_dialog_empty_name">ଗୋଷ୍ଠୀ ନାମ ଖାଲି ଅଛି</string>
     <string name="feed_use_dedicated_fetch_method_title">ଉପଲବ୍ଧ ଥିବାବେଳେ ଉତ୍ସର୍ଗୀକୃତ ଫିଡରୁ ଆଣ</string>

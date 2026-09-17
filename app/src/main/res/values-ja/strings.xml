@@ -72,7 +72,6 @@
     <string name="msg_running">ダウンロード中 (BravePipe)</string>
     <string name="msg_running_detail">タップして詳細を表示</string>
     <string name="msg_wait">お待ちください…</string>
-    <string name="msg_copied">クリップボードにコピーしました</string>
     <string name="no_available_dir">後ほど、ダウンロードフォルダーを設定してください</string>
     <string name="downloads">ダウンロード</string>
     <string name="downloads_title">ダウンロード</string>
@@ -202,9 +201,6 @@
     <string name="video_streams_empty">動画が見つかりません</string>
     <string name="audio_streams_empty">音声が見つかりません</string>
     <string name="invalid_directory">フォルダーが見つかりません</string>
-    <string name="invalid_file">ファイルが存在しないか、読み書きする権限がありません</string>
-    <string name="file_name_empty_error">ファイル名は空白にできません</string>
-    <string name="error_occurred_detail">エラーが発生しました: %1$s</string>
     <string name="no_streams_available_download">ダウンロードできる動画はありません</string>
     <string name="detail_drag_description">ドラッグして並べ替え</string>
     <string name="create">作成</string>
@@ -226,8 +222,6 @@
     <string name="import_title">インポート</string>
     <string name="import_from">インポート元</string>
     <string name="export_to">エクスポート先</string>
-    <string name="import_ongoing">インポートしています…</string>
-    <string name="export_ongoing">エクスポートしています…</string>
     <string name="import_file_title">ファイルからインポート</string>
     <string name="previous_export">前回のエクスポート先</string>
     <string name="subscriptions_import_unsuccessful">登録リストがインポートできませんでした</string>
@@ -252,7 +246,6 @@
     <string name="auto_queue_summary">キューに関連動画を追加して再生を続ける (繰り返ししない場合)</string>
     <string name="delete_view_history_alert">すべての再生履歴を削除しますか？</string>
     <string name="delete_search_history_alert">すべての検索履歴を削除しますか？</string>
-    <string name="invalid_source">このファイル/コンテンツはありません</string>
     <plurals name="subscribers">
         <item quantity="other">チャンネル登録者数 %s人</item>
     </plurals>
@@ -323,7 +316,6 @@
     <string name="settings_category_updates_title">アプリの更新</string>
     <string name="events">イベント</string>
     <string name="app_update_notification_channel_description">新しい BravePipe バージョンの通知</string>
-    <string name="download_to_sdcard_error_title">外部記憶装置は利用できません</string>
     <string name="restore_defaults">既定値に戻す</string>
     <string name="restore_defaults_confirmation">既定の設定を復元しますか\?</string>
     <string name="subscribers_count_not_available">登録者数は利用できません</string>
@@ -364,7 +356,6 @@
     <string name="max_retry_desc">ダウンロードを中止するまでの最大再試行回数</string>
     <string name="file_deleted">ファイルを削除しました</string>
     <string name="app_update_notification_channel_name">アプリの更新通知</string>
-    <string name="download_to_sdcard_error_message">外部 SD カードにダウンロードできません。ダウンロードフォルダーの場所をリセットしますか\?</string>
     <string name="saved_tabs_invalid_json">保存されたタブを読み込めないため、デフォルトのタブを使用します</string>
     <string name="main_page_content_summary">メインページに表示されるタブ</string>
     <string name="updates_setting_description">新しいバージョンが利用可能なときにアプリの更新を確認する通知を表示します</string>
@@ -395,10 +386,6 @@
     <string name="start_downloads">ダウンロードの開始</string>
     <string name="pause_downloads">ダウンロードの一時停止</string>
     <string name="downloads_storage_ask_title">ダウンロード先を尋ねる</string>
-    <string name="downloads_storage_ask_summary">ダウンロードのたびに保存する場所を尋ねます。
-\nSD カードにダウンロードしたい場合はシステム フォルダ ピッカー (SAF) を有効化します</string>
-    <string name="downloads_storage_use_saf_title">システム フォルダ ピッカー (SAF) を使用する</string>
-    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークは、外部 SD カードへのダウンロードが可能です</string>
     <string name="clear_playback_states_title">再生位置の削除</string>
     <string name="clear_playback_states_summary">すべての再生位置を削除します</string>
     <string name="delete_playback_states_alert">すべての再生位置を削除しますか\?</string>
@@ -526,13 +513,8 @@
     <string name="unsupported_url_dialog_message">URL を認識できませんでした。他のアプリで開きますか？</string>
     <string name="notification_scale_to_square_image_summary">通知に表示されるサムネイルを 16:9 から正方形にします</string>
     <string name="notification_scale_to_square_image_title">サムネイルを正方形にする</string>
-    <string name="notification_actions_summary">以下をタップして通知のアクションを編集します。右側にあるチェックボックスを使用してコンパクトな通知に表示するものを３つまで選択します。</string>
-    <string name="notification_actions_at_most_three">コンパクトな通知に表示されるアクションは 3 つまで選ぶことができます！</string>
     <string name="notification_action_4_title">5 番目のアクションボタン</string>
     <string name="notification_action_3_title">4 番目のアクションボタン</string>
-    <string name="notification_action_2_title">3 番目のアクションボタン</string>
-    <string name="notification_action_1_title">2 番目のアクションボタン</string>
-    <string name="notification_action_0_title">1 番目のアクションボタン</string>
     <string name="notification_action_nothing">なし</string>
     <string name="notification_action_repeat">繰り返し</string>
     <string name="notification_action_shuffle">シャッフル</string>
@@ -597,7 +579,6 @@
     <string name="open_website_license">ウェブサイトを開く</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードのたびに保存する場所を尋ねます</string>
     <string name="no_dir_yet">ダウンロードフォルダーがまだ設定されていません。今すぐデフォルトのフォルダーを選択してください</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android 10 以降は \'Storage Access Framework\' のみがサポートされます</string>
     <string name="feed_load_error_fast_unknown">高速モードでこの情報の詳細は提供されません。</string>
     <string name="feed_load_error_account_info">\'%s\' のフィードを読み込めませんでした。</string>
     <string name="feed_load_error">フィードの読み込みエラー</string>
@@ -645,8 +626,6 @@
     <string name="detail_pinned_comment_view_description">固定されたコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">この動作に適切なファイルマネージャが見つかりませんでした。
 \nStorage Access Framework と互換性のあるファイルマネージャをインストールしてください</string>
-    <string name="no_appropriate_file_manager_message">この動作に適切なファイルマネージャが見つかりませんでした。
-\nファイルマネージャをインストールするか、ダウンロード設定で \'%s\' を無効にすることをお試しください</string>
     <string name="show_crash_the_player_summary">プレイヤー使用時にクラッシュオプションを表示</string>
     <string name="create_error_notification">エラー通知を作成</string>
     <string name="error_report_channel_description">エラーを報告する通知</string>
@@ -807,7 +786,6 @@
     <string name="kao_dialog_warning">Google は、2026/2027 年から、認定 Android デバイス上のすべてのアプリについて、開発者が個人の身元情報を直接 Google に提出することを必須にすると発表しました。本アプリの開発者はこの要件に同意していないため、このアプリはその時点以降、認定 Android デバイス上で動作しなくなります。</string>
     <string name="kao_dialog_more_info">詳細</string>
     <string name="kao_solution">解決</string>
-    <string name="short_billion">%sB</string>
     <string name="brave_about_fork">プロジェクトの制限的なポリシーにより、NewPipeTeamは不快なプラットフォームの追加を拒否しています。今回のフォーク（BravePipe）は、そのような制限はありません。表現の自由の精神に則ったプラットフォームであれば、統合することができます。しかし、ポルノやその他の下劣なものを促進するプラットフォームは、ここでは<b>NG</b>です。今回のフォークでは、他のプラットフォームの統合にのみ焦点を当てます。関連性のないパッチはとりあえず却下されます。どのような代替プラットフォームをサポートすべきか、自由に提案してください。どのような貢献（開発、テスト、バグレポート）でも大歓迎です。現在、NewPipeに比べてプラットフォームが増えています。</string>
     <string name="brave_about_title">このフォークについて</string>
 </resources>

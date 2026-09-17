@@ -81,9 +81,6 @@
     <string name="notification_action_repeat">Təkrarla</string>
     <string name="notification_action_4_title">Beşinci fəaliyyət düyməsi</string>
     <string name="notification_action_3_title">Dördüncü fəaliyyət düyməsi</string>
-    <string name="notification_action_2_title">Üçüncü fəaliyyət düyməsi</string>
-    <string name="notification_action_1_title">İkinci fəaliyyət düyməsi</string>
-    <string name="notification_action_0_title">Birinci fəaliyyət düyməsi</string>
     <string name="show_higher_resolutions_summary">Yalnız bəzi cihazlar 2K/4K videoları oynada bilir</string>
     <string name="default_popup_resolution_title">Standart ani görüntü formatı</string>
     <string name="controls_add_to_playlist_title">Əlavə Et</string>
@@ -136,7 +133,6 @@
 \nOnu görmək istəyirsinizsə, tənzimləmələrdə \"%1$s\" seçimini aktivləşdirin.</string>
     <string name="youtube_restricted_mode_enabled_summary">YouTube potensial yetkin məzmunu gizlədən \"Məhdud Rejim\" təmin edir</string>
     <string name="peertube_instance_url_title">\"PeerTube\" serverləri</string>
-    <string name="notification_actions_at_most_three">Yığcam bildirişdə göstərmək üçün ən çoxu üç fəaliyyət seçə bilərsiniz!</string>
     <string name="feed_update_threshold_option_always_update">Həmişə yenilə</string>
     <string name="settings_category_feed_title">Axın</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Yalnız qrupsuz abunəlikləri göstər</string>
@@ -211,9 +207,6 @@
     <string name="start_downloads">Endirmələri başlat</string>
     <string name="pause_downloads">Endirmələri dayandır</string>
     <string name="downloads_storage_ask_title">Haraya endiriləcəyini soruş</string>
-    <string name="downloads_storage_ask_summary">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq.
-\nXarici SD karta endirmək istəyirsinizsə, sistem qovluğu seçicisini (SAF) aktiv edin</string>
-    <string name="downloads_storage_use_saf_summary">\'Yaddaş Giriş Quruluşu\' xarici SD karta endirməyə imkan verir</string>
     <string name="systems_language">Sistem standartı</string>
     <string name="app_language_title">Tətbiq dili</string>
     <plurals name="days">
@@ -243,8 +236,6 @@
     <string name="content_not_available">Məzmun əlçatmazdır</string>
     <string name="could_not_load_thumbnails">Bütün miniatürləri yükləmək alınmadı</string>
     <string name="network_error">Şəbəkə səhvi</string>
-    <string name="download_to_sdcard_error_message">Xarici SD karta endirmək mümkün deyil. Endirmə qovluğunun yeri sıfırlansın\?</string>
-    <string name="download_to_sdcard_error_title">Xarici yaddaş əlçatan deyil</string>
     <string name="clear_views_history_summary">Oynadılmış yayımlar tarixçəsini və oynatma mövqelərini silir</string>
     <string name="show_meta_info_title">Üst məlumatı göstər</string>
     <string name="show_description_summary">Video açıqlamanı və əlavə məlumatı gizlətmək üçün bağla</string>
@@ -283,7 +274,6 @@
     <string name="hash_channel_name">Video fayl xülasəsi bildirişi</string>
     <string name="streams_notification_channel_description">Abunəliklər üçün yeni yayımlar haqqında bildirişlər</string>
     <string name="error_report_channel_description">Xəta hesabatları üçün bildirişlər</string>
-    <string name="file_name_empty_error">Fayl adı boş ola bilməz</string>
     <string name="saved_tabs_invalid_json">Saxlanmış səhifələri oxumaq alınmadı, ona görə standart səhifələr istifadə et</string>
     <string name="error_report_notification_title">BravePipe xəta ilə qarşılaşdı, bildirmək üçün toxun</string>
     <string name="sorry_string">Bağışla, bu baş verməməli idi.</string>
@@ -441,7 +431,6 @@
     <string name="error_http_no_content">Server məlumat göndərmir</string>
     <string name="error_download_resource_gone">Bu endirməni bərpa etmək mümkün deyil</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sizdən hər endirmənin harada saxlanılacağı soruşulacaq</string>
-    <string name="downloads_storage_use_saf_summary_api_29">\"Yaddaş Giriş Quruluşu\"yalnız Android 10\'dan başlayaraq dəstəklənir</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalın avatar miniatürü</string>
     <string name="select_night_theme_toast">Sevdiyiniz gecə temasını aşağıda seçə bilərsiniz</string>
     <string name="notification_colorize_summary">Android\'in bildiriş rəngini miniatürdəki əsas rəngə uyğun fərdiləşdirməsini təmin et (qeyd edək ki, bu, bütün cihazlarda mövcud deyil)</string>
@@ -528,7 +517,6 @@
     <string name="feed_use_dedicated_fetch_method_title">Mövcud olduqda xüsusi axından al</string>
     <string name="remove_watched_popup_title">Baxılan yayımlar silinsin?</string>
     <string name="remove_watched">İzləniləni sil</string>
-    <string name="downloads_storage_use_saf_title">Sistem qovluğu seçicisini (SAF) istifadə et</string>
     <string name="error_timeout">Bağlantı fasiləsi</string>
     <string name="error_insufficient_storage_left">Cihazda yer yoxdur</string>
     <string name="error_postprocessing_stopped">Fayl üzərində işləyərkən BravePipe bağlandı</string>
@@ -552,8 +540,6 @@
     <string name="playback_tempo">Sürət</string>
     <string name="import_title">İdxal</string>
     <string name="previous_export">Əvvəlki ixrac</string>
-    <string name="export_ongoing">İxrac edilir…</string>
-    <string name="import_ongoing">İdxal edilir…</string>
     <string name="playlist_add_stream_success">Pleylistə salındı</string>
     <string name="mute">Səsi bağla</string>
     <string name="popup_player">Ani görüntü oynadıcı</string>
@@ -565,7 +551,6 @@
     <string name="settings_category_downloads_title">Endirmə</string>
     <string name="msg_popup_permission">Bu icazə, ani görüntü rejimində
 \naçmaq üçün lazımdır</string>
-    <string name="msg_copied">Buferə köçürüldü</string>
     <string name="msg_threads">Kadrlar</string>
     <string name="rename">Adını dəyişdir</string>
     <string name="create">Yarat</string>
@@ -583,8 +568,6 @@
     <string name="peertube_instance_url_help">%s-də bəyəndiyiniz serverləri tapın</string>
     <string name="show_hold_to_append_summary">Video \"Təfsilatlar\" səhifəsində fon və ya ani görüntü düyməsin basarkən ipucu göstər</string>
     <string name="caption_setting_description">Oynadıcı titr mətn miqyasını və arxa plan üslublarını dəyişdir. Effektiv olması üçün tətbiqi yenidən başlatmaq tələb olunur</string>
-    <string name="error_occurred_detail">Xəta baş verdi: %1$s</string>
-    <string name="invalid_file">Fayl mövcud deyil, yaxud oxumaq və ya yazmaq icazəsi yoxdur</string>
     <string name="parsing_error">Veb saytı təhlil etmək alınmadı</string>
     <string name="playback_pitch">Ucalıq</string>
     <string name="radio">Radio</string>
@@ -659,14 +642,11 @@
     <string name="feed_load_error_fast_unknown">Sürətli axın rejimi bu barədə əlavə məlumat vermir.</string>
     <string name="new_seek_duration_toast">ExoPlayer məhdudiyyətlərinə görə axtarış müddəti %d saniyəyə təyin edildi</string>
     <string name="feed_use_dedicated_fetch_method_summary">Bəzi xidmətlərdə mövcuddur, adətən daha sürətli olur, lakin məhdud sayda elementləri və çox vaxt natamam məlumatı qaytara bilər (məsələn, müddət, element növü, canlı status yoxdur)</string>
-    <string name="no_appropriate_file_manager_message">Bu əməliyyat üçün uyğun fayl meneceri tapılmadı. Zəhmət olmasa, fayl menecerini quraşdır və ya endirmə tənzimləmələrində \'%s\'-i qeyri-aktiv etməyə çalış</string>
     <string name="feed_load_error_account_info">\'%s\' üçün axın yükləmək mümkün olmadı.</string>
     <string name="no_appropriate_file_manager_message_android_10">Bu fəaliyyət üçün uyğun fayl meneceri tapılmadı.\nXahiş olunur, Yaddaş Giriş Quruluşuna uyğun fayl meneceri quraşdırın</string>
     <string name="youtube_music_premium_content">Bu video yalnız YouTube Music Premium üzvləri üçün əlçatandır, ona görə də BravePipe tərəfindən yayımlamaq və ya endirmək mümkün deyil.</string>
     <string name="description_select_note">İndi açıqlamadakı mətni seçə bilərsiniz. Nəzərə alın ki, seçim rejimində səhifə titrəyə və linklər kliklənməyə bilər.</string>
     <string name="notification_scale_to_square_image_summary">Bildirişdə göstərilən video miniatürünü 16:9-dan 1:1 görünüş nisbətinə qədər kəs</string>
-    <string name="notification_actions_summary">Aşağıdakı hər bir bildiriş fəaliyyətini üzərinə toxunaraq redaktə edin. Sağdakı təsdiq qutuların istifadə edərək yığcam bildirişdə göstərmək üçün onların üçünü seçin.</string>
-    <string name="invalid_source">Belə fayl/məzmun mənbəyi yoxdur</string>
     <string name="selected_stream_external_player_not_supported">Seçilən yayım xarici oynadıcılar tərəfindən dəstəklənmir</string>
     <string name="streams_not_yet_supported_removed">Yükləyici tərəfindən hələ dəstəklənməyən yayımlar göstərilmir</string>
     <string name="no_audio_streams_available_for_external_players">Xarici oynadıcılar üçün mövcud səs yayımı yoxdur</string>
@@ -805,9 +785,6 @@
     <string name="channel_tab_likes">Bəyənmə</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 səhifəsi silindi</string>
     <string name="migration_info_6_7_message">SoundCloud ilk Ən yaxşı 50 siyahısın ləğv etdi. Uyğun səhifə əsas səhifənizdən silindi.</string>
-    <string name="short_thousand">%sMin</string>
-    <string name="short_million">%sMln</string>
-    <string name="short_billion">%sMlrd</string>
     <string name="migration_info_7_8_title">YouTube birləşmiş trend silindi</string>
     <string name="migration_info_7_8_message">YouTube 21 iyul 2025-ci il tarixindən birləşmiş trend səhifəsini ləğv etdi. BravePipe ilkin trend səhifəsini trend olan canlı yayımlarla əvəz etdi. \n\nHəmçinin \"Tənzimləmələr &gt; Məzmun &gt; Əsas səhifə məzmunu\" bölməsində müxtəlif trendli səhifələri seçə bilərsiniz.</string>
     <string name="trending_gaming">Trenddə olan Oyun</string>

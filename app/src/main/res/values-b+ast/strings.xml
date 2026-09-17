@@ -39,7 +39,6 @@
     <string name="msg_threads">Filos</string>
     <string name="msg_error">Fallu</string>
     <string name="msg_wait">Espera…</string>
-    <string name="msg_copied">Copióse al cartafueyu</string>
     <string name="detail_dislikes_img_view_description">Tarrezmes</string>
     <string name="default_video_format_title">Formatu de videu predetermináu</string>
     <string name="black_theme_title">Prietu</string>
@@ -134,10 +133,6 @@
     <string name="resize_fill">Rellenar</string>
     <string name="resize_zoom">Zoom</string>
     <string name="file">FIcheru</string>
-    <string name="invalid_file">El ficheru nun esiste o a l\'aplicación fálta-y el permisu de llectura/escritura</string>
-    <string name="error_occurred_detail">Asocedió un fallu: %1$s</string>
-    <string name="import_ongoing">Importando…</string>
-    <string name="export_ongoing">Esportando…</string>
     <string name="subscriptions_export_unsuccessful">Nun pudieron esportase les soscripciones</string>
     <string name="preferred_open_action_settings_title">Aición d\'apertura preferida</string>
     <string name="import_settings">¿Quies tamién importar los axustes\?</string>
@@ -317,10 +312,6 @@
     <string name="remove_watched_popup_title">¿Desaniciar los vídeos vistos?</string>
     <string name="remove_watched">Desaniciar lo visto</string>
     <string name="choose_instance_prompt">Escoyeta d\'una instancia</string>
-    <string name="downloads_storage_use_saf_summary">El «Storage Access Framework» permite les descargues nuna tarxeta SD esterna.
-\nDalgunos preseos son incompatibles</string>
-    <string name="downloads_storage_use_saf_title">Usar SAF</string>
-    <string name="downloads_storage_ask_summary">Va pidísete l\'allugamientu onde guardar les descargues con cauna</string>
     <string name="pause_downloads">Posar les descargues</string>
     <string name="start_downloads">Aniciar les descargues</string>
     <string name="enable_queue_limit_desc">Namás va executase una descarga al empar</string>
@@ -453,8 +444,6 @@
     <string name="permission_display_over_apps">Da\'l permisu p\'amosar BravePipe penriba d\'otres aplicaciones</string>
     <string name="saved_tabs_invalid_json">Nun pudieron lleese les llingüetes guardaes polo que van usase les predeterminaes</string>
     <string name="no_streams_available_download">Nun hai fluxos disponibles pa baxar</string>
-    <string name="file_name_empty_error">El nome del ficheru nun pue tar baleru</string>
-    <string name="invalid_source">El ficheru/orixe del conteníu nun esiste</string>
     <string name="invalid_directory">La carpeta nun esiste</string>
     <string name="audio_streams_empty">Nun s\'atoparon fluxos d\'audiu</string>
     <string name="video_streams_empty">Nun s\'atoparon fluxos de videu</string>
@@ -463,8 +452,6 @@
     <string name="could_not_setup_download_menu">Nun pudo configurase\'l menú de descarga</string>
     <string name="content_not_available">El conteníu nun ta disponible</string>
     <string name="network_error">Fallu de la rede</string>
-    <string name="download_to_sdcard_error_message">La descarga a la tarxeta SD nun ye posible. ¿Reafitar l\'allugamientu de la carpeta de descarga\?</string>
-    <string name="download_to_sdcard_error_title">L\'almacenamientu esternu nun ta disponible</string>
     <string name="search_history_deleted">Desanicióse l\'historial de busques.</string>
     <string name="clear_search_history_summary">Desanicia l\'historial de les pallabres clave de busca</string>
     <string name="clear_search_history_title">Llimpiar l\'historial de busca</string>
@@ -533,13 +520,8 @@
     <string name="notification_action_buffering">Atroxar nel búfer</string>
     <string name="notification_action_shuffle">Al debalu</string>
     <string name="notification_action_repeat">Repitir</string>
-    <string name="notification_actions_at_most_three">¡Pues esbillar tres aiciones como máximu p\'amosar nel avisu permanente!</string>
-    <string name="notification_actions_summary">Edita cada aición d\'embaxo tocando nelles. Esbilla hasta tres p\'amosales nel avisu compautu col usu de los caxellos de la derercha.</string>
     <string name="notification_action_4_title">Quintu botón d\'aición</string>
     <string name="notification_action_3_title">Cuartu botón d\'aición</string>
-    <string name="notification_action_2_title">Tercer botón d\'aición</string>
-    <string name="notification_action_1_title">Segundu botón d\'aición</string>
-    <string name="notification_action_0_title">Primer botón d\'aición</string>
     <string name="notification_scale_to_square_image_summary">Escala les miniatures de los vídeos que s\'amuesen nel avisu permanente de los 16:9 al 1:1 (podría distorsionar les imáxenes)</string>
     <string name="notification_scale_to_square_image_title">Afitar la escala 1:1 a les miniatures</string>
     <string name="download_path_audio_dialog_title">Escueyi la carpeta de descarga pa los ficheros d\'audiu</string>

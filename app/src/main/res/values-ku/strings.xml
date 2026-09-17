@@ -112,9 +112,6 @@
     <string name="external_player_unsupported_link_type">کارپێکەرە ڤیدیۆییە دەرەکییەکان پشتگیری ئەم جۆرە بەستەرانە ناکەن</string>
     <string name="video_streams_empty">هیچ پەخشێکی ڤیدیۆیی نەدۆزرایەوە</string>
     <string name="audio_streams_empty">پەخشی هیچ دەنگێک نەدۆزرایەوە</string>
-    <string name="invalid_file">ئەو فایلە بوونی نییە یان دەسەڵاتی خوێندنەوە و نوسینی لاوازە</string>
-    <string name="file_name_empty_error">ناوی فایل ناکرێ بەتاڵ بێت</string>
-    <string name="error_occurred_detail">هەڵەیەک ڕوویدا : %1$s</string>
     <string name="sorry_string">ببوورە، ناتوانرێ ئەوە ڕووبدات.</string>
     <string name="error_report_button_text">سکاڵا لەسەر کێشە لەڕێگای ئیمێڵ</string>
     <string name="error_snackbar_message">ببورە، کێشەیەک ڕوویدا.</string>
@@ -162,7 +159,6 @@
     <string name="msg_running">دابەزاندنەکانی ئەپ</string>
     <string name="msg_running_detail">کرتە بکە بۆ وردەکاری</string>
     <string name="msg_wait">تکایە چاوەڕێبکە…</string>
-    <string name="msg_copied">لەبەرگیرایەوە</string>
     <string name="no_available_dir">تکایە فۆڵدەرێک بۆ شوێنی دابەزاندن دیاریبکە لە ڕێکخستنەکان</string>
     <string name="msg_popup_permission">ئەم دەسەڵاتە پێویستە بۆ
 \nکردنەوەی دۆخی پەنجەرە</string>
@@ -222,8 +218,6 @@
     <string name="import_title">هەناردە</string>
     <string name="import_from">هەناردە لە</string>
     <string name="export_to">هاوردە بۆ</string>
-    <string name="import_ongoing">هەناردەئەکرێ…</string>
-    <string name="export_ongoing">هاوردە دەکرێ…</string>
     <string name="import_file_title">هەناردەی فایل</string>
     <string name="previous_export">هاوردەی پێشووتر</string>
     <string name="subscriptions_import_unsuccessful">ناتوانرێ بەشدارییەکان هەناردەبکرێنەوە</string>
@@ -275,9 +269,6 @@
     <string name="file_deleted">فایل سڕایەوە</string>
     <string name="app_update_notification_channel_name">پەیامی نوێکاری ئەپ</string>
     <string name="app_update_notification_channel_description">پەیامەکانی وەشانی نوێی ئەپ</string>
-    <string name="download_to_sdcard_error_title">بیرگەی دەرەکی بەردەست نییە</string>
-    <string name="download_to_sdcard_error_message">دابەزاندن لە بیرگەی دەرەکی ناکرێت.
-\nشوێنی فۆڵدەری دابەزاندنەکان دابنرێتەوە؟</string>
     <string name="restore_defaults">گێڕانەوە بۆ بنەڕەت</string>
     <string name="restore_defaults_confirmation">ئایا دەتەوێ بگەڕێنرێتەوە بۆ شێوازی بنەڕەتی؟</string>
     <string name="subscribers_count_not_available">ژمارەی بەشداربووان نادیارە</string>
@@ -327,7 +318,6 @@
     <string name="player_unrecoverable_failure">نەگێڕانەوەی کارپێکەر بۆ پێش کێشە ڕوویدا</string>
     <string name="player_recoverable_failure">گێڕانەوەی کارپێکەر بۆکاتی پێش کێشە</string>
     <string name="invalid_directory">هەمان فۆڵدەر بوونی نییە</string>
-    <string name="invalid_source">هەمان فایل/بابەت بوونی نییە</string>
     <string name="info_labels">چی:\nداواکراو:\nناوەڕۆک:\nلانگ:\nخزمەتگوزاری:\nGMT:\nکات:\nپاکێج:\nوەشان:\nوەشانی سیستەم:</string>
     <string name="settings_file_charset_title">هێما ڕێگەپێدراوەکان لە فایلێکی ناویدا</string>
     <string name="settings_file_replacement_character_summary">هێما نادروستەکان بەم بەهایە جێگۆڕکێ دەکرێن</string>
@@ -423,10 +413,6 @@
     <string name="start_downloads">دەستپێکردنەوەی دابەزاندنەکان</string>
     <string name="pause_downloads">ڕاگرتنی دابەزاندنەکان</string>
     <string name="downloads_storage_ask_title">پرسیاربکرێ لەکوێ دابەزێنرێت</string>
-    <string name="downloads_storage_ask_summary">پرسیارت لێ دەکرێت بۆ شوێنی دابەزاندنی هەر پەڕگەیەک</string>
-    <string name="downloads_storage_use_saf_title">بەکارهێنانی SAF</string>
-    <string name="downloads_storage_use_saf_summary">چوارچێوەی گەیشتن بە بیرگە ڕێگەدەدات بە دابەزاندنی پەڕگەکان لە بیرگەی دەرەکیدا.
-\nتێبینی: هەندێ لە مۆبایلەکان پشتگیری ناکرێن</string>
     <string name="local">ناوخۆ</string>
     <string name="recently_added">لەم ماوەیەدا بڵاوکرابێتەوە</string>
     <string name="most_liked">زۆرترین بەدڵبوون</string>
@@ -530,9 +516,6 @@
     <string name="notification_action_repeat">لێدانەوە</string>
     <string name="notification_action_4_title">پێنجەم کردەی دوگمە</string>
     <string name="notification_action_3_title">چوارەم کردەی دوگمە</string>
-    <string name="notification_action_2_title">سێیەم کردەی دوگمە</string>
-    <string name="notification_action_1_title">دووەم کردەی دوگمە</string>
-    <string name="notification_action_0_title">یەکەم کردەی دوگمە</string>
     <string name="notification_scale_to_square_image_summary">وێنۆچکەی ئەو ڤیدیۆیەی کە لە پەیامەوە دەردەکەوێ ، دەیگۆڕی لەڕەهەندی 16:9 ەوە بۆ 1:1</string>
     <string name="notification_scale_to_square_image_title">گونجاندنی وێنۆچکە بۆ ڕەهەندی 1:1</string>
     <string name="no_app_to_open_intent">هیچ ئەپێکی مۆبایلەکەت توانای کردنەوەی نییە</string>

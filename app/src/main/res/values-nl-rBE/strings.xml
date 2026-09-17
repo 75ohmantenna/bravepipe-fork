@@ -123,10 +123,6 @@
     <string name="video_streams_empty">Geen videostreams gevonden</string>
     <string name="audio_streams_empty">Geen audiostreams gevonden</string>
     <string name="invalid_directory">Deze map bestaat niet</string>
-    <string name="invalid_source">Bestand/inhoudsbron bestaat niet</string>
-    <string name="invalid_file">Het bestand bestaat niet of u bent onvoldoende gemachtigd om het te lezen of ernaar te schrijven</string>
-    <string name="file_name_empty_error">De bestandsnaam mag niet blanco zijn</string>
-    <string name="error_occurred_detail">Er is een fout opgetreden: %1$s</string>
     <string name="no_streams_available_download">Geen streams beschikbaar voor downloaden</string>
     <string name="sorry_string">Sorry, dit zou niet mogen gebeuren.</string>
     <string name="error_report_button_text">Meld deze fout via e-mail</string>
@@ -176,7 +172,6 @@
     <string name="msg_running">BravePipe is aan het downloaden</string>
     <string name="msg_running_detail">Tik voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
-    <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Kies een beschikbare download map</string>
     <string name="msg_popup_permission">Deze toestemming is vereist om
 \nte openen in pop-up modus</string>
@@ -264,8 +259,6 @@
     <string name="import_title">Importeren</string>
     <string name="import_from">Importeren uit</string>
     <string name="export_to">Exporteren naar</string>
-    <string name="import_ongoing">Bezig met importeren…</string>
-    <string name="export_ongoing">Bezig met exporteren…</string>
     <string name="import_file_title">Bestand importeren</string>
     <string name="previous_export">Vorige exportering</string>
     <string name="subscriptions_import_unsuccessful">Kon abonnementen niet importeren</string>
@@ -333,8 +326,6 @@
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">Appupdatemelding</string>
     <string name="app_update_notification_channel_description">Meldingen voor nieuwe versies van BravePipe</string>
-    <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
-    <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Download map opnieuw instellen\?</string>
     <string name="saved_tabs_invalid_json">Fout bij het lezen van de opgeslagen tabbladen, waardoor standaard tabbladen worden gebruikt</string>
     <string name="restore_defaults">Standaard instellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wil je de standaard instellingen herstellen\?</string>
@@ -447,11 +438,7 @@
     <string name="systems_language">Systeem standaard</string>
     <string name="app_language_title">App taal</string>
     <string name="choose_instance_prompt">Kies een instantie</string>
-    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' laat downloads naar een externe SD kaart toe.
-\nNiet alle toestellen zijn compatibel</string>
-    <string name="downloads_storage_use_saf_title">Gebruik SAF</string>
     <string name="downloads_storage_ask_title">Vraag waar te downloaden</string>
-    <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="pause_downloads">Pauzeer downloads</string>
     <string name="start_downloads">Downloads starten</string>
     <string name="enable_queue_limit_desc">Maximaal 1 bestand tegelijk zal worden gedownload</string>
@@ -545,13 +532,8 @@
     <string name="notification_action_buffering">Aan het bufferen</string>
     <string name="notification_action_shuffle">Shuffle</string>
     <string name="notification_action_repeat">Herhaal</string>
-    <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke notificatie actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte notificatie door gebruik te maken van de selectie vakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actie knop</string>
     <string name="notification_action_3_title">Vierde actie knop</string>
-    <string name="notification_action_2_title">Derde actie knop</string>
-    <string name="notification_action_1_title">Tweede actie knop</string>
-    <string name="notification_action_0_title">Eerste actie knop</string>
     <string name="notification_scale_to_square_image_summary">Snij de miniatuurafbeelding van de video die getoond wordt in de notificatie bij van 16:9 naar een 1:1 verhouding</string>
     <string name="notification_scale_to_square_image_title">Miniatuurafbeelding naar verhouding 1:1 bijknippen</string>
     <string name="show_original_time_ago_title">Toon oorspronkelijke tijd geleden op items</string>

@@ -22,7 +22,6 @@
     <string name="ok">OK</string>
     <string name="search_showing_result_for">Inaonyesha matokeo ya:%s</string>
     <string name="use_external_audio_player_title">Tumia kicheza sauti cha nje</string>
-    <string name="notification_action_0_title">Kitufe cha kitendo cha kwanza</string>
     <string name="seek_duration_title">Fast-forward/-rewind seek duration</string>
     <string name="popup_remember_size_pos_summary">Kumbuka ukubwa wa mwisho na nafasi ya popup</string>
     <string name="notification_action_4_title">Kitufe cha kitendo cha tano</string>
@@ -36,8 +35,6 @@
     <string name="subscription_change_failed">Haikuweza kubadilisha \"subscription\"</string>
     <string name="show_info">Onyesha habari</string>
     <string name="controls_add_to_playlist_title">Ongeza kwa</string>
-    <string name="notification_action_2_title">Kitufe cha kitendo cha tatu</string>
-    <string name="notification_action_1_title">Kitufe cha kitendo cha pili</string>
     <string name="notification_action_3_title">Kitufe cha kitendo cha nne</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_action_nothing">Hakuna</string>

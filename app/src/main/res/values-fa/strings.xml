@@ -75,7 +75,6 @@
     <string name="msg_running">لوله شجاع در حال بارگیری است</string>
     <string name="msg_running_detail">برای جزییات، ضربه بزنید</string>
     <string name="msg_wait">لطفاً صبر کنید…</string>
-    <string name="msg_copied">در حافظه رونوشت شد</string>
     <string name="no_available_dir">پوشه بارگیری را بعدا در تنظیمات مشخص کنید</string>
     <string name="no_player_found_toast">هیچ پخش کنندهٔ جریانی پیدا نشد (می‌توانید برای پخشش وی‌ال‌سی را نصب کنید).</string>
     <string name="controls_download_desc">بارگیری پروندهٔ جریان</string>
@@ -123,8 +122,6 @@
     <string name="import_title">وارد کردن</string>
     <string name="import_from">وارد کردن از</string>
     <string name="export_to">صادر کردن به</string>
-    <string name="import_ongoing">در حال وارد کردن…</string>
-    <string name="export_ongoing">در حال صدور…</string>
     <string name="subscriptions_import_unsuccessful">ناتوانی در ورود اشتراک‌ها</string>
     <string name="subscriptions_export_unsuccessful">ناتوانی در صدور اشتراک‌ها</string>
     <string name="playback_speed_control">کنترل‌های سرعت پخش</string>
@@ -143,9 +140,6 @@
     <string name="video_streams_empty">هیچ جریان ویدیویی پیدا نشد</string>
     <string name="audio_streams_empty">هیچ جریان صدایی پیدا نشد</string>
     <string name="invalid_directory">چنین پوشه‌ای وجود ندارد</string>
-    <string name="invalid_source">چنین منبع محتوا/پرونده‌ای وجود ندارد</string>
-    <string name="file_name_empty_error">نام پرونده نمی‌تواند خالی باشد</string>
-    <string name="error_occurred_detail">خطایی رخ داد: %1$s</string>
     <string name="no_streams_available_download">جریانی برای بارگیری در دسترس نیست</string>
     <string name="search_no_results">بدون نتیجه</string>
     <plurals name="subscribers">
@@ -310,7 +304,6 @@
     <string name="resize_fill">پر کردن</string>
     <string name="resize_zoom">بزرگ‌نمایی</string>
     <string name="caption_auto_generated">تولیدشدهٔ خودکار</string>
-    <string name="invalid_file">پرونده موجود نیست و یا مجوز خواندن یا نوشتن روی آن وجود ندارد</string>
     <string name="import_file_title">وارد کردن پرونده</string>
     <string name="previous_export">صادرکردن قبلی</string>
     <string name="import_youtube_instructions">درون‌ریزی اشتراک‌های یوتوب از بیرون‌بری گوگل:
@@ -348,8 +341,6 @@
     <string name="limit_mobile_data_usage_title">کیفیت را در زمان استفاده از داده همراه محدود کن</string>
     <string name="skip_silence_checkbox">پرش به جلو حین سکوت</string>
     <string name="playback_reset">بازنشانی</string>
-    <string name="download_to_sdcard_error_title">فضای ذخیره‌سازی خارجی در دسترس نیست</string>
-    <string name="download_to_sdcard_error_message">بارگیری روی کارت SD خارجی ممکن نیست. مایلید محل پوشه بارگیری را دوباره تعیین کنید؟</string>
     <string name="saved_tabs_invalid_json">به دلیل ناتوانی در خواندن برگه‌های ذخیره شده، برگه‌های پیش‌فرض استفاده می‌شوند</string>
     <string name="subscribers_count_not_available">تعداد مشترک‌شدگان دردسترس نیست</string>
     <string name="main_page_content_summary">چه برگه‌هایی در صفحه اصلی نمایش پیدا کنند</string>
@@ -390,10 +381,6 @@
     <string name="start_downloads">شروع بارگیری‌ها</string>
     <string name="pause_downloads">مکث بارگیری‌ها</string>
     <string name="downloads_storage_ask_title">محل بارگیری را سوال کن</string>
-    <string name="downloads_storage_ask_summary">برای ذخیرهٔ هر بارگیری از شما پرسیده خواهد شد.
-\nاگر می‌خواهید رو ی کارت SD خارجی بارگیری کنید، شاخه‌گزین سامانه (SAF) را به کار بیندازید</string>
-    <string name="downloads_storage_use_saf_title">استفاده از شاخه‌بردار سامانه (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">«چارچوب دسترسی ذخیره» اجازهٔ بارگیری روی کارت SD خارجی را می‌دهد</string>
     <string name="clear_playback_states_title">حذف موقعیت‌های پخش</string>
     <string name="clear_playback_states_summary">حذف تمام موقعیت‌های پخش</string>
     <string name="delete_playback_states_alert">همه موقعیت‌های پخش حذف شوند؟</string>
@@ -535,13 +522,8 @@
     <string name="notification_action_nothing">هیچ</string>
     <string name="notification_action_shuffle">بُرزنی</string>
     <string name="notification_action_repeat">تکرار</string>
-    <string name="notification_actions_at_most_three">می‌توانید تا سه کنش را برای نمایش در آگاهی فشرده برگزینید!</string>
-    <string name="notification_actions_summary">هر کنش آگاهی را با لمس کردنش ویرایش کنید. با استفاده از جعبه‌های تیک، تا سه کنش را برای نمایش در آگاهی فشرده بگزینید.</string>
     <string name="notification_action_4_title">پنجمین دکمه کنشی</string>
     <string name="notification_action_3_title">چهارمین دکمه کنشی</string>
-    <string name="notification_action_2_title">سومین دکمه کنشی</string>
-    <string name="notification_action_1_title">دومین دکمه کنشی</string>
-    <string name="notification_action_0_title">اولین دکمه کنشی</string>
     <string name="notification_scale_to_square_image_summary">تصویر بندانگشتی ویدیو که در اعلان نمایش می‌یابد، از نسبت ۱۶:۹ به ۱:۱ بریده می‌شود</string>
     <string name="notification_scale_to_square_image_title">برش تصویر بندانگشتی به نسبت ۱:۱</string>
     <string name="low_quality_smaller">کیفیت پایین (کوچک‌تر)</string>
@@ -618,7 +600,6 @@
     <string name="description_select_note">اکنون می‌توانید متن درون شرخ را برگزینید. به یاد داشته باشید که در حالت گزینش، ممکن است صفحه چشمک زده و پیوندها قابل کلیک نباشند.</string>
     <string name="no_dir_yet">هنوز شاخهٔ بارگیری‌ای تنظیم نشده. اکنون شاخهٔ بارگیری پیش‌گزیده را برگزینید</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">برای ذخیرهٔ هر بارگیری از شما پرسیده خواهد شد</string>
-    <string name="downloads_storage_use_saf_summary_api_29">از اندروید ۱۰، تنها «چارچوب دسترسی ذخیره» پشتیبانی می‌شود</string>
     <string name="feed_load_error_account_info">نتوانست خوراک را برای «%s» بار کند.</string>
     <string name="feed_load_error_terminated">حساب این نگارنده نابود شده است.
 \nلوله شجاع قادر به بار کردن این خوراک در آینده نیست.
@@ -651,8 +632,6 @@
     <string name="crash_the_player">فروپاشی پخش‌کننده</string>
     <string name="show_crash_the_player_summary">نمایش یک گزینهٔ فروپاشی هنگام استفاده از پخش کننده</string>
     <string name="show_crash_the_player_title">نمایش «فروپاشی پخش کننده»</string>
-    <string name="no_appropriate_file_manager_message">مدیر پروندهٔ مناسبی برای این کنش یافت نشد.
-\nلطفاً مدیر پرونده‌ای نصب کرده یا در تنظیمات بارگیری، «%s» را خاموش کنید</string>
     <string name="error_report_channel_name">آگاهی گزارش خطا</string>
     <string name="error_report_channel_description">آگاهی برای گزارش‌خطاها</string>
     <string name="show_error_snackbar">نمایش یک نوار خطا</string>

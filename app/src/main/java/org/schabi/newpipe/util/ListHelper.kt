@@ -8,9 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import java.util.Collections
 import java.util.Locale
-import java.util.Objects
-import java.util.function.Predicate
-import java.util.stream.Collectors
 import org.schabi.newpipe.MainActivity
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.MediaFormat
@@ -124,22 +121,6 @@ object ListHelper {
         return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams)
     }
 
-    /**
-     * @param context           Android app context
-     * @param videoStreams      list of the video streams to check
-     * @param defaultResolution the default resolution to look for
-     * @return index of the video stream with the default index
-     * @see #getDefaultResolutionIndex(String, String, MediaFormat, List)
-     */
-    @JvmStatic
-    fun getPopupResolutionIndex(
-        context: Context,
-        videoStreams: MutableList<VideoStream>,
-        defaultResolution: String
-    ): Int {
-        return getDefaultResolutionWithDefaultFormat(context, defaultResolution, videoStreams)
-    }
-
     @JvmStatic
     fun getDefaultAudioFormat(
         context: Context,
@@ -197,10 +178,7 @@ object ListHelper {
         streamList: List<S>?,
         deliveryMethod: DeliveryMethod
     ): List<S> {
-        return getFilteredStreamList(
-            streamList
-        )
-        { stream -> stream.deliveryMethod == deliveryMethod }
+        return getFilteredStreamList(streamList) { it.deliveryMethod == deliveryMethod }
     }
 
     /**
@@ -214,10 +192,9 @@ object ListHelper {
     fun <S : Stream> getUrlAndNonTorrentStreams(
         streamList: List<S>?
     ): List<S> {
-        return getFilteredStreamList(
-            streamList
-        )
-        { stream -> stream.isUrl && stream.deliveryMethod != DeliveryMethod.TORRENT }
+        return getFilteredStreamList(streamList) {
+            it.isUrl && it.deliveryMethod != DeliveryMethod.TORRENT
+        }
     }
 
     /**
@@ -238,10 +215,7 @@ object ListHelper {
         serviceId: Int
     ): List<S> {
         val youtubeServiceId = ServiceList.YouTube.serviceId
-        return getFilteredStreamList(
-            streamList
-        )
-        { stream ->
+        return getFilteredStreamList(streamList) { stream ->
             stream.deliveryMethod != DeliveryMethod.TORRENT &&
                 (
                     stream.deliveryMethod != DeliveryMethod.HLS ||
@@ -364,7 +338,7 @@ object ListHelper {
             ) {
                 continue
             }
-            val trackId = Objects.toString(stream.audioTrackId, "")
+            val trackId = stream.audioTrackId ?: ""
             val presentStream = collectedStreams[trackId]
             if (presentStream == null || cmp.compare(stream, presentStream) > 0) {
                 collectedStreams[trackId] = stream
@@ -395,14 +369,8 @@ object ListHelper {
         }
         val collectedStreams: HashMap<String, MutableList<AudioStream>> = HashMap()
         for (stream in audioStreams) {
-            val trackId = Objects.toString(stream.audioTrackId, "")
-            if (collectedStreams.containsKey(trackId)) {
-                collectedStreams[trackId]!!.add(stream)
-            } else {
-                val list: MutableList<AudioStream> = ArrayList()
-                list.add(stream)
-                collectedStreams[trackId] = list
-            }
+            val trackId = stream.audioTrackId ?: ""
+            collectedStreams.getOrPut(trackId) { ArrayList() }.add(stream)
         }
         // Filter unknown audio tracks if there are multiple tracks
         if (collectedStreams.size > 1) {
@@ -421,24 +389,17 @@ object ListHelper {
     // ////////////////////////////////////////////////////////////////////////
 
     /**
-     * Get a filtered stream list, by using Java 8 Stream's API and the given predicate.
+     * Get a new filtered stream list using the given predicate.
      *
      * @param streamList          the stream list to filter
-     * @param streamListPredicate the predicate which will be used to filter streams
+     * @param predicate           the predicate which will be used to filter streams
      * @param <S>                 the item type's class that extends [Stream]
      * @return a new stream list filtered using the given predicate
      */
-    private fun <S : Stream> getFilteredStreamList(
+    private inline fun <S : Stream> getFilteredStreamList(
         streamList: List<S>?,
-        streamListPredicate: Predicate<S>
-    ): List<S> {
-        if (streamList == null) {
-            return Collections.emptyList()
-        }
-        return streamList.stream()
-            .filter(streamListPredicate)
-            .collect(Collectors.toList())
-    }
+        predicate: (S) -> Boolean
+    ): List<S> = streamList?.filterTo(ArrayList(), predicate) ?: emptyList()
 
     private fun computeDefaultResolution(
         context: Context,
@@ -493,12 +454,14 @@ object ListHelper {
     ): Int {
         if (videoStreams.isNullOrEmpty()) return -1
 
-        val streamsWithParsedQuality = videoStreams.wrapWithQuality().toMutableList()
+        val streamsWithParsedQuality = videoStreams.mapTo(ArrayList()) {
+            VideoStreamWithQuality(it, it.toQuality())
+        }
 
         // Ensure streams are sorted by quality before selecting one.
         sortStreamList(streamsWithParsedQuality, false)
         videoStreams.clear()
-        videoStreams.addAll(streamsWithParsedQuality.map { it.stream })
+        streamsWithParsedQuality.mapTo(videoStreams) { it.stream }
 
         // If the user explicitly requested the "best" resolution,
         // simply return the first stream since the list is already sorted.
@@ -538,48 +501,31 @@ object ListHelper {
         ascendingOrder: Boolean,
         preferVideoOnlyStreams: Boolean
     ): MutableList<VideoStream> {
-        // Determine order of streams
-        // The last added list is preferred
-        val videoStreamListsInPreferredOrder = if (preferVideoOnlyStreams) {
-            mutableListOf(videoStreams, videoOnlyStreams)
+        // Process the preferred list last; default format wins regardless of list order.
+        val streamLists = if (preferVideoOnlyStreams) {
+            listOf(videoStreams, videoOnlyStreams)
         } else {
-            mutableListOf(videoOnlyStreams, videoStreams)
+            listOf(videoOnlyStreams, videoStreams)
         }
-
-        val allInitialStreams = videoStreamListsInPreferredOrder
-            // Ignore lists that are null
-            .filterNotNull()
-            .flatten()
-            .wrapWithQuality()
-            // Filter out higher resolutions (or not if high resolutions should always be shown)
-            .filter { stream ->
-                showHigherResolutions || !HIGH_RESOLUTION_LIST.contains(
-                    stream.quality.resolution
-                )
+        val preferredStreams = linkedMapOf<String, VideoStreamWithQuality>()
+        for (streams in streamLists) {
+            for (stream in streams.orEmpty()) {
+                val quality = stream.toQuality()
+                if (!showHigherResolutions && quality.resolution in HIGH_RESOLUTION_LIST) {
+                    continue
+                }
+                val item = VideoStreamWithQuality(stream, quality)
+                val key = qualityKeyOf(item)
+                val previous = preferredStreams[key]
+                if (previous == null || defaultFormat == null || stream.format == defaultFormat ||
+                    previous.stream.format != defaultFormat
+                ) {
+                    preferredStreams[key] = item
+                }
             }
-            .toMutableList()
-
-        val streamsWithDefaultFormatPreferred = mutableMapOf<String, VideoStreamWithQuality>()
-
-        // add all streams based on key [ListHelper.qualityKeyOf] to [streamsWithDefaultFormatPreferred]
-        allInitialStreams
-            .forEach { streamsWithDefaultFormatPreferred[qualityKeyOf(it)] = it }
-
-        // Ensure that streams with 'defaultFormat' are included in streamMap as they are
-        // preferred. They might have been overridden if allInitialStreams has more than one stream
-        // for the same resolution key but a none 'defaultFormat' stream was added later.
-        // See 'qualityKeyOf'.
-        defaultFormat?.let { defaultFormat ->
-            allInitialStreams.filter { it.stream.format == defaultFormat }
-                .forEach { streamsWithDefaultFormatPreferred[qualityKeyOf(it)] = it }
         }
-
-        return sortStreamList(
-            streamsWithDefaultFormatPreferred.values.toMutableList(),
-            ascendingOrder
-        )
-            .map { it.stream }
-            .toMutableList()
+        return sortStreamList(preferredStreams.values.toMutableList(), ascendingOrder)
+            .mapTo(ArrayList()) { it.stream }
     }
 
     /**
@@ -805,29 +751,14 @@ object ListHelper {
         context: Context,
         formatKey: String
     ): MediaFormat? {
-        var format: MediaFormat? = null
-        when (formatKey) {
-            context.getString(R.string.video_webm_key) -> {
-                format = MediaFormat.WEBM
-            }
-
-            context.getString(R.string.video_mp4_key) -> {
-                format = MediaFormat.MPEG_4
-            }
-
-            context.getString(R.string.video_3gp_key) -> {
-                format = MediaFormat.v3GPP
-            }
-
-            context.getString(R.string.audio_webm_key) -> {
-                format = MediaFormat.WEBMA
-            }
-
-            context.getString(R.string.audio_m4a_key) -> {
-                format = MediaFormat.M4A
-            }
+        return when (formatKey) {
+            context.getString(R.string.video_webm_key) -> MediaFormat.WEBM
+            context.getString(R.string.video_mp4_key) -> MediaFormat.MPEG_4
+            context.getString(R.string.video_3gp_key) -> MediaFormat.v3GPP
+            context.getString(R.string.audio_webm_key) -> MediaFormat.WEBMA
+            context.getString(R.string.audio_m4a_key) -> MediaFormat.M4A
+            else -> null
         }
-        return format
     }
 
     private fun compareVideoStreamResolution(

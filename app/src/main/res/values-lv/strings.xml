@@ -84,7 +84,6 @@
     <string name="msg_popup_permission">Šī atļauja ir nepieciešama, lai
 \natvērtu popup režīmā</string>
     <string name="no_available_dir">Lūdzu nosakiet lejupielādes mapi iestatījumos vēlāk</string>
-    <string name="msg_copied">Nokopēts uz starpliktuvi</string>
     <string name="msg_wait">Lūdzu uzgaidiet…</string>
     <string name="msg_calculating_hash">Aprēķina</string>
     <string name="msg_running_detail">Nospiediet priekš detaļām</string>
@@ -172,10 +171,6 @@
     <string name="restore_defaults">Atjaunot noklusējuma vērtības</string>
     <string name="saved_tabs_invalid_json">Nevarēja nolasīt saglabātās cilnes, tādēļ izmanto noklusējuma</string>
     <string name="no_streams_available_download">Neviens video nav pieejams lejupielādei</string>
-    <string name="error_occurred_detail">Notika kļūda: %1$s</string>
-    <string name="file_name_empty_error">Datnes nosaukums nevar būt tukšs</string>
-    <string name="invalid_file">Datne neeksistē vai nav dota atļauja to lasīt vai rakstīt</string>
-    <string name="invalid_source">Tāda datne/saturs neeksistē</string>
     <string name="invalid_directory">Tāda mape neeksistē</string>
     <string name="missing_file">Datne pārvietota vai dzēsta</string>
     <string name="audio_streams_empty">Netika atrasts audio</string>
@@ -190,8 +185,6 @@
     <string name="parsing_error">Nevarēja apstrādāt mājaslapu</string>
     <string name="could_not_load_thumbnails">Nevarēja ielādēt visus video attēlus</string>
     <string name="network_error">Tīkla kļūda</string>
-    <string name="download_to_sdcard_error_message">Lejupielāde ārējā SD kartē nav iespējama. Vai tiešām vēlaties atiestatīt lejupielāžu mapi?</string>
-    <string name="download_to_sdcard_error_title">Ārējā krātuve nepieejama</string>
     <string name="general_error">Kļūda</string>
     <string name="search_history_deleted">Meklēšanas vēsture dzēsta</string>
     <string name="delete_search_history_alert">Vai tiešām vēlaties izdzēst visu meklēšanas vēsturi?</string>
@@ -334,10 +327,6 @@
     <string name="systems_language">System default</string>
     <string name="app_language_title">Lietotnes valoda</string>
     <string name="choose_instance_prompt">Izvēlieties instanci</string>
-    <string name="downloads_storage_use_saf_title">Izmantot sistēmas mapes izvēlni</string>
-    <string name="downloads_storage_use_saf_summary">“Krātuves Piekļuves Sistēma” ļauj lejupielādēt ārējā SD kartē</string>
-    <string name="downloads_storage_ask_summary">Jums tiks jautāts, kur saglabāt katru lejupielādi.
-\nIeslēdziet sistēmas mapes izvēlni, ja vēlaties lejupielādēt uz ārējo SD karti</string>
     <string name="downloads_storage_ask_title">Jautājiet, kur lejupielādēt</string>
     <string name="pause_downloads">Pauzēt lejupielādes</string>
     <string name="start_downloads">Sākt lejupielādes</string>
@@ -442,8 +431,6 @@
     <string name="subscriptions_import_unsuccessful">Nevarēja importēt abonementus</string>
     <string name="previous_export">Pagājušais eksports</string>
     <string name="import_file_title">Importēt failu</string>
-    <string name="export_ongoing">Eksportē…</string>
-    <string name="import_ongoing">Ievieto…</string>
     <string name="export_to">Eksportēt uz</string>
     <string name="import_from">Ievietot no</string>
     <string name="import_title">Ievietot</string>
@@ -517,13 +504,8 @@
     <string name="notification_action_buffering">Ielādējas</string>
     <string name="notification_action_shuffle">Samaisīt</string>
     <string name="notification_action_repeat">Atkārtot</string>
-    <string name="notification_actions_at_most_three">Jūs variet atlasīt ne vairāk kā 3 darbības, ko rādīt kompaktajā paziņojumā!</string>
-    <string name="notification_actions_summary">Rediģējiet katru zemāk redzamo paziņojuma darbību, pieskaroties tai. Atķeksējiet izvēles rūtiņas labajā pusē, lai atlasītu līdz pat trīm darbībām, kuras rādīt kompaktajā paziņojumā.</string>
     <string name="notification_action_4_title">Piektā darbības poga</string>
     <string name="notification_action_3_title">Ceturtā darbības poga</string>
-    <string name="notification_action_2_title">Trešā darbības poga</string>
-    <string name="notification_action_1_title">Otrā darbības poga</string>
-    <string name="notification_action_0_title">Pirmā darbības poga</string>
     <string name="notification_scale_to_square_image_summary">Apgriež paziņojumā redzamo video sīkattēlu no 16:9 uz 1:1 malu attiecību (iespējams, attēls būs izstiepts)</string>
     <string name="notification_scale_to_square_image_title">Apgriezt video sīkattēlu uz 1:1 malu attiecību</string>
     <string name="show_play_with_kodi_summary">Rādīt opciju atskaņot video Kodi mediju centrā</string>
@@ -607,7 +589,6 @@
     <string name="manual_update_description">Pašrocīgi veikt jaunas versijas pārbaudi</string>
     <string name="seekbar_preview_thumbnail_title">Video atskaņošanas joslas sīktēla priekšskatījums</string>
     <string name="checking_updates_toast">Notiek atjauninājumu pārbaude…</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Sākot ar Android 10, tikai“Krātuves Piekļuves Sistēma” ir atbalstīta</string>
     <string name="feed_load_error_account_info">Nevarēja ielādēt straumi priekš \'%s\'.</string>
     <string name="feed_load_error">Kļūda lādējot plūsmu</string>
     <string name="feed_load_error_terminated">Autora konts tika slēgts.\nBravePipe turpmāk vairs nevarēs ielādēt šī kanāla saturu.\nVai tiešām vēlaties atteikties no šī kanāla abonēšanas?</string>
@@ -713,8 +694,6 @@
     <string name="metadata_thumbnails">Sīkattēli</string>
     <string name="sort">Kārtot</string>
     <string name="auto_update_check_description">BravePipe pati var veikt jaunas versijas pārbaudi laiku pa laikam un informēt jūs, kad tā ir pieejama.\nVai tiešām vēlaties ieslēgt šo funkciju?</string>
-    <string name="no_appropriate_file_manager_message">Netika atrasts atbilstošs failu pārvaldnieks šai darbībai.
-\nLūdzu instalējiet failu pārvaldnieku vai pamēģiniet atspējot \'%s\' lejuplādēšanas iestatījumos</string>
     <string name="audio_track_type_original">oriģinālais</string>
     <string name="streams_notifications_network_title">Nepieciešams tīkla savienojums</string>
     <string name="reset_settings_summary">Atiestata visus iestatījumus uz to sākotnējām vērtībām</string>
@@ -804,9 +783,6 @@
     <string name="tab_bookmarks_short">Atskaņošanas saraksti</string>
     <string name="share_playlist_as_youtube_temporary_playlist">Kopīgot kā pagaidu YouTube atskaņošanas sarakstu</string>
     <string name="audio_track_type_secondary">sekundārais</string>
-    <string name="short_thousand">%s tūkst.</string>
-    <string name="short_million">%s milj.</string>
-    <string name="short_billion">%s mljrd.</string>
     <string name="channel_tab_likes">Patīk</string>
     <string name="trending_music">Pašlaik populāra mūzika</string>
     <string name="trending_movies">Pašlaik populāras filmas un TV raidījumi</string>

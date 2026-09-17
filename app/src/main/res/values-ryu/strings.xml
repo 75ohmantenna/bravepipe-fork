@@ -72,7 +72,6 @@
     <string name="msg_running">ダウンロードちゅう（BravePipe）</string>
     <string name="msg_running_detail">タップししーょうさいをひょうじ</string>
     <string name="msg_wait">うまちくぃみそーれー…</string>
-    <string name="msg_copied">クリップボードんかいコピーさびたん</string>
     <string name="no_available_dir">ぬちふどぅ、ダウンロードフォルダーしっていしみそーれー</string>
     <string name="downloads">ダウンロード</string>
     <string name="downloads_title">ダウンロード</string>
@@ -202,9 +201,6 @@
     <string name="video_streams_empty">ちゃーしががみちかやびらん</string>
     <string name="audio_streams_empty">うんせいがみちかやびらん</string>
     <string name="invalid_directory">フォルダーぬみちかやびらん</string>
-    <string name="invalid_file">ファイルぬすんじぇーさんが、ゆみがきするきんぎんぬあいびらん</string>
-    <string name="file_name_empty_error">ファイルめえーくゎいるはくんかいなやびらん</string>
-    <string name="error_occurred_detail">エラーぬはっせいさびたん： %1$s</string>
     <string name="no_streams_available_download">ダウンロードないんちゃーしがーあいびらん</string>
     <string name="detail_drag_description">ドラッグしならべいがい</string>
     <string name="create">さくせい</string>
@@ -226,8 +222,6 @@
     <string name="import_title">インポート</string>
     <string name="import_from">インポートむとぅ</string>
     <string name="export_to">エクスポートさき</string>
-    <string name="import_ongoing">インポートそーいびーん…</string>
-    <string name="export_ongoing">エクスポートそーいびーん…</string>
     <string name="import_file_title">ファイルからインポート</string>
     <string name="previous_export">じんかいぬエクスポートさき</string>
     <string name="subscriptions_import_unsuccessful">とうるいちゅるリストぬインポートなやびらんたん</string>
@@ -252,7 +246,6 @@
     <string name="auto_queue_summary">キューんかいかんりんちゃーがちいからちさいせいちづきーん（くいけーしさんーあい）</string>
     <string name="delete_view_history_alert">まじりぬさいせいりりきさちゅるじょさびーが？</string>
     <string name="delete_search_history_alert">まじりどぅきらんさくりりきさちゅるじょさびーが？</string>
-    <string name="invalid_source">くぬファイル/コンテンツーあいびらん</string>
     <plurals name="subscribers">
         <item quantity="one">チャンネルとぅうるくしゃすう %sんかいん</item>
         <item quantity="other">チャンネルとぅうるくしゃすう %sんかいん</item>
@@ -325,7 +318,6 @@
     <string name="settings_category_updates_title">アプリぬこうしん</string>
     <string name="events">イベント</string>
     <string name="app_update_notification_channel_description">みーさるBravePipeバージョンぬちうち</string>
-    <string name="download_to_sdcard_error_title">がいぶちうちゅるすうちはりようなやびらん</string>
     <string name="restore_defaults">っちいちんかいむどぅすん</string>
     <string name="restore_defaults_confirmation">きていぬしっていふちゅるぎんさびーが？</string>
     <string name="subscribers_count_not_available">とうるくさゃすうはりようでぃきましん</string>
@@ -366,7 +358,6 @@
     <string name="max_retry_desc">ダウンロードちゅうしするまでぃぬさちゃるいさいしこうかいすん</string>
     <string name="file_deleted">ファイルさちゅるじょさびたん</string>
     <string name="app_update_notification_channel_name">アプリぬこうしんちうち</string>
-    <string name="download_to_sdcard_error_message">やしがいぶSDカードんかいダウンロードなやびらん。ダウンロードフォルダーぬばしょリセットさびーが？</string>
     <string name="saved_tabs_invalid_json">ふずんさったるタブゆみくみらんたみ、デフォルトぬタブしーようさびーん</string>
     <string name="main_page_content_summary">メインページんかいひょうじさりーるタブ</string>
     <string name="updates_setting_description">みーさるバージョンがいようかのうなとぅちにアプリぬこうしんかくにんすんちうちひょうじさびーん</string>
@@ -397,10 +388,6 @@
     <string name="start_downloads">ダウンロードぬかいし</string>
     <string name="pause_downloads">ダウンロードぬいちじていし</string>
     <string name="downloads_storage_ask_title">ダウンロードさきたんにいん</string>
-    <string name="downloads_storage_ask_summary">ダウンロードぬたびにふずんすーしょたんにやびーん。
-\nSDカードんかいダウンロードさるいばあえーシステムフォルダピッカー（SAF）ゆーいるこうかさびーん</string>
-    <string name="downloads_storage_use_saf_title">システムフォルダピッカー（SAF）しようすん</string>
-    <string name="downloads_storage_use_saf_summary">ストレージアクセスフレームワークー、がいぶSDカードんかいぬダウンロードぬかのうやいびーん</string>
     <string name="clear_playback_states_title">さいせいいちのさくじょ</string>
     <string name="clear_playback_states_summary">まじりぬさいせいいちさちゅるじょさびーん</string>
     <string name="delete_playback_states_alert">まじりぬさいせいいちさちゅるじょさびーが？</string>
@@ -536,13 +523,8 @@
     <string name="unsupported_url_dialog_message">URLにいるしちなやびらんたん。ふかぬアプリっしふぃらちゃびーが？</string>
     <string name="notification_scale_to_square_image_summary">ちまーにひょうじさりーるサムネイル16:9からせいほうけいなさびーん</string>
     <string name="notification_scale_to_square_image_title">サムネイルせいほうけいなすん</string>
-    <string name="notification_actions_summary">いかタップしちうちぬアクションへんしゅうさびーん。みぎぬわんかいあんチェックボックスしーようしコンパクトやるちまーにひょうじすし３ちまっししんたくさびーん。</string>
-    <string name="notification_actions_at_most_three">コンパクトやるちまーにひょうじさりーるアクションー3ちまっしいらぶるくとぅがなやびーん！</string>
     <string name="notification_action_4_title">5ばんみぬアクションボタン</string>
     <string name="notification_action_3_title">4ばんみぬアクションボタン</string>
-    <string name="notification_action_2_title">3ばんみぬアクションボタン</string>
-    <string name="notification_action_1_title">2ばんみぬアクションボタン</string>
-    <string name="notification_action_0_title">1ばんみぬアクションボタン</string>
     <string name="notification_action_nothing">なし</string>
     <string name="notification_action_repeat">くいけーし</string>
     <string name="notification_action_shuffle">シャッフル</string>
@@ -607,7 +589,6 @@
     <string name="open_website_license">ウェブサイトふぃらちゅん</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ダウンロードぬかーじにふずんすーしょたんにやびーん</string>
     <string name="no_dir_yet">ダウンロードフォルダーぬなーらしっていさりやびらん。なまちゃーきデフォルトぬフォルダーさんたくちくぃみそーれー</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android10いこおー \'Storage Access Framework\' ぬみやしがサポートさりやびーん</string>
     <string name="feed_load_error_fast_unknown">こうすくモードっしくぬじょうほうぬしーょうさいーていきょうさりやびらん。</string>
     <string name="feed_load_error_account_info">\'%s\' ぬフィードゆみくみやびらんたん。</string>
     <string name="feed_load_error">フィードぬゆみくみエラー</string>
@@ -657,8 +638,6 @@
     <string name="detail_pinned_comment_view_description">くていさったるコメント</string>
     <string name="no_appropriate_file_manager_message_android_10">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん。
 \nStorage Access Frameworkとぅぐかんゆいぬあんファイルマネージャインストールしみそーれー</string>
-    <string name="no_appropriate_file_manager_message">くぬちゃーさうぅてぃくしーちやーファイルマネージャぬみちかやびらんたん
-\nファイルマネージャインストールすが、ダウンロードしっていっし \'%s\' んーかなするくとぅうたみしくぃみそーれー</string>
     <string name="show_crash_the_player_summary">プレイヤーしようじんかいクラッシュオプションひょうじ</string>
     <string name="create_error_notification">エラーちうちさくせい</string>
     <string name="error_report_channel_description">エラーほうくーくすんちうち</string>

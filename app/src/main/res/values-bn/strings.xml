@@ -85,7 +85,6 @@
     <string name="msg_popup_permission">এই অনুমতিটি 
 \nপপআপ মোডে খুলতে প্রয়োজন</string>
     <string name="no_available_dir">অনুগ্রহ করে একটি উপলব্ধ ডাউনলোড ডিরেক্টরি নির্বাচন করো</string>
-    <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
     <string name="msg_running">BravePipe ডাউনলোড হচ্ছে</string>
@@ -125,8 +124,6 @@
     <string name="restore_defaults_confirmation">তুমি কি এই সহজাত পছন্দ ফিরত চাও\?</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
-    <string name="error_occurred_detail">একটা এরর হয়েছেঃ %1$s</string>
-    <string name="file_name_empty_error">ফাইল এর নাম খালি থাকতে পারে না</string>
     <string name="invalid_directory">কোন ফোল্ডার নেই</string>
     <string name="missing_file">ফাইল সরে গেছে না হয় মুছে ফেলা হয়েছে</string>
     <string name="audio_streams_empty">কোন অডিও স্ট্রিম পাওয়া যায় নি</string>
@@ -139,7 +136,6 @@
     <string name="parsing_error">ওয়েবসাইট বিশ্লেষন করা যায়নি</string>
     <string name="could_not_load_thumbnails">সব থাম্বনেইল লোড করা যায়নি</string>
     <string name="network_error">নেটওয়ার্ক ত্রুটি</string>
-    <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="general_error">ত্রুটি</string>
     <string name="search_history_deleted">সার্চ ইতিহাস ডিলিট হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
@@ -237,7 +233,6 @@
     <string name="play_audio">অডিও</string>
     <string name="notification_action_nothing">কিছুই না</string>
     <string name="notification_action_repeat">পুনরায়</string>
-    <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেলে ১:১ অনুপাতে করো</string>
     <string name="show_play_with_kodi_summary">Kodi মিডিয়া সেন্টারে এর মাধ্যমে ভিডিও প্লে করার জন্য একটি বিকল্প প্রদর্শন কর</string>
     <string name="show_play_with_kodi_title">\"Kodi-তে প্লে করুন\" দেখান</string>
@@ -289,14 +284,10 @@
     <string name="notification_action_shuffle">সাফল</string>
     <string name="notification_action_4_title">পঞ্চম অ্যাকশন বাটন</string>
     <string name="notification_action_3_title">চতুর্থ অ্যাকশন বাটন</string>
-    <string name="notification_action_2_title">তৃতীয় অ্যাকশন বাটন</string>
-    <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বাটন</string>
     <string name="auto_queue_summary">একটি সংশ্লিষ্ট স্ট্রিম যোগ করে প্লেব্যাক সারি শেষ করা অব্যাহত রাখো (পুনরাবৃত্তি ছাড়া)</string>
     <string name="clear_queue_confirmation_description">সক্রিয় চালক সারি প্রতিস্থাপিত হবে</string>
     <string name="clear_queue_confirmation_summary">এক প্লেয়ার থেকে অন্য প্লেয়ারে পরিবর্তন করলে তোমার সারি প্রতিস্থাপিত হতে পারে</string>
     <string name="clear_queue_confirmation_title">কিউ মোছার আগে নিশ্চিত করো</string>
-    <string name="notification_actions_at_most_three">কমপ্যাক্ট বিজ্ঞপ্তিতে প্রদর্শন করতে তুমি সর্বাধিক তিনটি ক্রিয়া নির্বাচন করতে পারো!</string>
-    <string name="notification_actions_summary">নিচের প্রতিটি প্রজ্ঞাপন ক্রিয়া সম্পাদনা করুন । ডান দিকের চেকবাক্স ব্যবহার করে কম্প্যাক্ট নোটিফিকেশনে দেখানোর জন্য তিনটি পর্যন্ত নির্বাচন করুন ।</string>
     <string name="notification_scale_to_square_image_summary">প্রদর্শিত ভিডিও থাম্বনেইল ১৬:৯ থেকে ১:১অনুপাতে পরিবর্তন করো</string>
     <string name="settings_category_feed_title">ফিড</string>
     <string name="overwrite">ওভাররাইট</string>
@@ -311,8 +302,6 @@
     <string name="playback_step">স্টেপ</string>
     <string name="playback_pitch">পিচ</string>
     <string name="playback_tempo">টেম্পো</string>
-    <string name="export_ongoing">রপ্তানি করা হচ্ছে…</string>
-    <string name="import_ongoing">আমদানি করা হচ্ছে…</string>
     <plurals name="subscribers">
         <item quantity="one">%s সদস্যতা</item>
         <item quantity="other">%s সদস্যতাগণ</item>
@@ -333,7 +322,6 @@
     <string name="no_one_watching">কেউ দেখছে না</string>
     <string name="drawer_header_description">সেবাটি পরিবর্তন করো, বর্তমানে নির্বাচিত:</string>
     <string name="empty_list_subtitle">ঝিঝিপোকা ছাড়া কিছুই নেই এখানে</string>
-    <string name="invalid_source">এই ধরনের কোন ফাইল/বিষয়বস্তুর উৎস নেই</string>
     <string name="player_unrecoverable_failure">অপুনরুদ্ধারযোগ্য প্লেয়ার ত্রুটি ঘটেছে</string>
     <string name="peertube_instance_add_fail">ইন্সট্যান্সটি যাচাই করা যায়নি</string>
     <string name="recaptcha_cookies_cleared">রিক্যাপচা কুকিগুলো পরিষ্কার করা হয়েছে</string>
@@ -394,7 +382,6 @@
     </plurals>
     <string name="remove_watched">দেখা থেকে অপসারণ করো</string>
     <string name="systems_language">সিস্টেম ডিফল্ট</string>
-    <string name="downloads_storage_use_saf_title">সাফ ব্যবহার করো</string>
     <string name="notification_colorize_title">বিজ্ঞপ্তি রঙিন করো</string>
     <plurals name="days">
         <item quantity="one">%d দিন</item>
@@ -521,21 +508,16 @@
     <string name="enable_queue_limit_desc">একটি ডাউনলোড একই সময়ে চলতে পারবে</string>
     <string name="max_retry_desc">ডাউনলোড বাতিল করার আগে সর্বোচ্চ চেষ্টা</string>
     <string name="private_content">এই তথ্যটি ব্যক্তিগত, তাই ব্রেভপাইপ এটির ধারাপ্রচার বা ডাউনলোড করতে পারবে না।</string>
-    <string name="download_to_sdcard_error_message">এসডি কার্ডে নামানো যাচ্ছে না। ডাউনলোড স্থান ফিরাবে বা পাল্টাবে\?</string>
     <string name="show_thumbnail_summary">বন্ধ পর্দার পটভূমি ও বিজ্ঞপ্তির পটভূমি উভয় জায়গায় এই প্রতিচ্ছবি ব্যবহার করো</string>
     <string name="privacy_policy_encouragement">ব্রেভপাইপ প্রকল্প তোমার গোপনীয়তা গুরুত্বের সাথে নেয়। তাই এই অ্যাপ তোমার অনুমতি ছাড়া কোনো তথ্য পাঠায় না।
 \nব্রেভপাইপের গোপনীয়তা নীতিমালা কোন তথ্য পাঠানো হয় ও সংরক্ষণ হয় তা ব্যাখ্যা করে।</string>
     <string name="clear_cookie_summary">রিক্যাপচা পূরণ করলে ব্রেভপাইপ যেসব কুকি রাখে তা মুছো</string>
     <string name="show_original_time_ago_summary">ধারা ভুক্তিতে সেবাগুলোর মূল লেখা দৃশ্যমান হবে</string>
     <string name="delete_item_search_history">অনুসন্ধান ইতিহাস থেকে এই ভুক্তিটি মুছবে\?</string>
-    <string name="downloads_storage_ask_summary">প্রত্যেক ডাউনলোড কোথায় রাখা হবে তা জিজ্ঞেস করা হবে।
-\nমেমোরি কার্ডে ডাউনলোড করতে সিস্টেম ফোল্ডার পিকার (SAF) এনেবল করুন</string>
     <string name="download_already_running">এই নামের একটি ডাউনলোড চলমান</string>
     <string name="disable_media_tunneling_title">মিডিয়া সুরঙ্গকরণ অক্ষম</string>
     <string name="feed_load_error_fast_unknown">দ্রুত ফিড অবস্থা এ বিষয়ে এর বেশি তথ্য দেয় না।</string>
     <string name="no_dir_yet">কোনো ডাউনলোড ফোল্ডার নির্দিষ্ট করা হয়নি, এখনই একটা সহজাত ডাউনলোড ফোল্ডার নির্বাচন করো</string>
-    <string name="downloads_storage_use_saf_summary">\'স্টোরেজ অনুমোদন অবকাঠামো\' বাইরের এসডি কার্ডে ডাউনলোডের অনুমোদন দেয়</string>
-    <string name="downloads_storage_use_saf_summary_api_29">অ্যান্ড্রয়েড ১০ থেকে শুরু করে শুধু \'স্টোরেজ অনুমোদন অবকাঠামো\' সমর্থিত</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">প্রত্যেকটা ডাউনলোড কোথায় রাখা হবে তা তোমাকে জিজ্ঞেস করা হবে</string>
     <string name="feed_load_error_account_info">\'%s\' এর জন্য ফিড প্রক্রিয়া করা যাচ্ছে না।</string>
     <string name="description_select_disable">বর্ণনার লেখা নির্বাচন করা নিষ্ক্রিয় করো</string>
@@ -612,7 +594,6 @@
     <string name="error_report_notification_title">BravePipe একটি ত্রুটির সম্মুখীন হয়েছে, রিপোর্ট করতে আলতো চাপুন</string>
     <string name="error_report_notification_toast">একটি ত্রুটি ঘটেছে, বিজ্ঞপ্তি দেখুন</string>
     <string name="error_report_open_github_notice">আপনার ক্র্যাশ নিয়ে আলোচনা করা একটি সমস্যা ইতিমধ্যেই বিদ্যমান কিনা অনুগ্রহ করে পরীক্ষা করুন৷ ডুপ্লিকেট টিকিট তৈরি করে আপনি আমাদের কাছ থেকে সময় নেন তা আমরা প্রকৃত বাগ ঠিক করার জন্য ব্যয় করতে পারি।</string>
-    <string name="invalid_file">ফাইলটি বিদ্যমান নেই বা এটি পড়ার বা লেখার অনুমতির অভাব রয়েছে</string>
     <string name="processing_may_take_a_moment">প্রক্রিয়ারত…এক মুহূর্ত লাগতে পারে</string>
     <string name="leak_canary_not_available">লিকক্যানারি নেই</string>
     <string name="show_error_snackbar">ত্রুটি স্ন্যাকবার দেখাও</string>

@@ -10,7 +10,6 @@
     <string name="downloads_title">Isadaren</string>
     <string name="downloads">Isadaren</string>
     <string name="settings">Iɣewwaren</string>
-    <string name="import_ongoing">Akter…</string>
     <string name="preferred_player_fetcher_notification_title">Tulya n telɣut…</string>
     <string name="auto">Awurman</string>
     <string name="file">Afaylu</string>
@@ -89,7 +88,6 @@
     <string name="users">Iseqdacen</string>
     <string name="settings_category_clear_data_title">Sfeḍ isefka</string>
     <string name="minimize_on_exit_none_description">Ulac</string>
-    <string name="msg_copied">Yettwanɣel ɣef afus</string>
     <string name="playlists">Tibdarin n tɣuri</string>
     <string name="title_last_played">Aneggaru yettwaslekmen</string>
     <string name="autoplay_title">Taɣuri tawurmant</string>

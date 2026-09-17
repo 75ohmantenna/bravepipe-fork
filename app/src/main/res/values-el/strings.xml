@@ -155,10 +155,6 @@
     <string name="video_streams_empty">Δε βρέθηκαν ροές βίντεο</string>
     <string name="audio_streams_empty">Δε βρέθηκαν ροές ήχου</string>
     <string name="invalid_directory">Δεν υπάρχει αυτός ο φάκελος</string>
-    <string name="invalid_source">Δεν υπάρχει το αρχείο/πηγή περιεχομένου</string>
-    <string name="invalid_file">Το αρχείο δεν υπάρχει ή δεν υπάρχει επαρκής εξουσιοδότηση ανάγνωσης ή εγγραφής σε αυτό</string>
-    <string name="file_name_empty_error">Το όνομα αρχείου δεν μπορεί να είναι κενό</string>
-    <string name="error_occurred_detail">Προέκυψε ένα σφάλμα: %1$s</string>
     <string name="no_streams_available_download">Δεν υπάρχουν διαθέσιμες ροές για λήψη</string>
     <string name="sorry_string">Λυπούμαστε, αυτό δεν έπρεπε να έχει συμβεί.</string>
     <string name="error_report_button_text">Αναφορά μέσω ηλεκτρονικού ταχυδρομείου</string>
@@ -193,7 +189,6 @@
     <string name="msg_threads">Νήματα</string>
     <string name="msg_running">Λήψη BravePipe</string>
     <string name="msg_wait">Παρακαλώ περιμένετε…</string>
-    <string name="msg_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="no_available_dir">Παρακαλώ ορίστε έναν φάκελο λήψεων αργότερα στις ρυθμίσεις</string>
     <string name="msg_popup_permission">Αυτή η άδεια είναι απαραίτητη για
 \nτο άνοιγμα αναδυόμενων παραθύρων</string>
@@ -281,8 +276,6 @@
     <string name="import_title">Εισαγωγή</string>
     <string name="import_from">Εισαγωγή από</string>
     <string name="export_to">Εξαγωγή σε</string>
-    <string name="import_ongoing">Γίνεται εισαγωγή…</string>
-    <string name="export_ongoing">Γίνεται εξαγωγή…</string>
     <string name="import_file_title">Εισαγωγή αρχείου</string>
     <string name="previous_export">Προηγούμενη εξαγωγή</string>
     <string name="subscriptions_import_unsuccessful">Δεν ήταν δυνατή η εισαγωγή των εγγραφών</string>
@@ -333,8 +326,6 @@
     <string name="file_deleted">Το αρχείο διαγράφηκε</string>
     <string name="app_update_notification_channel_name">Ειδοποίηση ενημέρωσης εφαρμογής</string>
     <string name="app_update_notification_channel_description">Ειδοποίηση για νεότερη έκδοση του BravePipe</string>
-    <string name="download_to_sdcard_error_title">Εξωτερική μνήμη αποθήκευσης μη διαθέσιμη</string>
-    <string name="download_to_sdcard_error_message">Η αποθήκευση στην SD κάρτα δεν είναι δυνατή. Επαναφορά στην αρχική τοποθεσία λήψης;</string>
     <string name="saved_tabs_invalid_json">Δεν ήταν δυνατή η ανάγνωση των αποθηκευμένων καρτελών. Θα γίνει χρήση των προεπιλεγμένων</string>
     <string name="restore_defaults">Επαναφορά προεπιλεγμένων ρυθμίσεων</string>
     <string name="restore_defaults_confirmation">Θέλετε να επαναφέρετε τις προεπιλεγμένες ρυθμίσεις;</string>
@@ -401,10 +392,6 @@
     <string name="start_downloads">Έναρξη λήψεων</string>
     <string name="pause_downloads">Παύση λήψεων</string>
     <string name="downloads_storage_ask_title">Ερώτηση πού να γίνει η λήψη</string>
-    <string name="downloads_storage_ask_summary">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη.
-\nΕνεργοποιήστε τον επιλογέα φακέλων συστήματος (SAF), αν θέλετε να κάνετε λήψεις σε εξωτερική κάρτα μνήμης</string>
-    <string name="downloads_storage_use_saf_title">Χρήση επιλογέα φακέλων συστήματος (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Το «Πλαίσιο Πρόσβασης Αποθήκευσης» (SAF) επιτρέπει λήψεις σε μια εξωτερική κάρτα SD</string>
     <string name="clear_playback_states_title">Διαγραφή θέσεων αναπαραγωγής</string>
     <string name="clear_playback_states_summary">Διαγράφει όλες τις θέσεις αναπαραγωγής</string>
     <string name="delete_playback_states_alert">Να διαγραφούν όλες οι θέσεις αναπαραγωγής;</string>
@@ -477,13 +464,8 @@
     <string name="notification_action_nothing">Τίποτα</string>
     <string name="notification_action_shuffle">Ανάμιξη</string>
     <string name="notification_action_repeat">Επανάληψη</string>
-    <string name="notification_actions_at_most_three">Μπορείτε να επιλέξετε το πολύ τρεις ενέργειες για εμφάνιση στη σύντομη ειδοποίηση!</string>
-    <string name="notification_actions_summary">Επεξεργαστείτε κάθε ενέργεια ειδοποίησης παρακάτω πατώντας πάνω της. Επιλέξτε έως και τρεις από αυτές για να εμφανίζονται στη σύντομη ειδοποίηση, χρησιμοποιώντας τα πλαίσια ελέγχου στα δεξιά.</string>
     <string name="notification_action_4_title">Κουμπί πέμπτης ενέργειας</string>
     <string name="notification_action_3_title">Κουμπί τέταρτης ενέργειας</string>
-    <string name="notification_action_2_title">Κουμπί τρίτης ενέργειας</string>
-    <string name="notification_action_1_title">Κουμπί δεύτερης ενέργειας</string>
-    <string name="notification_action_0_title">Κουμπί πρώτης ενέργειας</string>
     <string name="notification_scale_to_square_image_summary">Περικοπή της μικρογραφίας βίντεο που εμφανίζεται στην ειδοποίηση από 16:9 σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_scale_to_square_image_title">Περικοπή μικρογραφίας σε αναλογία διαστάσεων 1:1</string>
     <string name="notification_action_buffering">Φόρτωση</string>
@@ -614,7 +596,6 @@
 \nΘέλετε να απεγγραφείτε από αυτό το κανάλι;</string>
     <string name="feed_load_error_account_info">Αδυναμία φόρτωσης τροφοδοσίας για \'%s\'.</string>
     <string name="feed_load_error">Σφάλμα φόρτωσης τροφοδοσίας</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Από το Android 10 και μετά, μόνο το Πλαίσιο Πρόσβασης Αποθήκευσης υποστηρίζεται</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Θα ερωτηθείτε πού να αποθηκεύσετε κάθε λήψη</string>
     <string name="no_dir_yet">Δεν έχει ορισθεί φάκελος λήψεων ακόμα, eπιλέξτε τον προεπιλεγμένο φάκελο τώρα</string>
     <string name="metadata_host">Host</string>
@@ -655,8 +636,6 @@
     <string name="error_report_channel_description">Ειδοποιήσεις για την αναφορά σφαλμάτων</string>
     <string name="error_report_notification_toast">Συνέβη ένα σφάλμα. Δείτε την ειδοποίηση</string>
     <string name="create_error_notification">Δημιουργία ειδοποίησης σφάλματος</string>
-    <string name="no_appropriate_file_manager_message">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
-\nΕγκαταστήστε έναν ή δοκιμάστε να απενεργοποιήσετε το \'%s\' στις ρυθμίσεις λήψεων</string>
     <string name="no_appropriate_file_manager_message_android_10">Δε βρέθηκε κατάλληλος διαχειριστής αρχείων για αυτή την ενέργεια.
 \nΕγκαταστήστε έναν συμβατό με το Πλαίσιο Πρόσβασης Αποθήκευσης</string>
     <string name="error_report_notification_title">Το BravePipe παρουσίασε ένα σφάλμα. Πατήστε για αναφορά</string>
@@ -833,9 +812,6 @@
     <string name="trending_podcasts">Τάσεις podcasts</string>
     <string name="trending_movies">Τάσεις ταινιών και εκπομπών</string>
     <string name="trending_music">Μουσικές τάσεις</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="permission_display_over_apps_message">Για να χρησιμοποιήσετε το Αναδυόμενο Πρόγραμμα Αναπαραγωγής, επιλέξτε %1$s στο ακόλουθο μενού ρυθμίσεων Android και ενεργοποιήστε το %2$s.</string>
     <string name="permission_display_over_apps_permission_name">«Να επιτρέπεται η εμφάνιση πάνω από άλλες εφαρμογές»</string>
     <string name="delete_file">Διαγραφή αρχείου</string>

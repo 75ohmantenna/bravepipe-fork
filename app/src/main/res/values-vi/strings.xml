@@ -93,7 +93,6 @@
     <string name="msg_running">BravePipe đang tải xuống</string>
     <string name="msg_running_detail">Chạm để biết chi tiết</string>
     <string name="msg_wait">Vui lòng chờ…</string>
-    <string name="msg_copied">Đã sao chép vào khay nhớ tạm</string>
     <string name="no_available_dir">Vui lòng xác định thư mục tải xuống sau trong cài đặt</string>
     <string name="msg_popup_permission">Sự cho phép này là cần thiết để
 \nmở trong chế độ bật lên</string>
@@ -180,10 +179,6 @@
     <string name="video_streams_empty">Không tìm thấy luồng video nào</string>
     <string name="audio_streams_empty">Không tìm thấy luồng âm thanh nào</string>
     <string name="invalid_directory">Thư mục không hợp lệ</string>
-    <string name="invalid_source">Tệp/nguồn nội dung không hợp lệ</string>
-    <string name="invalid_file">Tệp không tồn tại hoặc không có quyền đọc/ghi</string>
-    <string name="file_name_empty_error">Tên tệp không được để trống</string>
-    <string name="error_occurred_detail">Đã xảy ra lỗi: %1$s</string>
     <string name="no_streams_available_download">Không có luồng nào để tải về</string>
     <string name="empty_list_subtitle">Không có gì cả :P</string>
     <string name="detail_drag_description">Kéo để sắp xếp lại</string>
@@ -279,8 +274,6 @@
     <string name="import_title">Nhập</string>
     <string name="import_from">Nhập từ</string>
     <string name="export_to">Xuất sang</string>
-    <string name="import_ongoing">Đang nhập…</string>
-    <string name="export_ongoing">Đang xuất…</string>
     <string name="import_file_title">Nhập tệp</string>
     <string name="previous_export">Xuất trước</string>
     <string name="subscriptions_import_unsuccessful">Không thể nhập kênh đăng ký</string>
@@ -328,8 +321,6 @@
     <string name="file_deleted">Đã xóa tập tin</string>
     <string name="app_update_notification_channel_name">Thông báo cập nhật ứng dụng</string>
     <string name="app_update_notification_channel_description">Thông báo phiên bản BravePipe mới</string>
-    <string name="download_to_sdcard_error_title">Bộ nhớ ngoài không khả dụng</string>
-    <string name="download_to_sdcard_error_message">Không thể tải vào thẻ SD ngoài. Đặt lại vị trí tải về\?</string>
     <string name="saved_tabs_invalid_json">Không thể đọc tab đã lưu, sử dụng tab mặc định</string>
     <string name="restore_defaults">Khôi phục về mặc định</string>
     <string name="restore_defaults_confirmation">Bạn có muốn khôi phục về mặc định\?</string>
@@ -398,8 +389,6 @@
     <string name="start_downloads">Bắt đầu tải xuống</string>
     <string name="pause_downloads">Tạm dừng tải xuống</string>
     <string name="downloads_storage_ask_title">Hỏi nơi thư mục để tải xuống</string>
-    <string name="downloads_storage_ask_summary">Bạn sẽ được hỏi nơi lưu vào mỗi lần tải xuống.
-\nHãy bật trình chọn thư mục của hệ thống (SAF) nếu bạn muốn tải xuống vào một cái thẻ nhớ</string>
     <string name="clear_playback_states_title">Xóa vị trí phát</string>
     <string name="clear_playback_states_summary">Xóa tất cả vị trí phát</string>
     <string name="delete_playback_states_alert">Xóa tất cả vị trí phát\?</string>
@@ -428,8 +417,6 @@
     <string name="remove_watched">Loại bỏ đã xem</string>
     <string name="systems_language">Mặc định hệ thống</string>
     <string name="app_language_title">Ngôn ngữ ứng dụng</string>
-    <string name="downloads_storage_use_saf_summary">\'Khung truy cập lưu trữ\' cho phép tải xuống một thẻ SD bên ngoài</string>
-    <string name="downloads_storage_use_saf_title">Sử dụng trình chọn thư mục của hệ thống (SAF)</string>
     <string name="delete_downloaded_files">Xóa file đã tải về</string>
     <string name="clear_download_history">Xóa lịch sử tải về</string>
     <string name="error_download_resource_gone">Không thể khôi phục bản tải xuống này</string>
@@ -527,13 +514,8 @@
     <string name="notification_action_buffering">Đang tải</string>
     <string name="notification_action_shuffle">Ngẫu nhiên</string>
     <string name="notification_action_repeat">Lặp lại</string>
-    <string name="notification_actions_at_most_three">Bạn có thể chọn tối đa ba hành động để hiện trong thông báo thu gọn!</string>
-    <string name="notification_actions_summary">Chỉnh sửa từng hành động thông báo bên dưới bằng cách nhấn vào nó. Chọn tối đa ba trong số chúng để hiển thị trong thông báo thu gọn bằng cách sử dụng các hộp kiểm ở bên phải.</string>
     <string name="notification_action_4_title">Nút hành động thứ năm</string>
     <string name="notification_action_3_title">Nút hành động thứ tư</string>
-    <string name="notification_action_2_title">Nút hành động thứ ba</string>
-    <string name="notification_action_1_title">Nút hành động thứ hai</string>
-    <string name="notification_action_0_title">Nút hành động đầu tiên</string>
     <string name="notification_scale_to_square_image_summary">Cắt bớt hình thu nhỏ video hiển thị trong thông báo từ tỷ lệ khung hình 16:9 xuống 1:1</string>
     <string name="notification_scale_to_square_image_title">Chỉnh ảnh thu nhỏ thành tỉ lệ 1:1</string>
     <string name="search_showing_result_for">Đang hiện kết quả cho: %s</string>
@@ -608,7 +590,6 @@
 \nBạn có muốn hủy đăng ký khỏi kênh này không\?</string>
     <string name="feed_load_error_account_info">Không thể tải nguồn cấp dữ liệu cho \'%s\'.</string>
     <string name="feed_load_error">Lỗi tải nguồn cấp dữ liệu</string>
-    <string name="downloads_storage_use_saf_summary_api_29">\'Khung truy cập lưu trữ\' chỉ được hỗ trợ từ Android 10 trở lên</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Bạn sẽ được hỏi nơi bạn muốn lưu mỗi mục tải xuống</string>
     <string name="no_dir_yet">Chưa có thư mục tải xuống nào được đặt, hãy chọn thư mục tải xuống mặc định ngay</string>
     <string name="dont_show">Không hiện</string>
@@ -647,8 +628,6 @@
     <string name="crash_the_player">Làm sập trình phát</string>
     <string name="no_appropriate_file_manager_message_android_10">Không tìm thấy ứng dụng quản lý tệp phù hợp nào để thực hiện hành động.
 \nVui lòng cài đặt ứng dụng quản lý tệp tương thích với Storage Access Framework</string>
-    <string name="no_appropriate_file_manager_message">Không tìm thấy trình quản lý tệp nào thích hợp cho hành động này.
-\nVui lòng cài đặt một trình quản lý tệp hoặc thử tắt \'%s\' trong thiết đặt tải xuống</string>
     <string name="leak_canary_not_available">LeakCanary không khả dụng</string>
     <string name="progressive_load_interval_exoplayer_default">Mặc định ExoPlayer</string>
     <string name="detail_pinned_comment_view_description">Bình luận được ghim</string>
@@ -803,9 +782,6 @@
     <string name="search_with_service_name">Tìm kiếm %1$s</string>
     <string name="search_with_service_name_and_filter">Tìm kiếm %1$s (%2$s)</string>
     <string name="tab_bookmarks_short">Danh sách phát</string>
-    <string name="short_thousand">%sN</string>
-    <string name="short_million">%sTr</string>
-    <string name="short_billion">%sTỷ</string>
     <string name="select_a_feed_group">Chọn một nhóm nguồn cấp dữ liệu</string>
     <string name="no_feed_group_created_yet">Chưa có nhóm nguồn cấp dữ liệu nào được tạo</string>
     <string name="feed_group_page_summary">Trang nhóm kênh</string>

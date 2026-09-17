@@ -130,10 +130,6 @@
     <string name="video_streams_empty">Videovooge ei leitud</string>
     <string name="audio_streams_empty">Helivooge ei leitud</string>
     <string name="invalid_directory">Kataloogi pole</string>
-    <string name="invalid_source">Faili/sisu allikat pole</string>
-    <string name="invalid_file">Puudub fail või puuduvad õigused seda faili lugeda või kirjutada</string>
-    <string name="file_name_empty_error">Tühi failinimi pole lubatud</string>
-    <string name="error_occurred_detail">Ilmnes viga: %1$s</string>
     <string name="no_streams_available_download">Allalaaditavaid videovooge pole</string>
     <string name="sorry_string">Vabandust, seda poleks pidanud juhtuma.</string>
     <string name="error_report_button_text">Teata e-posti teel</string>
@@ -183,7 +179,6 @@
     <string name="msg_running">BravePipe\'i on allalaadimisel</string>
     <string name="msg_running_detail">Üksikasjade nägemiseks toksa</string>
     <string name="msg_wait">Palun oota…</string>
-    <string name="msg_copied">Kopeeriti lõikepuhvrisse</string>
     <string name="no_available_dir">Vali määra allalaadimiste kataloog hiljem sätetes</string>
     <string name="msg_popup_permission">Need õigused on vajalikud
 \nhüpikakna avamiseks</string>
@@ -266,8 +261,6 @@
     <string name="import_title">Import</string>
     <string name="import_from">Impordi asukohast</string>
     <string name="export_to">Ekspordi asukohta</string>
-    <string name="import_ongoing">Import…</string>
-    <string name="export_ongoing">Eksport…</string>
     <string name="import_file_title">Impordi fail</string>
     <string name="previous_export">Eelmine eksport</string>
     <string name="subscriptions_import_unsuccessful">Tellimuste import nurjus</string>
@@ -331,8 +324,6 @@
     <string name="file_deleted">Fail kustutati</string>
     <string name="app_update_notification_channel_name">Rakenduse värskenduse teavitus</string>
     <string name="app_update_notification_channel_description">Teavitus BravePipe\'i uuetest versioonidest</string>
-    <string name="download_to_sdcard_error_title">Väline andmekandja pole saadaval</string>
-    <string name="download_to_sdcard_error_message">Allalaadimine välisele SD-kaardile ei ole võimalik. Kas lähtestada allalaadimiste kataloogi asukoht\?</string>
     <string name="saved_tabs_invalid_json">Tõrge salvestatud vahekaaride lugemisel; kasutatakse vaikeväärtusi</string>
     <string name="restore_defaults">Taasta vaikeväärtused</string>
     <string name="restore_defaults_confirmation">Kas soovid taastada vaikeväärtused\?</string>
@@ -405,13 +396,8 @@
     <string name="notification_action_buffering">Puhverdamine</string>
     <string name="notification_action_shuffle">Aja segi</string>
     <string name="notification_action_repeat">Korda</string>
-    <string name="notification_actions_at_most_three">Sa saad valida kuni kolm tegevust, mida kuvatakse lühiteavituses!</string>
-    <string name="notification_actions_summary">Muuda iga teavituse tegevusi sellel toksates. Vali märkekastides paremal kuni kolm teavitust, mida kuvada lühiteates.</string>
     <string name="notification_action_4_title">Viies tegevusnupp</string>
     <string name="notification_action_3_title">Neljas tegevusnupp</string>
-    <string name="notification_action_2_title">Kolmas tegevusnupp</string>
-    <string name="notification_action_1_title">Teine tegevusnupp</string>
-    <string name="notification_action_0_title">Esimene tegevusnupp</string>
     <string name="notification_scale_to_square_image_summary">Kadreeri teavituses kuvatav video pisipilt 16:9 külgede suhtest 1:1 suhtesse</string>
     <string name="notification_scale_to_square_image_title">Kadreeri pisipilt 1:1 küljesuhtesse</string>
     <string name="msg_calculating_hash">Arvutan räsi</string>
@@ -536,8 +522,6 @@
     <string name="remove_watched">Eemalda vaadatud videod</string>
     <string name="systems_language">Kasuta süsteemi keelt</string>
     <string name="app_language_title">Rakenduse keel</string>
-    <string name="downloads_storage_ask_summary">Alati küsime kuhu kausta soovid faile alla laadida.
-\nKui soovid salvestada välisele SD kaardile, siis võta kasutusele süsteemi kaustavalija (system folder picker ehk SAF)</string>
     <string name="downloads_storage_ask_title">Küsi allalaaditavate failide salvestamise kausta</string>
     <string name="pause_downloads">Peata allalaadimised</string>
     <string name="start_downloads">Alusta allalaadimistega</string>
@@ -581,8 +565,6 @@
     <string name="metadata_privacy">Privaatsus</string>
     <string name="no_dir_yet">Allalaadimiste kaust on veel valimata - palun vali see nüüd</string>
     <string name="playlist_page_summary">Esitusloendite vaade</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“-i ehk süsteemse kaustavalija kasutamisel saad andmeid salvestada ka välisele SD-kaardile</string>
-    <string name="downloads_storage_use_saf_title">Kasuta süsteemset kaustavalijat (SAF)</string>
     <string name="recovering">taastatakse</string>
     <string name="dont_show">Ära kuva</string>
     <string name="low_quality_smaller">Madalam kvaliteet (väiksem)</string>
@@ -609,7 +591,6 @@
     <string name="feed_update_threshold_title">Voo värskendamise künnis</string>
     <string name="settings_category_feed_title">Voog</string>
     <string name="choose_instance_prompt">Vali eksemplar</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android 10st alates on toetatud ainult salvestusjuurdepääsu raamistik \'Storage Access Framework\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sinult küsitakse iga kord, kuhu alla laadimine salvestada</string>
     <string name="detail_heart_img_view_description">Südamlik autor</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Kas sinu meelest on voo laadimine aeglane? Sel juhul proovi lubada kiire laadimine (seda saad muuta seadetes või vajutades allolevat nuppu). \n \nBravePipe pakub kahte voo laadimise strateegiat: \n• Tellitud kanali täielik, kuid aeglane hankimine. \n• Teenuse spetsiaalse otspunkti kasutamine, mis on kiire, kuid tavaliselt mittetäielik. \n \nErinevus nende kahe vahel seisneb selles, et kiirel puudub tavaliselt teave, näiteks üksuse pikkus või tüüp (ei saa eristada reaalajas videoid tavalistest) ja see võib tagastada vähem üksusi. \n \nYouTube on näide teenusest, mis pakub seda kiirmeetodit oma RSS-vooga. \n \nNii et valik taandub sellele, mida eelistad: kiirus või täpne teave.</string>
@@ -643,8 +624,6 @@
     <string name="error_report_channel_description">Teavitused vigadest informeerimiseks</string>
     <string name="error_report_notification_toast">Tekkis viga, vaata vastavat teadet</string>
     <string name="create_error_notification">Koosta veateade</string>
-    <string name="no_appropriate_file_manager_message">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
-\nPalun paigalda nutiseadmesse failihaldur või proovi allalaadimiste seadistustest „%s“ välja lülitada</string>
     <string name="no_appropriate_file_manager_message_android_10">Selle tegevuse jaoks ei leidunud sobilikku failihaldurit.
 \nPalun paigalda nutiseadmesse failihaldur, mis järgib Storage Access Framework reeglistikku</string>
     <string name="detail_pinned_comment_view_description">Esiletõstetud kommentaar</string>
@@ -818,9 +797,6 @@
     <string name="trending_movies">Populaarsust koguvad filmid ja telesarjad</string>
     <string name="trending_music">Populaarsust koguv muusika</string>
     <string name="trending_gaming">Populaarsust koguvad mängud</string>
-    <string name="short_thousand">%s tuh</string>
-    <string name="short_million">%s mln</string>
-    <string name="short_billion">%s mld</string>
     <string name="permission_display_over_apps_message">Kasutamaks meediaesitajat hüpikaknas palun vali järgnevast Androidi seadistuste valikust „%1$s“ ja lülita sisse „%2$s“.</string>
     <string name="permission_display_over_apps_permission_name">Luba kuvamine teiste rakenduste peal</string>
     <string name="delete_file">Kustuta fail</string>

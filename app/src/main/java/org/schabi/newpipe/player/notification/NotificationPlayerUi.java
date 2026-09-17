@@ -49,14 +49,6 @@ public final class NotificationPlayerUi extends PlayerUi {
     }
 
     @Override
-    public void onBuffering() {
-        super.onBuffering();
-        if (notificationUtil.shouldUpdateBufferingSlot()) {
-            notificationUtil.createNotificationIfNeededAndUpdate(false);
-        }
-    }
-
-    @Override
     public void onPaused() {
         super.onPaused();
 

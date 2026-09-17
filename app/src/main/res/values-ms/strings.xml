@@ -129,8 +129,6 @@
     <string name="delete_search_history_alert">Padamkan seluruh sejarah carian\?</string>
     <string name="search_history_deleted">Sejarah carian dipadamkan.</string>
     <string name="general_error">Ralat</string>
-    <string name="download_to_sdcard_error_title">Penyimpanan luaran tidak tersedia</string>
-    <string name="download_to_sdcard_error_message">Tidak mampu Memuat turun ke kad SD luar. Tetapkan semula lokasi folder muat turun\?</string>
     <string name="network_error">Ralat rangkaian</string>
     <string name="could_not_load_thumbnails">Tidak dapat memuat semua thumbnail</string>
     <string name="parsing_error">Tidak dapat menghuraikan laman web</string>
@@ -144,10 +142,6 @@
     <string name="video_streams_empty">Tiada strim video yang dijumpai</string>
     <string name="audio_streams_empty">Tiada strim audio yang dijumpai</string>
     <string name="invalid_directory">Tiada folder itu</string>
-    <string name="invalid_source">Tiada fail/sumber kandungan itu</string>
-    <string name="invalid_file">Fail tidak wujud atau tiada kebenaran untuk membaca atau menulis kepadanya</string>
-    <string name="file_name_empty_error">Nama fail tidak boleh kosong</string>
-    <string name="error_occurred_detail">Ralat berlaku: %1$s</string>
     <string name="no_streams_available_download">Tiada strim yang tersedia untuk dimuat turun</string>
     <string name="saved_tabs_invalid_json">Menggunakan tab utama, ralat semasa membaca tab tersimpan</string>
     <string name="restore_defaults">Kembali kepada asal</string>
@@ -195,7 +189,6 @@
     <string name="msg_running">BravePipe sedang memuat turun</string>
     <string name="msg_running_detail">Ketuk untuk butiran</string>
     <string name="msg_wait">Sila tunggu…</string>
-    <string name="msg_copied">Disalin ke papan klip</string>
     <string name="no_available_dir">Sila pilih folder muat turun nanti dalam tetapan</string>
     <string name="msg_popup_permission">Kebenaran ini diperlukan untuk
 \nbuka dalam mod popup</string>
@@ -292,8 +285,6 @@
     <string name="import_title">Import</string>
     <string name="import_from">Import dari</string>
     <string name="export_to">Eksport ke</string>
-    <string name="import_ongoing">Mengimport…</string>
-    <string name="export_ongoing">Mengeksport…</string>
     <string name="import_file_title">Import fail</string>
     <string name="previous_export">Eksport terdahulu</string>
     <string name="subscriptions_import_unsuccessful">Tidak dapat mengimport langganan</string>
@@ -410,8 +401,6 @@
     <string name="show_comments_title">Tunjukkan ulasan</string>
     <string name="seek_duration_title">Tempoh langkauan laju ke hadapan/ke belakang</string>
     <string name="night_theme_title">Tema malam</string>
-    <string name="notification_actions_at_most_three">Anda hanya boleh memilih sehingga tiga tindakan sahaja untuk dipaparkan dalam pemberitahuan kompak!</string>
-    <string name="notification_actions_summary">Edit setiap tindakan pemberitahuan di bawah dengan mengetiknya. Pilih sehingga tiga tindakan untuk dipaparkan pada pemberitahuan kompak dengan menggunakan kotak semak di sebelah kanan.</string>
     <string name="clear_queue_confirmation_description">Senarai gilir daripada pemain yang aktif akan digantikan</string>
     <string name="clear_queue_confirmation_summary">Menukar kepada pemain layar yang lain mungkin akan menggantikan senarai gilir anda</string>
     <string name="clear_queue_confirmation_title">Minta untuk pengesahan sebelum mengosongkan senarai gilir</string>
@@ -421,9 +410,6 @@
     <string name="notification_action_repeat">Ulang</string>
     <string name="notification_action_4_title">Butang tindakan kelima</string>
     <string name="notification_action_3_title">Butang tindakan keempat</string>
-    <string name="notification_action_2_title">Butang tindakan ketiga</string>
-    <string name="notification_action_1_title">Butang tindakan kedua</string>
-    <string name="notification_action_0_title">Butang tindakan pertama</string>
     <string name="overwrite_failed">tidak boleh tulis ganti fail</string>
     <string name="overwrite_unrelated_warning">Fail dengan nama yang sama sudah ada</string>
     <string name="dont_show">Jangan tunjuk</string>

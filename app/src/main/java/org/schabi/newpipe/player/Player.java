@@ -42,11 +42,9 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_RECREATE_NOTIFICATION;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
-import static org.schabi.newpipe.util.ListHelper.getPopupResolutionIndex;
 import static org.schabi.newpipe.util.ListHelper.getResolutionIndex;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
-import static coil3.Image_androidKt.toBitmap;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -58,7 +56,6 @@ import android.media.AudioManager;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,7 +70,6 @@ import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.PlaybackException;
 import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player.PositionInfo;
-import com.google.android.exoplayer2.SeekParameters;
 import com.google.android.exoplayer2.Timeline;
 import com.google.android.exoplayer2.Tracks;
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -90,7 +86,6 @@ import org.schabi.newpipe.databinding.PlayerBinding;
 import org.schabi.newpipe.error.ErrorInfo;
 import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
-import org.schabi.newpipe.extractor.Image;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.StreamType;
@@ -129,14 +124,12 @@ import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.StreamTypeUtil;
 import org.schabi.newpipe.util.VideoSegment;
-import org.schabi.newpipe.util.image.CoilHelper;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import coil3.target.Target;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
@@ -203,10 +196,7 @@ public final class Player implements PlaybackListener, Listener {
     private PlayQueueItem currentItem;
     @Nullable
     private MediaItemTag currentMetadata;
-    @Nullable
-    private Bitmap currentThumbnail;
-    @Nullable
-    private coil3.request.Disposable thumbnailDisposable;
+    private final PlayerThumbnail thumbnail = new PlayerThumbnail(this);
 
     /*//////////////////////////////////////////////////////////////////////////
     // Player
@@ -278,8 +268,7 @@ public final class Player implements PlaybackListener, Listener {
     /*//////////////////////////////////////////////////////////////////////////
     // SponsorBlock
     //////////////////////////////////////////////////////////////////////////*/
-    private SponsorBlockMode sponsorBlockMode = SponsorBlockMode.DISABLED;
-    private int lastSkipTarget = -1;
+    private final SponsorBlockController sponsorBlock = new SponsorBlockController();
 
 
     /*//////////////////////////////////////////////////////////////////////////
@@ -344,9 +333,7 @@ public final class Player implements PlaybackListener, Listener {
             @Override
             public int getOverrideResolutionIndex(final List<VideoStream> sortedVideos,
                                                   final String playbackQuality) {
-                return videoPlayerSelected()
-                        ? getResolutionIndex(context, sortedVideos, playbackQuality)
-                        : getPopupResolutionIndex(context, sortedVideos, playbackQuality);
+                return getResolutionIndex(context, sortedVideos, playbackQuality);
             }
         };
     }
@@ -382,34 +369,20 @@ public final class Player implements PlaybackListener, Listener {
         final boolean playWhenReady = intent.getBooleanExtra(PLAY_WHEN_READY, true);
 
         switch (playerIntentType) {
-            case Enqueue -> {
+            case Enqueue, EnqueueNext -> {
                 if (playQueue != null) {
                     final PlayQueue newQueue = getPlayQueueFromCache(intent);
                     if (newQueue == null) {
                         return;
                     }
-                    playQueue.append(newQueue.getStreams());
-                    return;
-                }
-
-                // TODO: This falls through to the old logic, there was no playQueue
-                // yet so we should start the player and add the new video
-                break;
-            }
-            case EnqueueNext -> {
-                if (playQueue != null) {
-                    final PlayQueue newQueue = getPlayQueueFromCache(intent);
-                    if (newQueue == null) {
-                        return;
+                    if (playerIntentType == PlayerIntentType.Enqueue) {
+                        playQueue.append(newQueue.getStreams());
+                    } else {
+                        playQueue.enqueueNext(newQueue.getStreams().get(0), false);
                     }
-                    final PlayQueueItem newItem = newQueue.getStreams().get(0);
-                    playQueue.enqueueNext(newItem, false);
                     return;
                 }
-
-                // TODO: This falls through to the old logic, there was no playQueue
-                // yet so we should start the player and add the new video
-                break;
+                // With no active queue, install the supplied queue below.
             }
             case TimestampChange -> {
                 final var data = Objects.requireNonNull(IntentCompat.getParcelableExtra(intent,
@@ -427,12 +400,7 @@ public final class Player implements PlaybackListener, Listener {
                             // we can just seek to the appropriate timestamp
                             if (oldPlayQueue != null
                                     && playQueueItem.isSameItem(oldPlayQueue.getItem())) {
-                                // Player can have state = IDLE when playback is stopped or failed
-                                // and we should retry in this case
-                                if (simpleExoPlayer.getPlaybackState()
-                                        == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                                    simpleExoPlayer.prepare();
-                                }
+                                prepareIfIdle();
                                 simpleExoPlayer.seekTo(oldPlayQueue.getIndex(),
                                         data.getSeconds() * 1000L);
                                 simpleExoPlayer.setPlayWhenReady(playWhenReady);
@@ -492,12 +460,7 @@ public final class Player implements PlaybackListener, Listener {
                 && playQueue != null && playQueue.size() == 1 && playQueue.getItem() != null
                 && newQueue.getItem().isSameItem(playQueue.getItem())
                 && newQueue.getItem().getRecoveryPosition() != PlayQueueItem.RECOVERY_UNSET) {
-            // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry in this case
-            if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
-            }
+            prepareIfIdle();
             simpleExoPlayer.seekTo(playQueue.getIndex(), newQueue.getItem().getRecoveryPosition());
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
@@ -505,13 +468,7 @@ public final class Player implements PlaybackListener, Listener {
                 && samePlayQueue
                 && playQueue != null
                 && !playQueue.isDisposed()) {
-            // Do not re-init the same PlayQueue. Save time
-            // Player can have state = IDLE when playback is stopped or failed
-            // and we should retry in this case
-            if (simpleExoPlayer.getPlaybackState()
-                    == com.google.android.exoplayer2.Player.STATE_IDLE) {
-                simpleExoPlayer.prepare();
-            }
+            prepareIfIdle();
             simpleExoPlayer.setPlayWhenReady(playWhenReady);
 
         } else if (intent.getBooleanExtra(RESUME_PLAYBACK, false)
@@ -554,6 +511,13 @@ public final class Player implements PlaybackListener, Listener {
         }
 
     }
+    private void prepareIfIdle() {
+        if (simpleExoPlayer.getPlaybackState()
+                == com.google.android.exoplayer2.Player.STATE_IDLE) {
+            simpleExoPlayer.prepare();
+        }
+    }
+
 
 
     public void handleIntentPost(final PlayerType oldPlayerType) {
@@ -886,69 +850,6 @@ public final class Player implements PlaybackListener, Listener {
 
 
 
-    /*//////////////////////////////////////////////////////////////////////////
-    // Thumbnail loading
-    //////////////////////////////////////////////////////////////////////////*/
-    //region Thumbnail loading
-
-    private void loadCurrentThumbnail(final List<Image> thumbnails) {
-        if (DEBUG) {
-            Log.d(TAG, "Thumbnail - loadCurrentThumbnail() called with thumbnails = ["
-                    + thumbnails.size() + "]");
-        }
-
-        // Cancel any ongoing image loading
-        if (thumbnailDisposable != null) {
-            thumbnailDisposable.dispose();
-        }
-
-        // Unset currentThumbnail, since it is now outdated. This ensures it is not used in media
-        // session metadata while the new thumbnail is being loaded by Coil.
-        onThumbnailLoaded(null);
-        if (thumbnails.isEmpty()) {
-            return;
-        }
-
-        // scale down the notification thumbnail for performance
-        final var thumbnailTarget = new Target() {
-            @Override
-            public void onError(@Nullable final coil3.Image error) {
-                Log.e(TAG, "Thumbnail - onError() called");
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(null);
-            }
-
-            @Override
-            public void onStart(@Nullable final coil3.Image placeholder) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onStart() called");
-                }
-            }
-
-            @Override
-            public void onSuccess(@NonNull final coil3.Image result) {
-                if (DEBUG) {
-                    Log.d(TAG, "Thumbnail - onSuccess() called with: drawable = [" + result + "]");
-                }
-                // there is a new thumbnail, so e.g. the end screen thumbnail needs to change, too.
-                onThumbnailLoaded(toBitmap(result));
-            }
-        };
-        thumbnailDisposable = CoilHelper.INSTANCE
-                .loadScaledDownThumbnail(context, thumbnails, thumbnailTarget);
-    }
-
-
-    private void onThumbnailLoaded(@Nullable final Bitmap bitmap) {
-        // Avoid useless thumbnail updates, if the thumbnail has not actually changed. Based on the
-        // thumbnail loading code, this if would be skipped only when both bitmaps are `null`, since
-        // onThumbnailLoaded won't be called twice with the same nonnull bitmap by Coil's target.
-        if (currentThumbnail != bitmap) {
-            currentThumbnail = bitmap;
-            UIs.call(playerUi -> playerUi.onThumbnailLoaded(bitmap));
-        }
-    }
-    //endregion
 
 
 
@@ -1044,81 +945,8 @@ public final class Player implements PlaybackListener, Listener {
                 (int) simpleExoPlayer.getDuration(),
                 simpleExoPlayer.getBufferedPercentage());
 
-        if (sponsorBlockMode == SponsorBlockMode.ENABLED && isPrepared) {
-            final VideoSegment segment = getSkippableSegment(currentProgress);
-            if (segment == null) {
-                lastSkipTarget = -1;
-                return;
-            }
-
-            int skipTarget = isRewind
-                    ? (int) Math.ceil((segment.startTime)) - 1
-                    : (int) Math.ceil((segment.endTime));
-
-            if (skipTarget < 0) {
-                skipTarget = 0;
-            }
-
-            if (lastSkipTarget == skipTarget) {
-                return;
-            }
-
-            lastSkipTarget = skipTarget;
-
-            // temporarily force EXACT seek parameters to prevent infinite skip looping
-            final SeekParameters seekParams = simpleExoPlayer.getSeekParameters();
-            simpleExoPlayer.setSeekParameters(SeekParameters.EXACT);
-
-            seekTo(skipTarget);
-
-            simpleExoPlayer.setSeekParameters(seekParams);
-
-            if (prefs.getBoolean(
-                    context.getString(R.string.sponsor_block_notifications_key), false)) {
-                String toastText = "";
-
-                switch (segment.category) {
-                    case "sponsor":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_sponsor_toast);
-                        break;
-                    case "intro":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_intro_toast);
-                        break;
-                    case "outro":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_outro_toast);
-                        break;
-                    case "interaction":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_interaction_toast);
-                        break;
-                    case "selfpromo":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_self_promo_toast);
-                        break;
-                    case "music_offtopic":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_non_music_toast);
-                        break;
-                    case "preview":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_preview_toast);
-                        break;
-                    case "filler":
-                        toastText = context
-                                .getString(R.string.sponsor_block_skip_filler_toast);
-                        break;
-                }
-
-                Toast.makeText(context, toastText, Toast.LENGTH_SHORT).show();
-            }
-
-            if (DEBUG) {
-                Log.d("SPONSOR_BLOCK", "Skipped segment: currentProgress = ["
-                        + currentProgress + "], skipped to = [" + skipTarget + "]");
-            }
+        if (isPrepared) {
+            sponsorBlock.skip(this, currentProgress, isRewind);
         }
     }
 
@@ -1787,7 +1615,7 @@ public final class Player implements PlaybackListener, Listener {
 
             if (removeThumbnailBeforeSync) {
                 // unset the current (now outdated) thumbnail to ensure it is not used during sync
-                onThumbnailLoaded(null);
+                thumbnail.clear();
             }
 
             // sync the player index with the queue index, and seek to the correct position
@@ -2007,7 +1835,7 @@ public final class Player implements PlaybackListener, Listener {
 
         maybeAutoQueueNextStream(info);
 
-        loadCurrentThumbnail(info.getThumbnails());
+        thumbnail.load(info.getThumbnails());
         registerStreamViewed();
 
         notifyMetadataUpdateToListeners();
@@ -2050,7 +1878,7 @@ public final class Player implements PlaybackListener, Listener {
 
     @Nullable
     public Bitmap getThumbnail() {
-        return currentThumbnail;
+        return thumbnail.get();
     }
     //endregion
 
@@ -2300,34 +2128,17 @@ public final class Player implements PlaybackListener, Listener {
                 !exoPlayerIsNull() && !simpleExoPlayer.getCurrentTimeline().isEmpty();
 
 
-        getCurrentStreamInfo().ifPresentOrElse(info -> {
-            // In case we don't know the source type, fall back to either video-with-audio, or
-            // audio-only source type
-            final SourceType sourceType = videoResolver.getStreamSourceType()
-                    .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY);
-
-            if (hasTimeline || !hasPendingRecovery) {
-                // making sure to save playback position before reloadPlayQueueManager()
-                setRecovery();
-            }
-
-            if (playQueueManagerReloadingNeeded(sourceType, info, getVideoRendererIndex())) {
-                reloadPlayQueueManager();
-            }
-        }, () -> {
-            /*
-            The current metadata may be null sometimes (for e.g. when using an unstable connection
-            in livestreams) so we will be not able to execute the block above
-
-            Reload the play queue manager in this case, which is the behavior when we don't know the
-            index of the video renderer or playQueueManagerReloadingNeeded returns true
-            */
-            if (hasTimeline || !hasPendingRecovery) {
-                // making sure to save playback position before reloadPlayQueueManager()
-                setRecovery();
-            }
+        if (hasTimeline || !hasPendingRecovery) {
+            // Preserve pending recovery until a timeline exists.
+            setRecovery();
+        }
+        final boolean reloadNeeded = getCurrentStreamInfo().map(info ->
+                playQueueManagerReloadingNeeded(videoResolver.getStreamSourceType()
+                        .orElse(SourceType.VIDEO_WITH_AUDIO_OR_AUDIO_ONLY),
+                        info, getVideoRendererIndex())).orElse(true);
+        if (reloadNeeded) {
             reloadPlayQueueManager();
-        });
+        }
 
         // Disable or enable video and subtitles renderers depending of the
         // videoAndSubtitlesEnabled value
@@ -2538,37 +2349,15 @@ public final class Player implements PlaybackListener, Listener {
     //region
 
     public SponsorBlockMode getSponsorBlockMode() {
-        return sponsorBlockMode;
+        return sponsorBlock.getMode();
     }
 
     public void setSponsorBlockMode(final SponsorBlockMode mode) {
-        sponsorBlockMode = mode;
+        sponsorBlock.setMode(mode);
     }
 
     public VideoSegment getSkippableSegment(final int progress) {
-        // currentItem may get set to something later (asynchronously)
-        if (currentItem == null) {
-            return null;
-        }
-
-        final VideoSegment[] videoSegments = currentItem.getVideoSegments();
-        if (videoSegments == null) {
-            return null;
-        }
-
-        for (final VideoSegment segment : videoSegments) {
-            if (progress < segment.startTime) {
-                continue;
-            }
-
-            if (progress > segment.endTime) {
-                continue;
-            }
-
-            return segment;
-        }
-
-        return null;
+        return SponsorBlockController.segmentAt(currentItem, progress);
     }
 
     //endregion

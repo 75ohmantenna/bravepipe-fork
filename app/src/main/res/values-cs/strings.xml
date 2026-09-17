@@ -49,7 +49,6 @@
     <string name="show_age_restricted_content_title">Zobrazit věkově omezený obsah</string>
     <string name="duration_live">Živě</string>
     <string name="main_bg_subtitle">Začněte klepnutím na lupu.</string>
-    <string name="msg_copied">Zkopírováno do schránky</string>
     <string name="msg_wait">Počkejte prosím…</string>
     <string name="msg_running">BravePipe stahuje</string>
     <string name="msg_running_detail">Klepněte pro podrobnosti</string>
@@ -255,15 +254,9 @@
     <string name="auto_queue_summary">Pokračovat konečnou (neopakující se) frontu playbacku připojením souvisejícího streamu</string>
     <string name="file">Soubor</string>
     <string name="invalid_directory">Neexistující složka</string>
-    <string name="invalid_source">Neexistující zdroj souboru/obsahu</string>
-    <string name="invalid_file">Soubor neexistuje nebo chybí oprávnění k jeho čtení či zápisu</string>
-    <string name="file_name_empty_error">Název souboru nesmí být prázdný</string>
-    <string name="error_occurred_detail">Došlo k chybě: %1$s</string>
     <string name="import_title">Importovat</string>
     <string name="import_from">Importovat z</string>
     <string name="export_to">Exportovat do</string>
-    <string name="import_ongoing">Importuji…</string>
-    <string name="export_ongoing">Exportuji…</string>
     <string name="import_file_title">Import souboru</string>
     <string name="previous_export">Předchozí export</string>
     <string name="subscriptions_import_unsuccessful">Odběry nelze importovat</string>
@@ -335,7 +328,6 @@
     <string name="file_deleted">Soubor smazán</string>
     <string name="app_update_notification_channel_name">Oznámení o aktualizaci aplikace</string>
     <string name="app_update_notification_channel_description">Oznámení o nových verzích BravePipe</string>
-    <string name="download_to_sdcard_error_title">Externí úložiště není k dispozici</string>
     <string name="saved_tabs_invalid_json">Nelze načíst uložené karty, takže se použijí výchozí karty</string>
     <string name="restore_defaults">Obnovit do výchozího nastavení</string>
     <string name="restore_defaults_confirmation">Chcete obnovit výchozí nastavení\?</string>
@@ -384,7 +376,6 @@
     <string name="no_comments">Žádné komentáře</string>
     <string name="error_unable_to_load_comments">Nelze načíst komentáře</string>
     <string name="close">Zavřít</string>
-    <string name="download_to_sdcard_error_message">Stahování na externí SD kartu není možné. Resetovat umístění složky pro stahování\?</string>
     <string name="enable_playback_resume_title">Pokračovat v přehrávání</string>
     <string name="enable_playback_resume_summary">Obnovit poslední pozici přehrávání</string>
     <string name="enable_playback_state_lists_title">Pozice v seznamech</string>
@@ -401,10 +392,6 @@
     <string name="start_downloads">Začít stahování</string>
     <string name="pause_downloads">Pozastavit stahování</string>
     <string name="downloads_storage_ask_title">Zeptat se na složku pro stahování</string>
-    <string name="downloads_storage_ask_summary">Budete dotázáni, kam jednotlivé soubory uložit.
-\nAktivujte výběr systémového adresáře (SAF), chcete-li stáhnout soubor na externí SD kartu</string>
-    <string name="downloads_storage_use_saf_title">Použít výběr systémového adresáře (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ umožňuje stahovat na externí SD kartu</string>
     <string name="enable_playback_state_lists_summary">Zobrazit pozici přehrávání v seznamech</string>
     <string name="watch_history_states_deleted">Pozice playbacku smazány</string>
     <string name="error_timeout">Timeout spojení</string>
@@ -548,13 +535,8 @@
     <string name="notification_action_buffering">Bufferovat</string>
     <string name="notification_action_shuffle">Promíchat</string>
     <string name="notification_action_repeat">Opakovat</string>
-    <string name="notification_actions_at_most_three">Do kompaktního oznámení lze vybrat nejvíce tři akce!</string>
-    <string name="notification_actions_summary">Upravte každou akci oznámení níže poklepáním. Pomocí zaškrtávacích políček vpravo vyberte až tři z nich, které se mají zobrazit v kompaktním oznámení.</string>
     <string name="notification_action_4_title">Páté akční tlačítko</string>
     <string name="notification_action_3_title">Čtvrté akční tlačítko</string>
-    <string name="notification_action_2_title">Třetí akční tlačítko</string>
-    <string name="notification_action_1_title">Druhé akční tlačítko</string>
-    <string name="notification_action_0_title">První akční tlačítko</string>
     <string name="notification_scale_to_square_image_summary">Oříznout miniaturu videa zobrazenou v oznámení z poměru stran 16:9 na 1:1</string>
     <string name="notification_scale_to_square_image_title">Oříznout poměr stran miniatury na 1:1</string>
     <string name="show_memory_leaks">Zobrazit úniky paměti</string>
@@ -625,7 +607,6 @@
 \nChcete zrušit objednávku tohoto kanálu\?</string>
     <string name="feed_load_error_account_info">Feed pro \'%s\' nemohl být načten.</string>
     <string name="feed_load_error">Chyba při načítání feedu</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Počínaje systémem Android 10 je podporován pouze „Storage Access Framework“</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Budete dotázáni, kde uložit každý stažený soubor</string>
     <string name="no_dir_yet">Adresář pro stažené soubory dosud nenastaven, zvolte, prosím, výchozí adresář nyní</string>
     <string name="off">Vypnuto</string>
@@ -668,8 +649,6 @@
 \nNainstalujte správce souborů kompatibilní se Storage Access Framework</string>
     <string name="error_report_channel_name">Oznámení o hlášení chyb</string>
     <string name="error_report_channel_description">Oznámení za účelem hlášení chyb</string>
-    <string name="no_appropriate_file_manager_message">Pro tuto akci nebyl nalezen žádný vhodný správce souborů.
-\nNainstalujte správce souborů nebo zkuste vypnout \'%s\' v nastavení stahování</string>
     <string name="show_crash_the_player_summary">Ukáže volbu pro zřícení během používání přehrávače</string>
     <string name="show_error_snackbar">Zobrazit krátké oznámení o chybě</string>
     <string name="detail_pinned_comment_view_description">Připnutý komentář</string>
@@ -847,9 +826,6 @@
     <string name="trending_podcasts">Populární podcasty</string>
     <string name="trending_movies">Populární filmy a seriály</string>
     <string name="trending_music">Populární hudba</string>
-    <string name="short_thousand">%s tis.</string>
-    <string name="short_million">%s mil.</string>
-    <string name="short_billion">%s mld.</string>
     <string name="permission_display_over_apps_message">Pro používání Popup Playeru vyberte v následující nabídce nastavení Androidu možnost %1$s a povolte %2$s.</string>
     <string name="permission_display_over_apps_permission_name">\"Povolit zobrazení přes jiné aplikace\"</string>
     <string name="delete_file">Vymazat soubor</string>

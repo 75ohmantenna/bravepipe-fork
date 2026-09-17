@@ -75,7 +75,6 @@
     <string name="msg_running">BravePipe descarcă</string>
     <string name="msg_running_detail">Atingeți pentru detalii</string>
     <string name="msg_wait">Vă rugăm așteptați…</string>
-    <string name="msg_copied">Copiat în clipboard</string>
     <string name="no_available_dir">Vă rugăm să definiți un folder de descărcare mai târziu în setări</string>
     <string name="open_in_popup_mode">Deschidere în modul popup</string>
     <string name="msg_popup_permission">Această permisiune este necesară pentru a 
@@ -206,10 +205,6 @@
     <string name="video_streams_empty">Niciun stream video găsit</string>
     <string name="audio_streams_empty">Niciun stream audio găsit</string>
     <string name="invalid_directory">Director Invalid</string>
-    <string name="invalid_source">Nu există un astfel de fișier/conținut sursă</string>
-    <string name="invalid_file">Fișierul nu există sau lipsește permisiunea de a citi sau scrie în el</string>
-    <string name="file_name_empty_error">Numele fișierului nu poate fi gol</string>
-    <string name="error_occurred_detail">A survenit o eroare: %1$s</string>
     <string name="donation_encouragement">NewPipe este dezvoltat de voluntari care își petrec timpul liber pentru a vă oferi cea mai bună experiență de utilizare. Donează pentru a ajuta dezvoltatorii să facă NewPipe și mai bun în timp ce ei se bucură de o ceașcă de cafea.</string>
     <string name="give_back">Dăruiește înapoi</string>
     <string name="website_title">Site web</string>
@@ -261,8 +256,6 @@
     <string name="import_title">Importare</string>
     <string name="import_from">Importați din</string>
     <string name="export_to">Exportați în</string>
-    <string name="import_ongoing">Se importă…</string>
-    <string name="export_ongoing">Se exportă…</string>
     <string name="previous_export">Export anterior</string>
     <string name="subscriptions_import_unsuccessful">Nu s-au putut importa abonamentele</string>
     <string name="subscriptions_export_unsuccessful">Nu s-au putut exporta abonamentele</string>
@@ -281,8 +274,6 @@
     <string name="clear_search_history_summary">Șterge istoricul cuvintelor cheie de căutare</string>
     <string name="delete_search_history_alert">Ștergeți întregul istoric de căutare\?</string>
     <string name="search_history_deleted">Istoric de căutare șters</string>
-    <string name="download_to_sdcard_error_title">Stocare externă indisponibilă</string>
-    <string name="download_to_sdcard_error_message">Descărcarea pe cardul SD extern nu este posibilă. Resetați locația folderului de descărcare\?</string>
     <string name="preferred_player_fetcher_notification_title">Se obțin informații…</string>
     <string name="preferred_player_fetcher_notification_message">Se încarcă conținutul solicitat</string>
     <string name="rename_playlist">Redenumiți</string>
@@ -359,13 +350,8 @@
     <string name="notification_action_buffering">Se încarcă</string>
     <string name="notification_action_shuffle">Redare aleatorie</string>
     <string name="notification_action_repeat">Repetare</string>
-    <string name="notification_actions_at_most_three">Puteți selecta cel mult trei acțiuni pentru afișare în notificarea compactă!</string>
-    <string name="notification_actions_summary">Modifică fiecare acțiune de notificare de mai jos, atingând-o. Selectează până la trei dintre ele pentru a fi afișate în notificarea compactă, utilizând casetele de selectare din dreapta.</string>
     <string name="notification_action_4_title">Al cincilea buton de acțiune</string>
     <string name="notification_action_3_title">Al patrulea buton de acțiune</string>
-    <string name="notification_action_2_title">Al treilea buton de acțiune</string>
-    <string name="notification_action_1_title">Al doilea buton de acțiune</string>
-    <string name="notification_action_0_title">Primul buton de acțiune</string>
     <string name="notification_scale_to_square_image_summary">Tăiați miniatura video afișată în notificare de la raportul de aspect 16:9 la 1:1 (poate introduce distorsiuni)</string>
     <string name="notification_scale_to_square_image_title">Tăiere miniatură la raportul de aspect 1:1</string>
     <string name="search_showing_result_for">Se arată rezultate pentru: %s</string>
@@ -439,10 +425,6 @@
     <string name="systems_language">Prestabilită de sistem</string>
     <string name="app_language_title">Limba aplicației</string>
     <string name="choose_instance_prompt">Alegeți o instanță</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" permite descărcări pe un card SD extern</string>
-    <string name="downloads_storage_use_saf_title">Utilizați selectorul de dosare de sistem (SAF)</string>
-    <string name="downloads_storage_ask_summary">Veți fi întrebat unde să salvați fiecare descărcare.
-\nActivați selectorul de foldere de sistem (SAF) dacă doriți să descărcați pe un card SD extern</string>
     <string name="downloads_storage_ask_title">Întrebați unde să descărcați</string>
     <string name="pause_downloads">Întrerupeți descărcările</string>
     <string name="max_retry_msg">Numărul maxim de încercări</string>
@@ -630,7 +612,6 @@
 \nDoriți să vă dezabonați de la acest canal\?</string>
     <string name="feed_load_error_account_info">Nu s-a putut încărca fluxul pentru \"%s\".</string>
     <string name="feed_load_error">Eroare la încărcarea fluxului</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Începând cu Android 10, este acceptat doar \"Storage Access Framework\"</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Veți fi întrebat unde să salvați fiecare descărcare</string>
     <plurals name="deleted_downloads_toast">
         <item quantity="one">S-a șters %1$s descărcare</item>
@@ -693,8 +674,6 @@
     <string name="notifications">Notificări</string>
     <string name="streams_notification_channel_description">Notificări despre noi fluxuri pentru abonamente</string>
     <string name="check_new_streams">Executați verificarea pentru fluxuri noi</string>
-    <string name="no_appropriate_file_manager_message">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
-\nVă rugăm să instalați un manager de fișiere sau să încercați să dezactivați \'%s\' în setările de descărcare</string>
     <string name="no_appropriate_file_manager_message_android_10">Nu a fost găsit niciun manager de fișiere adecvat pentru această acțiune.
 \nVă rugăm să instalați un manager de fișiere compatibil cu Storage Access Framework</string>
     <string name="get_notified">Primiți notificări</string>
@@ -842,9 +821,6 @@
     <string name="migration_info_6_7_title">Pagina SoundCloud Top 50 a fost eliminată</string>
     <string name="migration_info_6_7_message">SoundCloud a eliminat Top 50. Fila corespunzătoare a fost eliminată din pagina principală.</string>
     <string name="permission_display_over_apps_permission_name">„Permite afișarea deasupra altor aplicații”</string>
-    <string name="short_thousand">%s mii</string>
-    <string name="short_million">%s mil.</string>
-    <string name="short_billion">%s mld.</string>
     <string name="brave_about_fork">Din cauza politicilor restrictive ale proiectului, NewPipeTeam refuză să adauge platforme pe care le consideră ofensatoare. Această bifurcație (BravePipe) nu va fi atât de restrictivă. Atâta timp cât platformele funcționează în spiritul libertății de exprimare, ele pot fi integrate. Cu toate acestea, platformele care promovează pornografia sau alte lucruri degradante nu vor fi <b>NU</b> integrate aici. Această bifurcație se va concentra doar pe integrarea altor platforme. Patch-urile care nu sunt relevante vor fi respinse deocamdată. Nu ezitați să sugerați ce platforme alternative ar trebui să fie acceptate. Orice contribuție (dezvoltare/test/raport de erori) este binevenită. În prezent, platforme suplimentare în comparație cu NewPipe:</string>
     <string name="brave_about_title">Despre această furcă</string>
 </resources>

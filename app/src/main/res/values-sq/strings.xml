@@ -61,10 +61,6 @@
     <string name="systems_language">E parazgjedhura e sistemit</string>
     <string name="app_language_title">Gjuha e aplikacionit</string>
     <string name="choose_instance_prompt">Zgjidhni një instancë</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' lejon shkarkime në një kartë SD të jashtme</string>
-    <string name="downloads_storage_use_saf_title">Përdor zgjedhësin e direktorisë së sistemit (SAF)</string>
-    <string name="downloads_storage_ask_summary">Ju do të pyeteni se ku duhet ruajtur çdo shkarkim
-\nAktivizoni zgjedhësin e direktorisë së sistemit (SAF) nëse doni t\'i shkarkoni në një kartë SD të jashtme</string>
     <string name="downloads_storage_ask_title">Pyet se ku duhet shkarkuar</string>
     <string name="pause_downloads">Ndërprit shkarkimet</string>
     <string name="start_downloads">Nis shkarkimet</string>
@@ -156,8 +152,6 @@
     <string name="subscriptions_import_unsuccessful">Nuk arritën të importohen abonimet</string>
     <string name="previous_export">Eksportimi i kaluar</string>
     <string name="import_file_title">Importo skedarin</string>
-    <string name="export_ongoing">Duke eksportuar…</string>
-    <string name="import_ongoing">Duke importuar…</string>
     <string name="export_to">Eksporto në</string>
     <string name="import_from">Importo nga</string>
     <string name="import_title">Importo</string>
@@ -262,7 +256,6 @@
     <string name="msg_popup_permission">Kjo leje duhet për
 \nt\'u hapur në modalitetin popup</string>
     <string name="no_available_dir">Ju lutemi vendosni një dosje shkarkimi më vonë nga aranzhimet</string>
-    <string name="msg_copied">U kopjua në tabelën e kopjeve</string>
     <string name="msg_wait">Ju lutem prisni…</string>
     <string name="msg_running_detail">Shtyp për detajet</string>
     <string name="msg_running">BravePipe duke shkarkuar</string>
@@ -319,12 +312,8 @@
     <string name="restore_defaults">Kthe në gjendjen fillestare</string>
     <string name="saved_tabs_invalid_json">Nuk arritën të lexohen tab-et e ruajtura, do përdoren të paravendosurat</string>
     <string name="no_streams_available_download">Nuk ka streams të disponueshme për shkarkim</string>
-    <string name="error_occurred_detail">Ndodhi një gabim: %1$s</string>
-    <string name="file_name_empty_error">Emri i skedarit nuk mund të jetë bosh</string>
-    <string name="invalid_file">Ky skedar nuk ekziston ose mungon leja për të lexuar ose shkruar në të</string>
     <string name="tab_subscriptions">Abonimet</string>
     <string name="subscribe_button_title">Abonohu</string>
-    <string name="invalid_source">Nuk ka burim të tillë për skedarin/përmbajtjen</string>
     <string name="invalid_directory">Nuk ka dosje të tillë</string>
     <string name="missing_file">Skedari ka lëvizur ose është fshirë</string>
     <string name="audio_streams_empty">Nuk u gjendën stream për audio</string>
@@ -399,8 +388,6 @@
     <string name="parsing_error">Nuk u arrit të analizohej faqja</string>
     <string name="could_not_load_thumbnails">Nuk u mundën të ngarkoheshin të gjitha pamjet statike</string>
     <string name="network_error">Problem rrjeti</string>
-    <string name="download_to_sdcard_error_message">Shkarkimi në kartën SD të jashtme nuk ishte i mundur. Doni të rivendosni vendndodhjen e dosjes së shkarkimeve\?</string>
-    <string name="download_to_sdcard_error_title">Magazina e jashtme u padisponueshme</string>
     <string name="general_error">Gabim</string>
     <string name="search_history_deleted">Historiku i kërkimeve u fshi</string>
     <string name="delete_search_history_alert">Doni të fshini të gjithë historikun e kërkimeve\?</string>
@@ -525,7 +512,6 @@
     <string name="copy_for_github">Kopjo raportin e formatuar</string>
     <string name="search_showing_result_for">Duke shfaqur rezultatet për: %s</string>
     <string name="wifi_only">Vetëm në Wi-Fi</string>
-    <string name="notification_actions_summary">Redakto çdo veprim njoftimi më poshtë duke shtypur mbi të. Zgjidhni deri në tre prej tyre që të shfaqen në njoftimin kompakt duke përdorur kutitë në të djathtë</string>
     <string name="never">Kurrë</string>
     <string name="autoplay_summary">Nise luajtjen automatikisht — %s</string>
     <string name="title_activity_play_queue">Lista e luajtjes</string>
@@ -538,12 +524,8 @@
     <string name="notification_action_buffering">Ngarkimi</string>
     <string name="notification_action_shuffle">Trazo</string>
     <string name="notification_action_repeat">Përsërit</string>
-    <string name="notification_actions_at_most_three">Ju mund të zgjidhni e shumta tre veprime për të shfaqur në njoftimin kompakt!</string>
     <string name="notification_action_4_title">Butoni i pestë i veprimit</string>
     <string name="notification_action_3_title">Butoni i katërt i veprimit</string>
-    <string name="notification_action_2_title">Butoni i tretë i veprimit</string>
-    <string name="notification_action_1_title">Butoni i dytë i veprimit</string>
-    <string name="notification_action_0_title">Butoni i parë i veprimit</string>
     <string name="notification_scale_to_square_image_summary">Shkallëzoje pamjen miniaturë të videos së treguar në njoftim nga aspekti 16:9 në 1:1</string>
     <string name="notification_scale_to_square_image_title">Shkallëzoje pamjen miniaturë në aspektin 1:1</string>
     <string name="show_memory_leaks">Shfaq rrjedhjet e memories</string>
@@ -607,7 +589,6 @@
 \nA doni të ç\'abonoheni nga ky kanal\?</string>
     <string name="feed_load_error_account_info">Nuk u arrit të ngarkohej feed-i për \'%s\'.</string>
     <string name="feed_load_error">Gabim gjatë ngarkimit të feed-it</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Duke nisur nga Android 10 vetëm \'Storage Access Framework\' është i mbështetur</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ju do të pyeteni se ku doni të ruani çdo shkarkim</string>
     <string name="crash_the_app">Rrëzoje aplikacionin manualisht</string>
     <string name="disable_media_tunneling_summary">Ç\'aktivizo tunelin e medias nëse po hasni një ekran të zi apo ngecje gjatë luajtjes së një videoje</string>

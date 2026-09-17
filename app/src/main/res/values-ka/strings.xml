@@ -17,8 +17,6 @@
     <string name="show_higher_resolutions_summary">მხოლოდ ზოგიერთ მოწყობილობას შეუძლია 2K/4K ვიდეოების დაკვრა</string>
     <string name="crash_the_player">დაარტყა დამკვრელი</string>
     <string name="notification_scale_to_square_image_title">ესკიზის ჩამოჭრა ასპექტის თანაფარდობაზე 1:1</string>
-    <string name="notification_actions_at_most_three">თქვენ შეგიძლიათ აირჩიოთ მაქსიმუმ სამი მოქმედება კომპაქტურ შეტყობინებაში საჩვენებლად!</string>
-    <string name="notification_actions_summary">შეცვალეთ თითოეული შეტყობინებების მოქმედება ქვემოთ მასზე შეხებით. აირჩიეთ მაქსიმუმ სამი მათგანი, რომლებიც ნაჩვენები იქნება კომპაქტურ შეტყობინებაში მარჯვნივ მდებარე ველების გამოყენებით</string>
     <string name="remote_search_suggestions">დისტანციური ძიების შეთავაზებები</string>
     <string name="show_description_summary">გამორთეთ ვიდეოს აღწერილობისა და დამატებითი ინფორმაციის დასამალად</string>
     <string name="theme_title">თემა</string>
@@ -91,9 +89,6 @@
     <string name="show_play_with_kodi_title">აჩვენეთ \"დაუკარი კოდით\" ვარიანტი</string>
     <string name="show_play_with_kodi_summary">აჩვენეთ ვიდეოს დაკვრის ვარიანტი Kodi მედია ცენტრის საშუალებით</string>
     <string name="notification_scale_to_square_image_summary">შეტყობინებაში ნაჩვენები ვიდეოს ესკიზის ამოჭრა 16:9-დან 1:1-მდე ასპექტის თანაფარდობით</string>
-    <string name="notification_action_0_title">პირველი მოქმედების ღილაკი</string>
-    <string name="notification_action_1_title">მეორე მოქმედების ღილაკი</string>
-    <string name="notification_action_2_title">მოქმედების მესამე ღილაკი</string>
     <string name="notification_action_3_title">მოქმედების მეოთხე ღილაკი</string>
     <string name="notification_action_4_title">მეხუთე მოქმედების ღილაკი</string>
     <string name="notification_action_repeat">გაიმეორეთ</string>
@@ -192,7 +187,6 @@
     <string name="watch_history_states_deleted">დაკვრის პოზიციები წაშლილია</string>
     <string name="clear_search_history_summary">წაშლის საძიებო საკვანძო სიტყვების ისტორიას</string>
     <string name="delete_search_history_alert">წაშალოთ მთელი ძიების ისტორია\?</string>
-    <string name="download_to_sdcard_error_title">გარე მეხსიერება მიუწვდომელია</string>
     <string name="network_error">Ქსელის შეცდომა</string>
     <string name="could_not_load_thumbnails">ყველა ესკიზის ჩატვირთვა ვერ მოხერხდა</string>
     <string name="parsing_error">ვებსაიტის გარჩევა ვერ მოხერხდა</string>
@@ -206,9 +200,6 @@
     <string name="audio_streams_empty">აუდიო ნაკადები ვერ მოიძებნა</string>
     <string name="missing_file">ფაილი გადატანილია ან წაშლილია</string>
     <string name="invalid_directory">ასეთი საქაღალდე არ არის</string>
-    <string name="invalid_source">ასეთი ფაილის/შიგთავსის წყარო არ არის</string>
-    <string name="file_name_empty_error">ფაილის სახელი არ შეიძლება იყოს ცარიელი</string>
-    <string name="error_occurred_detail">მოხდა შეცდომა: %1$s</string>
     <string name="no_streams_available_download">ჩამოსატვირთად ხელმისაწვდომი ნაკადები არ არის</string>
     <string name="restore_defaults">ნაგულისხმევი პარამეტრების აღდგენა</string>
     <string name="restore_defaults_confirmation">გსურთ ნაგულისხმევი პარამეტრების აღდგენა\?</string>
@@ -281,7 +272,6 @@
     <string name="msg_running_detail">შეეხეთ დეტალებისთვის</string>
     <string name="msg_calculating_hash">ჰეშის გაანგარიშება</string>
     <string name="msg_wait">გთხოვთ მოიცადოთ…</string>
-    <string name="msg_copied">კოპირებულია ბუფერში</string>
     <string name="msg_popup_permission">ეს უფლება აუცილებელია
 \nმხტუნარა რეჟიმში გასახსნელად</string>
     <string name="one_item_deleted">1 ელემენტი წაიშალა.</string>
@@ -389,8 +379,6 @@
     <string name="import_title">იმპორტი</string>
     <string name="import_from">იმპორტი დან</string>
     <string name="export_to">ექსპორტი</string>
-    <string name="import_ongoing">მიმდინარეობს იმპორტი…</string>
-    <string name="export_ongoing">მიმდინარეობს ექსპორტი…</string>
     <string name="import_file_title">ფაილის იმპორტი</string>
     <string name="previous_export">წინა ექსპორტი</string>
     <string name="subscriptions_export_unsuccessful">გამოწერების ექსპორტი ვერ მოხერხდა</string>
@@ -474,9 +462,6 @@
     <string name="enable_queue_limit_desc">ერთი ჩამოტვირთვა ერთდროულად იმუშავებს</string>
     <string name="start_downloads">ჩამოტვირთვების დაწყება</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">თქვენ მოგეთხოვებათ სად შეინახოთ თითოეული ჩამოტვირთვა</string>
-    <string name="downloads_storage_use_saf_title">გამოიყენეთ სისტემის საქაღალდის ამომრჩევი (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" საშუალებას გაძლევთ ჩამოტვირთოთ გარე SD ბარათზე</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android 10-დან მხოლოდ „Storage Access Framework“ არის მხარდაჭერილი</string>
     <string name="choose_instance_prompt">აირჩიეთ მაგალითი</string>
     <string name="app_language_title">აპლიკაციის ენა</string>
     <string name="systems_language">სისტემის ნაგულისხმევი</string>
@@ -599,9 +584,7 @@
     <string name="clear_search_history_title">ძიების ისტორიის გასუფთავება</string>
     <string name="general_error">შეცდომა</string>
     <string name="error_report_open_github_notice">გთხოვთ, შეამოწმოთ, არის თუ არა პრობლემა თქვენი ავარიის განხილვის შესახებ. დუბლიკატი ბილეთების შექმნისას ჩვენგან იღებთ დროს, რომელიც ჩვენ შეგვიძლია დავხარჯოთ ფაქტობრივი ხარვეზის გამოსწორებაში.</string>
-    <string name="download_to_sdcard_error_message">გარე SD ბარათზე ჩამოტვირთვა შეუძლებელია. გსურთ ჩამოტვირთვის საქაღალდის მდებარეობის გადაყენება\?</string>
     <string name="external_player_unsupported_link_type">გარე დამკვრელს არ აქვთ ამ ტიპის ბმულების მხარდაჭერა</string>
-    <string name="invalid_file">ფაილი არ არსებობს ან მასზე წაკითხვის ან ჩაწერის ნებართვა აკლია</string>
     <string name="saved_tabs_invalid_json">შენახული ჩანართების წაკითხვა ვერ მოხერხდა, ამიტომ გამოიყენეთ ნაგულისხმევი ჩანართები</string>
     <string name="info_labels">რა:\nმოითხოვეთ:\nშემცველობის ენა:\nშემცველობის ქვეყანა:\nაპლიკაციის ენა:\nსერვისი:\nGMT დრო:\nპაკეტი:\nვერსია:\nOS ვერსია:</string>
     <string name="detail_uploader_thumbnail_view_description">ამტვირთველის ავატარის ესკიზი</string>
@@ -652,8 +635,6 @@
     <string name="pause_downloads_on_mobile_desc">სასარგებლოა მობილური ინტერნეტზე გადასვლისას, თუმცა ზოგიერთი ჩამოტვირთვის შეჩერება შეუძლებელია</string>
     <string name="pause_downloads">ჩამოტვირთვების პაუზა</string>
     <string name="downloads_storage_ask_title">იკითხეთ, სად უნდა ჩამოტვირთოთ</string>
-    <string name="downloads_storage_ask_summary">თქვენ მოგეთხოვებათ სად შეინახოთ თითოეული ჩამოტვირთვა.
-\n ჩართეთ სისტემის საქაღალდის ამომრჩევი (SAF), თუ გსურთ ჩამოტვირთოთ გარე SD ბარათზე</string>
     <string name="remove_watched_popup_warning">ვიდეოები, რომლებიც უყურეთ დასაკრავ სიაში დამატებამდე და მის შემდეგ, წაიშლება. \n დარწმუნებული ხართ?</string>
     <string name="app_license">BravePipe არის copyleft უფასო პროგრამული უზრუნველყოფა: თქვენ შეგიძლიათ გამოიყენოთ, შეისწავლოთ, გააზიაროთ და გააუმჯობესოთ იგი სურვილისამებრ. კონკრეტულად თქვენ შეგიძლიათ გადაანაწილოთ და/ან შეცვალოთ იგი GNU-ს ზოგადი საჯარო ლიცენზიის პირობებით, როგორც ეს გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ, ლიცენზიის მე-3 ვერსიით, ან (თქვენი სურვილისამებრ) ნებისმიერი შემდგომი ვერსიით.</string>
     <string name="auto">ავტო</string>
@@ -692,8 +673,6 @@
 \n
 \n ასე რომ, არჩევანი დამოკიდებულია იმაზე, თუ რა გირჩევნიათ: სიჩქარე ან ზუსტი ინფორმაცია.</string>
     <string name="soundcloud_go_plus_content">ეს არის SoundCloud Go+ სიმღერა, ყოველ შემთხვევაში თქვენს ქვეყანაში, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია BravePipe-ის მიერ.</string>
-    <string name="no_appropriate_file_manager_message">ამ მოქმედებისთვის შესაბამისი ფაილების მენეჯერი ვერ მოიძებნა.
-\n გთხოვთ, დააინსტალიროთ ფაილის მენეჯერი ან სცადოთ გამორთოთ \'%s\' ჩამოტვირთვის პარამეტრებში</string>
     <string name="youtube_music_premium_content">ეს ვიდეო ხელმისაწვდომია მხოლოდ YouTube Music Premium-ის წევრებისთვის, ამიტომ მისი სტრიმინგი ან ჩამოტვირთვა შეუძლებელია BravePipe-ის მიერ.</string>
     <string name="auto_device_theme_title">ავტომატური (მოწყობილობის თემა)</string>
     <string name="select_night_theme_toast">თქვენ შეგიძლიათ აირჩიოთ თქვენი საყვარელი ღამის თემა ქვემოთ</string>
@@ -746,9 +725,6 @@
     <string name="main_tabs_position_title">მთავარი ჩანართების პოზიცია</string>
     <string name="permission_display_over_apps_message">ამომხტარი ფანჯრის გამოსაყენებლად, გთხოვთ, აირჩიოთ %1$s შემდეგ Android პარამეტრების მენიუში და ჩართოთ %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“სხვა აპლიკაციებზე ჩვენების დაშვება“</string>
-    <string name="short_thousand">%sათასი</string>
-    <string name="short_million">%sმლნ</string>
-    <string name="short_billion">%sმლრდ</string>
     <string name="no_streams">ნაკადები არ არის</string>
     <string name="no_live_streams">პირდაპირი ტრანსლაციები არ არის</string>
     <string name="delete_file">ფაილის წაშლა</string>

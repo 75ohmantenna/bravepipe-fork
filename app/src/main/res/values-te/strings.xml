@@ -102,7 +102,6 @@
     <string name="msg_running">న్యూపిప్ డౌన్లోడ్ అవుతంది</string>
     <string name="msg_running_detail">వివరాల కోసం నొక్కండి</string>
     <string name="msg_wait">దయచేసి వేచి ఉండండి…</string>
-    <string name="msg_copied">క్లిప్బోర్డ్కు కాపీ చేయబడింది</string>
     <string name="no_available_dir">డౌన్లోడ్ ఫోల్డర్ను అమరికలలో తరువాత ఎంచుకోండి</string>
     <string name="settings_category_downloads_title">డౌన్లోడ్</string>
     <string name="settings_file_charset_title">ఫైల్ పేర్లలో అనుమతించిన అక్షరాలు</string>
@@ -166,7 +165,6 @@
     <string name="show_comments_summary">వ్యాఖ్యలను దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="peertube_instance_url_help">%sలో మీకు నచ్చిన సందర్భాలను కనుగొనండి</string>
     <string name="peertube_instance_url_title">పీర్‌ట్యూబ్ ఉదాహరణలు</string>
-    <string name="notification_action_2_title">మూడవ చర్య బటన్</string>
     <string name="use_inexact_seek_summary">ఖచ్చితమైన శోధన తగ్గిన ఖచ్చితత్వంతో వేగంగా స్థానాలను పొందేందుకు ఆటగాడిని అనుమతిస్తుంది. 5, 15 లేదా 25 సెకన్ల పాటు కోరడం దీనితో పని చేయదు</string>
     <string name="use_inexact_seek_title">వేగవంతమైన ఖచ్చితమైన శోధనను ఉపయోగించండి</string>
     <string name="controls_add_to_playlist_title">జోడించండి</string>
@@ -177,7 +175,6 @@
     <string name="notification_scale_to_square_image_title">సూక్ష్మచిత్రాన్ని 1:1 కారక నిష్పత్తికి మార్చుము</string>
     <string name="clear_queue_confirmation_summary">ఒక ప్లేయర్ నుండి మరొక ప్లేయర్‌కు మారడం వలన మీ క్యూను భర్తీ చేయవచ్చు</string>
     <string name="auto_queue_summary">సంబంధిత స్ట్రీమ్‌ను జోడించడం ద్వారా (పునరావృతం కాని) ప్లేబ్యాక్ క్యూను ముగించడాన్ని కొనసాగించండి</string>
-    <string name="notification_actions_summary">దిగువన ఉన్న ప్రతి నోటిఫికేషన్ చర్యను దానిపై నొక్కడం ద్వారా సవరించండి. కుడివైపు ఉన్న చెక్‌బాక్స్‌లను ఉపయోగించడం ద్వారా కాంపాక్ట్ నోటిఫికేషన్‌లో చూపబడే వాటిలో మూడు వరకు ఎంచుకోండి</string>
     <string name="popup_remember_size_pos_summary">పాప్అప్ చివరి పరిమాణం మరియు స్థానాన్ని గుర్తుంచుకోండి</string>
     <string name="show_description_summary">వీడియో వివరణ మరియు అదనపు సమాచారాన్ని దాచడాన్ని ఆఫ్ చేయండి</string>
     <string name="show_meta_info_summary">స్ట్రీమ్ సృష్టికర్త, స్ట్రీమ్ కంటెంట్ లేదా శోధన అభ్యర్థన గురించి అదనపు సమాచారంతో మెటా సమాచార పెట్టెలను దాచడానికి ఆఫ్ చేయండి</string>
@@ -189,12 +186,9 @@
     <string name="peertube_instance_add_title">సందర్భాన్ని జోడించండి</string>
     <string name="settings_category_updates_title">నవీకరణలు</string>
     <string name="peertube_instance_add_https_only">HTTPS URLలకు మాత్రమే మద్దతు ఉంది</string>
-    <string name="notification_action_1_title">రెండవ చర్య బటన్</string>
     <string name="notification_action_3_title">నాల్గవ చర్య బటన్</string>
     <string name="crash_the_player">ప్లేయర్ క్రాష్ చేయండి</string>
-    <string name="notification_action_0_title">మొదటి చర్య బటన్</string>
     <string name="notification_action_4_title">ఐదవ చర్య బటన్</string>
-    <string name="notification_actions_at_most_three">మీరు కాంపాక్ట్ నోటిఫికేషన్‌లో చూపడానికి గరిష్టంగా మూడు చర్యలను ఎంచుకోవచ్చు!</string>
     <string name="notification_action_shuffle">షఫుల్ చేయండి</string>
     <string name="notification_action_buffering">బఫరింగ్</string>
     <string name="default_video_format_title">డిఫాల్ట్ వీడియో ఫార్మాట్</string>
@@ -254,7 +248,6 @@
     <string name="best_resolution">ఉత్తమ స్పష్టత</string>
     <string name="app_update_notification_channel_name">యాప్‌ నవీకరణ నోటిఫికేషన్</string>
     <string name="unknown_content">[తెలియదు]</string>
-    <string name="file_name_empty_error">ఫైల్ పేరు ఖాళీగా ఉండకూడదు</string>
     <string name="saved_tabs_invalid_json">సేవ్ చేసిన ట్యాబ్‌లను చదవడం సాధ్యం కాలేదు, కాబట్టి డిఫాల్ట్ వాటిని ఉపయోగిస్తోంది</string>
     <string name="restore_defaults_confirmation">మీరు డిఫాల్ట్‌లను పునరుద్ధరించాలనుకుంటున్నారా\?</string>
     <string name="watch_history_states_deleted">ప్లేబ్యాక్ స్థానాలు తొలగించబడ్డాయి</string>
@@ -265,7 +258,6 @@
     <string name="no_one_listening">ఎవరూ వినడం లేదు</string>
     <string name="no_one_watching">ఎవరూ చూడటం లేదు</string>
     <string name="no_comments">వ్యాఖ్యలు లేవు</string>
-    <string name="download_to_sdcard_error_message">బాహ్య SD కార్డ్‌కి డౌన్‌లోడ్ చేయడం సాధ్యం కాదు. డౌన్‌లోడ్ ఫోల్డర్ స్థానాన్ని రీసెట్ చేయాలా\?</string>
     <string name="create">సృష్టించు</string>
     <string name="no_streams_available_download">డౌన్‌లోడ్ చేయడానికి స్ట్రీమ్‌లు ఏవీ అందుబాటులో లేవు</string>
     <string name="restore_defaults">డిఫాల్ట్‌ విలువలకు మార్చు</string>
@@ -273,7 +265,6 @@
     <string name="clear_views_history_title">వీక్షణ చరిత్రను శుభ్రపరచుము</string>
     <string name="delete_view_history_alert">మొత్తం వీక్షణ చరిత్రను తొలగించాలా\?</string>
     <string name="clear_playback_states_title">ప్లేబ్యాక్ స్థానాలను తొలగించండి</string>
-    <string name="download_to_sdcard_error_title">బాహ్య నిల్వ అందుబాటులో లేదు</string>
     <string name="app_ui_crash">యాప్/UI విఫలమైనది</string>
     <string name="audio_streams_empty">ఆడియో స్ట్రీమ్‌లు ఏవీ కనుగొనబడలేదు</string>
     <string name="invalid_directory">అటువంటి ఫోల్డర్ లేదు</string>
@@ -297,7 +288,6 @@
     <string name="delete_search_history_alert">మొత్తం శోధన చరిత్రను తొలగించాలా\?</string>
     <string name="clear_playback_states_summary">అన్ని ప్లేబ్యాక్ స్థానాలను తొలగిస్తుంది</string>
     <string name="clear_views_history_summary">ప్లే చేసిన స్ట్రీమ్‌ల చరిత్ర మరియు ప్లేబ్యాక్ స్థానాలను తొలగిస్తుంది</string>
-    <string name="invalid_source">అటువంటి ఫైల్/కంటెంట్ సోర్స్ లేదు</string>
     <string name="error_report_open_github_notice">దయచేసి మీ క్రాష్‌ను చర్చిస్తున్న సమస్య ఇప్పటికే ఉందో లేదో తనిఖీ చేయండి. డూప్లికేట్ టిక్కెట్‌లను క్రియేట్ చేస్తున్నప్పుడు, అసలు బగ్‌ని పరిష్కరించడానికి మేము వెచ్చించే సమయాన్ని మీరు మా నుండి తీసుకుంటారు.</string>
     <string name="comments_tab_description">వ్యాఖ్యలు</string>
     <string name="related_items_tab_description">సంబంధిత అంశాలు</string>
@@ -305,8 +295,6 @@
     <string name="player_unrecoverable_failure">ప్లేయర్లో కోలుకోలేని లోపం సంభవించింది</string>
     <string name="video_streams_empty">వీడియో స్ట్రీమ్‌లు ఏవీ కనుగొనబడలేదు</string>
     <string name="missing_file">ఫైల్ తరలించబడింది లేదా తొలగించబడింది</string>
-    <string name="invalid_file">ఫైల్ ఉనికిలో లేదు లేదా దానిని చదవడానికి లేదా వ్రాయడానికి అనుమతి లేదు</string>
-    <string name="error_occurred_detail">లోపం సంభవించింది: %1$s</string>
     <plurals name="watching">
         <item quantity="one">%s చూస్తున్నాడు</item>
         <item quantity="other">%s చూస్తున్నారు</item>

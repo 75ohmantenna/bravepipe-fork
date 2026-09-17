@@ -3,14 +3,12 @@ package org.schabi.newpipe.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.os.LocaleListCompat;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.DownloaderImpl;
@@ -39,32 +37,16 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     }
 
     private void setupAppLanguagePreferences() {
-        final Preference appLanguagePref = requirePreference(R.string.app_language_key);
-        // Android 13+ allows to set app specific languages
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            appLanguagePref.setVisible(false);
-
-            final Preference newAppLanguagePref =
-                    requirePreference(R.string.app_language_android_13_and_up_key);
-            newAppLanguagePref.setSummaryProvider(preference -> {
-                final Locale loc = AppCompatDelegate.getApplicationLocales().get(0);
-                return loc != null ? loc.getDisplayName() : getString(R.string.systems_language);
-            });
-            newAppLanguagePref.setOnPreferenceClickListener(preference -> {
-                final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
-                        .setData(Uri.fromParts("package", requireContext().getPackageName(), null));
-                startActivity(intent);
-                return true;
-            });
-            newAppLanguagePref.setVisible(true);
-            return;
-        }
-
-        appLanguagePref.setOnPreferenceChangeListener((preference, newValue) -> {
-            final String language = (String) newValue;
-            final String systemLang = getString(R.string.default_localization_key);
-            final String tag = systemLang.equals(language) ? null : language;
-            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(tag));
+        final Preference appLanguagePref =
+                requirePreference(R.string.app_language_android_13_and_up_key);
+        appLanguagePref.setSummaryProvider(preference -> {
+            final Locale loc = AppCompatDelegate.getApplicationLocales().get(0);
+            return loc != null ? loc.getDisplayName() : getString(R.string.systems_language);
+        });
+        appLanguagePref.setOnPreferenceClickListener(preference -> {
+            final Intent intent = new Intent(Settings.ACTION_APP_LOCALE_SETTINGS)
+                    .setData(Uri.fromParts("package", requireContext().getPackageName(), null));
+            startActivity(intent);
             return true;
         });
     }

@@ -132,7 +132,6 @@
     <string name="msg_running">BravePipe 다운로드 중</string>
     <string name="msg_running_detail">터치해서 상세 정보 확인</string>
     <string name="msg_wait">잠시만 기다리세요…</string>
-    <string name="msg_copied">클립보드에 복사됨</string>
     <string name="no_available_dir">다운로드 할 폴더를 설정에서 지정하세요</string>
     <string name="msg_popup_permission">이 권한은 팝업 모드에서
 \n열기 위해 필요합니다</string>
@@ -242,15 +241,9 @@
     <string name="enable_disposed_exceptions_summary">프래그먼트 또는 버려진 액티비티 주기 밖에서 일어나는 전달할 수 없는 Rx 예외를 강제적으로 보고하기</string>
     <string name="file">파일</string>
     <string name="invalid_directory">폴더가 존재하지 않습니다</string>
-    <string name="invalid_source">잘못된 파일/콘텐츠 소스</string>
-    <string name="invalid_file">파일이 존재하지 않거나 읽기/쓰기 권한이 없습니다</string>
-    <string name="file_name_empty_error">파일명이 비어 있으면 안됩니다</string>
-    <string name="error_occurred_detail">오류 발생: %1$s</string>
     <string name="import_title">가져오기</string>
     <string name="import_from">이곳으로부터 가져오기</string>
     <string name="export_to">이곳으로 내보내기</string>
-    <string name="import_ongoing">가져오는 중.…</string>
-    <string name="export_ongoing">내보내는 중…</string>
     <string name="import_file_title">파일 가져오기</string>
     <string name="previous_export">이전 내보내기</string>
     <string name="subscriptions_import_unsuccessful">구독 목록 가져오기 실패</string>
@@ -319,8 +312,6 @@
     <string name="file_deleted">파일 삭제됨</string>
     <string name="app_update_notification_channel_name">앱 업데이트 알림</string>
     <string name="app_update_notification_channel_description">새 BravePipe 버전 알림</string>
-    <string name="download_to_sdcard_error_title">외부 저장소 없음</string>
-    <string name="download_to_sdcard_error_message">SD 카드로 다운로드 할 수 없습니다. 다운로드 폴더 경로를 초기화 하시겠습니까\?</string>
     <string name="one_item_deleted">1개의 항목이 삭제되었습니다.</string>
     <string name="minimize_on_exit_title">앱 전환시 최소화</string>
     <string name="minimize_on_exit_summary">비디오 플레이어에서 다른 앱으로 전환 시 다음과 같은 동작 실행 — %s</string>
@@ -394,10 +385,6 @@
     <string name="start_downloads">다운로드 시작</string>
     <string name="pause_downloads">다운로드 일시정지</string>
     <string name="downloads_storage_ask_title">다운로드 위치를 묻기</string>
-    <string name="downloads_storage_ask_summary">각 다운로드를 저장할 위치를 묻는 메시지가 표시됩니다.
-\n외부 SD 카드에 다운로드하려면 시스템 폴더 선택기(SAF) 활성화</string>
-    <string name="downloads_storage_use_saf_title">시스템 폴더 선택기(SAF) 사용</string>
-    <string name="downloads_storage_use_saf_summary">\'저장영역 접속 프레임워크\'를 통해 외부 SD 카드로 다운로드 가능</string>
     <string name="clear_playback_states_title">재생 위치 삭제</string>
     <string name="clear_playback_states_summary">모든 재생 위치를 삭제</string>
     <string name="delete_playback_states_alert">모든 재생 위치를 삭제하시겠습니까\?</string>
@@ -459,7 +446,6 @@
     <string name="artists">아티스트</string>
     <string name="albums">앨범</string>
     <string name="videos_string">비디오</string>
-    <string name="notification_action_0_title">첫번째 버튼</string>
     <string name="notification_scale_to_square_image_summary">알림에 표시된 비디오 썸네일을 16:9에서 1:1 화면비로 자릅니다</string>
     <string name="notification_scale_to_square_image_title">1:1 화면비로 썸네일 자르기</string>
     <string name="search_showing_result_for">검색된 개수: %s</string>
@@ -489,8 +475,6 @@
     <string name="notification_action_buffering">버퍼링</string>
     <string name="notification_action_4_title">다섯번째 버튼</string>
     <string name="notification_action_3_title">네번째 버튼</string>
-    <string name="notification_action_2_title">세번째 버튼</string>
-    <string name="notification_action_1_title">두번째 버튼</string>
     <string name="permission_display_over_apps">다른 앱 위에 표시할 수 있는 권한 부여</string>
     <string name="show_meta_info_title">메타 정보 표시</string>
     <string name="notification_colorize_title">색상화된 알림</string>
@@ -501,8 +485,6 @@
     <string name="show_description_title">설명 표시하기</string>
     <string name="clear_queue_confirmation_summary">한 플레이어에서 다른 플레이어로 전환하면 대기열이 대체될 수 있습니다</string>
     <string name="night_theme_title">어두운 테마</string>
-    <string name="notification_actions_at_most_three">축소된 알림에서 최대 3개까지 표시될 항목을 고를 수 있습니다!</string>
-    <string name="notification_actions_summary">아래의 각 알림 동작을 탭하여 편집합니다. 오른쪽의 체크박스를 사용하여 최대 3개까지 선택하여 압축 알림에 표시합니다.</string>
     <string name="youtube_restricted_mode_enabled_title">YouTube의 \'제한 모드\' 켜기</string>
     <string name="hash_channel_description">비디오 해싱 진행 알림</string>
     <string name="streams_notification_channel_name">새로운 스트림</string>
@@ -656,7 +638,6 @@
     <string name="create_error_notification">오류 알림 생성</string>
     <string name="feed_group_dialog_select_subscriptions">구독 선택</string>
     <string name="feed_use_dedicated_fetch_method_summary">일부 서비스에서 사용할 수 있으며 일반적으로 훨씬 빠르지만 제한된 양의 항목과 종종 불완전한 정보를 반환할 수 있습니다 (예: 기간 없음, 항목 유형, 라이브 상태 없음)</string>
-    <string name="downloads_storage_use_saf_summary_api_29">안드로이드 10부터 \'저장영역 접속 프레임워크\'만 지원됩니다</string>
     <string name="remove_watched_popup_warning">재생목록에 추가하기 전후로 시청한 스트림이 제거됩니다. \n정말 계속합니까?</string>
     <string name="start_main_player_fullscreen_summary">화면 자동 회전이 잠겨 있는 경우 미니 플레이어에서 동영상을 시작하지 말고 바로 전체 화면 모드로 재생하세요. 전체 화면을 종료해서 미니 플레이어를 이용할 수도 있습니다</string>
     <string name="metadata_privacy_public">공식</string>
@@ -668,8 +649,6 @@
     <string name="description_select_note">이제 설명 내에서 텍스트를 선택할 수 있습니다. 선택 모드에서는 페이지가 깜박이고 링크를 클릭할 수 없는 경우가 있습니다.</string>
     <string name="no_appropriate_file_manager_message_android_10">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
 \n저장영역 접속 프레임워크 호환 파일 관리자를 설치하십시오</string>
-    <string name="no_appropriate_file_manager_message">이 작업에 적합한 파일 관리자를 찾을 수 없습니다.
-\n파일 관리자를 설치하거나 다운로드 설정에서 \'%s\'을(를) 비활성화하십시오</string>
     <string name="feed_use_dedicated_fetch_method_help_text">피드 로딩이 너무 느리다고 생각하시나요\? 그렇다면 빠른 로딩을 활성화해 보세요. (설정에서 변경하거나 아래 버튼을 눌러 변경할 수 있습니다)
 \n
 \nBravePipe는 두 가지 피드 로딩 전략을 제공합니다:
@@ -805,9 +784,6 @@
     <string name="share_playlist_as_youtube_temporary_playlist">YouTube 임시 재생목록으로 공유</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 페이지가 삭제되었습니다</string>
     <string name="migration_info_6_7_message">SoundCloud에서 더 이상 기존 Top 50 차트를 제공하지 않습니다. 해당하는 탭이 메인 페이지에서 제거되었습니다.</string>
-    <string name="short_thousand">%s천</string>
-    <string name="short_million">%s백만</string>
-    <string name="short_billion">%s십억</string>
     <string name="delete_file">파일 삭제</string>
     <string name="select_a_feed_group">피드 그룹 선택</string>
     <string name="no_feed_group_created_yet">피드 그룹을 생성하지 않았습니다</string>

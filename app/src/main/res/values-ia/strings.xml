@@ -112,7 +112,6 @@
     <string name="video_streams_empty">Necun fluxo de video trovate</string>
     <string name="audio_streams_empty">Necun fluxo de audio trovate</string>
     <string name="invalid_directory">Le dossier non existe</string>
-    <string name="file_name_empty_error">Le nomine del file non pote esser vacue</string>
     <string name="what_device_headline">Information:</string>
     <string name="your_comment">Tu commento (in anglese):</string>
     <string name="error_details_headline">Detalios:</string>
@@ -208,11 +207,8 @@
     <string name="restore_defaults_confirmation">Esque tu vole reinitialisar le valores predefinite\?</string>
     <string name="restore_defaults">Reinitialisar le valores predefinite</string>
     <string name="no_streams_available_download">Nulle fluxos disponibile pro discargar</string>
-    <string name="error_occurred_detail">Ocurreva un error: %1$s</string>
     <string name="missing_file">File displaciate o delite</string>
     <string name="app_ui_crash">Falleva le interfacie del application</string>
-    <string name="download_to_sdcard_error_message">Le discarga al carta SD non es possibile. Reinitialisar le location del dossier de discargas\?</string>
-    <string name="download_to_sdcard_error_title">Immagazinage externe non disponibile</string>
     <string name="general_error">Error</string>
     <string name="delete_playback_states_alert">Esque tu vole deler tote le positiones de reproduction\?</string>
     <string name="clear_playback_states_summary">Dele tote le positiones de reproduction</string>

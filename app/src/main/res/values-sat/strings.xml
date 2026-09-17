@@ -52,13 +52,8 @@
     <string name="notification_action_buffering">ᱵᱟᱹᱯᱷᱨᱤᱝ</string>
     <string name="notification_action_shuffle">ᱥᱚᱯᱷᱚᱞ</string>
     <string name="notification_action_repeat">ᱨᱤᱯᱤᱴ</string>
-    <string name="notification_actions_at_most_three">ᱠᱚᱢᱯᱮᱠᱼᱴ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱨᱮ ᱫᱮᱠᱷᱟᱣ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱟᱢ ᱯᱮ ᱠᱟᱹᱢᱤ ᱦᱟᱹᱵᱤᱡ ᱮᱢ ᱵᱟᱪᱷᱟᱣ ᱫᱟᱲᱮᱭᱟᱜᱼᱟ!</string>
-    <string name="notification_actions_summary">ᱡᱷᱚᱛᱚ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱪᱮᱛᱟᱱ ᱨᱮ ᱥᱟᱯᱲᱟᱣ ᱮᱢ ᱞᱟᱹᱜᱤᱫ ᱚᱱᱟ ᱨᱮ ᱚᱛᱟᱭ ᱢᱮ ᱾ ᱠᱚᱢᱯᱮᱠᱼᱴ ᱱᱚᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱨᱮ ᱡᱚᱡᱚᱢ ᱛᱤ ᱯᱟᱦᱴᱟ ᱨᱮ ᱪᱮᱠᱵᱟᱠᱚᱥ ᱨᱮ ᱫᱮᱠᱷᱟᱣ ᱪᱷᱚ ᱞᱟᱹᱜᱤᱫ ᱯᱮ ᱠᱷᱚᱱ ᱡᱟᱹᱥᱛᱤ ᱵᱟᱪᱷᱟᱣ ᱛᱟᱭ ᱫᱚᱨᱠᱟᱨ ᱾</string>
     <string name="notification_action_4_title">ᱢᱚᱬᱮᱤᱭᱟᱹ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
     <string name="notification_action_3_title">ᱚᱱᱟ ᱛᱮᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
-    <string name="notification_action_2_title">ᱛᱮᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
-    <string name="notification_action_1_title">ᱫᱚᱥᱟᱨ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
-    <string name="notification_action_0_title">ᱢᱟᱲᱟᱝ ᱠᱟᱹᱢᱤ ᱵᱩᱛᱟᱹᱢ</string>
     <string name="notification_scale_to_square_image_title">ᱛᱷᱟᱹᱢᱵᱽᱱᱮᱞ ᱫᱚ ᱑:᱑ ᱮᱥᱯᱮᱠᱼᱴ ᱨᱮᱥᱤᱭᱚ ᱨᱮ ᱜᱮᱫ ᱟᱠᱟᱱᱟ</string>
     <string name="ok">ᱴᱷᱤᱠ</string>
     <string name="play_audio">ᱥᱟᱰᱮ</string>
@@ -195,11 +190,9 @@
     <string name="clear_views_history_summary">ᱠᱷᱮᱞ ᱟᱠᱟᱱ ᱥᱴᱨᱤᱢ ᱨᱮᱱᱟᱜ ᱱᱟᱜᱟᱢ ᱟᱨ ᱠᱷᱮᱞ ᱟᱠᱟᱱ ᱯᱳᱡᱤᱥᱚᱱ ᱠᱚ ᱵᱚᱫᱚᱞᱟ</string>
     <string name="delete_view_history_alert">ᱥᱟᱱᱟᱢ ᱧᱮᱞ ᱱᱟᱜᱟᱢ ᱵᱚᱫᱚᱞ ᱢᱮ?</string>
     <string name="watch_history_deleted">ᱧᱮᱞ ᱛᱟᱵᱩᱱ ᱯᱮ</string>
-    <string name="download_to_sdcard_error_title">ᱵᱟᱦᱨᱮ ᱥᱴᱳᱨᱮᱡ ᱵᱟᱭ ᱧᱟᱢᱚᱜ</string>
     <string name="search_history_deleted">ᱧᱮᱞ ᱛᱟᱵᱩᱱ ᱯᱮ ᱺ</string>
     <string name="fast_mode">ᱦᱟᱛᱟᱝ ᱢᱚᱰ</string>
     <string name="main_tabs_position_title">ᱢᱩᱬᱩᱛ ᱴᱮᱵᱽ ᱨᱮᱱᱟᱜ ᱴᱷᱟᱶ</string>
-    <string name="download_to_sdcard_error_message">ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱦᱚᱪᱚ ᱵᱟᱝ ᱜᱟᱱᱚᱜ ᱟ. ᱰᱟᱩᱱᱞᱚᱰ ᱯᱷᱳᱞᱰᱟᱨ ᱞᱚᱠᱮᱥᱚᱱ ᱨᱤᱥᱮᱴ ᱢᱮ ?</string>
     <string name="could_not_load_thumbnails">ᱡᱚᱛᱚ ᱪᱤᱛᱟᱹᱨ ᱠᱚ ᱞᱚᱰ ᱵᱟᱝ ᱜᱟᱱᱚᱜ ᱠᱟᱱᱟ</string>
     <string name="parsing_error">ᱣᱮᱵᱽᱥᱟᱭᱤᱴ ᱵᱟᱭ ᱯᱟᱨᱥ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ</string>
     <string name="content_not_available">ᱥᱟᱦᱴᱟ ᱵᱟᱹᱱᱩᱜ-ᱟ</string>
@@ -224,7 +217,6 @@
     <string name="checksum">ᱪᱮᱠᱥᱢ</string>
     <string name="dismiss">ᱵᱚᱫᱚᱞ ᱢᱮ</string>
     <string name="msg_wait">ᱫᱟᱭᱟ ᱠᱟᱛᱮ ᱮᱛᱦᱚᱵ ᱢᱮ ᱾</string>
-    <string name="msg_copied">ᱠᱞᱤᱯᱵᱳᱨᱰ ᱨᱮ ᱠᱚᱯᱤ ᱟᱠᱟᱱᱟ</string>
     <string name="title_activity_recaptcha">reCAPTCHA ᱪᱟᱞᱟᱣ</string>
     <string name="settings_file_replacement_character_title">ᱵᱮᱱᱟᱣ ᱪᱤᱠᱤ</string>
     <string name="settings_file_replacement_character_summary">ᱵᱟᱹᱞᱤ ᱪᱤᱠᱤ ᱠᱚ ᱱᱚᱶᱟ ᱢᱟᱹᱱ ᱥᱟᱞᱟᱜ ᱛᱮ ᱵᱚᱫᱚᱞᱚᱜᱼᱟ</string>
@@ -272,8 +264,6 @@
     <string name="import_title">ᱤᱢᱯᱳᱨᱴ</string>
     <string name="import_from">ᱤᱢᱯᱚᱨᱴ</string>
     <string name="export_to">ᱮᱥᱯᱳᱨᱴ ᱢᱮ</string>
-    <string name="import_ongoing">ᱤᱢᱯᱳᱨᱴ…</string>
-    <string name="export_ongoing">ᱮᱠᱥᱯᱳᱨᱴ…</string>
     <string name="import_file_title">ᱤᱢᱯᱳᱨᱴ ᱯᱷᱤᱞ</string>
     <string name="previous_export">ᱢᱟᱲᱟᱝ ᱮᱠᱥᱯᱚᱨᱴ</string>
     <string name="subscriptions_import_unsuccessful">ᱥᱚᱵᱥᱠᱨᱤᱯᱥᱚᱱ ᱮᱢ ᱫᱟᱲᱮᱭᱟᱜ ᱵᱟᱝ ᱠᱟᱱᱟ</string>
@@ -378,7 +368,6 @@
     <string name="account_terminated">ᱮᱠᱟᱩᱱᱴ ᱵᱚᱫᱚᱞ ᱟᱠᱟᱱᱟ</string>
     <string name="get_notified">ᱵᱟᱰᱟᱭ ᱢᱮ</string>
     <string name="ignore_hardware_media_buttons_title">ᱦᱟᱨᱰᱣᱮᱭᱟᱨ ᱢᱤᱰᱤᱭᱟ ᱵᱩᱴᱚᱱ ᱦᱮᱯᱨᱟᱣ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
-    <string name="downloads_storage_use_saf_title">System folder picker (SAF) ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="default_video_format_title">ᱰᱤᱯᱷᱚᱞᱴ ᱵᱷᱤᱰᱤᱭᱳ ᱯᱷᱚᱨᱢᱮᱴ</string>
     <string name="popup_remember_size_pos_summary">ᱯᱚᱯ-ᱟᱯ ᱨᱮᱱᱟᱜ ᱢᱩᱪᱟᱹᱫ ᱢᱟᱨᱟᱝ ᱟᱨ ᱴᱷᱟᱶ ᱫᱚᱦᱚᱭ ᱢᱮ</string>
     <string name="use_inexact_seek_title">ᱦᱩᱰᱤᱧ ᱵᱟᱹᱱᱩᱜ-ᱟ ᱞᱟᱦᱟᱱᱛᱤ ᱵᱮᱵᱷᱟᱨ</string>
@@ -450,9 +439,6 @@
     <string name="player_stream_failure">ᱱᱚᱣᱟ ᱥᱴᱨᱤᱢ ᱯᱞᱮ ᱵᱟᱭ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ</string>
     <string name="player_unrecoverable_failure">ᱠᱷᱮᱞᱚᱸᱰᱤᱭᱟᱹ ᱵᱟᱭ ᱵᱩᱡᱷᱟᱹᱣ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ</string>
     <string name="player_recoverable_failure">ᱠᱷᱮᱞᱚᱸᱰᱤᱭᱟᱹ ᱦᱩᱫᱤᱥ ᱠᱷᱚᱱ ᱨᱤᱠᱳᱨᱰ</string>
-    <string name="invalid_file">ᱱᱚᱶᱟ ᱯᱷᱤᱞ ᱵᱟᱹᱱᱩᱜᱼᱟ ᱥᱮ ᱱᱚᱶᱟ ᱨᱮ ᱚᱞ ᱟᱨ ᱯᱟᱲᱦᱟᱣ ᱞᱟᱹᱜᱤᱫ ᱫᱟᱣ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="file_name_empty_error">ᱯᱷᱤᱞᱤᱢ ᱧᱩᱛᱩᱢ ᱵᱚᱸᱫᱚ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ ᱵᱟᱝ</string>
-    <string name="error_occurred_detail">%1$s ᱢᱤᱫ ᱵᱷᱩᱞ ᱦᱩᱭ ᱞᱮᱱᱟ:</string>
     <string name="no_streams_available_download">ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱡᱟᱦᱟᱱ ᱥᱴᱨᱤᱢ ᱵᱟᱭ</string>
     <string name="saved_tabs_invalid_json">ᱥᱚᱞᱦᱮ ᱟᱠᱟᱱ ᱴᱮᱵᱽ ᱠᱚ ᱵᱟᱝ ᱯᱟᱲᱦᱟᱣ ᱫᱟᱲᱮᱭᱟᱜ ᱠᱟᱱᱟ, ᱚᱱᱟᱛᱮ ᱵᱮᱵᱷᱟᱨᱤᱡᱽ ᱠᱚ</string>
     <string name="restore_defaults_confirmation">ᱟᱢ ᱥᱩᱯᱚᱨᱴ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮᱢᱮ?</string>
@@ -578,11 +564,7 @@
     <string name="pause_downloads_on_mobile_desc">ᱢᱚᱵᱟᱤᱞ ᱰᱟᱴᱟ ᱨᱮ ᱵᱚᱫᱚᱞ ᱞᱟᱹᱜᱤᱫ ᱵᱮᱵᱚᱦᱟᱨᱚᱜ ᱟ, ᱢᱮᱱᱠᱷᱟᱱ ᱛᱤᱱᱟᱹᱜ ᱜᱟᱱ ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱵᱚᱫᱚᱞ ᱫᱟᱲᱮᱭᱟᱜ ᱟ</string>
     <string name="enable_queue_limit_desc">ᱢᱤᱫᱴᱟᱹᱝ ᱰᱟᱩᱱᱞᱚᱰ ᱢᱤᱫ ᱚᱠᱛᱚ ᱨᱮ ᱪᱟᱞᱟᱜᱼᱟ</string>
     <string name="pause_downloads">ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱵᱚᱫᱚᱞ ᱢᱮ</string>
-    <string name="downloads_storage_ask_summary">ᱡᱚᱛᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱠᱚ ᱡᱟᱦᱟᱸ ᱨᱮ ᱫᱚᱦᱚᱭ ᱢᱮ ᱚᱱᱟ ᱟᱢᱮᱢ ᱩᱫᱩᱜᱟ._x000D_
-\nᱡᱩᱫᱤ ᱟᱢ ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱮᱠᱴᱤᱵᱷ ᱢᱮ</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ᱟᱢ ᱡᱟᱦᱟᱸ ᱨᱮ ᱡᱚᱛᱚ ᱰᱟᱩᱱᱞᱚᱰ ᱥᱟᱦᱴᱟ ᱠᱚ ᱵᱚᱫᱚᱞ ᱦᱚᱪᱚᱭ ᱢᱮ</string>
-    <string name="downloads_storage_use_saf_summary">\'ᱥᱴᱚᱨᱮᱡᱽ ᱮᱠᱥᱮᱥ ᱯᱷᱨᱮᱢᱠᱣᱟᱨᱠ\' ᱢᱤᱫ ᱵᱟᱦᱨᱮ SD ᱠᱟᱨᱰ ᱨᱮ ᱰᱟᱩᱱᱞᱚᱰ ᱞᱟᱹᱜᱤᱫ ᱮᱢᱚᱜ ᱟ</string>
-    <string name="downloads_storage_use_saf_summary_api_29">ᱚᱸᱰᱨᱚᱭᱮᱰ ᱑᱐ ᱠᱷᱚᱱ ᱮᱛᱚᱦᱚᱵ ᱠᱟᱛᱮ \'ᱥᱴᱳᱨᱮᱡ ᱮᱠᱥᱮᱥ ᱯᱷᱨᱮᱢᱚᱠ\' ᱜᱮ ᱥᱚᱯᱷᱚᱨᱴ ᱟᱠᱟᱱᱟ</string>
     <string name="choose_instance_prompt">ᱢᱤᱫ ᱤᱱᱥᱴᱟᱱᱥ ᱵᱟᱪᱷᱟᱣ ᱢᱮ</string>
     <string name="app_language_title">ᱟᱯᱞᱤᱠᱮᱥᱚᱱ ᱯᱟᱹᱨᱥᱤ</string>
     <string name="systems_language">ᱥᱤᱥᱴᱮᱢ ᱰᱤᱯᱚᱞᱴ</string>
@@ -623,7 +605,6 @@
 \nᱱᱚᱶᱟ ᱫᱚ ᱢᱚᱵᱟᱤᱞ ᱣᱟᱨᱥᱚᱱ ᱨᱮ ᱥᱚᱯᱷᱴᱣᱮᱨ ᱦᱩᱭᱩᱜᱼᱟ ᱾</string>
     <string name="show_thumbnail_summary">ᱞᱚᱠ ᱥᱠᱨᱤᱱ ᱛᱷᱚᱠ ᱟᱨ ᱱᱳᱴᱤᱯᱷᱤᱠᱮᱥᱚᱱ ᱵᱟᱱᱟᱨ ᱞᱟᱹᱜᱤᱫ ᱛᱚᱢᱱᱤᱞ ᱵᱮᱵᱷᱟᱨ ᱢᱮ</string>
     <string name="no_app_to_open_intent">ᱟᱢᱟᱜ ᱰᱤᱵᱟᱤᱥ ᱨᱮ ᱱᱚᱶᱟ ᱮᱯ ᱵᱟᱹᱱᱩᱜ-ᱟ</string>
-    <string name="no_appropriate_file_manager_message">ᱱᱚᱶᱟ ᱠᱟᱹᱢᱤ ᱞᱟᱹᱜᱤᱫ ᱫᱚ ᱞᱟᱹᱠᱛᱤᱭᱟᱱ ᱯᱷᱤᱞ ᱢᱮᱱᱮᱡᱚᱨ ᱵᱟᱝ ᱧᱟᱢ ᱞᱮᱱᱟ ᱾ %s</string>
     <string name="georestricted_content">ᱱᱚᱶᱟ ᱥᱟᱦᱴᱟ ᱫᱚ ᱟᱢᱟᱜ ᱫᱤᱥᱚᱢ ᱨᱮ ᱵᱟᱹᱱᱩᱜ-ᱟ᱾</string>
     <string name="soundcloud_go_plus_content">ᱱᱩᱶᱟ ᱫᱚ ᱢᱤᱫ ᱥᱟᱣᱚᱱᱰᱠᱞᱟᱣᱩᱰ ᱜᱳ+ ᱴᱨᱟᱠ ᱠᱟᱱᱟ, ᱟᱢᱟᱜ ᱫᱤᱥᱚᱢ ᱨᱮ ᱡᱚᱛᱚ ᱠᱷᱚᱱ ᱠᱚᱢ, ᱚᱱᱟᱛᱮ ᱱᱩᱭᱯᱟᱭᱤᱯ ᱫᱚ ᱱᱚᱣᱟ ᱴᱨᱟᱠ ᱥᱴᱨᱤᱢ ᱟᱨ ᱰᱟᱩᱱᱞᱚᱰ ᱵᱟᱭ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ ᱾</string>
     <string name="private_content">ᱱᱩᱣᱟ ᱯᱟᱭᱤᱯ ᱫᱚ ᱱᱤᱡᱮᱨᱟᱜ ᱠᱟᱱᱟ, ᱚᱱᱟᱛᱮ ᱱᱩᱣᱟ ᱯᱟᱭᱤᱯ ᱫᱚ ᱱᱚᱣᱟ ᱵᱟᱭ ᱰᱟᱩᱱᱞᱚᱰ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ ᱟᱨ ᱵᱟᱝ ᱥᱴᱨᱤᱢ ᱫᱟᱲᱮᱭᱟᱜ-ᱟ᱾</string>
@@ -727,7 +708,6 @@
     <string name="faq_title">ᱟᱥᱚᱠᱟᱭ ᱛᱮ ᱚᱞ ᱟᱠᱟᱱ ᱯᱩᱥᱴᱟ</string>
     <string name="missing_file">ᱯᱷᱤᱞ ᱥᱮᱴᱮᱨ ᱟᱠᱟᱱᱟ ᱟᱨ ᱵᱟᱝ ᱵᱚᱫᱚᱞ ᱟᱠᱟᱱᱟ</string>
     <string name="invalid_directory">ᱱᱚᱝᱠᱟᱱ ᱯᱷᱳᱞᱰᱟᱨ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
-    <string name="invalid_source">ᱱᱚᱝᱠᱟᱱ ᱯᱷᱤᱞ/ᱥᱟᱹᱛ ᱨᱮᱱᱟᱜ ᱜᱟᱞᱢᱟᱨᱟᱣ ᱵᱟᱹᱱᱩᱜᱼᱟ</string>
     <string name="loading_metadata_title">ᱢᱮᱴᱟᱰᱟᱴᱟ ᱞᱚᱰ ᱠᱟᱱᱟ…</string>
     <string name="channels">ᱪᱟᱱᱮᱞ</string>
     <string name="undo">ᱵᱚᱫᱚᱞ ᱢᱮ</string>

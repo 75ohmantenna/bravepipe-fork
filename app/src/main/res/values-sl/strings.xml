@@ -71,7 +71,6 @@
     <string name="msg_running">Prejemanje</string>
     <string name="msg_running_detail">Podrobnosti</string>
     <string name="msg_wait">Počakajte …</string>
-    <string name="msg_copied">Kopirano v odložišče</string>
     <string name="no_available_dir">Izberite mapo za prejem</string>
     <string name="ok">V redu</string>
     <string name="downloads">Prejemi</string>
@@ -195,7 +194,6 @@
     <string name="dismiss">Opusti</string>
     <string name="rename">Preimenuj</string>
     <string name="app_language_title">Jezik aplikacije</string>
-    <string name="downloads_storage_use_saf_title">Uporabi SAF</string>
     <string name="downloads_storage_ask_title">Vprašaj kam shraniti</string>
     <string name="pause_downloads">Začasno ustavi prenašanja</string>
     <string name="start_downloads">Začni prenose</string>
@@ -230,8 +228,6 @@
     <string name="subscriptions_import_unsuccessful">Ni mogoče uvoziti naročnine</string>
     <string name="previous_export">Prejšnji izvoz</string>
     <string name="import_file_title">Uvozi datoteko</string>
-    <string name="export_ongoing">Izvažanje…</string>
-    <string name="import_ongoing">Uvažanje…</string>
     <string name="export_to">Izvozi k</string>
     <string name="import_from">Uvozi iz</string>
     <string name="import_title">Uvozi</string>
@@ -264,10 +260,8 @@
     <string name="no_comments">Ni komentarjev</string>
     <string name="no_one_listening">Nobeden ne posluša</string>
     <string name="no_one_watching">Nobeden ne gleda</string>
-    <string name="error_occurred_detail">Zgodila se je napaka: %1$s</string>
     <string name="invalid_directory">Ni take mape</string>
     <string name="missing_file">Datoteka premaknjena ali izbrisana</string>
-    <string name="download_to_sdcard_error_message">Prenašanje na zunanjo SD kartico ni mogoče. Resetiram lokacijo mape z prenosi\?</string>
     <string name="watch_history_deleted">Zgodovina gledanja izbrisana</string>
     <string name="delete_view_history_alert">Izbrišem vso zgodovino gledanja\?</string>
     <string name="clear_views_history_title">Izbriši zgodovino gledanja</string>
@@ -312,13 +306,8 @@
     <string name="notification_action_buffering">Nalaganje</string>
     <string name="notification_action_shuffle">Naključno</string>
     <string name="notification_action_repeat">Ponovi</string>
-    <string name="notification_actions_at_most_three">Izberete lahko največ 3 dejanja, ki se bodo prikazala v kompaktnem obvestilu!</string>
-    <string name="notification_actions_summary">Uredite vsako dejanje obvestila z klikom na posamezno dejanje. Z uporabo potrditvenega polja na desni izberite do 3 dejanja obvestil, ki se bodo prikazala v kompaktnem obvestilu</string>
     <string name="notification_action_4_title">Gumb za peto dejanje</string>
     <string name="notification_action_3_title">Gumb za četrto dejanje</string>
-    <string name="notification_action_2_title">Gumb za tretje dejanje</string>
-    <string name="notification_action_1_title">Gumb za drugo dejanje</string>
-    <string name="notification_action_0_title">Gumb za prvo dejanje</string>
     <string name="notification_scale_to_square_image_summary">Povečaj sličico videa, ki je prikazana v obvestilu iz razmerja 16:9 v razmerje 1:1</string>
     <string name="crash_the_app">Zruši aplikacijo</string>
     <string name="caption_setting_description">Spremeni velikost besedila podnapisov in slog ozadja v predvajalniku. Zahteva ponovni zagon aplikacije, da učinkuje</string>
@@ -385,13 +374,9 @@
     <string name="restore_defaults_confirmation">Ali želite obnoviti privzete vrednosti\?</string>
     <string name="restore_defaults">Povrni privzeto</string>
     <string name="no_streams_available_download">Nobeden pretok ni na voljo za prenos</string>
-    <string name="file_name_empty_error">Ime datoteke ne sme biti prazno</string>
-    <string name="invalid_file">Datoteka ne obstaja ali ji manjka dovoljenje za branje ali pisanje</string>
-    <string name="invalid_source">Ni takšne datoteke/vira vsebine</string>
     <string name="external_player_unsupported_link_type">Zunanji predvajalniki ne podpirajo teh vrst povezav</string>
     <string name="player_recoverable_failure">Obnavljanje od napake predvajanika</string>
     <string name="player_unrecoverable_failure">Prišlo je do neobnovljive napake v predvajalniku</string>
-    <string name="download_to_sdcard_error_title">Zunanja shramba ni na voljo</string>
     <string name="clear_search_history_summary">Izbriše zgodovino ključnih besed za iskanje</string>
     <string name="watch_history_states_deleted">Položaji predvajalnika so bili izbrisani</string>
     <string name="delete_playback_states_alert">Ali želite izbrisati vse položaje predvajalnika\?</string>

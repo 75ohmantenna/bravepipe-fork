@@ -108,7 +108,6 @@
     <string name="msg_running">BravePipe preuzimanje</string>
     <string name="msg_running_detail">Dodirni za prikaz detalja</string>
     <string name="msg_wait">Pričekaj …</string>
-    <string name="msg_copied">Kopirano u međuspremnik</string>
     <string name="no_available_dir">Odaberi mapu za preuzimanje kasnije u postavkama</string>
     <string name="msg_popup_permission">Ova dozvola je potrebna za
 \notvaranje skočnog prozora</string>
@@ -238,8 +237,6 @@
     <string name="delete_search_history_alert">Izbrisati cijelu povijest pretraživanja\?</string>
     <string name="search_history_deleted">Povijest pretraživanja je izbrisana</string>
     <string name="invalid_directory">Nema takve mape</string>
-    <string name="file_name_empty_error">Naziv datoteke ne može biti prazan</string>
-    <string name="error_occurred_detail">Dogodila se greška: %1$s</string>
     <string name="detail_drag_description">Povuci za promjenu redoslijeda</string>
     <string name="create">Stvori</string>
     <string name="dismiss">Odbaci</string>
@@ -260,8 +257,6 @@
     <string name="import_title">Uvoz</string>
     <string name="import_from">Uvoz iz</string>
     <string name="export_to">Izvoz u</string>
-    <string name="import_ongoing">Uvoz …</string>
-    <string name="export_ongoing">Izvoz …</string>
     <string name="import_file_title">Uvoz datoteke</string>
     <string name="previous_export">Prethodni izvoz</string>
     <string name="subscriptions_import_unsuccessful">Nije bilo moguće uvesti pretplate</string>
@@ -299,7 +294,6 @@
     <string name="file_deleted">Datoteka obrisana</string>
     <string name="app_update_notification_channel_description">Obavijest za nove BravePipe verzije</string>
     <string name="clear_search_history_summary">Briše povijest ključnih riječi pretraživanja</string>
-    <string name="download_to_sdcard_error_title">Eksterna memorija nije dostupna</string>
     <string name="updates_setting_title">Aktualiziranja</string>
     <string name="updates_setting_description">Prikaži obavijest za aktualiziranje aplikacije kad je dostupna nova verzija</string>
     <string name="list">Popis</string>
@@ -314,12 +308,9 @@
     <string name="default_content_country_title">Zadana zemlja sadržaja</string>
     <string name="settings_category_debug_title">Otkrivanje grešaka</string>
     <string name="app_update_notification_channel_name">Obavijest o novoj verziji aplikacije</string>
-    <string name="download_to_sdcard_error_message">Preuzimanje na eksternu SD karticu nije moguće. Ponovo postaviti lokaciju mape za preuzimanje?</string>
     <string name="external_player_unsupported_link_type">Eksterni playeri ne podržavaju ove vrste poveznica</string>
     <string name="video_streams_empty">Nije pronađen nijedan videozapis</string>
     <string name="audio_streams_empty">Nije pronađena nijedna audiosnimka</string>
-    <string name="invalid_source">Nema takve datoteke/izvora sadržaja</string>
-    <string name="invalid_file">Datoteka ne postoji ili joj nedostaje dopuštenje za čitanje ili pisanje</string>
     <string name="no_streams_available_download">Nema dostupnih zapisa za preuzimanje</string>
     <string name="saved_tabs_invalid_json">Nije bilo moguće čitati spremljene kartice, stoga se koriste zadane</string>
     <string name="restore_defaults">Obnovi standardne vrijednosti</string>
@@ -435,7 +426,6 @@
     <string name="channel_created_by">Stvoren od %s</string>
     <string name="never">Nikada</string>
     <string name="enable_queue_limit">Ograniči popis preuzimanja</string>
-    <string name="downloads_storage_use_saf_title">Koristi sustavksi birač mapa (SAF)</string>
     <string name="remove_watched">Ukloni pregledano</string>
     <string name="remove_watched_popup_title">Ukloniti pogledana emitiranja?</string>
     <plurals name="seconds">
@@ -463,9 +453,6 @@
     <string name="feed_group_dialog_select_subscriptions">Odaberi pretplate</string>
     <string name="notification_action_4_title">Gumb pete radnje</string>
     <string name="notification_action_3_title">Gumb četvrte radnje</string>
-    <string name="notification_action_2_title">Gumb treće radnje</string>
-    <string name="notification_action_1_title">Gumb druge radnje</string>
-    <string name="notification_action_0_title">Gumb prve radnje</string>
     <string name="search_showing_result_for">Prikazuju se rezultati za: %s</string>
     <string name="unsupported_url_dialog_message">Nije bilo moguće prepoznati URL. Otvoriti s jednom drugom aplikacijom?</string>
     <string name="notification_scale_to_square_image_title">Odreži sličicu na omjer 1:1</string>
@@ -485,7 +472,6 @@
     </plurals>
     <string name="overwrite_failed">datoteka se ne može prepisato</string>
     <string name="notification_scale_to_square_image_summary">Odreži prikazane sličice videa u obavijesti iz omjera 16:9 na 1:1</string>
-    <string name="notification_actions_at_most_three">U kompaktnom prikazu obavijesti mogu se odabrati najviše 3 radnje!</string>
     <string name="video_detail_by">Od %s</string>
     <string name="detail_sub_channel_thumbnail_view_description">Sličica avatara kanala</string>
     <string name="feed_use_dedicated_fetch_method_title">Dohvati iz određenog feeda kad je dostupno</string>
@@ -504,8 +490,6 @@
     <string name="feed_groups_header_title">Grupe kanala</string>
     <string name="remove_watched_popup_partially_watched_streams">Da, i djelomično pogledana videa</string>
     <string name="choose_instance_prompt">Odaberi jednu instancu</string>
-    <string name="downloads_storage_ask_summary">Aplikacija će te pitati kamo spremati preuzimanja.
-\nUključi sustavksi birač mapa (SAF) ako želiš preuzeti na eksternu SD karticu</string>
     <string name="error_download_resource_gone">Nije moguće obnoviti ovo preuzimanje</string>
     <string name="error_progress_lost">Napredak je izgubljen, jer je datoteka izbrisana</string>
     <string name="error_postprocessing_stopped">BravePipe se zatvorio tijekom rada s datotekom</string>
@@ -545,7 +529,6 @@
     <string name="notification_action_shuffle">Promiješaj</string>
     <string name="notification_action_repeat">Ponovi</string>
     <string name="error_report_open_github_notice">Provjeri je li problem već postoji. Prijavljivanje istog već prijavljenog problema krade nam vrijeme koje bismo mogli utrošiti na ispravljanje greške.</string>
-    <string name="notification_actions_summary">Uredi radnje obavijesti dodirom. Označi do tri radnje za prikaz u kompaktnoj obavijesti koristeći potvrdna polja na desnoj strani.</string>
     <string name="new_seek_duration_toast">Zbog ograničenja ExoPlayera, trajanje premotavanja postavljeno je na %d s</string>
     <string name="notification_colorize_summary">Neka Android prilagodi boju obavijesti prema glavnoj boji sličice (ovo nije dostupno na svim uređajima)</string>
     <string name="notification_colorize_title">Oboji obavijest</string>
@@ -555,7 +538,6 @@
     <string name="show_thumbnail_summary">Koristi sličicu za pozadinu zaključanog ekrana i za obavijesti</string>
     <string name="show_thumbnail_title">Prikaži sličicu</string>
     <string name="show_original_time_ago_title">Prikaži izvorno vrijeme stavki</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework” dozvoljava preuzimanje na eksternu SD karticu</string>
     <string name="show_original_time_ago_summary">Izvorni tekstovi usluga bit će vidljivi u stavkama prijenosa</string>
     <string name="feed_use_dedicated_fetch_method_summary">Dostupno je u nekim uslugama. Obično je puno brže, ali može dohvatiti ograničenu količinu stavki i često nepotpune podatke (npr. bez trajanja, vrste stavke, bez stanja uživo)</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Misliš da je učitavanje feeda presporo\? Ako da, pokušaj omogućiti brzo učitavanje (možeš ga promijeniti u postavkama ili pritiskom na donji gumb).
@@ -625,7 +607,6 @@
 \nŽeliš li otkazati pretplatu na ovaj kanal\?</string>
     <string name="feed_load_error_account_info">Nije bilo moguće učitati feed za „%s”.</string>
     <string name="feed_load_error">Pogreška pri učitavanju feeda</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Počevši od Androida 10, podržano je samo radno okruženje „Storage Access Framework”</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Od vas će se tražiti gdje spremiti svako preuzimanje</string>
     <string name="dont_show">Ne prikazuj</string>
     <string name="low_quality_smaller">Niska kvaliteta (manja)</string>
@@ -686,8 +667,6 @@
     <string name="enable_streams_notifications_title">Obavijesti o novim tokovima</string>
     <string name="streams_notifications_network_title">Potrebna mrežna veza</string>
     <string name="get_notified">Primaj obavijesti</string>
-    <string name="no_appropriate_file_manager_message">Za ovu radnju nije pronađen odgovarajući upravljač datoteka.
-\nInstaliraj upravljač datoteka ili pokušaj isključiti „%s” u postavkama preuzimanja</string>
     <string name="detail_pinned_comment_view_description">Prikvačeni komentar</string>
     <string name="show_crash_the_player_summary">Prikazuje opciju prekida rada kad se player koristi</string>
     <string name="show_crash_the_player_title">Prikaži „Prekini rad playera”</string>
@@ -832,9 +811,6 @@
     <string name="tab_bookmarks_short">Popisi izvođenja</string>
     <string name="permission_display_over_apps_message">Da biste koristili Popup Player, odaberite %1$s u sljedećem izborniku postavki Androida i omogućite %2$s.</string>
     <string name="permission_display_over_apps_permission_name">\"Dopusti prikaz preko drugih aplikacija\"</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="delete_file">Izbriši datoteku</string>
     <string name="delete_entry">Obriši unos</string>
     <string name="select_a_feed_group">Odaberite grupu feedova</string>

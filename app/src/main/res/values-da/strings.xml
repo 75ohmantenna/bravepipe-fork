@@ -132,8 +132,6 @@
     <string name="delete_search_history_alert">Slet hele søgehistorik?</string>
     <string name="search_history_deleted">Søgehistorik slettet</string>
     <string name="general_error">Fejl</string>
-    <string name="download_to_sdcard_error_title">Eksternt lager utilgængeligt</string>
-    <string name="download_to_sdcard_error_message">Det er endnu ikke muligt at hente til et eksternt SD-kort. Nulstil lagringsmappens placering?</string>
     <string name="network_error">Netværksfejl</string>
     <string name="could_not_load_thumbnails">Kunne ikke indlæse alle miniaturebilleder</string>
     <string name="parsing_error">Kunne ikke analysere webside</string>
@@ -147,10 +145,6 @@
     <string name="video_streams_empty">Ingen videostreams fundet</string>
     <string name="audio_streams_empty">Ingen lydstreams fundet</string>
     <string name="invalid_directory">Mappen findes ikke</string>
-    <string name="invalid_source">Fil eller indholdskilde findes ikke</string>
-    <string name="invalid_file">Filen findes ikke, ellers mangler der tilladelse til at læse eller skrive til den</string>
-    <string name="file_name_empty_error">Filnavn må ikke være tomt</string>
-    <string name="error_occurred_detail">En fejl opstod: %1$s</string>
     <string name="no_streams_available_download">Ingen streams tilgængelige til hentning</string>
     <string name="saved_tabs_invalid_json">Kunne ikke læse gemte faner, så bruger standardfaner</string>
     <string name="restore_defaults">Gendan standardindstillinger</string>
@@ -193,7 +187,6 @@
     <string name="msg_running">BravePipe henter</string>
     <string name="msg_running_detail">Tryk for detaljer</string>
     <string name="msg_wait">Vent venligst…</string>
-    <string name="msg_copied">Kopieret til udklipsholder</string>
     <string name="no_available_dir">Angiv venligst en lagringsmappe senere i indstillinger</string>
     <string name="msg_popup_permission">Denne tilladelse er nødvendig for
 \nat åbne i popup-tilstand</string>
@@ -329,8 +322,6 @@
     <string name="enable_disposed_exceptions_title">Rapportér out-of-lifecycle-fejl</string>
     <string name="import_title">Importér</string>
     <string name="import_from">Importér fra</string>
-    <string name="import_ongoing">Importerer…</string>
-    <string name="export_ongoing">Eksporterer…</string>
     <string name="import_file_title">Importér fil</string>
     <string name="previous_export">Forrige eksport</string>
     <string name="import_youtube_instructions">Importér YouTube-abonnementer ved at hente eksportfilen:
@@ -383,9 +374,6 @@
     <string name="notification_action_repeat">Gentag</string>
     <string name="notification_action_4_title">Femte handlingsknap</string>
     <string name="notification_action_3_title">Fjerde handlingsknap</string>
-    <string name="notification_action_0_title">Første handlingsknap</string>
-    <string name="notification_action_1_title">Anden handlingsknap</string>
-    <string name="notification_action_2_title">Tredje handlingsknap</string>
     <string name="search_showing_result_for">Viser resultater for: %s</string>
     <string name="open_with">Åbn med</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgængelig</string>
@@ -482,8 +470,6 @@
     <string name="start_downloads">Start downloads</string>
     <string name="notification_scale_to_square_image_title">Beskær miniaturebillede til 1:1 format</string>
     <string name="notification_scale_to_square_image_summary">Beskær video-miniaturebillede i notifikationen fra 16:9 til 1:1 format</string>
-    <string name="notification_actions_summary">Rediger hver notifikationshandling nedenfor ved at trykke på den. Vælg op til tre af dem, der skal vises i den lille notifikation, via afkrydsningsfelterne til højre.</string>
-    <string name="notification_actions_at_most_three">Du kan kun vælge op til tre handlinger, der kan vises i den lille notifikation!</string>
     <string name="notification_action_buffering">Buffering</string>
     <string name="notification_colorize_summary">Få Android til at vælge notifikationens farve ud fra den primære farve i miniaturebilledet (virker ikke på alle enheder)</string>
     <string name="night_theme_title">Nat-tema</string>
@@ -635,13 +621,10 @@
     <string name="crash_the_app">Crash appen</string>
     <string name="show_crash_the_player_summary">Vis en crash mulighed, når afspilleren er i brug</string>
     <string name="show_error_snackbar">Vis en fejl snackbar</string>
-    <string name="downloads_storage_use_saf_title">Brug systemets mappevælger (SAF)</string>
     <string name="detail_sub_channel_thumbnail_view_description">Kanalens avatar-miniaturebillede</string>
     <string name="soundcloud_go_plus_content">Dette er et SoundCloud Go+-nummer, i hvert fald i dit land, så det kan ikke streames eller hentes af BravePipe.</string>
     <string name="no_appropriate_file_manager_message_android_10">Ingen passende filhåndtering blev fundet til denne handling.
 \nInstaller venligst en Storage Access Framework-kompatibel filhåndtering.</string>
-    <string name="no_appropriate_file_manager_message">Ingen passende filhåndtering blev fundet til denne handling.
-\nInstaller venligst en filhåndtering, eller prøv at deaktivere \'%s\' i downloadindstillingerne.</string>
     <string name="description_select_enable">Aktivér valg af tekst i beskrivelsen</string>
     <string name="auto_device_theme_title">Automatisk (enhedstema)</string>
     <string name="description_select_disable">Deaktivér valg af tekst i beskrivelsen</string>
@@ -657,17 +640,13 @@
     <string name="progressive_load_interval_title">Størrelse på afspilningsinterval</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer-standard</string>
     <string name="feed_group_dialog_empty_name">Tomt gruppenavn</string>
-    <string name="downloads_storage_ask_summary">Du vil blive spurgt, hvor du vil gemme hver enkelt download.
-\nAktivér systemets mappevælger (SAF), hvis du vil hente til et eksternt SD-kort</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil være synlige i stream-elementer</string>
     <string name="no_video_streams_available_for_external_players">Ingen videostreams er tilgængelige for eksterne afspillere</string>
     <string name="off">Fra</string>
     <string name="tablet_mode_title">Tablet-tilstand</string>
     <string name="youtube_music_premium_content">Denne video er kun tilgængelig for YouTube Musik Premium-medlemmer, så den kan ikke streames eller hentes af BravePipe.</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" gør det muligt at hente til et eksternt SD-kort</string>
     <string name="enable_disposed_exceptions_summary">Tving rapportering af ikke-levérbare Rx-undtagelser uden for fragmentets eller aktivitetens livscyklus efter bortskaffelse</string>
     <string name="app_update_available_notification_text">Tryk for at hente %s</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Fra og med Android 10 understøttes kun \"Storage Access Framework\"</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Synes du, at feed-indlæsning er for langsom? Hvis det er tilfældet, så prøv at aktivere hurtig indlæsning (du kan ændre det i indstillingerne eller ved at trykke på knappen nedenfor).
 \n
 \nBravePipe tilbyder to strategier til feed-indlæsning:
@@ -826,9 +805,6 @@
     <string name="search_with_service_name_and_filter">Søg %1$s (%2$s)</string>
     <string name="permission_display_over_apps_message">For at kunne bruge pop op-afspilleren skal du vælge %1$s i følgende Android-indstillingsmenu og aktivere %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Tillad visning over andre apps”</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="delete_file">Slet fil</string>
     <string name="account_terminated_service_provides_reason">Kontoen er blevet lukket\n\n%1$s angiver følgende årsag: %2$s</string>
     <string name="channel_tab_likes">Likes</string>

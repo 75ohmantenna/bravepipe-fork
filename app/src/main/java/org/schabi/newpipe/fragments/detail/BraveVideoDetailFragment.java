@@ -46,7 +46,7 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         BraveEvents.EventBackPressedInCommentRepliesFragment.Handler,
         BraveEvents.PrefEventScrollOnlyBelowPlayer.Handler {
 
-    private FragmentVideoDetailBinding binding;
+    protected FragmentVideoDetailBinding binding;
     private int lastHeight = -1;
     private View.OnLayoutChangeListener onChangeLayoutListener = null;
 
@@ -159,8 +159,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         return onChangeLayoutListener;
     }
 
-    // This method is already present in VideoDetailFragment but as we need to call
-    // it here too. We sneak it into this class here.
     public abstract void updateTabLayoutVisibility();
 
     /**
@@ -202,10 +200,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         hostFragment.replaceFragment(new CommentRepliesFragment(comment), true);
     }
 
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void onViewCreated(
@@ -219,5 +213,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
     public void onDestroyView() {
         super.onDestroyView();
         BraveBus.getBus().unregister(this);
+        binding = null;
     }
 }

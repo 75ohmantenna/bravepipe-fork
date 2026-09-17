@@ -75,7 +75,6 @@
     <string name="msg_running">BravePipe laster ned</string>
     <string name="msg_running_detail">Trykk for detaljer</string>
     <string name="msg_wait">Vent…</string>
-    <string name="msg_copied">Kopiert til utklippstavle</string>
     <string name="info_labels">Hva:\nForespørsel:\nInnholdsspråk:\nInnholdsland:\nAppspråk:\nTjeneste:\nGMT-tid:\nPakke:\nVersjon:\nOS-versjon:</string>
     <string name="start">Start</string>
     <string name="no_available_dir">Definer en nedlastingsmappe senere i innstillingene</string>
@@ -241,16 +240,10 @@
     <string name="settings_category_debug_title">Feilsøking</string>
     <string name="file">Fil</string>
     <string name="invalid_directory">Ingen slik mappe</string>
-    <string name="invalid_source">Ingen slik fil/innholdskilde</string>
-    <string name="invalid_file">Filen finnes ikke eller så har du ikke tilgang til å lese eller skrive til den</string>
-    <string name="file_name_empty_error">Filnavn kan ikke være tomt</string>
-    <string name="error_occurred_detail">En feil inntraff: %1$s</string>
     <string name="caption_auto_generated">Autogenerert</string>
     <string name="import_title">Importer</string>
     <string name="import_from">Importer fra</string>
     <string name="export_to">Eksporter til</string>
-    <string name="import_ongoing">Importerer…</string>
-    <string name="export_ongoing">Eksporterer…</string>
     <string name="import_file_title">Importer fil</string>
     <string name="previous_export">Forrige eksport</string>
     <string name="thumbnail_cache_wipe_complete_notice">Bildehurtiglager tømt</string>
@@ -333,8 +326,6 @@
     <string name="file_deleted">Fil slettet</string>
     <string name="app_update_notification_channel_name">Varsel om appoppdatering</string>
     <string name="app_update_notification_channel_description">Merknader for nye BravePipe-versjoner</string>
-    <string name="download_to_sdcard_error_title">Ekstern lagring utilgjengelig</string>
-    <string name="download_to_sdcard_error_message">Nedlasting til eksternt SD-kort er ikke mulig. Tilbakestill plassering av nedlastingsmappe\?</string>
     <string name="saved_tabs_invalid_json">Kunne ikke leste lagrede faner, så bruker forvalgte</string>
     <string name="restore_defaults">Gjenopprett forvalg</string>
     <string name="restore_defaults_confirmation">Ønsker du å gjenopprette forvalg\?</string>
@@ -401,10 +392,6 @@
     <string name="start_downloads">Start nedlastinger</string>
     <string name="pause_downloads">Sett nedlastinger på pause</string>
     <string name="downloads_storage_ask_title">Spør om hvor ting skal lastes ned til</string>
-    <string name="downloads_storage_ask_summary">Du vil bli spurt om hvor hver nedlasting skal plasseres
-\nAktiver system mappe velgeren (SAF) dersom du vil laste ned til et eksternt SD kort</string>
-    <string name="downloads_storage_use_saf_title">Bruk systemmappevelger (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Lagringstilgangsrammeverk\' (SAF) tillater nedlasting til et eksternt SD-kort</string>
     <string name="clear_playback_states_title">Slett avspillingsposisjoner</string>
     <string name="clear_playback_states_summary">Sletter alle avspillingsposisjoner</string>
     <string name="delete_playback_states_alert">Slett alle avspillingsposisjoner\?</string>
@@ -519,8 +506,6 @@
 \nValget koker ned til det du foretrekker: hastighet eller presis info.</string>
     <string name="show_original_time_ago_summary">Originaltekster fra tjenester vil vises for elementer i strømmen</string>
     <string name="error_report_open_github_notice">Sjekk om det allerede eksisterer et problem som diskuterer ditt krasj. Når du oppretter duplikatbilletter, tar du tid fra oss som vi kan bruke på å fikse den faktiske feilen.</string>
-    <string name="notification_actions_at_most_three">Du kan maksimalt velge tre handlinger som skal vises i kompaktvarselet!</string>
-    <string name="notification_actions_summary">Rediger hver varslingshandling nedenfor ved å trykke på den. Velg opptil tre av dem som skal vises i det kompakte varselet ved å bruke avmerkingsboksene til høyre</string>
     <string name="notification_scale_to_square_image_summary">Beskjær videominiatyrbildet som vises i varselet fra 16:9 til 1:1 sideforhold (kan føre til forvrengninger)</string>
     <string name="feed_use_dedicated_fetch_method_summary">Tilgjengelig i noen tjenester, det er vanligvis mye raskere, men kan gi et begrenset antall elementer, og ofte ufullstendig informasjon (f.eks. ingen varighet, elementtype, eller sanntidsstatus)</string>
     <string name="feed_use_dedicated_fetch_method_title">Hent fra dedikert strøm når tilgjengelig</string>
@@ -542,9 +527,6 @@
     <string name="notification_action_repeat">Gjenta</string>
     <string name="notification_action_4_title">Femte handlingstast</string>
     <string name="notification_action_3_title">Fjerde handlingstast</string>
-    <string name="notification_action_2_title">Tredje handlingstast</string>
-    <string name="notification_action_1_title">Andre handlingstast</string>
-    <string name="notification_action_0_title">Første handlingstast</string>
     <string name="notification_scale_to_square_image_title">Beskjær miniatyrbildet til sideforholdet 1:1</string>
     <string name="notification_action_nothing">Ingenting</string>
     <string name="show_memory_leaks">Vis minnelekkasjer</string>
@@ -602,7 +584,6 @@
     <string name="account_terminated">Konto terminert</string>
     <string name="feed_load_error_account_info">Kunne ikke laste inn informasjonskanal for «%s».</string>
     <string name="feed_load_error">Kunne ikke laste inn informasjonskanal</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Fra Android 10 er kun «lagringstilgangsrammeverk» støttet</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du vil bli spurt om hvor du vil lagre hver nedlastning</string>
     <string name="seekbar_preview_thumbnail_title">Forhåndsvisning av miniatyrbilde på spolelinjen</string>
     <string name="no_dir_yet">Ingen nedlastingsmappe er satt ennå, velg en standard nedlastingsmappe nå</string>
@@ -658,8 +639,6 @@
     <string name="error_report_notification_title">BravePipe oppdaget en feil, trykk for å rapportere</string>
     <string name="create_error_notification">Opprett en feilmerknad</string>
     <string name="show_error_snackbar">Vis en feil hurtigbar</string>
-    <string name="no_appropriate_file_manager_message">Ingen passende filbehandler ble funnet for denne handlingen.
-\nVennligst installer en filbehandler, eller prøv å skru av \'%s\' i nedlastingsinnstillingene</string>
     <string name="no_appropriate_file_manager_message_android_10">Ingen passende filbehandler ble funnet for denne handlingen.
 \nVennligst installer en Storage Access Framework kompatibel filbehandler</string>
     <string name="leak_canary_not_available">LeakCanary er ikke tilgjengelig</string>

@@ -29,28 +29,16 @@
     <string name="show_hold_to_append_title">Show ‘Hold to append’ tip</string>
     <string name="show_play_with_kodi_title">Show ‘Play with Kodi’ option</string>
     <string name="did_you_mean">Did you mean ‘%1$s’\?</string>
-    <string name="main_bg_subtitle">Tap the magnifying glass to get started.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel’s avatar thumbnail</string>
     <string name="feed_update_threshold_summary">Time after last update before a subscription is considered outdated – %s</string>
     <string name="autoplay_summary">Start playback automatically – %s</string>
     <string name="minimize_on_exit_summary">Action when switching to other app from main video player – %s</string>
     <string name="preferred_open_action_settings_summary">Default action when opening content – %s</string>
     <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes – help is always welcome. The more is done, the better it gets!</string>
-    <string name="switch_to_main">Switch to Main</string>
     <string name="switch_to_popup">Switch to Pop-up</string>
-    <string name="switch_to_background">Switch to Background</string>
-    <string name="hash_channel_name">Video hash notification</string>
-    <string name="app_update_notification_channel_name">App update notification</string>
     <string name="just_once">Just once</string>
     <string name="show_age_restricted_content_summary">Show content possibly unsuitable for children because it has an age limit (such as 18+)</string>
     <string name="popup_playing_toast">Playing in pop-up mode</string>
-    <string name="settings_category_updates_title">Updates</string>
-    <string name="settings_category_debug_title">Debug</string>
-    <string name="settings_category_appearance_title">Appearance</string>
-    <string name="settings_category_history_title">History and cache</string>
-    <string name="settings_category_video_audio_title">Video and audio</string>
-    <string name="settings_category_player_title">Player</string>
-    <string name="cancel">Cancel</string>
     <string name="content_not_supported">This content is not yet supported by BravePipe.
 \n
 \nHopefully, it will be supported in a future version.</string>
@@ -72,26 +60,11 @@
     <string name="app_license_title">BravePipe’s licence</string>
     <string name="tab_licenses">Licences</string>
     <string name="title_licenses">Third-party licences</string>
-    <string name="download_to_sdcard_error_message">Downloading to SD card not possible. Reset download folder location\?</string>
     <string name="settings_category_player_behavior_title">Behaviour</string>
     <string name="peertube_instance_url_summary">Select your favourite PeerTube instances</string>
     <string name="resume_on_audio_focus_gain_summary">Continue playing after interruptions (e.g. phone calls)</string>
-    <string name="upload_date_text">Published on %1$s</string>
     <string name="error_report_button_text">Report this error via e-mail</string>
     <string name="night_theme_summary">Select your favorite night theme – %s</string>
     <string name="no_player_found">No stream player found. Install VLC\?</string>
-    <string name="install">Install</string>
     <string name="ok">Okay</string>
-    <string name="open_in_browser">Open in browser</string>
-    <string name="no_player_found_toast">No stream player found (you can install VLC to play it).</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="mark_as_watched">Mark as watched</string>
-    <string name="open_in_popup_mode">Open in popup mode</string>
-    <string name="open_with">Open with</string>
-    <string name="share">Share</string>
-    <string name="download">Download</string>
-    <string name="controls_download_desc">Download stream file</string>
-    <string name="search">Search</string>
-    <string name="settings">Settings</string>
 </resources>

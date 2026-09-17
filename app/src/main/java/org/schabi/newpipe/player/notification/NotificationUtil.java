@@ -4,18 +4,14 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static androidx.media.app.NotificationCompat.MediaStyle;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
 
-import android.annotation.SuppressLint;
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.PendingIntentCompat;
@@ -30,9 +26,6 @@ import org.schabi.newpipe.player.PlayerService;
 import org.schabi.newpipe.player.mediasession.MediaSessionPlayerUi;
 import org.schabi.newpipe.util.NavigationHelper;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -43,9 +36,6 @@ public final class NotificationUtil {
     private static final String TAG = NotificationUtil.class.getSimpleName();
     private static final boolean DEBUG = Player.DEBUG;
     private static final int NOTIFICATION_ID = 123789;
-
-    @NotificationConstants.Action
-    private final int[] notificationSlots = NotificationConstants.SLOT_DEFAULTS.clone();
 
     private NotificationManagerCompat notificationManager;
     private NotificationCompat.Builder notificationBuilder;
@@ -98,14 +88,8 @@ public final class NotificationUtil {
         }
         notificationManager = NotificationManagerCompat.from(player.getContext());
 
-        // setup media style (compact notification slots and media session)
+        // Notification actions are supplied by the media session.
         final MediaStyle mediaStyle = new MediaStyle();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            // notification actions are ignored on Android 13+, and are replaced by code in
-            // MediaSessionPlayerUi
-            final int[] compactSlots = initializeNotificationSlots();
-            mediaStyle.setShowActionsInCompactView(compactSlots);
-        }
         player.UIs()
                 .get(MediaSessionPlayerUi.class)
                 .flatMap(MediaSessionPlayerUi::getSessionToken)
@@ -123,7 +107,7 @@ public final class NotificationUtil {
     }
 
     /**
-     * Updates the notification builder and the button icons depending on the playback state.
+     * Updates the notification content from the player.
      */
     private synchronized void updateNotification() {
         if (DEBUG) {
@@ -136,32 +120,8 @@ public final class NotificationUtil {
         notificationBuilder.setContentTitle(player.getVideoTitle());
         notificationBuilder.setContentText(player.getUploaderName());
         notificationBuilder.setTicker(player.getVideoTitle());
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            // notification actions are ignored on Android 13+, and are replaced by code in
-            // MediaSessionPlayerUi
-            updateActions(notificationBuilder);
-        }
     }
 
-
-    @SuppressLint("RestrictedApi")
-    public boolean shouldUpdateBufferingSlot() {
-        if (notificationBuilder == null) {
-            // if there is no notification active, there is no point in updating it
-            return false;
-        } else if (notificationBuilder.mActions.size() < 3) {
-            // this should never happen, but let's make sure notification actions are populated
-            return true;
-        }
-
-        // only second and third slot could contain PLAY_PAUSE_BUFFERING, update them only if they
-        // are not already in the buffering state (the only one with a null action intent)
-        return (notificationSlots[1] == NotificationConstants.PLAY_PAUSE_BUFFERING
-                && notificationBuilder.mActions.get(1).actionIntent != null)
-                || (notificationSlots[2] == NotificationConstants.PLAY_PAUSE_BUFFERING
-                && notificationBuilder.mActions.get(2).actionIntent != null);
-    }
 
     public static void startForegroundWithDummyNotification(final PlayerService service) {
         final var builder = setupNotificationBuilder(service, new MediaStyle());
@@ -208,68 +168,10 @@ public final class NotificationUtil {
 
     private static void startForeground(final PlayerService service,
                                         final Notification notification) {
-        // ServiceInfo constants are not used below Android Q, so 0 is set here
-        final int serviceType = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                ? ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK : 0;
-        ServiceCompat.startForeground(service, NOTIFICATION_ID, notification, serviceType);
+        ServiceCompat.startForeground(service, NOTIFICATION_ID, notification,
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
     }
 
-
-    /////////////////////////////////////////////////////
-    // ACTIONS
-    /////////////////////////////////////////////////////
-
-    /**
-     * The compact slots array from settings contains indices from 0 to 4, each referring to one of
-     * the five actions configurable by the user. However, if the user sets an action to "Nothing",
-     * then all of the actions coming after will have a "settings index" different than the index
-     * of the corresponding action when sent to the system.
-     *
-     * @return the indices of compact slots referred to the list of non-nothing actions that will be
-     *         sent to the system
-     */
-    private int[] initializeNotificationSlots() {
-        final Collection<Integer> settingsCompactSlots = NotificationConstants
-                .getCompactSlotsFromPreferences(player.getContext(), player.getPrefs());
-        final List<Integer> adjustedCompactSlots = new ArrayList<>();
-
-        int nonNothingIndex = 0;
-        for (int i = 0; i < 5; ++i) {
-            notificationSlots[i] = player.getPrefs().getInt(
-                    player.getContext().getString(NotificationConstants.SLOT_PREF_KEYS[i]),
-                    NotificationConstants.SLOT_DEFAULTS[i]);
-
-            if (notificationSlots[i] != NotificationConstants.NOTHING) {
-                if (settingsCompactSlots.contains(i)) {
-                    adjustedCompactSlots.add(nonNothingIndex);
-                }
-                nonNothingIndex += 1;
-            }
-        }
-
-        return adjustedCompactSlots.stream().mapToInt(Integer::intValue).toArray();
-    }
-
-    @SuppressLint("RestrictedApi")
-    private void updateActions(final NotificationCompat.Builder builder) {
-        builder.mActions.clear();
-        for (int i = 0; i < 5; ++i) {
-            addAction(builder, notificationSlots[i]);
-        }
-    }
-
-    private void addAction(final NotificationCompat.Builder builder,
-                           @NotificationConstants.Action final int slot) {
-        @Nullable final NotificationActionData data =
-                NotificationActionData.fromNotificationActionEnum(player, slot);
-        if (data == null) {
-            return;
-        }
-
-        final PendingIntent intent = PendingIntentCompat.getBroadcast(player.getContext(),
-                NOTIFICATION_ID, new Intent(data.action()), FLAG_UPDATE_CURRENT, false);
-        builder.addAction(new NotificationCompat.Action(data.icon(), data.name(), intent));
-    }
 
     private Intent getIntentForNotification() {
         if (player.audioPlayerSelected() || player.popupPlayerSelected()) {

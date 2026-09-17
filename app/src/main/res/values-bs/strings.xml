@@ -44,16 +44,11 @@
     <string name="crash_the_player">Prekinite pokretač</string>
     <string name="show_play_with_kodi_summary">Prikažite postavku da biste video preko KODI medijskog centra video pokrenuli</string>
     <string name="notification_scale_to_square_image_title">Izrežite sličicu na omjer slike 1:1</string>
-    <string name="notification_action_0_title">Prvo radno dugme</string>
     <string name="notification_scale_to_square_image_summary">Izrežite sličicu videa prikazanu u obavještenju sa omjera stranica 16:9 na 1:1</string>
-    <string name="notification_action_1_title">Drugo radno dugme</string>
-    <string name="notification_action_2_title">Treće radno dugme</string>
     <string name="notification_action_3_title">Četvrto radno dugme</string>
     <string name="notification_action_4_title">Peto radno dugme</string>
-    <string name="notification_actions_at_most_three">Možete najviše tri radnje odabrati za prikaz u kompaktnom obavještaju!</string>
     <string name="notification_action_repeat">Ponovi</string>
     <string name="notification_action_shuffle">Pomiješajte</string>
-    <string name="notification_actions_summary">Uredite svaku radnju obavještenja ispod dodirom na nju. Odaberite do tri od njih koje će biti prikazane u kompaktnom obavještenju pomoću potvrdnih okvira s desne strane.</string>
     <string name="notification_action_nothing">Ništa</string>
     <string name="notification_colorize_title">Obojite obavještenje</string>
     <string name="notification_action_buffering">Učitavanje</string>
@@ -230,8 +225,6 @@
     <string name="main_tabs_position_summary">Pomakni glavni birač kartica na dno</string>
     <string name="main_tabs_position_title">Položaj glavnih kartica</string>
     <string name="general_error">Greška</string>
-    <string name="download_to_sdcard_error_title">Vanjska pohrana nije dostupna</string>
-    <string name="download_to_sdcard_error_message">Preuzimanje na eksternu SD karticu nije moguće. Poništiti lokaciju mape za preuzimanje?</string>
     <string name="network_error">Greška mreže</string>
     <string name="could_not_load_thumbnails">Nije moguće učitati sve sličice</string>
     <string name="parsing_error">Nije moguće analizirati web stranicu</string>
@@ -246,10 +239,6 @@
     <string name="audio_streams_empty">Nisu pronađeni audio tokovi</string>
     <string name="missing_file">Datoteka je premještena ili izbrisana</string>
     <string name="invalid_directory">Fascikla sa popisima</string>
-    <string name="invalid_source">Nema takve datoteke/izvora sadržaja</string>
-    <string name="invalid_file">Datoteka ne postoji ili nedostaje dozvola za čitanje ili pisanje u nju</string>
-    <string name="file_name_empty_error">Naziv datoteke ne može biti prazan</string>
-    <string name="error_occurred_detail">Došlo je do greške: %1$s</string>
     <string name="no_streams_available_download">Nema dostupnih tokova za preuzimanje</string>
     <string name="saved_tabs_invalid_json">Nije moguće pročitati sačuvane kartice, pa se koriste zadane</string>
     <string name="restore_defaults">Vrati zadane postavke</string>
@@ -285,9 +274,6 @@
     <string name="video">Video</string>
     <string name="audio">Audio</string>
     <string name="retry">Pokušaj ponovo</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="drawer_header_description">Uključi/isključi uslugu, trenutno odabrana:</string>
     <string name="no_subscribers">Nema pretplatnika</string>
     <string name="subscribers_count_not_available">Broj pretplatnika nije dostupan</string>
@@ -317,7 +303,6 @@
     <string name="msg_running_detail">Dodirnite za detalje</string>
     <string name="msg_calculating_hash">Izračunavanje heša</string>
     <string name="msg_wait">Molimo pričekajte…</string>
-    <string name="msg_copied">Kopirano u međuspremnik</string>
     <string name="msg_failed_to_copy">Kopiranje u međuspremnik nije uspjelo</string>
     <string name="no_available_dir">Molimo vas da kasnije u postavkama definišete folder za preuzimanje</string>
     <string name="no_dir_yet">Još nije postavljen folder za preuzimanje, odaberite zadani folder za preuzimanje sada</string>
@@ -458,8 +443,6 @@
     <string name="import_title">Uvoz</string>
     <string name="import_from">Uvoz iz</string>
     <string name="export_to">Izvoz u</string>
-    <string name="import_ongoing">Uvoz…</string>
-    <string name="export_ongoing">Izvoz…</string>
     <string name="import_file_title">Uvoz datoteke</string>
     <string name="previous_export">Prethodni izvoz</string>
     <string name="subscriptions_import_unsuccessful">Nije moguće uvesti pretplate</string>
@@ -563,11 +546,7 @@
     <string name="start_downloads">Započni preuzimanja</string>
     <string name="pause_downloads">Pauziraj preuzimanja</string>
     <string name="downloads_storage_ask_title">Pitaj gdje preuzeti</string>
-    <string name="downloads_storage_ask_summary">Bit ćete upitani gdje želite sačuvati svako preuzimanje.\nOmogućite birač sistemskih foldera (SAF) ako želite preuzeti na eksternu SD karticu</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Bit ćete upitani gdje sačuvati svako preuzimanje</string>
-    <string name="downloads_storage_use_saf_title">Koristi birač sistemskih foldera (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Okvir za pristup pohrani\' omogućava preuzimanje na eksternu SD karticu</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Počevši od Androida 10, podržan je samo \'Storage Access Framework\'</string>
     <string name="choose_instance_prompt">Odaberite instancu</string>
     <string name="app_language_title">Jezik aplikacije</string>
     <string name="systems_language">Zadano sistemsko</string>
@@ -620,7 +599,6 @@
     <string name="recent">Nedavno</string>
     <string name="chapters">Poglavlja</string>
     <string name="no_app_to_open_intent">Nijedna aplikacija na vašem uređaju ne može ovo otvoriti</string>
-    <string name="no_appropriate_file_manager_message">Nije pronađen odgovarajući upravitelj datoteka za ovu radnju.\nMolimo instalirajte upravitelj datoteka ili pokušajte onemogućiti \'%s\' u postavkama preuzimanja</string>
     <string name="no_appropriate_file_manager_message_android_10">Nije pronađen odgovarajući upravitelj datoteka za ovu radnju.\nMolimo instalirajte upravitelj datoteka kompatibilan sa Storage Access Frameworkom</string>
     <string name="georestricted_content">Ovaj sadržaj nije dostupan u vašoj zemlji.</string>
     <string name="soundcloud_go_plus_content">Ovo je pjesma na SoundCloud Go+ platformi, barem u vašoj zemlji, tako da je BravePipe ne može strimovati ili preuzeti.</string>

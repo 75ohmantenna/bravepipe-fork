@@ -123,10 +123,6 @@
     <string name="video_streams_empty">Нема видео стримови</string>
     <string name="audio_streams_empty">Нема аудио стримови</string>
     <string name="invalid_directory">Таква папка не постои</string>
-    <string name="invalid_source">Таков фајл / содржина не постои</string>
-    <string name="invalid_file">Фајлот не постои или недостасува дозвола за негово читање или допишување</string>
-    <string name="file_name_empty_error">Името на фајлот не може да биде празно</string>
-    <string name="error_occurred_detail">Настана проблем: %1$s</string>
     <string name="sorry_string">Извинете, не требаше да се случи тоа.</string>
     <string name="error_report_button_text">Пријави ја грешката по мејл</string>
     <string name="error_snackbar_message">Извинете, нешто тргна наопаку.</string>
@@ -175,7 +171,6 @@
     <string name="msg_running">BravePipe Превземање</string>
     <string name="msg_running_detail">Притисни за детали</string>
     <string name="msg_wait">Почекајте…</string>
-    <string name="msg_copied">Копирано во привремена меморија</string>
     <string name="no_available_dir">Ве молиме, определете папка за преземања подоцна во поставките</string>
     <string name="msg_popup_permission">Оваа привилегија е потребна за
 \nотворање во подпрозорче</string>
@@ -259,8 +254,6 @@
     <string name="import_title">Внеси</string>
     <string name="import_from">Внеси од</string>
     <string name="export_to">Изнеси до</string>
-    <string name="import_ongoing">Внесување…</string>
-    <string name="export_ongoing">Изнесување…</string>
     <string name="import_file_title">Внеси датотека</string>
     <string name="previous_export">Претходно изнесување</string>
     <string name="subscriptions_import_unsuccessful">Неуспешно внесување членства</string>
@@ -328,8 +321,6 @@
     <string name="file_deleted">Дадотеката е избришана</string>
     <string name="app_update_notification_channel_name">Известување за ажурирање на апликација</string>
     <string name="app_update_notification_channel_description">Известување за нова BravePipe верзија</string>
-    <string name="download_to_sdcard_error_title">Надворешната меморија е недостапна</string>
-    <string name="download_to_sdcard_error_message">Преземањето на SD картичка не е возможно. Да се ресетира локацијата на папката за преземања ?</string>
     <string name="subscribers_count_not_available">Бројот на претплатници не е достапен</string>
     <string name="main_page_content_summary">Кои јазичиња се прикажани на главната страница</string>
     <string name="updates_setting_title">Ажурирања</string>
@@ -383,10 +374,6 @@
     <string name="enable_queue_limit_desc">Едно преземање ќе работи истовремено</string>
     <string name="start_downloads">Започни преземања</string>
     <string name="pause_downloads">Паузирај преземања</string>
-    <string name="downloads_storage_ask_summary">Ќе бидете прашани каде да го зачувате секое преземање.\nАктивирајте го инструментот за избор на системска папка (SAF), ако сакате да преземате на SD картичка</string>
-    <string name="downloads_storage_use_saf_title">Користи го инструментот за избор на системска папка (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Рамката за пристап до складирање овозможува преземања во надворешна SD-картичка.
-\nЗабелешка: некои уреди не се поддржани.</string>
     <string name="show_comments_summary">Исклучете за да ги скриете коментарите</string>
     <string name="enable_playback_state_lists_title">Позиции во листите</string>
     <string name="enable_playback_state_lists_summary">Покажете ги индикаторите за позиција за репродукција во листите</string>
@@ -473,7 +460,6 @@
         <item quantity="one">%d избран</item>
         <item quantity="other">%d избрани</item>
     </plurals>
-    <string name="no_appropriate_file_manager_message">Не е пронајден соодветен менаџер за фајлови за ова дејствие.\nВе молиме инсталирајте менаџер за фајлови (анг. file manager) или обидете се да деактивирате „%s“ во поставките за преземања</string>
     <string name="audio_track_type_secondary">секундарна</string>
     <string name="channel_tab_channels">Канали</string>
     <string name="channel_tab_playlists">Плејлисти</string>
@@ -531,7 +517,6 @@
     <string name="share_playlist_content_details">%1$s \n%2$s</string>
     <string name="delete_downloaded_files_confirm">Избриши ги сите преземени фајлови од дискот?</string>
     <string name="feed_use_dedicated_fetch_method_summary">Достапно за некои услуги, обично е многу побрзо но можно е да врати ограничено количество видеа и честопати нецелосни информации (пр. нема времетраење, вид на видеото, дали е во живо)</string>
-    <string name="notification_action_2_title">Копче за трето дејствие</string>
     <plurals name="days">
         <item quantity="one">%d ден</item>
         <item quantity="other">%d дена</item>
@@ -571,7 +556,6 @@
     <string name="reset_settings_summary">Ресетирај ги сите поставки до стандардните вредности</string>
     <string name="error_progress_lost">Прогресот е загубен, затоа што фајлот е избришан</string>
     <string name="pause_downloads_on_mobile">Прекини преземања на измерени мрежи</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Почнувајќи од Android 10, се поддржува само „Storage Access Framework“</string>
     <string name="choose_instance_prompt">Одберете инстанца</string>
     <string name="systems_language">Стандарден јазик на уредот</string>
     <string name="remove_watched">Отстрани ги гледаните</string>
@@ -615,8 +599,6 @@
     <string name="no">Не</string>
     <string name="search_showing_result_for">Прикажани резулати за: %s</string>
     <string name="notification_scale_to_square_image_summary">Исечи ја сликичката на видеото прикажана во известувањето од 16:9 до 1:1 сооднос</string>
-    <string name="notification_action_0_title">Копче за прво дејствие</string>
-    <string name="notification_action_1_title">Копче за второ дејствие</string>
     <string name="notification_action_3_title">Копче за четврто дејствие</string>
     <string name="notification_action_4_title">Копче за петто дејствие</string>
     <string name="notification_actions_summary_android13">Уредете го секое дејствие за известување подолу, допирајќи на него. Првите три дејствија (пушти/паузирај, претходно и следно) се поставени од системот и не можат да се приспособат.</string>
@@ -666,8 +648,6 @@
     <string name="unknown_format">Непознат формат</string>
     <string name="unknown_audio_track">Непозната</string>
     <string name="play">Пушти</string>
-    <string name="notification_actions_summary">Уредете го секое дејствие за известување подолу допирајќи на него. Изберете до три од нив за да се прикажат во компактното известување со користење на полињата за избор од десната страна.</string>
-    <string name="notification_actions_at_most_three">Можете да изберете најмногу три дејствија за да се прикажат во компактното известување!</string>
     <string name="no_live_streams">Нема стримови во живо</string>
     <string name="play_queue_audio_track">Аудио: %s</string>
     <string name="more_than_100_videos">100+ видеа</string>

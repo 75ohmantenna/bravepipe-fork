@@ -66,14 +66,10 @@
     <string name="show_play_with_kodi_summary">Vis eit val om å spela av ein video med mediasamlestaden Kodi</string>
     <string name="notification_scale_to_square_image_title">Skjer småbiletet til storleikshøvet 1:1</string>
     <string name="notification_scale_to_square_image_summary">Skjer videosmåbiletet som vert vist i varselet, ifrå storleikshøvet 16:9 til 1:1</string>
-    <string name="notification_action_0_title">Fyrste gjerdknapp</string>
-    <string name="notification_action_1_title">Andre gjerdknapp</string>
     <string name="notification_action_nothing">Ingenting</string>
     <string name="play_audio">Ljod</string>
-    <string name="notification_action_2_title">Tredje gjerdknapp</string>
     <string name="notification_action_3_title">Fjerde gjerdknapp</string>
     <string name="notification_action_4_title">Femte gjerdknapp</string>
-    <string name="notification_actions_at_most_three">Du kan berre velja opp til tre gjerder til å verta viste i det tette varselet.</string>
     <string name="notification_action_repeat">Gjenta</string>
     <string name="notification_action_shuffle">Bland</string>
     <string name="notification_colorize_title">Lét varsla</string>
@@ -103,7 +99,6 @@
     <string name="default_content_country_title">Forvalt innhaldsland</string>
     <string name="settings_category_player_title">Avspelar</string>
     <string name="crash_the_player">Krasj avspelaren</string>
-    <string name="notification_actions_summary">Trykk på ei varselgjerd under for å byta ho ut. Vel opptil tre av dei til å verta viste i det samantrengde varselet ved å merkja dei av på høgre side</string>
     <string name="use_inexact_seek_title">Nytt kvikk slurvne spoling</string>
     <string name="seek_duration_title">Hopplengd (framover/bakover)</string>
     <string name="use_inexact_seek_summary">Slurvne spoling lar avspelaren spole kvikkare, men slurvnare. 5, 15 og 25-sekundshopping verkar ikkje med dette</string>

@@ -95,7 +95,6 @@
     <string name="msg_running">BravePipe deskargatzen</string>
     <string name="msg_running_detail">Sakatu xehetasunetarako</string>
     <string name="msg_wait">Itxaron mesedez…</string>
-    <string name="msg_copied">Arbelera kopiatuta</string>
     <string name="no_available_dir">Ezarri deskargetarako karpeta bat ezarpenetan geroago</string>
     <string name="msg_popup_permission">Baimen hau beharrezkoa da
 \nlaster-leiho moduan irekitzeko</string>
@@ -228,10 +227,6 @@
     <string name="delete_search_history_alert">Ezabatu bilaketa-historia osoa?</string>
     <string name="search_history_deleted">Bilaketa-historia ezabatuta</string>
     <string name="invalid_directory">Karpeta ez da existitzen</string>
-    <string name="invalid_source">Fitxategi/edukiaren iturria ez da existitzen</string>
-    <string name="invalid_file">Fitxategia ez dago edo ez dago baimenik irakurri edo idazteko</string>
-    <string name="file_name_empty_error">Fitxategi-izena ezin da hutsik egon</string>
-    <string name="error_occurred_detail">Errore bat gertatu da: %1$s</string>
     <string name="no_streams_available_download">Ez dago igorpenik eskuragarri deskargatzeko</string>
     <string name="detail_drag_description">Arrastatu ordena aldatzeko</string>
     <string name="create">Sortu</string>
@@ -271,8 +266,6 @@
     <string name="import_title">Inportatu</string>
     <string name="import_from">Inportatu hemendik</string>
     <string name="export_to">Esportatu hona</string>
-    <string name="import_ongoing">Inportatzen…</string>
-    <string name="export_ongoing">Esportatzen…</string>
     <string name="import_file_title">Inportatu fitxategia</string>
     <string name="previous_export">Aurreko esportazioa</string>
     <string name="subscriptions_import_unsuccessful">Ezin izan dira harpidetzak inportatu</string>
@@ -318,8 +311,6 @@
     <string name="file_deleted">Fitxategia ezabatuta</string>
     <string name="app_update_notification_channel_name">Aplikazioaren eguneraketen jakinarazpena</string>
     <string name="app_update_notification_channel_description">BravePipe aplikazioaren bertsio berrien jakinarazpena</string>
-    <string name="download_to_sdcard_error_title">Kanpoko biltegiratzea ez dago eskuragarri</string>
-    <string name="download_to_sdcard_error_message">Ezin da SD txartel batera deskargatu. Deskargen karpeta berrezarri nahi duzu\?</string>
     <string name="saved_tabs_invalid_json">Ezin izan dira gordetako fitxak irakurri, lehenetsitakoak erabiltzen</string>
     <string name="restore_defaults">Berrezarri lehenetsitakoak</string>
     <string name="restore_defaults_confirmation">Lehenetsitako balioak berrezarri nahi dituzu?</string>
@@ -386,8 +377,6 @@
     <string name="start_downloads">Hasi deskargak</string>
     <string name="pause_downloads">Pausatu deskargak</string>
     <string name="downloads_storage_ask_title">Galdetu non deskargatu</string>
-    <string name="downloads_storage_ask_summary">Non gorde galdetuko zaizu deskarga bakoitzean.
-\nGaitu sistemaren karpeta hautatzailea (SAF) kanpoko SD txartel batera deskargatu nahi baduzu</string>
     <string name="no_one_watching">Ez dago inor ikusten</string>
     <plurals name="watching">
         <item quantity="one">Ikusle %s</item>
@@ -398,8 +387,6 @@
         <item quantity="one">Entzule %s</item>
         <item quantity="other">%s entzule</item>
     </plurals>
-    <string name="downloads_storage_use_saf_title">Erabili sistemaren karpeta hautatzailea (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">\'Biltegiaren Sarrera Framework\'ak kanpoko SD txartel betera deskargatzea ahalbidetzen du</string>
     <string name="clear_playback_states_title">Ezabatu erreprodukzio-kokapenak</string>
     <string name="clear_playback_states_summary">Erreprodukzio-kokapen guztiak ezabatzen ditu</string>
     <string name="delete_playback_states_alert">Ezabatu erreprodukzio-kokapen guztiak?</string>
@@ -521,13 +508,9 @@
     <string name="notification_action_nothing">Ezer ez</string>
     <string name="notification_action_buffering">Buferreratzen</string>
     <string name="notification_action_shuffle">Nahastu</string>
-    <string name="notification_actions_at_most_three">Gehienez hiru ekintza aukera ditzakezu jakinarazpen trinkoan erakusteko!</string>
     <string name="notification_action_repeat">Errepikatu</string>
     <string name="notification_action_4_title">Bostgarren ekintzaren botoia</string>
     <string name="notification_action_3_title">Laugarren ekintzaren botoia</string>
-    <string name="notification_action_2_title">Hirugarren ekintzaren botoia</string>
-    <string name="notification_action_1_title">Bigarren ekintzaren botoia</string>
-    <string name="notification_action_0_title">Lehenego ekintzaren botoia</string>
     <string name="notification_scale_to_square_image_summary">Ebaki jakinarazpenetan erakusten den bideo miniaturaren itxura-erlazioa 16:9tik 1:1era</string>
     <string name="notification_scale_to_square_image_title">Miniatura 1:1 itxura-erlaziora ebaki</string>
     <string name="search_showing_result_for">%s bilaketaren erantzunak erakusten</string>
@@ -535,7 +518,6 @@
     <string name="enqueue_stream">Jarri ilaran</string>
     <string name="show_original_time_ago_summary">Zerbitzuen jatorrizko testuak igorpenaren elementuetan ikusgai egongo dira</string>
     <string name="show_original_time_ago_title">Erakutsi «orain dela» jatorrizko denbora elementuetan</string>
-    <string name="notification_actions_summary">Editatu beheko jakinarazpen-ekintza bakoitza sakatuz. Hautatu horietako hiru gehienez jakinarazpen trinkoan erakusteko, eskuineko kontrol-laukiak erabiliz.</string>
     <string name="notification_colorize_summary">Androidek miniaturako kolore nagusiaren arabera jakinarazpenaren kolorea pertsonalizatzea baimendu (kontuan izan ez dagoela gailu guztietan erabilgarri)</string>
     <string name="notification_colorize_title">Koloreztatu jakinarazpena</string>
     <string name="show_thumbnail_summary">Erabili miniatura blokeo pantaila eta jakinarazpenentzako</string>
@@ -591,7 +573,6 @@
 \nKanal honetatik harpidetza kendu nahi duzu\?</string>
     <string name="feed_load_error_account_info">Ezin izan da \'%s\' jarioa kargatu.</string>
     <string name="feed_load_error">Errorea jarioa kargatzean</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android 10etik aurrera \'Biltegiaren Sarrera Framework\'a soilik onartzen da</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Non gorde galdetuko zaizu deskarga bakoitzean</string>
     <string name="no_dir_yet">Ez da deskargatzeko karpetarik ezarri oraindik, aukeratu lehenetsitako deskargatzeko karpeta orain</string>
     <string name="metadata_privacy">Pribatutasuna</string>
@@ -638,8 +619,6 @@
     <string name="detail_pinned_comment_view_description">Ainguratutako iruzkina</string>
     <string name="crash_the_player">Erreproduzitzailea kraskatu</string>
     <string name="checking_updates_toast">Eguneraketak bilatzen…</string>
-    <string name="no_appropriate_file_manager_message">Ez da fitxategi kudeatzaile bat aurkitu ekintza honetarako.
-\nMesedez, instalatu fitxategi kudeatzaile bat edo saiatu \'%s\' desgaitzen deskarga ezarpenetan</string>
     <string name="show_crash_the_player_summary">Erreproduzitzailea erabiltzean kraskadura aukera erakusten du</string>
     <string name="show_error_snackbar">Erakutsi errore barra bat</string>
     <string name="create_error_notification">Sortu errore jakinarazpen bat</string>
@@ -803,9 +782,6 @@
     <string name="tab_bookmarks_short">Erreprodukzio-zerrendak</string>
     <string name="permission_display_over_apps_message">Laster-leiho erreproduzitzailea erabiltzeko, hautatu %1$s Android-en ezarpenen menu hauan, eta gaitu %2$s.</string>
     <string name="permission_display_over_apps_permission_name">«Baimendu beste aplikazio batzuen gainean bistaratzea»</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sMM</string>
     <string name="delete_file">Ezabatu fitxategia</string>
     <string name="delete_entry">Ezabatu sarrera</string>
     <string name="select_a_feed_group">Hatutatu jario talde bat</string>

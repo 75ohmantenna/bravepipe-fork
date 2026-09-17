@@ -12,13 +12,8 @@
     <string name="notification_action_buffering">Soo Kicinaya</string>
     <string name="notification_action_shuffle">isku qas</string>
     <string name="notification_action_repeat">Ku celi</string>
-    <string name="notification_actions_at_most_three">Ugu badnaan waxad dooran kartaa sadex shay iney ka muuqdaan ogaysiiska yar!</string>
-    <string name="notification_actions_summary">Wax ka baddal hawsha ogaysiiska adigoo dushooda ku dhufanaya. Dooro ilaa sadex kamida si ay uga muuqdaan ogaysiiska yar adigoo saxaya santuuqa dhanka midig kaga yaala</string>
     <string name="notification_action_4_title">Batoonka shanaad</string>
     <string name="notification_action_3_title">Batoonka afraad</string>
-    <string name="notification_action_2_title">Batoonka saddexaad</string>
-    <string name="notification_action_1_title">Batoonka labaad</string>
-    <string name="notification_action_0_title">Batoonka koowaad</string>
     <string name="notification_scale_to_square_image_summary">La ekaysii galka muuqaalka xaga ogaysiisyada ka muuqda cabirka 1:1 ayadoo laga soo baddalayo 16:9</string>
     <string name="notification_scale_to_square_image_title">Galka la ekaysii cabirka 1:1</string>
     <string name="show_play_with_kodi_summary">Soo bandhig istikhyaar ah in muuqaalka lagu furo Kodi</string>
@@ -90,8 +85,6 @@
     <string name="subscriptions_import_unsuccessful">Lama soo galin karo rukunka</string>
     <string name="previous_export">Gudbin hore</string>
     <string name="import_file_title">Soo gali fayl</string>
-    <string name="export_ongoing">Gudbinaya…</string>
-    <string name="import_ongoing">Soo galinaya…</string>
     <string name="export_to">U gudbi</string>
     <string name="import_from">Kasoo gali</string>
     <string name="import_title">Soo gali</string>
@@ -196,7 +189,6 @@
     <string name="msg_popup_permission">Ogolaanshahan ayaa loo baahan yahay si
 \nloogu furo qaabka daaqada</string>
     <string name="no_available_dir">Fadlan khaanada wax lagu dajin doono hadhawto xaga fadhiga kasoo dooro</string>
-    <string name="msg_copied">Dhakada ayaa lagu qabtay</string>
     <string name="msg_wait">Fadlan sug…</string>
     <string name="msg_calculating_hash">Xisaabinaya baddalka</string>
     <string name="msg_running_detail">Faahfaahinta kusii dhufo</string>
@@ -269,10 +261,6 @@
     <string name="restore_defaults">Dib ugu celi sidii hore</string>
     <string name="saved_tabs_invalid_json">Lama akhrin karo daaqadihii la kaydiyay, …isticmaalaya kuwii app-ku kusoo baxay</string>
     <string name="no_streams_available_download">Wax la dajiyo lama heli karo</string>
-    <string name="error_occurred_detail">Khalad ayaa ka dhacay: %1$s</string>
-    <string name="file_name_empty_error">Magaca shayga ma madhnaan karo</string>
-    <string name="invalid_file">Shaygani ma jiro ama ogolaansho looma haysto in wax laga baddalo ama la furo</string>
-    <string name="invalid_source">Shaygan/tixraaca shayga lama heli karo</string>
     <string name="invalid_directory">khaanadan ma jirto</string>
     <string name="missing_file">Shaygan waa la guuriyay ama waa la tirtiray</string>
     <string name="audio_streams_empty">Wax la dhagaysto lama helin</string>
@@ -287,8 +275,6 @@
     <string name="parsing_error">Lama furi karo website-ka</string>
     <string name="could_not_load_thumbnails">Lama soo wada kicin karo galalkoo dhan</string>
     <string name="network_error">khalad xaga khadka ah</string>
-    <string name="download_to_sdcard_error_message">Ku dajinta kaydka dibadda (mimoriga) suurtogal ma aha. Dib u fadhiisi khaanada wax lagu dajiyo\?</string>
-    <string name="download_to_sdcard_error_title">Kaydka dibadda lama heli karo</string>
     <string name="general_error">Khalad</string>
     <string name="search_history_deleted">Wixii la raadiyay waa la tirtiray</string>
     <string name="delete_search_history_alert">Tirtir dhamaan wixii la raadiyay\?</string>
@@ -497,10 +483,6 @@
     <string name="systems_language">Aaladu saytahay</string>
     <string name="app_language_title">Luuqada Appka</string>
     <string name="choose_instance_prompt">Dooro qayb</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' loosoo gaabiyo SAF wuxuu suurto galiyaa in mimoriga wax lagu dajiyo</string>
-    <string name="downloads_storage_use_saf_title">Maamulaha faylasha ee aallada (SAF)</string>
-    <string name="downloads_storage_ask_summary">Shay walba meesha lagu kaydin doono ayaa lagu waydiin.
-\nSoo fur maamulaha faylasha aallada (SAF) hadaad rabto inaad ku dajiso mimoriga</string>
     <string name="downloads_storage_ask_title">Waydii meesha lagu dajinayo</string>
     <string name="pause_downloads">Wada qabo dajinta</string>
     <string name="start_downloads">Wada bilow dajinta</string>
@@ -614,7 +596,6 @@
 \nMa iska joojin rabtaa rukunka kanaalkan\?</string>
     <string name="feed_load_error_account_info">Lama soo kicin karo bandhigga: \'%s\'.</string>
     <string name="feed_load_error">Khalad ayaa ka dhacay sookicintii</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Laga bilaabo Android 10 kaliya waxaa la isticmaali \'SAF\'</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Dajin walba meeshii lagu kaydin lahaa ayaa lagu waydiin</string>
     <string name="disable_media_tunneling_summary">Iska xidh kala-leexinta muuqaalada/dhagaysiga hadaad lakulanto shaashad madow ama muuqaalka oo isistaaga</string>
     <string name="disable_media_tunneling_title">Xidh kala-leexinta</string>
@@ -635,7 +616,6 @@
     <string name="no">Maya</string>
     <string name="search_with_service_name">Raadi %1$s</string>
     <string name="search_with_service_name_and_filter">Raadi %1$s (%2$s)</string>
-    <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">Fur website-ka</string>
     <string name="sponsor_block_home_page_summary">Booqo website-ka rasmiga ah ee SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Ka bood Xaysisiistayaasha</string>
@@ -648,9 +628,6 @@
     <string name="sponsor_block_privacy_summary">Fur Siyaasada Sirdhawrka SponsorBlock.</string>
     <string name="sponsor_block_api_url_help_text">Kani waa tixraaca la isticmaali doono markuu app-ku u baahanyahay inuu ogaado qaybaha muuqaalka ee uu ka boodayo.\n\nWaxaad ku fadhiisin kartaa tixraaca rasmiga ah ee SponsorBlock adoo ku dhufanaya istikhyaarka hoose ee \'Isticmaal ka rasmiga ah\', inkastoo lagugula talinayo inaad akhrido Siyaasada Sir-dhawrka SponsorBlock.</string>
     <string name="sponsor_block_privacy_policy_text">Siyaasada Sirdhawrka SponsorBlock</string>
-    <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
-    <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
-    <string name="sponsor_block_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
     <string name="sponsor_block_skip_sponsor_toast">Waxaa laga booday xayisiiste</string>
     <string name="sponsor_block_skip_intro_toast">Waxaa laga booday kala-badhe/hordhac</string>
     <string name="sponsor_block_skip_outro_toast">Waxaa laga booday qaybaha dhamaadka/xusid</string>

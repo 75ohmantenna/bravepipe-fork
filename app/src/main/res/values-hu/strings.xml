@@ -75,7 +75,6 @@
     <string name="msg_running">A BravePipe letölt</string>
     <string name="msg_running_detail">Koppintson a részletekért</string>
     <string name="msg_wait">Kis türelmet…</string>
-    <string name="msg_copied">Vágólapra másolva</string>
     <string name="no_available_dir">Adjon meg később egy letöltési mappát a beállításokban</string>
     <string name="channel_unsubscribed">Csatornáról leiratkozva</string>
     <string name="subscription_change_failed">Nem sikerült megváltoztatni a feliratkozást</string>
@@ -159,10 +158,6 @@
     <string name="player_unrecoverable_failure">Helyreállíthatatlan lejátszóhiba történt</string>
     <string name="player_recoverable_failure">Lejátszóhiba helyreállítása</string>
     <string name="invalid_directory">Nincs ilyen mappa</string>
-    <string name="invalid_source">Nincs ilyen fájl- vagy tartalomforrás</string>
-    <string name="invalid_file">A fájl nem létezik, vagy hiányzik az olvasási vagy írási jogosultság</string>
-    <string name="file_name_empty_error">A fájlnév nem lehet üres</string>
-    <string name="error_occurred_detail">Hiba történt: %1$s</string>
     <string name="no_streams_available_download">Nincs letölthető adatfolyam</string>
     <string name="empty_list_subtitle">Nincs itt semmi pár tücskön kívül</string>
     <string name="detail_drag_description">Húzza az átrendezéshez</string>
@@ -263,8 +258,6 @@
     <string name="import_title">Importálás</string>
     <string name="import_from">Importálás a következőből</string>
     <string name="export_to">Exportálás a következőbe</string>
-    <string name="import_ongoing">Importálás…</string>
-    <string name="export_ongoing">Exportálás…</string>
     <string name="import_file_title">Fájl importálása</string>
     <string name="previous_export">Előző exportálás</string>
     <string name="subscriptions_import_unsuccessful">A feliratkozások importálása sikertelen</string>
@@ -313,8 +306,6 @@
     <string name="settings_category_clear_data_title">Adatok törlése</string>
     <string name="enable_playback_state_lists_summary">Lejátszási pozíciók megjelenítése a listákban</string>
     <string name="enable_playback_state_lists_title">Pozíciók a listákban</string>
-    <string name="downloads_storage_ask_summary">Meg fogja kérdezni, hogy hova mentse el az egyes letöltéseket.
-\nEngedélyezze a rendszermappa-választót (SAF), ha külső SD-kártyára akar letölteni</string>
     <string name="downloads_storage_ask_title">Kérdezze meg, hova töltse le</string>
     <string name="pause_downloads">Letöltések szüneteltetése</string>
     <string name="start_downloads">Letöltések indítása</string>
@@ -363,8 +354,6 @@
     <string name="list">Lista</string>
     <string name="list_view_mode">Lista nézet</string>
     <string name="missing_file">A fájl áthelyezve vagy törölve</string>
-    <string name="download_to_sdcard_error_message">A külső SD-kártyára történő mentés nem lehetséges. Visszaállítja a letöltési mappa helyét\?</string>
-    <string name="download_to_sdcard_error_title">A külső tárhely nem érhető el</string>
     <string name="watch_history_states_deleted">Lejátszási pozíciók törölve</string>
     <string name="delete_playback_states_alert">Törli az összes lejátszási pozíciót\?</string>
     <string name="clear_playback_states_summary">Összes lejátszási pozíció törlése</string>
@@ -431,8 +420,6 @@
     <string name="playback_speed_control">Lejátszás sebességének beállítása</string>
     <string name="clear_queue_confirmation_summary">Az egyik lejátszóról a másikra váltás törölheti a lejátszási sort</string>
     <string name="wifi_only">Csak Wi-Fi-hálózaton</string>
-    <string name="downloads_storage_use_saf_title">Rendszermappa-választó (SAF) használata</string>
-    <string name="downloads_storage_use_saf_summary">A „Storage Access Framework” lehetővé teszi a letöltések külső SD-kártyára történő mentését</string>
     <string name="permission_denied">A rendszer megtagadta a műveletet</string>
     <string name="never">Soha</string>
     <string name="feed_group_dialog_select_subscriptions">Feliratkozások kiválasztása</string>
@@ -464,13 +451,8 @@
     <string name="updates_setting_description">Frissítési értesítés megjelenítése, amikor egy új verzió érhető el</string>
     <string name="updates_setting_title">Frissítések</string>
     <string name="notification_colorize_summary">Az Android igazítsa az értesítés színét a bélyegkép meghatározó színéhez (nem minden eszközön érhető el)</string>
-    <string name="notification_actions_at_most_three">Legfeljebb három művelet jeleníthető meg a kompakt értesítésben!</string>
-    <string name="notification_actions_summary">Koppintással szerkesztheti az egyes értesítéseken megjelenő műveleteket. Válasszon ki legfeljebb hármat a jobb oldali jelölőnégyzetekkel, amelyek a kompakt értesítéseken is megjelennek.</string>
     <string name="notification_action_4_title">Ötödik műveletgomb</string>
     <string name="notification_action_3_title">Negyedik műveletgomb</string>
-    <string name="notification_action_2_title">Harmadik műveletgomb</string>
-    <string name="notification_action_1_title">Második műveletgomb</string>
-    <string name="notification_action_0_title">Első műveletgomb</string>
     <string name="app_language_title">Alkalmazás nyelve</string>
     <plurals name="seconds">
         <item quantity="one">%d másodperc</item>
@@ -574,8 +556,6 @@
     <string name="metadata_privacy_public">Nyilvános</string>
     <string name="metadata_privacy_unlisted">Nem listázott</string>
     <string name="off">Ki</string>
-    <string name="no_appropriate_file_manager_message">Nem található megfelelő fájlkezelő ehhez a művelethez.
-\nTelepítsen egy fájlkezelőt, vagy próbálja meg letiltani a következőt a letöltési beállításokban: „%s”</string>
     <plurals name="download_finished_notification">
         <item quantity="one">Letöltés befejezve</item>
         <item quantity="other">%s letöltés befejezve</item>
@@ -592,7 +572,6 @@
     <string name="metadata_support">Támogatás</string>
     <string name="open_website_license">Weboldal megnyitása</string>
     <string name="tablet_mode_title">Táblagép mód</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Az Android 10-től kezdve, csak a „Storage Access Framework” támogatott</string>
     <string name="feed_new_items">Új hírfolyamelemek</string>
     <string name="metadata_privacy_private">Privát</string>
     <string name="metadata_privacy_internal">Belső</string>
@@ -804,9 +783,6 @@
     <string name="trending_podcasts">Felkapott podcastok</string>
     <string name="trending_movies">Felkapott filmek és sorozatok</string>
     <string name="trending_music">Felkapott zenék</string>
-    <string name="short_thousand">%se</string>
-    <string name="short_million">%sm</string>
-    <string name="short_billion">%sM</string>
     <string name="permission_display_over_apps_message">A felugró ablakos lejátszó használatához válassza ki a(z) %1$s elemet a következő Android beállítások menüben, és engedélyezze a(z) %2$s elemet.</string>
     <string name="permission_display_over_apps_permission_name">„Megjelenítés a többi alkalmazás fölött” engedélyezése</string>
     <string name="delete_file">Fájl törlése</string>

@@ -6,7 +6,6 @@ import android.view.View;
 
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
 import org.schabi.newpipe.extractor.ServiceList;
-import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
@@ -39,11 +38,6 @@ public abstract class BraveDownloadDialog extends DialogFragment {
         videoStreams.addAll(getStreamsOfSpecifiedDelivery(info.getVideoStreams(), HLS));
 
         return videoStreams;
-    }
-
-    protected boolean braveIsHlsStream(
-            final Stream selectedStream) {
-        return selectedStream.getDeliveryMethod() == HLS;
     }
 
     @Override
@@ -82,14 +76,10 @@ public abstract class BraveDownloadDialog extends DialogFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(videoSegments -> {
-                    setVideoSegments(videoSegments);
+                    segments = videoSegments;
                     okButton.setEnabled(true);
                     hideLoading(dialogBinding);
                 });
-    }
-
-    private void setVideoSegments(final VideoSegment[] seg) {
-        this.segments = seg;
     }
 
     private void showLoading(final DownloadDialogBinding dialogBinding) {
@@ -114,7 +104,6 @@ public abstract class BraveDownloadDialog extends DialogFragment {
             final long nearLength,
             final ArrayList<MissionRecoveryInfo> recoveryInfo) {
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                streamInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo),
-                this.segments);
+                streamInfo, psName, psArgs, nearLength, recoveryInfo, segments);
     }
 }

@@ -93,7 +93,6 @@
     <string name="msg_running">BravePipe 下載中</string>
     <string name="msg_running_detail">輕觸以顯示詳細資訊</string>
     <string name="msg_wait">請稍候…</string>
-    <string name="msg_copied">已複製到剪貼簿</string>
     <string name="no_available_dir">稍後請在設定中選擇下載資料夾</string>
     <string name="msg_popup_permission">使用懸浮視窗模式
 \n需要此權限</string>
@@ -242,19 +241,13 @@
     <string name="auto_queue_summary">透過加入相關的串流來繼續結束的 (未重複) 播放佇列</string>
     <string name="file">檔案</string>
     <string name="invalid_directory">無效的資料夾</string>
-    <string name="invalid_source">無效的檔案或內容來源</string>
-    <string name="file_name_empty_error">檔案名稱不能留空</string>
-    <string name="error_occurred_detail">發生錯誤： %1$s</string>
     <string name="import_title">匯入</string>
     <string name="import_from">匯入自</string>
     <string name="export_to">匯出至</string>
-    <string name="import_ongoing">正在匯入…</string>
-    <string name="export_ongoing">正在匯出…</string>
     <string name="import_file_title">匯入檔案</string>
     <string name="subscriptions_import_unsuccessful">無法匯入訂閱內容</string>
     <string name="subscriptions_export_unsuccessful">無法匯出訂閱內容</string>
     <string name="previous_export">之前的匯出</string>
-    <string name="invalid_file">檔案不存在或缺少讀寫檔案的權限</string>
     <string name="import_youtube_instructions">從 Google Takeout 匯入您的 YouTube 訂閱： \n \n1. 移至此網址：%1$s \n2. 當被提示時登入帳號 \n3. 按一下「包含所有資料」，接著「取消選取全部」，然後僅勾選「訂閱」並按一下「確定」 \n4. 按一下「下一步」然後「建立匯出」 \n5. 在「下載」按鈕出現後按一下它 \n6. 點擊下方的「匯入檔案」並選取已下載的 zip 檔案 \n7. [若 zip 匯入失敗] 擷取 .csv 檔案 (通常位於「YouTube 與 YouTube Music/訂閱/訂閱.csv」)，按一下下方的「匯入檔案」並選取擷取的 csv 檔案</string>
     <string name="import_soundcloud_instructions_hint">您的 ID, soundcloud.com/yourid</string>
     <string name="import_network_expensive_warning">請記住，此操作可造成昂貴網路花費。 
@@ -318,8 +311,6 @@
     <string name="file_deleted">已刪除檔案</string>
     <string name="app_update_notification_channel_name">應用程式更新通知</string>
     <string name="app_update_notification_channel_description">新 BravePipe 版本通知</string>
-    <string name="download_to_sdcard_error_title">無法使用外部儲存空間</string>
-    <string name="download_to_sdcard_error_message">無法下載到外部 SD 卡。重設下載資料夾位置？</string>
     <string name="saved_tabs_invalid_json">無法讀取已儲存的分頁，因此使用預設分頁</string>
     <string name="restore_defaults">恢復預設值</string>
     <string name="restore_defaults_confirmation">您想要恢復預設值嗎？</string>
@@ -387,10 +378,6 @@
     <string name="start_downloads">開始下載</string>
     <string name="pause_downloads">暫停下載</string>
     <string name="downloads_storage_ask_title">詢問要下載到哪裡</string>
-    <string name="downloads_storage_ask_summary">每次下載都會詢問您要下載到哪裡。
-\n如果您想要下載到外部的 SD 記憶卡的話，請啟用系統資料夾挑選器 (SAF)</string>
-    <string name="downloads_storage_use_saf_title">使用系統資料夾挑選器 (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">「儲存空間存取框架」讓您可以下載到外部的 SD 記憶卡</string>
     <string name="clear_playback_states_title">刪除播放位置</string>
     <string name="clear_playback_states_summary">刪除所有播放位置</string>
     <string name="delete_playback_states_alert">刪除所有播放位置？</string>
@@ -510,13 +497,8 @@
     <string name="notification_action_buffering">正在緩衝</string>
     <string name="notification_action_shuffle">隨機</string>
     <string name="notification_action_repeat">循環</string>
-    <string name="notification_actions_at_most_three">您可以選取最多三個動作來顯示在簡潔通知中！</string>
-    <string name="notification_actions_summary">透過輕觸下方的通知動作來編輯它們。使用右側的勾選框，最多可以選取三個在簡潔通知中顯示。</string>
     <string name="notification_action_4_title">第五動作按鈕</string>
     <string name="notification_action_3_title">第四動作按鈕</string>
-    <string name="notification_action_2_title">第三動作按鈕</string>
-    <string name="notification_action_1_title">第二動作按鈕</string>
-    <string name="notification_action_0_title">第一動作按鈕</string>
     <string name="notification_scale_to_square_image_summary">將通知中顯示的影片縮圖從 16:9 裁剪到 1:1</string>
     <string name="notification_scale_to_square_image_title">將縮圖裁剪為 1:1 的長寬比</string>
     <string name="show_memory_leaks">顯示記憶體洩漏</string>
@@ -587,7 +569,6 @@
 \n您想要取消訂閱此頻道嗎？</string>
     <string name="feed_load_error_account_info">無法載入「%s」。</string>
     <string name="feed_load_error">載入 feed 時發生錯誤</string>
-    <string name="downloads_storage_use_saf_summary_api_29">從 Android 10 開始僅支援「儲存空間存取框架」</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會詢問您要下載到哪裡</string>
     <string name="no_dir_yet">尚未設定下載資料夾，立刻選擇預設的下載資料夾</string>
     <string name="off">關閉</string>
@@ -626,7 +607,6 @@
     <string name="show_error_snackbar">顯示錯誤 SnackBar</string>
     <string name="create_error_notification">建立錯誤通知</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到適合此動作的檔案管理員。 \n請安裝相容於儲存空間存取框架的檔案管理員</string>
-    <string name="no_appropriate_file_manager_message">找不到適合此動作的檔案管理員。 \n請安裝檔案管理員或在下載設定裡嘗試停用「%s」</string>
     <string name="error_report_notification_title">BravePipe 遭遇了一個錯誤，輕觸以回報</string>
     <string name="error_report_notification_toast">發生錯誤，請查看通知</string>
     <string name="detail_pinned_comment_view_description">釘選的留言</string>
@@ -793,9 +773,6 @@
     <string name="search_with_service_name_and_filter">搜尋 %1$s (%2$s)</string>
     <string name="migration_info_6_7_title">已移除 SoundCloud Top 50 頁面</string>
     <string name="migration_info_6_7_message">SoundCloud 已停止原有的 Top 50 排行榜。對應的標籤已從您的首頁移除。</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="migration_info_7_8_title">已移除 YouTube 合併熱門</string>
     <string name="migration_info_7_8_message">YouTube 自2025年7月21日起停止使用合併熱門頁面。BravePipe 用熱門直播取代預設熱門頁面。\n\n您也可以在「設定」→「內容」→「首頁內容」中選擇不同的熱門頁面。</string>
     <string name="trending_gaming">遊戲熱門</string>
@@ -850,7 +827,6 @@
     <string name="settings_category_sponsor_block_category_non_music_summary">僅用於音樂影片。這包括音樂影片中的開頭或結尾</string>
     <string name="later">稍後</string>
     <string name="invalid_color_toast">不正確的 HEX 顏色</string>
-    <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">查看網站</string>
     <string name="sponsor_block_home_page_summary">查看 SponsorBlock 的官方網站。</string>
     <string name="sponsor_block_enable_title">跳過贊助</string>

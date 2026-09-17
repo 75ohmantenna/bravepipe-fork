@@ -3,7 +3,6 @@
     <string name="title_activity_recaptcha">reCAPTCHA dijwarî</string>
     <string name="one_item_deleted">1 babet hate jêbirin.</string>
     <string name="no_available_dir">Ji kerema xwe peldanka dakêşanê paşê di mîhengan de diyar bikin</string>
-    <string name="msg_copied">Li clipboard-ê hate kopî kirin</string>
     <string name="msg_wait">Ji kerema xwe bisekinin…</string>
     <string name="msg_calculating_hash">Hesab hesibandin</string>
     <string name="msg_running_detail">Ji bo hûrguliyan tap bikin</string>
@@ -79,10 +78,6 @@
     <string name="restore_defaults">Veguhêrin Pêngavên</string>
     <string name="saved_tabs_invalid_json">Nekarin tabên tomarkirî bixwînin, ji ber vê yekê yên default bikar bînin</string>
     <string name="no_streams_available_download">Ji bo dakêşanê çem tune</string>
-    <string name="error_occurred_detail">Çewtiyek rû da: %1$s</string>
-    <string name="file_name_empty_error">Navê pelê vala nabe</string>
-    <string name="invalid_file">Pel tune an destûra xwendin an nivîsandinê jê tune</string>
-    <string name="invalid_source">Çavkaniyek pelê/naverokê wusa tune</string>
     <string name="invalid_directory">Peldankek wusa tune</string>
     <string name="missing_file">Pel veguhezt an jêbir</string>
     <string name="audio_streams_empty">Çemên bihîstbar nehatin dîtin</string>
@@ -97,8 +92,6 @@
     <string name="parsing_error">Malperê nekare parsek bike</string>
     <string name="could_not_load_thumbnails">Nekarî hemî wêneyan barkir</string>
     <string name="network_error">Çewtiya torê</string>
-    <string name="download_to_sdcard_error_message">Dakêşandin ji karta SD ya derveyî re ne gengaz e. Cihê peldanka dakêşanê ji nû ve were çêkirin\?</string>
-    <string name="download_to_sdcard_error_title">Depoya derveyî tune</string>
     <string name="general_error">Şaşî</string>
     <string name="search_history_deleted">Dîroka lêgerînê hate jêbirin.</string>
     <string name="delete_search_history_alert">Dîroka tevahî lêgerînê jê bibe\?</string>
@@ -258,13 +251,8 @@
     <string name="notification_action_buffering">Tampon kirin</string>
     <string name="notification_action_shuffle">Lihevxitin</string>
     <string name="notification_action_repeat">Dûbare</string>
-    <string name="notification_actions_at_most_three">Hûn dikarin herî zêde sê çalakiyan hilbijêrin da ku di ragihana kompakt de nîşan bidin!</string>
-    <string name="notification_actions_summary">Her çalakiyek agahdariyê li jêr bi lêdana li ser wê biguhezînin. Sê heb ji wan hilbijêrin ku bi karanîna qutîkên li milê rastê di notification kompakt de werin nîşan kirin.</string>
     <string name="notification_action_4_title">Bişkoja çalakiya pêncan</string>
     <string name="notification_action_3_title">Bişkoja çalakiya çaremîn</string>
-    <string name="notification_action_2_title">Bişkoja çalakiya sêyemîn</string>
-    <string name="notification_action_1_title">Bişkoja çalakiya duyemîn</string>
-    <string name="notification_action_0_title">Bişkoja çalakiya yekem</string>
     <string name="notification_scale_to_square_image_summary">Mîqneya vîdyoyê ya ku di agahdariyê de ji 16:9 ber 1:1 rêjeya aliyî ve hatî nîşankirin bipîve (dibe ku berevajîkirinan destnîşan bike)</string>
     <string name="notification_scale_to_square_image_title">Mîqneya pîvanê bi rêjeya aliyî ya 1:1 ve</string>
     <string name="show_play_with_kodi_summary">Vebijarkek ji bo lîstina vîdyoyek bi navgîniya navenda medya Kodi nîşan bidin</string>
@@ -362,10 +350,6 @@
     <string name="systems_language">Pergala wekî ku heyî</string>
     <string name="app_language_title">Zimanê appê</string>
     <string name="choose_instance_prompt">Mînakek hilbijêrin</string>
-    <string name="downloads_storage_use_saf_summary">\'Çarçoveya Gihîştina Storage\' daxistinan li qertek SD ya derveyî dihêle.
-\nHin cîhaz lihevnehatî ne</string>
-    <string name="downloads_storage_use_saf_title">SAF bikar bînin</string>
-    <string name="downloads_storage_ask_summary">Dê ji we were pirsîn ka hûn ê her dakêşanê li ku derê hilanînê</string>
     <string name="downloads_storage_ask_title">Li ku derê dakêşin bipirsin</string>
     <string name="pause_downloads">Dakêşan rawestînin</string>
     <string name="start_downloads">Dakêşan dest pê bikin</string>
@@ -453,8 +437,6 @@
     <string name="subscriptions_import_unsuccessful">Nekarîn abone nekarin</string>
     <string name="previous_export">Hinardeya berê</string>
     <string name="import_file_title">Pelê îthal bikin</string>
-    <string name="export_ongoing">Hinardekirin…</string>
-    <string name="import_ongoing">Tedixî ye…</string>
     <string name="import_from">Têxe ji</string>
     <string name="import_title">Têxe</string>
     <string name="export_to">Têxe kirin</string>

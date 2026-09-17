@@ -134,7 +134,6 @@
     <string name="msg_running">BravePipe Изтегляне</string>
     <string name="msg_running_detail">Докосни за подробности</string>
     <string name="msg_wait">Моля, изчакайте…</string>
-    <string name="msg_copied">Копирано в клипборда</string>
     <string name="settings_file_charset_title">Позволени символи в името на файловете</string>
     <string name="settings_file_replacement_character_summary">Невалидните символи се заменят с тази стойност</string>
     <string name="settings_file_replacement_character_title">Символ за замяна</string>
@@ -178,10 +177,6 @@
     <string name="search_history_deleted">Историята на търсене е изтрита</string>
     <string name="external_player_unsupported_link_type">Външните плейъри не поддържат този вид линкове</string>
     <string name="invalid_directory">Невалидна директория</string>
-    <string name="invalid_source">Невалиден файл или източник на съдържание</string>
-    <string name="invalid_file">Файлът не съществува или липсва разрешение за четене и/или запис</string>
-    <string name="file_name_empty_error">Името на файла не може да бъде празно</string>
-    <string name="error_occurred_detail">Възникна грешка: %1$s</string>
     <string name="no_streams_available_download">Не са налични източници за изтегляне</string>
     <string name="no_subscribers">Няма абонати</string>
     <string name="create">Създай</string>
@@ -278,8 +273,6 @@
     <string name="import_title">Внасяне</string>
     <string name="import_from">Внасяне от</string>
     <string name="export_to">Изнасяне във</string>
-    <string name="import_ongoing">Внасяне…</string>
-    <string name="export_ongoing">Изнасяне…</string>
     <string name="import_file_title">Файл с данни за внасяне</string>
     <string name="previous_export">Предишно изнасяне</string>
     <string name="subscriptions_import_unsuccessful">Неуспешно внасяне на абонатите</string>
@@ -361,11 +354,7 @@
     <string name="notification_action_3_title">Четвърто действие</string>
     <string name="seek_duration_title">Стъпка на превъртане</string>
     <string name="mark_as_watched">Маркирай като гледан</string>
-    <string name="notification_action_1_title">Второ действие</string>
-    <string name="notification_action_0_title">Първо действие</string>
-    <string name="notification_action_2_title">Трето действие</string>
     <string name="notification_action_4_title">Пето действие</string>
-    <string name="notification_actions_at_most_three">Изберете до три действия за компактното известие!</string>
     <string name="clear_queue_confirmation_title">Потвърждение за изтриване на опашката</string>
     <string name="auto">Автоматично</string>
     <string name="show_description_summary">Изключете за скриване на описанията под видеата и допълнителната информация</string>
@@ -465,7 +454,6 @@
     <string name="processing_may_take_a_moment">Обработка… Ще отнеме момент</string>
     <string name="new_seek_duration_toast">Поради ограничения в ExoPlayer, стъпката за превъртане е зададена на %d секунди</string>
     <string name="remove_watched_popup_warning">Потоците, които са били гледани преди и след добавянето им към плейлиста, ще бъдат премахнати. \nСигурни ли сте?</string>
-    <string name="downloads_storage_use_saf_summary">„Storage Access Framework“ позволява изтегляния във външна SD-карта</string>
     <string name="start_downloads">Започни изтеглянията</string>
     <string name="close">Затвори</string>
     <string name="clear_download_history">Изтрий историята на изтеглянията</string>
@@ -474,7 +462,6 @@
     <string name="download_failed">Изтеглянето се провали</string>
     <string name="restore_defaults">Възстанови първоначалните настройки</string>
     <string name="enable_playback_state_lists_title">Позиции в списъци</string>
-    <string name="download_to_sdcard_error_message">Изтеглянето от външна SD карта не е възможно. Нулиране на местоположението на папката за изтегляне?</string>
     <string name="unmute">Пусни звука</string>
     <string name="songs">Песни</string>
     <string name="artists">Изпълнители</string>
@@ -535,7 +522,6 @@
     <string name="crash_the_player">Разбийте плейъра</string>
     <string name="show_meta_info_summary">Изключете, за да скриете полетата с мета информация с допълнителна информация за създателя на потока, съдържанието на потока или заявка за търсене</string>
     <string name="auto_queue_toggle">Автоматично поставяне в опашка</string>
-    <string name="notification_actions_summary">Редактирайте всяко действие за известяване по-долу, като го докоснете. Изберете до три от тях, които да бъдат показани в компактното известие, като използвате квадратчетата за отметка вдясно.</string>
     <string name="prefer_original_audio_summary">Изберете оригиналния аудио запис независимо от езика</string>
     <string name="clear_queue_confirmation_summary">Превключването от един плейър на друг може да замени вашата опашка</string>
     <string name="prefer_descriptive_audio_summary">Изберете аудиозапис с описания за хора с увредено зрение, ако има такъв</string>
@@ -691,8 +677,6 @@
     <string name="remove_duplicates_message">Искате ли да премахнете всички дублиращи се потоци в този плейлист?</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Покажи само на негрупирани абонаменти</string>
     <string name="feed_hide_streams_title">Покажи следните потоци</string>
-    <string name="no_appropriate_file_manager_message">Не е намерен подходящ файлов мениджър за това действие.
-\nМоля, инсталирайте файлов мениджър или опитайте да деактивирате „%s“ в настройките за изтегляне</string>
     <string name="no_appropriate_file_manager_message_android_10">Не е намерен подходящ файлов мениджър за това действие.
 \nМоля, инсталирайте файлов мениджър, съвместим с Storage Access Framework</string>
     <string name="description_select_enable">Разрешете избирането на текст в описанието</string>
@@ -711,7 +695,6 @@
     <string name="delete_playback_states_alert">Изтрии всички позиции на възпроизвеждане?</string>
     <string name="watch_history_states_deleted">Позициите за възпроизвеждане са изтрити</string>
     <string name="main_tabs_position_title">Позиция на основните раздели</string>
-    <string name="download_to_sdcard_error_title">Няма налично външно хранилище</string>
     <string name="saved_tabs_invalid_json">Не можах да прочета запазените раздели, така че използвах тези по подразбиране</string>
     <string name="permission_display_over_apps">Дайте разрешение за показване върху други приложения</string>
     <string name="related_items_tab_description">Подобни продукти</string>
@@ -754,9 +737,6 @@
     <string name="disable_media_tunneling_summary">Деактивирайте медийното тунелиране, ако имате черен екран или заекване при възпроизвеждане на видео.</string>
     <string name="disable_media_tunneling_automatic_info">Мултимедийното тунелиране е деактивирано по подразбиране на вашето устройство, тъй като е известно, че моделът на вашето устройство не го поддържа.</string>
     <string name="error_timeout">Изчакване на връзката</string>
-    <string name="downloads_storage_ask_summary">Ще бъдете попитани къде да запазите всяко изтегляне.
-\nАктивирайте инструмента за избор на системна папка (SAF), ако искате да изтеглите на външна SD карта</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Започвайки от Android 10, се поддържа само „Storage Access Framework“</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Ще бъдете попитани къде да запазите всяко изтегляне</string>
     <string name="feed_update_threshold_title">Праг за актуализиране на емисия</string>
     <string name="feed_fetch_channel_tabs_summary">Раздели за извличане при актуализиране на емисията. Тази опция няма ефект, ако каналът се актуализира чрез бърз режим.</string>
@@ -790,7 +770,6 @@
     <string name="missions_header_pending">В очакване</string>
     <string name="error_postprocessing_failed">Неуспешна последваща обработка</string>
     <string name="pause_downloads_on_mobile">Прекъсване на мрежи с измерване</string>
-    <string name="downloads_storage_use_saf_title">Използване на системата за избор на папки (SAF)</string>
     <string name="detail_sub_channel_thumbnail_view_description">Миниатюра на аватара на канала</string>
     <string name="show_thumbnail_title">Покажи миниатюра</string>
     <string name="show_thumbnail_summary">Използване на миниатюри за фон на заключения екран и за известия</string>
@@ -818,9 +797,6 @@
     <string name="trending_podcasts">Популярни подкасти</string>
     <string name="trending_movies">Популярни филми и сериали</string>
     <string name="trending_music">Популярна музика</string>
-    <string name="short_thousand">%s хил.</string>
-    <string name="short_million">%s млн.</string>
-    <string name="short_billion">%s млрд.</string>
     <string name="permission_display_over_apps_message">За да използвате изскачащия плейър, моля, изберете %1$s в следното меню с настройки на Android и активирайте %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Разреши показване върху други приложения”</string>
     <string name="delete_file">Изтриване на файл</string>

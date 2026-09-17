@@ -1,7 +1,6 @@
 package org.schabi.newpipe.player.notification;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IntDef;
@@ -13,10 +12,6 @@ import org.schabi.newpipe.util.Localization;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
-import java.util.Collection;
-import java.util.List;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 public final class NotificationConstants {
 
@@ -94,28 +89,13 @@ public final class NotificationConstants {
 
     @Action
     public static final int[] SLOT_DEFAULTS = {
-            SMART_REWIND_PREVIOUS,
-            PLAY_PAUSE_BUFFERING,
-            SMART_FORWARD_NEXT,
             REPEAT,
             CLOSE,
     };
 
     public static final int[] SLOT_PREF_KEYS = {
-            R.string.notification_slot_0_key,
-            R.string.notification_slot_1_key,
-            R.string.notification_slot_2_key,
             R.string.notification_slot_3_key,
             R.string.notification_slot_4_key,
-    };
-
-
-    public static final List<Integer> SLOT_COMPACT_DEFAULTS = List.of(0, 1, 2);
-
-    public static final int[] SLOT_COMPACT_PREF_KEYS = {
-            R.string.notification_slot_compact_0_key,
-            R.string.notification_slot_compact_1_key,
-            R.string.notification_slot_compact_2_key,
     };
 
 
@@ -169,30 +149,4 @@ public final class NotificationConstants {
         }
     }
 
-
-    /**
-     * @param context the context to use
-     * @param sharedPreferences the shared preferences to query values from
-     * @return a sorted list of the indices of the slots to use as compact slots
-     */
-    public static Collection<Integer> getCompactSlotsFromPreferences(
-            @NonNull final Context context,
-            final SharedPreferences sharedPreferences) {
-        final SortedSet<Integer> compactSlots = new TreeSet<>();
-        for (int i = 0; i < 3; i++) {
-            final int compactSlot = sharedPreferences.getInt(
-                    context.getString(SLOT_COMPACT_PREF_KEYS[i]), Integer.MAX_VALUE);
-
-            if (compactSlot == Integer.MAX_VALUE) {
-                // settings not yet populated, return default values
-                return SLOT_COMPACT_DEFAULTS;
-            }
-
-            if (compactSlot >= 0) {
-                // compact slot is < 0 if there are less than 3 checked checkboxes
-                compactSlots.add(compactSlot);
-            }
-        }
-        return compactSlots;
-    }
 }

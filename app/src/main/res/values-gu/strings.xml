@@ -14,13 +14,8 @@
     <string name="notification_action_buffering">બફરિંગ</string>
     <string name="notification_action_shuffle">શફલ</string>
     <string name="notification_action_repeat">પુનરાવર્તન કરો</string>
-    <string name="notification_actions_at_most_three">તમે કોમ્પેક્ટ સૂચનામાં બતાવવા માટે ઓછામાં ઓછી ત્રણ ક્રિયાઓ પસંદ કરી શકો છો!</string>
-    <string name="notification_actions_summary">નીચેની દરેક સૂચના ક્રિયાને તેના પર ટેપ કરીને સંપાદિત કરો. જમણી બાજુના ચેકબોક્સેસનો ઉપયોગ કરીને કોમ્પેક્ટ સૂચનામાં બતાવવા માટે તેમાંથી ત્રણ સુધી પસંદ કરો.</string>
     <string name="notification_action_4_title">પાંચમો ક્રિયા બટન</string>
     <string name="notification_action_3_title">ચોથું ક્રિયા બટન</string>
-    <string name="notification_action_2_title">ત્રીજી ક્રિયા બટન</string>
-    <string name="notification_action_1_title">બીજું ક્રિયા બટન</string>
-    <string name="notification_action_0_title">પ્રથમ ક્રિયા બટન</string>
     <string name="notification_scale_to_square_image_summary">સૂચનામાં બતાવેલ વિડિઓ થંબનેલને ૧૬:૯ થી ૧:૧ સાપેક્ષ ગુણોત્તરમાં કાપો</string>
     <string name="notification_scale_to_square_image_title">થંબનેલને ૧:૧ સાપેક્ષ ગુણોત્તરમાં કાપો</string>
     <string name="show_play_with_kodi_summary">કોડિ મીડિયા સેન્ટર દ્વારા વિડિઓ ચલાવવાનો વિકલ્પ દર્શાવો</string>

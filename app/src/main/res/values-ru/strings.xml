@@ -53,7 +53,6 @@
     <string name="msg_error">Ошибка</string>
     <string name="msg_running">BravePipe загружает</string>
     <string name="msg_running_detail">Подробнее</string>
-    <string name="msg_copied">Скопировано в буфер обмена</string>
     <string name="no_available_dir">Выберите папку для загрузки позже в настройках</string>
     <string name="show_age_restricted_content_title">Контент с возрастным ограничением</string>
     <string name="general_error">Ошибка</string>
@@ -231,10 +230,6 @@
     <string name="import_data_summary">Текущие подписки, плейлисты, история и (опционально) настройки будут заменены</string>
     <string name="export_data_summary">Экспорт подписок, плейлистов, истории и настроек</string>
     <string name="invalid_directory">Папка не существует</string>
-    <string name="invalid_source">Папка или источник контента не существуют</string>
-    <string name="invalid_file">Файл не существует или нет разрешения на его чтение или запись</string>
-    <string name="file_name_empty_error">Имя файла не может быть пустым</string>
-    <string name="error_occurred_detail">Произошла ошибка: %1$s</string>
     <string name="detail_drag_description">Перетащите, чтобы изменить порядок</string>
     <string name="create">Создать</string>
     <string name="dismiss">Скрыть</string>
@@ -269,8 +264,6 @@
     <string name="import_title">Импорт</string>
     <string name="import_from">Импорт из</string>
     <string name="export_to">Экспорт в</string>
-    <string name="import_ongoing">Импорт…</string>
-    <string name="export_ongoing">Экспорт…</string>
     <string name="import_file_title">Импорт файла</string>
     <string name="previous_export">Предыдущий экспорт</string>
     <string name="subscriptions_import_unsuccessful">Не удалось импортировать подписки</string>
@@ -344,8 +337,6 @@
     <string name="list">Список</string>
     <string name="grid">Сетка</string>
     <string name="auto">Автоматически</string>
-    <string name="download_to_sdcard_error_message">Загрузка на SD-карту невозможна. Сбросить расположение папки загрузки\?</string>
-    <string name="download_to_sdcard_error_title">Внешнее хранилище недоступно</string>
     <string name="main_page_content_summary">Вкладки, видимые на главной странице</string>
     <string name="restore_defaults">Значения по умолчанию</string>
     <string name="restore_defaults_confirmation">Восстановить значения по умолчанию\?</string>
@@ -410,10 +401,6 @@
     <string name="start_downloads">Начать загрузку</string>
     <string name="pause_downloads">Приостановить загрузку</string>
     <string name="downloads_storage_ask_title">Запрашивать папку загрузки</string>
-    <string name="downloads_storage_ask_summary">Для каждой загрузки запрашивать папку для сохранения.
-\nВключите системный выбор папки (SAF), если хотите загружать на внешнюю SD-карту</string>
-    <string name="downloads_storage_use_saf_title">Системный выбор папки (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">«Storage Access Framework» позволяет сохранять файлы на внешнюю SD-карту</string>
     <string name="clear_playback_states_title">Очистить позиции воспроизведения</string>
     <string name="clear_playback_states_summary">Удалить все позиции воспроизведения</string>
     <string name="delete_playback_states_alert">Удалить все позиции воспроизведения\?</string>
@@ -556,13 +543,8 @@
     <string name="notification_action_buffering">Буферизация</string>
     <string name="notification_action_shuffle">Перемешать</string>
     <string name="notification_action_repeat">Повтор</string>
-    <string name="notification_actions_at_most_three">В компактном уведомлении доступно не более трёх действий!</string>
-    <string name="notification_actions_summary">Отредактируйте каждое действие уведомления ниже, нажав на него. Выберите до трёх из них, которые будут отображаться в компактном уведомлении, используя флажки справа.</string>
     <string name="notification_action_4_title">Пятое действие</string>
     <string name="notification_action_3_title">Четвёртое действие</string>
-    <string name="notification_action_2_title">Третье действие</string>
-    <string name="notification_action_1_title">Второе действие</string>
-    <string name="notification_action_0_title">Первое действие</string>
     <string name="notification_scale_to_square_image_summary">Масштабировать миниатюру видео 16:9 к 1:1 (возможны искажения)</string>
     <string name="notification_scale_to_square_image_title">Миниатюра 1:1</string>
     <string name="show_memory_leaks">Показать утечки памяти</string>
@@ -633,7 +615,6 @@
     <string name="feed_load_error">Ошибка загрузки подписки</string>
     <string name="open_website_license">Открыть веб-сайт</string>
     <string name="account_terminated">Аккаунт отключён</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Начиная с Android 10, поддерживается только \"Storage Access Framework\"</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Спрашивать, куда сохранять каждую загрузку</string>
     <string name="no_dir_yet">Папка для загрузки ещё не выбрана, укажите папку для загрузки сейчас</string>
     <string name="off">Отключить</string>
@@ -691,8 +672,6 @@
     <string name="error_report_notification_toast">Произошла ошибка, подробнее в уведомлении</string>
     <string name="show_error_snackbar">Показать снэк-бар с ошибкой</string>
     <string name="create_error_notification">Показать уведомление об ошибке</string>
-    <string name="no_appropriate_file_manager_message">Не найден подходящий для этого действия файловый менеджер.
-\nУстановите файловый менеджер, или попробуйте отключить \'%s\' в настройках загрузок</string>
     <string name="no_appropriate_file_manager_message_android_10">Не найден подходящий для этого действия файловый менеджер.
 \nУстановите файловый менеджер, совместимый с Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Закреплённый комментарий</string>
@@ -846,9 +825,6 @@
     <string name="channel_tab_likes">Лайки</string>
     <string name="migration_info_6_7_title">Страница SoundCloud Top 50 удалена</string>
     <string name="migration_info_6_7_message">SoundCloud прекратил поддерживать оригинальные чарты Top 50. Соответствующая вкладка была удалена с вашей главной страницы.</string>
-    <string name="short_thousand">%sК</string>
-    <string name="short_million">%sмлн</string>
-    <string name="short_billion">%sмлрд</string>
     <string name="trending_gaming">Игровые тренды</string>
     <string name="migration_info_7_8_title">Удалены объединённые тренды YouTube</string>
     <string name="migration_info_7_8_message">YouTube прекратил поддержку объединённой страницы трендов 21 июля 2025 года. BravePipe заменил страницу трендов по умолчанию на тренды в прямых трансляциях.\n\nВы также можете выбрать другие страницы трендов в \"Настройки &gt; Контент &gt; Главная страница\".</string>

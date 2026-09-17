@@ -164,8 +164,8 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                 toggleFullscreen();
             }
         }));
-        binding.queueButton.setOnClickListener(v -> onQueueClicked());
-        binding.segmentsButton.setOnClickListener(v -> onSegmentsClicked());
+        binding.queueButton.setOnClickListener(v -> openItemsList(true));
+        binding.segmentsButton.setOnClickListener(v -> openItemsList(false));
 
         binding.addToPlaylistButton.setOnClickListener(v ->
                 getParentActivity().map(FragmentActivity::getSupportFragmentManager)
@@ -602,29 +602,43 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         showOrHideButtons();
     }
 
-    private void onQueueClicked() {
-        isQueueVisible = true;
-
+    private void openItemsList(final boolean showQueue) {
+        if (showQueue) {
+            isQueueVisible = true;
+        } else {
+            areSegmentsVisible = true;
+        }
         hideSystemUIIfNeeded();
-        buildQueue();
+        if (showQueue) {
+            buildQueue();
+        } else {
+            buildSegments();
+        }
 
-        binding.itemsListHeaderTitle.setVisibility(View.GONE);
-        binding.itemsListHeaderDuration.setVisibility(View.VISIBLE);
-        binding.shuffleButton.setVisibility(View.VISIBLE);
-        binding.repeatButton.setVisibility(View.VISIBLE);
-        binding.addToPlaylistButton.setVisibility(View.VISIBLE);
+        binding.itemsListHeaderTitle.setVisibility(showQueue ? View.GONE : View.VISIBLE);
+        final int queueControlsVisibility = showQueue ? View.VISIBLE : View.GONE;
+        binding.itemsListHeaderDuration.setVisibility(queueControlsVisibility);
+        binding.shuffleButton.setVisibility(queueControlsVisibility);
+        binding.repeatButton.setVisibility(queueControlsVisibility);
+        binding.addToPlaylistButton.setVisibility(queueControlsVisibility);
 
         hideControls(0, 0);
         binding.itemsListPanel.requestFocus();
         animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
                 AnimationType.SLIDE_AND_ALPHA);
 
-        @Nullable final PlayQueue playQueue = player.getPlayQueue();
-        if (playQueue != null) {
-            binding.itemsList.scrollToPosition(playQueue.getIndex());
+        if (showQueue) {
+            @Nullable final PlayQueue playQueue = player.getPlayQueue();
+            if (playQueue != null) {
+                binding.itemsList.scrollToPosition(playQueue.getIndex());
+            }
+            updateQueueTime((int) player.getExoPlayer().getCurrentPosition());
+        } else {
+            final int adapterPosition = getNearestStreamSegmentPosition(
+                    player.getExoPlayer().getCurrentPosition());
+            segmentAdapter.selectSegmentAt(adapterPosition);
+            binding.itemsList.scrollToPosition(adapterPosition);
         }
-
-        updateQueueTime((int) player.getExoPlayer().getCurrentPosition());
     }
 
     private void buildQueue() {
@@ -643,29 +657,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
         binding.itemsListClose.setOnClickListener(view -> closeItemsList());
     }
 
-    private void onSegmentsClicked() {
-        areSegmentsVisible = true;
-
-        hideSystemUIIfNeeded();
-        buildSegments();
-
-        binding.itemsListHeaderTitle.setVisibility(View.VISIBLE);
-        binding.itemsListHeaderDuration.setVisibility(View.GONE);
-        binding.shuffleButton.setVisibility(View.GONE);
-        binding.repeatButton.setVisibility(View.GONE);
-        binding.addToPlaylistButton.setVisibility(View.GONE);
-
-        hideControls(0, 0);
-        binding.itemsListPanel.requestFocus();
-        animate(binding.itemsListPanel, true, DEFAULT_CONTROLS_DURATION,
-                AnimationType.SLIDE_AND_ALPHA);
-
-        final int adapterPosition = getNearestStreamSegmentPosition(
-                player.getExoPlayer().getCurrentPosition());
-        segmentAdapter.selectSegmentAt(adapterPosition);
-        binding.itemsList.scrollToPosition(adapterPosition);
-    }
-
     private void buildSegments() {
         binding.itemsList.setAdapter(segmentAdapter);
         binding.itemsList.setClickable(true);
@@ -678,9 +669,6 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
 
         player.getCurrentStreamInfo().ifPresent(segmentAdapter::setItems);
 
-        binding.shuffleButton.setVisibility(View.GONE);
-        binding.repeatButton.setVisibility(View.GONE);
-        binding.addToPlaylistButton.setVisibility(View.GONE);
         binding.itemsListClose.setOnClickListener(view -> closeItemsList());
     }
 

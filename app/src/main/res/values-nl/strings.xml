@@ -77,7 +77,6 @@
     <string name="msg_running">BravePipe is aan het downloaden</string>
     <string name="msg_running_detail">Druk voor meer informatie</string>
     <string name="msg_wait">Even geduld…</string>
-    <string name="msg_copied">Gekopieerd naar klembord</string>
     <string name="no_available_dir">Selecteer een download map in de Instellingen</string>
     <string name="black_theme_title">Zwart</string>
     <string name="title_activity_recaptcha">reCAPTCHA-uitdaging</string>
@@ -248,15 +247,9 @@
     <string name="auto_queue_summary">Automatisch een gerelateerde stream toekennen bij het afspelen van de laatste stream in een niet-herhalende afspeelwachtlijst</string>
     <string name="file">Bestand</string>
     <string name="invalid_directory">Deze map bestaat niet</string>
-    <string name="invalid_source">Bestand/Inhoudsbron bestaat niet</string>
-    <string name="invalid_file">Het bestand bestaat niet of je bent onvoldoende gemachtigd om het te lezen/er naar te schrijven</string>
-    <string name="file_name_empty_error">De bestandsnaam mag niet blanco zijn</string>
-    <string name="error_occurred_detail">Er is een fout opgetreden: %1$s</string>
     <string name="import_title">Importeren</string>
     <string name="import_from">Importeren uit</string>
     <string name="export_to">Exporteren naar</string>
-    <string name="import_ongoing">Bezig met importeren…</string>
-    <string name="export_ongoing">Bezig met exporteren…</string>
     <string name="import_file_title">Bestand importeren</string>
     <string name="previous_export">Vorige exportering</string>
     <string name="subscriptions_import_unsuccessful">De abonnementen kunnen niet worden geïmporteerd</string>
@@ -332,8 +325,6 @@
     <string name="file_deleted">Bestand verwijderd</string>
     <string name="app_update_notification_channel_name">App-updates</string>
     <string name="app_update_notification_channel_description">Meldingen voor nieuwe New Pipe versies</string>
-    <string name="download_to_sdcard_error_title">Externe opslag niet beschikbaar</string>
-    <string name="download_to_sdcard_error_message">Downloaden naar externe SD-kaart is niet mogelijk. Download map opnieuw instellen\?</string>
     <string name="saved_tabs_invalid_json">Fout bij lezen van opgeslagen tabbladen, standaard­tabbladen worden gebruikt</string>
     <string name="restore_defaults">Standaardinstellingen herstellen</string>
     <string name="restore_defaults_confirmation">Wil je de standaardinstellingen herstellen\?</string>
@@ -382,7 +373,6 @@
     <string name="no_comments">Geen reacties</string>
     <string name="error_unable_to_load_comments">Kan reacties niet laden</string>
     <string name="close">Sluiten</string>
-    <string name="downloads_storage_use_saf_summary">Het \'Storage Access Framework\' staat downloads naar een externe SD kaart toe</string>
     <string name="settings_category_clear_data_title">Gegevens wissen</string>
     <string name="enable_playback_resume_title">Afspelen hervatten</string>
     <string name="enable_playback_resume_summary">Verder afspelen vanaf laatste positie</string>
@@ -401,9 +391,6 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads pauzeren</string>
     <string name="downloads_storage_ask_title">Vragen waar bestanden gedownload moeten worden</string>
-    <string name="downloads_storage_ask_summary">U wordt gevraagd waar elk bestand wordt opgeslagen.
-\nSchakel de systeem map kiezer (SAF) in als u naar een externe SD-kaart wilt downloaden</string>
-    <string name="downloads_storage_use_saf_title">Mapkiezer van systeem gebruiken (SAF)</string>
     <string name="clear_playback_states_title">Afspeelposities verwijderen</string>
     <string name="clear_playback_states_summary">Verwijdert alle afspeelposities</string>
     <string name="delete_playback_states_alert">Alle afspeelposities verwijderen\?</string>
@@ -537,13 +524,8 @@
     <string name="notification_action_buffering">Aan het bufferen</string>
     <string name="notification_action_shuffle">Willekeurig afspelen</string>
     <string name="notification_action_repeat">Herhaal</string>
-    <string name="notification_actions_at_most_three">Je kan maximaal drie acties selecteren om te tonen in de compacte notificatie!</string>
-    <string name="notification_actions_summary">Pas elke meldings­actie hieronder aan door er op te tikken. Selecteer tot drie acties die getoond worden in de compacte melding door gebruik te maken van de selectievakjes aan de rechterkant.</string>
     <string name="notification_action_4_title">Vijfde actieknop</string>
     <string name="notification_action_3_title">Vierde actieknop</string>
-    <string name="notification_action_2_title">Derde actieknop</string>
-    <string name="notification_action_1_title">Tweede actieknop</string>
-    <string name="notification_action_0_title">Eerste actieknop</string>
     <string name="notification_scale_to_square_image_summary">Schaalt de miniatuurafbeelding van de video die getoond wordt in de melding van verhouding 16:9 naar 1:1</string>
     <string name="notification_scale_to_square_image_title">Schaal de miniatuurafbeelding tot verhouding 1:1</string>
     <string name="auto_queue_toggle">Automatisch in wachtrij plaatsen</string>
@@ -618,7 +600,6 @@
 \nWeet u zeker dat u wilt unsubscriben van dit kanaal\?</string>
     <string name="feed_load_error_account_info">Kan geen feed laden voor \'%s\'.</string>
     <string name="feed_load_error">Error bij het inladen van de feed</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Vanaf Android 10 is enkel \'Storage Access Framework\' ondersteund</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">U wordt gevraagd waar elk bestand wordt opgeslagen</string>
     <string name="no_dir_yet">Nog geen download­map gekozen, kies nu de standaard­download­map</string>
     <string name="detail_heart_img_view_description">Geliefd door de maker</string>
@@ -657,8 +638,6 @@
     <string name="error_report_notification_toast">Er is een fout opgetreden, zie de melding</string>
     <string name="create_error_notification">Maak een foutmelding</string>
     <string name="show_error_snackbar">Korte foutmelding weergeven</string>
-    <string name="no_appropriate_file_manager_message">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
-\nInstalleer een bestandsbeheerder of probeer \'%s\' uit te schakelen in de download instellingen</string>
     <string name="no_appropriate_file_manager_message_android_10">Er is geen geschikte bestandsbeheerder gevonden voor deze actie.
 \nInstalleer een bestandsbeheerder die compatibel is met het Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Vastgemaakt commentaar</string>
@@ -833,9 +812,6 @@
     <string name="migration_info_6_7_message">SoundCloud heeft de originele Top 50-hitlĳsten stopgezet. Het bĳbehorende tabblad is van uw hoofdpagina verwĳderd.</string>
     <string name="migration_info_7_8_title">YouTube gecombineerde trending verwĳderd</string>
     <string name="migration_info_7_8_message">YouTube heeft de gecombineerde trending­pagina per 21 juli 2025 stopgezet. BravePipe heeft de standaard­trendingpagina vervangen door de trending livestreams.\n\nU kunt ook andere trending­pagina\'s selecteren via \'Instellingen &gt; Inhoud &gt; Inhoud van de hoofdpagina\'.</string>
-    <string name="short_thousand">%s dznd.</string>
-    <string name="short_million">%s mln.</string>
-    <string name="short_billion">%s mld.</string>
     <string name="delete_file">Bestand verwĳderen</string>
     <string name="delete_entry">Item verwĳderen</string>
     <string name="entry_deleted">Item verwĳderd</string>

@@ -24,7 +24,6 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -849,14 +848,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
 
-        animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
-                () -> {
-                    updatePlayPauseButton(PlayButtonAction.PAUSE);
-                    animatePlayButtons(true, 200);
-                    if (!isAnyListViewOpen()) {
-                        binding.playPauseButton.requestFocus();
-                    }
-                });
+        animatePlayPauseButton(PlayButtonAction.PAUSE);
 
         binding.getRoot().setKeepScreenOn(true);
     }
@@ -879,14 +871,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             showControls(400);
             binding.loadingPanel.setVisibility(View.GONE);
 
-            animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
-                    () -> {
-                        updatePlayPauseButton(PlayButtonAction.PLAY);
-                        animatePlayButtons(true, 200);
-                        if (!isAnyListViewOpen()) {
-                            binding.playPauseButton.requestFocus();
-                        }
-                    });
+            animatePlayPauseButton(PlayButtonAction.PLAY);
         }
 
         binding.getRoot().setKeepScreenOn(false);
@@ -918,6 +903,17 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         animate(binding.currentDisplaySeek, false, 200, AnimationType.SCALE_AND_ALPHA);
         binding.loadingPanel.setVisibility(View.GONE);
         animate(binding.surfaceForeground, true, 100);
+    }
+
+    private void animatePlayPauseButton(final PlayButtonAction action) {
+        animate(binding.playPauseButton, false, 80, AnimationType.SCALE_AND_ALPHA, 0,
+                () -> {
+                    updatePlayPauseButton(action);
+                    animatePlayButtons(true, 200);
+                    if (!isAnyListViewOpen()) {
+                        binding.playPauseButton.requestFocus();
+                    }
+                });
     }
 
     private void animatePlayButtons(final boolean show, final long duration) {
@@ -1237,7 +1233,6 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                 return true;
             });
         }
-        captionPopupMenu.setOnDismissListener(this);
 
         // apply caption language from previous user preference
         final int textRendererIndex = player.getCaptionRendererIndex();
@@ -1296,21 +1291,21 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
                     + "menuItem.getItemId = [" + menuItem.getItemId() + "]");
         }
 
-        if (menuItem.getGroupId() == POPUP_MENU_ID_QUALITY) {
-            onQualityItemClick(menuItem);
-            return true;
-        } else if (menuItem.getGroupId() == POPUP_MENU_ID_AUDIO_TRACK) {
-            onAudioTrackItemClick(menuItem);
-            return true;
-        } else if (menuItem.getGroupId() == POPUP_MENU_ID_PLAYBACK_SPEED) {
-            final int speedIndex = menuItem.getItemId();
-            final float speed = PLAYBACK_SPEEDS[speedIndex];
-
-            player.setPlaybackSpeed(speed);
-            binding.playbackSpeed.setText(formatSpeed(speed));
+        switch (menuItem.getGroupId()) {
+            case POPUP_MENU_ID_QUALITY:
+                onQualityItemClick(menuItem);
+                return true;
+            case POPUP_MENU_ID_AUDIO_TRACK:
+                onAudioTrackItemClick(menuItem);
+                return true;
+            case POPUP_MENU_ID_PLAYBACK_SPEED:
+                final float speed = PLAYBACK_SPEEDS[menuItem.getItemId()];
+                player.setPlaybackSpeed(speed);
+                binding.playbackSpeed.setText(formatSpeed(speed));
+                return false;
+            default:
+                return false;
         }
-
-        return false;
     }
 
     private void onQualityItemClick(@NonNull final MenuItem menuItem) {
@@ -1474,24 +1469,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
             runnable.run();
 
-            // Manages the player controls after handling the view click.
-            if (player.getCurrentState() == STATE_COMPLETED) {
-                return;
-            }
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v == binding.playPauseButton
-                                    // Hide controls in fullscreen immediately
-                                    || (v == binding.screenRotationButton && isFullscreen())) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
+            onControlInteraction(v);
         };
     }
 
@@ -1503,27 +1481,30 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
             runnable.run();
 
-            // Manages the player controls after handling the view click.
-            if (player.getCurrentState() == STATE_COMPLETED) {
-                return true;
-            }
-            controlsVisibilityHandler.removeCallbacksAndMessages(null);
-            showHideShadow(true, DEFAULT_CONTROLS_DURATION);
-            animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
-                    AnimationType.ALPHA, 0, () -> {
-                        if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
-                            if (v == binding.playPauseButton
-                                    // Hide controls in fullscreen immediately
-                                    || (v == binding.screenRotationButton && isFullscreen())) {
-                                hideControls(0, 0);
-                            } else {
-                                hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
-                            }
-                        }
-                    });
+            onControlInteraction(v);
 
             return true;
         };
+    }
+
+    private void onControlInteraction(final View view) {
+        if (player.getCurrentState() == STATE_COMPLETED) {
+            return;
+        }
+        controlsVisibilityHandler.removeCallbacksAndMessages(null);
+        showHideShadow(true, DEFAULT_CONTROLS_DURATION);
+        animate(binding.playbackControlRoot, true, DEFAULT_CONTROLS_DURATION,
+                AnimationType.ALPHA, 0, () -> {
+                    if (player.getCurrentState() == STATE_PLAYING && !isSomePopupMenuVisible) {
+                        if (view == binding.playPauseButton
+                                // Hide controls in fullscreen immediately
+                                || (view == binding.screenRotationButton && isFullscreen())) {
+                            hideControls(0, 0);
+                        } else {
+                            hideControls(DEFAULT_CONTROLS_DURATION, DEFAULT_CONTROLS_HIDE_TIME);
+                        }
+                    }
+                });
     }
 
     public boolean onKeyDown(final int keyCode) {
@@ -1738,19 +1719,15 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             // make sure there is nothing left over from previous calls
             clearVideoSurface();
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { // >=API23
-                surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
-                binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
+            surfaceHolderCallback = new SurfaceHolderCallback(context, player.getExoPlayer());
+            binding.surfaceView.getHolder().addCallback(surfaceHolderCallback);
 
-                // ensure player is using an unreleased surface, which the surfaceView might not be
-                // when starting playback on background or during player switching
-                if (binding.surfaceView.getHolder().getSurface().isValid()) {
-                    // initially set the surface manually otherwise
-                    // onRenderedFirstFrame() will not be called
-                    player.getExoPlayer().setVideoSurfaceHolder(binding.surfaceView.getHolder());
-                }
-            } else {
-                player.getExoPlayer().setVideoSurfaceView(binding.surfaceView);
+            // ensure player is using an unreleased surface, which the surfaceView might not be
+            // when starting playback on background or during player switching
+            if (binding.surfaceView.getHolder().getSurface().isValid()) {
+                // initially set the surface manually otherwise
+                // onRenderedFirstFrame() will not be called
+                player.getExoPlayer().setVideoSurfaceHolder(binding.surfaceView.getHolder());
             }
 
             surfaceIsSetup = true;
@@ -1758,8 +1735,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
     }
 
     private void clearVideoSurface() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M // >=API23
-                && surfaceHolderCallback != null) {
+        if (surfaceHolderCallback != null) {
             binding.surfaceView.getHolder().removeCallback(surfaceHolderCallback);
             surfaceHolderCallback.release();
             surfaceHolderCallback = null;

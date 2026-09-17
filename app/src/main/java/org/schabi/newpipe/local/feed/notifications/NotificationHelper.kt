@@ -6,15 +6,11 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Build
 import android.provider.Settings
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.getSystemService
-import androidx.core.net.toUri
 import androidx.preference.PreferenceManager
 import org.schabi.newpipe.R
 import org.schabi.newpipe.extractor.stream.StreamInfoItem
@@ -29,8 +25,7 @@ class NotificationHelper(val context: Context) {
     private val manager = NotificationManagerCompat.from(context)
 
     /**
-     * Show notifications for new streams from a single channel. The individual notifications are
-     * expandable on Android 7.0 and later.
+     * Show expandable notifications for new streams from a single channel.
      *
      * Opening the summary notification will open the corresponding channel page. Opening the
      * individual notifications will open the corresponding video.
@@ -60,9 +55,7 @@ class NotificationHelper(val context: Context) {
             .setGroup(data.url)
             .setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_SUMMARY)
 
-        // Build a summary notification for Android versions < 7.0
-        val style = NotificationCompat.InboxStyle()
-            .setBigContentTitle(data.name)
+        val style = NotificationCompat.InboxStyle().setBigContentTitle(data.name)
         newStreams.forEach { style.addLine(it.name) }
         summaryBuilder.setStyle(style)
 
@@ -71,7 +64,7 @@ class NotificationHelper(val context: Context) {
             .getChannelIntent(context, data.serviceId, data.url)
             .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         summaryBuilder.setContentIntent(
-            PendingIntentCompat.getActivity(context, data.pseudoId, intent, 0, false)
+            PendingIntent.getActivity(context, data.pseudoId, intent, PendingIntent.FLAG_IMMUTABLE)
         )
 
         val avatarIcon =
@@ -120,12 +113,11 @@ class NotificationHelper(val context: Context) {
             .setCategory(NotificationCompat.CATEGORY_SOCIAL)
             .setContentIntent(
                 // Open the stream link in the player when clicking on the notification.
-                PendingIntentCompat.getActivity(
+                PendingIntent.getActivity(
                     context,
                     item.url.hashCode(),
                     NavigationHelper.getStreamIntent(context, serviceId, item.url, item.name),
-                    PendingIntent.FLAG_UPDATE_CURRENT,
-                    false
+                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             )
             .setSilent(true) // Avoid creating noise for individual stream notifications.
@@ -139,8 +131,7 @@ class NotificationHelper(val context: Context) {
          * If this is the case, the app cannot create any notifications
          * and display them to the user.
          * <br>
-         * On Android 26 and above, notification channels are used by NewPipe.
-         * These can be configured by the user, too.
+         * Notification channels can be configured by the user, too.
          * The notification channel for new streams is also checked by this method.
          *
          * @param context Context
@@ -148,15 +139,11 @@ class NotificationHelper(val context: Context) {
          * <code>false</code> otherwise
          */
         fun areNotificationsEnabledOnDevice(context: Context): Boolean {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val channelId = context.getString(R.string.streams_notification_channel_id)
-                val manager = context.getSystemService<NotificationManager>()!!
-                val enabled = manager.areNotificationsEnabled()
-                val channel = manager.getNotificationChannel(channelId)
-                enabled && channel?.importance != NotificationManager.IMPORTANCE_NONE
-            } else {
-                NotificationManagerCompat.from(context).areNotificationsEnabled()
-            }
+            val channelId = context.getString(R.string.streams_notification_channel_id)
+            val manager = context.getSystemService<NotificationManager>()!!
+            val channel = manager.getNotificationChannel(channelId)
+            return manager.areNotificationsEnabled() &&
+                channel?.importance != NotificationManager.IMPORTANCE_NONE
         }
 
         /**
@@ -172,20 +159,13 @@ class NotificationHelper(val context: Context) {
         }
 
         /**
-         * Open the system's notification settings for NewPipe on Android Oreo (API 26) and later.
-         * Open the system's app settings for NewPipe on previous Android versions.
+         * Open the system's notification settings for NewPipe.
          */
         fun openNewPipeSystemNotificationSettings(context: Context) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
-                    .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
-            } else {
-                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                intent.data = "package:${context.packageName}".toUri()
-                context.startActivity(intent)
-            }
+            val intent = Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS)
+                .putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            context.startActivity(intent)
         }
     }
 }

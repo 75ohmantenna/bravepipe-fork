@@ -75,7 +75,6 @@
     <string name="msg_running">Pobieranie BravePipe</string>
     <string name="msg_running_detail">Naciśnij, aby zobaczyć szczegóły</string>
     <string name="msg_wait">Proszę czekać…</string>
-    <string name="msg_copied">Skopiowano do schowka</string>
     <string name="no_available_dir">Zdefiniuj katalog zapisywania później w ustawieniach</string>
     <string name="app_ui_crash">Awaria aplikacji/interfejsu</string>
     <string name="start">Rozpocznij</string>
@@ -258,15 +257,9 @@
     <string name="auto_queue_summary">Gdy kończy się kolejka odtwarzania, dodaj do niej kolejną powiązaną pozycję</string>
     <string name="file">Plik</string>
     <string name="invalid_directory">Brak takiego folderu</string>
-    <string name="invalid_source">Brak takiego źródła pliku/zawartości</string>
-    <string name="invalid_file">Plik nie istnieje albo brakuje uprawnień do jego odczytu lub zapisu</string>
-    <string name="file_name_empty_error">Nazwa pliku nie może być pusta</string>
-    <string name="error_occurred_detail">Wystąpił błąd: %1$s</string>
     <string name="import_title">Importuj</string>
     <string name="import_from">Importuj z</string>
     <string name="export_to">Eksportuj do</string>
-    <string name="import_ongoing">Importowanie…</string>
-    <string name="export_ongoing">Eksportowanie…</string>
     <string name="import_file_title">Importuj plik</string>
     <string name="previous_export">Poprzedni eksport</string>
     <string name="subscriptions_import_unsuccessful">Nie udało się zaimportować subskrypcji</string>
@@ -338,8 +331,6 @@
     <string name="file_deleted">Usunięto plik</string>
     <string name="app_update_notification_channel_name">Powiadomienie o aktualizacji aplikacji</string>
     <string name="app_update_notification_channel_description">Powiadomienia o nowych wersjach BravePipe</string>
-    <string name="download_to_sdcard_error_title">Pamięć zewnętrzna niedostępna</string>
-    <string name="download_to_sdcard_error_message">Pobieranie na kartę pamięci nie jest możliwe. Zresetować lokalizację folderu zapisywania\?</string>
     <string name="saved_tabs_invalid_json">Nie udało się odczytać zapisanych kart, więc będą używane domyślne</string>
     <string name="restore_defaults">Przywróć domyślne</string>
     <string name="restore_defaults_confirmation">Czy chcesz przywrócić ustawienia domyślne\?</string>
@@ -406,11 +397,7 @@
     <string name="start_downloads">Rozpocznij pobieranie</string>
     <string name="pause_downloads">Wstrzymaj pobieranie</string>
     <string name="downloads_storage_ask_title">Pytaj, gdzie pobrać</string>
-    <string name="downloads_storage_ask_summary">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik.
-\nWłącz systemowy selektor folderów (SAF), jeśli chcesz pobierać pliki na kartę pamięci</string>
     <string name="error_timeout">Minął czas połączenia</string>
-    <string name="downloads_storage_use_saf_title">Używaj systemowego selektora folderów (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Storage Access Framework umożliwia pobieranie na kartę pamięci</string>
     <string name="clear_playback_states_title">Wyczyść pozycje odtwarzania</string>
     <string name="clear_playback_states_summary">Usuwa wszystkie pozycje odtwarzania</string>
     <string name="delete_playback_states_alert">Usunąć wszystkie pozycje odtwarzania\?</string>
@@ -553,13 +540,8 @@
     <string name="notification_action_buffering">Buforowanie</string>
     <string name="notification_action_shuffle">Losuj</string>
     <string name="notification_action_repeat">Powtórz</string>
-    <string name="notification_actions_at_most_three">Możesz wybrać co najwyżej trzy akcje do wyświetlania w kompaktowym powiadomieniu!</string>
-    <string name="notification_actions_summary">Edytuj każdą poniższą akcję powiadomienia, naciskając ją. Wybierz do trzech z nich, które mają być wyświetlane w kompaktowym powiadomieniu, korzystając z pól wyboru po prawej stronie</string>
     <string name="notification_action_4_title">Przycisk piątej akcji</string>
     <string name="notification_action_3_title">Przycisk czwartej akcji</string>
-    <string name="notification_action_2_title">Przycisk trzeciej akcji</string>
-    <string name="notification_action_1_title">Przycisk drugiej akcji</string>
-    <string name="notification_action_0_title">Przycisk pierwszej akcji</string>
     <string name="notification_scale_to_square_image_summary">Przycinaj miniaturę wideo wyświetlaną w powiadomieniu z proporcji 16:9 do 1:1</string>
     <string name="notification_scale_to_square_image_title">Przycinaj miniaturę do proporcji 1:1</string>
     <string name="enqueued">Dodano do kolejki</string>
@@ -628,7 +610,6 @@
 \nBravePipe nie będzie w stanie załadować tego kanału w przyszłości.
 \nCzy chcesz anulować subskrypcję tego kanału\?</string>
     <string name="feed_load_error_account_info">Nie udało się załadować kanału dla „%s”.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Począwszy od Androida 10 obsługiwany jest tylko Storage Access Framework</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Zostaniesz zapytany(-a), gdzie zapisać każdy pobierany plik</string>
     <string name="no_dir_yet">Nie ustawiono jeszcze folderu zapisywania, wybierz domyślny teraz</string>
     <string name="feed_load_error">Błąd podczas ładowania kanału</string>
@@ -676,8 +657,6 @@
     <string name="error_report_notification_toast">Wystąpił błąd, zobacz powiadomienie</string>
     <string name="show_error_snackbar">Pokaż snackbar z błędem</string>
     <string name="create_error_notification">Utwórz powiadomienie o błędzie</string>
-    <string name="no_appropriate_file_manager_message">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
-\nZainstaluj menedżer plików lub spróbuj wyłączyć „%s” w ustawieniach pobierania.</string>
     <string name="no_appropriate_file_manager_message_android_10">Nie znaleziono odpowiedniego menedżera plików dla tej akcji.
 \nZainstaluj menedżer plików zgodny z Storage Access Framework.</string>
     <string name="detail_pinned_comment_view_description">Przypięty komentarz</string>
@@ -856,9 +835,6 @@
     <string name="trending_podcasts">Podcasty na czasie</string>
     <string name="trending_movies">Filmy i programy na czasie</string>
     <string name="trending_music">Muzyka na czasie</string>
-    <string name="short_thousand">%stys.</string>
-    <string name="short_million">%smln</string>
-    <string name="short_billion">%smld</string>
     <string name="delete_file">Usuń plik</string>
     <string name="delete_entry">Usuń wpis</string>
     <string name="entry_deleted">Usunięto wpis</string>

@@ -2,7 +2,6 @@ package org.schabi.newpipe.local.subscription.workers
 
 import android.content.Context
 import android.content.pm.ServiceInfo
-import android.os.Build
 import android.os.Parcelable
 import android.util.Log
 import android.webkit.MimeTypeMap
@@ -33,11 +32,6 @@ class SubscriptionImportWorker(
     appContext: Context,
     params: WorkerParameters
 ) : CoroutineWorker(appContext, params) {
-    // This is needed for API levels < 31 (Android S).
-    override suspend fun getForegroundInfo(): ForegroundInfo {
-        return createForegroundInfo(applicationContext.getString(R.string.import_ongoing), null, 0, 0)
-    }
-
     override suspend fun doWork(): Result {
         val subscriptions =
             try {
@@ -157,21 +151,13 @@ class SubscriptionImportWorker(
                     WorkManager.getInstance(applicationContext).createCancelPendingIntent(id)
                 ).apply {
                     if (currentProgress > 0 && maxProgress > 0) {
-                        val progressText = "$currentProgress/$maxProgress"
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                            setSubText(progressText)
-                        } else {
-                            setContentInfo(progressText)
-                        }
+                        setSubText("$currentProgress/$maxProgress")
                     }
                 }.build()
-        val serviceType = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC else 0
-
-        return ForegroundInfo(NOTIFICATION_ID, notification, serviceType)
+        return ForegroundInfo(NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
     }
 
     companion object {
-        // Log tag length is limited to 23 characters on API levels < 24.
         private const val TAG = "SubscriptionImport"
 
         private const val NOTIFICATION_ID = 4568

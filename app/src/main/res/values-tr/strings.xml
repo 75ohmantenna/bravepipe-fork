@@ -74,7 +74,6 @@
     <string name="msg_running">BravePipe İndiriliyor</string>
     <string name="msg_running_detail">Ayrıntılar için dokunun</string>
     <string name="msg_wait">Lütfen bekleyin…</string>
-    <string name="msg_copied">Panoya kopyalandı</string>
     <string name="no_available_dir">Lütfen daha sonra ayarlardan uygun indirme klasörü belirleyin</string>
     <string name="could_not_setup_download_menu">İndirme menüsü ayarlanamadı</string>
     <string name="open_in_popup_mode">Açılır pencere modunda aç</string>
@@ -244,15 +243,9 @@
     <string name="auto_queue_summary">İlgili bir akış ekleyerek sonlanacak (yinelemeyen) oynatma sırasını sürdür</string>
     <string name="file">Dosya</string>
     <string name="invalid_directory">Böylesi klasör yok</string>
-    <string name="invalid_source">Böyle bir dosya/içerik kaynağı yok</string>
-    <string name="invalid_file">Dosya yok ya da okuma veya yazma izni bulunmuyor</string>
-    <string name="file_name_empty_error">Dosya adı boş olamaz</string>
-    <string name="error_occurred_detail">Hata oluştu: %1$s</string>
     <string name="import_title">İçe aktar</string>
     <string name="import_from">Şuradan içe aktar</string>
     <string name="export_to">Şuraya dışa aktar</string>
-    <string name="import_ongoing">İçe aktarılıyor…</string>
-    <string name="export_ongoing">Dışa aktarılıyor…</string>
     <string name="import_file_title">Dosyayı içe aktar</string>
     <string name="previous_export">Önceki dışa aktarım</string>
     <string name="subscriptions_import_unsuccessful">Abonelikler içe aktarılamadı</string>
@@ -328,8 +321,6 @@
     <string name="file_deleted">Dosya silindi</string>
     <string name="app_update_notification_channel_name">Uygulama güncelleme bildirimi</string>
     <string name="app_update_notification_channel_description">Yeni BravePipe sürümleri için bildirimler</string>
-    <string name="download_to_sdcard_error_title">Dış depolama kullanılamıyor</string>
-    <string name="download_to_sdcard_error_message">Dış SD karta indirilemiyor. İndirme klasörü konumu sıfırlansın mı\?</string>
     <string name="saved_tabs_invalid_json">Kayıtlı sekmeler okunamadı, bu nedenle öntanımlılar kullanılıyor</string>
     <string name="restore_defaults">Öntanımlıları geri yükle</string>
     <string name="restore_defaults_confirmation">Öntanımlıları geri yüklemek istiyor musunuz\?</string>
@@ -396,10 +387,6 @@
     <string name="start_downloads">İndirmeleri başlat</string>
     <string name="pause_downloads">İndirmeleri duraklat</string>
     <string name="downloads_storage_ask_title">Nereye indirileceğini sor</string>
-    <string name="downloads_storage_ask_summary">Her indirmede nereye kaydedileceği sorulacak.
-\nDış SD karta indirmek istiyorsanız sistem klasör seçiciyi (SAF) etkinleştirin</string>
-    <string name="downloads_storage_use_saf_title">Sistem klasör seçiciyi (SAF) kullan</string>
-    <string name="downloads_storage_use_saf_summary">\'Depolama Erişimi Çerçevesi\' dış SD karta indirmeyi sağlar</string>
     <string name="clear_playback_states_title">Oynatım konumlarını sil</string>
     <string name="clear_playback_states_summary">Tüm oynatım konumlarını siler</string>
     <string name="delete_playback_states_alert">Tüm oynatım konumları silinsin mi\?</string>
@@ -537,13 +524,8 @@
     <string name="notification_action_buffering">Ara belleğe alınıyor</string>
     <string name="notification_action_shuffle">Karıştır</string>
     <string name="notification_action_repeat">Yinele</string>
-    <string name="notification_actions_at_most_three">Bildirim sekmesinde gösterilecek en fazla üç eylem seçebilirsiniz!</string>
-    <string name="notification_actions_summary">Aşağıdaki bildirim eyleminlerini üzerine dokunarak düzenleyin. Sağdaki onay kutularını kullanarak üst bildirimde gösterilecek üç eylemi seçin.</string>
     <string name="notification_action_4_title">Beşinci eylem düğmesi</string>
     <string name="notification_action_3_title">Dördüncü eylem düğmesi</string>
-    <string name="notification_action_2_title">Üçüncü eylem düğmesi</string>
-    <string name="notification_action_1_title">İkinci eylem düğmesi</string>
-    <string name="notification_action_0_title">Birinci eylem düğmesi</string>
     <string name="notification_scale_to_square_image_summary">Bildirimde gösterilen video küçük resmini 16:9\'dan 1:1 en boy oranına kırp</string>
     <string name="notification_scale_to_square_image_title">Küçük resmi 1:1 en boy oranına kırp</string>
     <string name="show_memory_leaks">Bellek sızıntılarını göster</string>
@@ -614,7 +596,6 @@
 \nBu kanalın aboneliğinden çıkmak ister misiniz\?</string>
     <string name="feed_load_error_account_info">\'%s\' için besleme yüklenemedi.</string>
     <string name="feed_load_error">Besleme yüklenirken hata</string>
-    <string name="downloads_storage_use_saf_summary_api_29">\'Depolama Erişimi Çerçevesi\' yalnızca Android 10\'dan başlayarak desteklenmektedir</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Her indirmede nereye kaydedileceği sorulacak</string>
     <string name="no_dir_yet">İndirme klasörü belirlenmedi, şimdi öntanımlı indirme klasörünü seçin</string>
     <string name="off">Kapalı</string>
@@ -653,8 +634,6 @@
     <string name="show_crash_the_player_title">\"Oynatıcıyı çöktür\"ü göster</string>
     <string name="create_error_notification">Hata bildirimi oluştur</string>
     <string name="show_error_snackbar">Hata balonu göster</string>
-    <string name="no_appropriate_file_manager_message">Bu eyleme uygun dosya yönetici yok.
-\nLütfen dosya yönetici kurun veya indirme ayarlarında \'%s\' devre dışı bırakın</string>
     <string name="no_appropriate_file_manager_message_android_10">Bu eyleme uygun dosya yönetici bulunamadı.
 \nLütfen Depolama Erişimi Çerçevesi uyumlu dosya yönetici kurun</string>
     <string name="error_report_channel_description">Hata raporları için bildirimler</string>
@@ -827,9 +806,6 @@
     <string name="search_with_service_name_and_filter">%1$s İle Ara (%2$s)</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 sayfası kaldırıldı</string>
     <string name="migration_info_6_7_message">SoundCloud, özgün Top 50 listesini artık yayınlamıyor. İlgili sekme ana sayfanızdan kaldırıldı.</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="migration_info_7_8_title">YouTube birleşik trendler kaldırıldı</string>
     <string name="migration_info_7_8_message">YouTube, 21 Temmuz 2025\'ten sonra birleşik trendler sayfasını kaldırdı. BravePipe, öntanımlı trendler sayfasını trend canlı akışlarla değiştirdi.\n\n\"Ayarlar &gt; İçerik &gt; Ana sayfanın içeriği\"nden başka trend sayfalar seçebilirsiniz.</string>
     <string name="trending_gaming">Oyun trendleri</string>

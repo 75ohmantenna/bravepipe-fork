@@ -26,7 +26,6 @@
         <item quantity="many">تم حذف %1$s تنزيلاً</item>
         <item quantity="other">تم حذف %1$s تنزيل</item>
     </plurals>
-    <string name="notification_action_1_title">زر الإجراء الثاني</string>
     <string name="audio_track_type_original">الافتراضي</string>
     <string name="channel_tab_videos">الفيديوهات</string>
     <string name="dismiss">إلغاء</string>
@@ -73,7 +72,6 @@
     <string name="tab_about">عن التطبيق والأسئلة الشائعة</string>
     <string name="import_subscriptions_hint">استيراد الاشتراكات أو تصديرها من القائمة المكونة من 3 نقاط</string>
     <string name="downloads_title">الملفات المحملة</string>
-    <string name="invalid_source">لا يوجد مثل هذا الملف/مصدر المحتوى</string>
     <string name="most_liked">الأكثر إعجابًا</string>
     <string name="feed_load_error_account_info">تعذر تحميل موجز \'%s\'.</string>
     <string name="question_mark">؟</string>
@@ -100,7 +98,6 @@
     <string name="playback_tempo">سرعة الأداء</string>
     <string name="unbookmark_playlist">إزالة الإشارة المرجعية</string>
     <string name="playlist_creation_success">تم إنشاء قائمة التشغيل</string>
-    <string name="download_to_sdcard_error_title">وحدة التخزين الخارجية غير متوفرة</string>
     <string name="show_info">عرض المعلومات</string>
     <string name="trending">الشائعة</string>
     <string name="channel_unsubscribed">تم إلغاء الاشتراك في القناة</string>
@@ -160,7 +157,6 @@
     <string name="error_report_button_text">الإبلاغ عن طريق البريد الإلكتروني</string>
     <string name="sorry_string">عذرًا، لم ينبغِ أن يحدث ذلك.</string>
     <string name="create_playlist">إنشاء قائمة تشغيل جديدة</string>
-    <string name="error_occurred_detail">حدث خطأٌ ما: %1$s</string>
     <string name="search_no_results">لم يتم العثور على نتائج</string>
     <string name="open_website_license">فتح الموقع</string>
     <plurals name="new_streams">
@@ -332,7 +328,6 @@
     <string name="subscription_change_failed">تعذر تغيير حالة الاشتراك</string>
     <string name="play_queue_remove">أحذف</string>
     <string name="chapters">فصول</string>
-    <string name="downloads_storage_use_saf_title">استخدام منتقي مجلد النظام (SAF)</string>
     <string name="feed_use_dedicated_fetch_method_summary">متوفر في بعض الخدمات، وعادةً ما يكون أسرع بكثير ولكن قد يُرجع كمية محدودة من العناصر وغالبًا ما تكون معلومات غير مكتملة (مثلًا بدون مدة أو نوع عنصر أو حالة مباشرة)</string>
     <string name="notification_colorize_summary">اجعل أندرويد يخصص لون الإشعار وفقا للّون الرئيسي في الصورة المصغرة (لاحظ أن هذا غير متوفر على جميع الأجهزة)</string>
     <string name="background_player_playing_toast">يتم التشغيل في الخلفية</string>
@@ -356,8 +351,6 @@
         <item quantity="many">%d ثانية</item>
         <item quantity="other">%d ثانية</item>
     </plurals>
-    <string name="downloads_storage_ask_summary">سيتم سؤالك عن مكان حفظ كل تنزيل.
-\nتمكين منتقي مجلد النظام (SAF) إذا كنت تريد التنزيل إلى بطاقة SD خارجية</string>
     <string name="resume_on_audio_focus_gain_title">استئناف التشغيل</string>
     <string name="unknown_quality">جودة غير معروفة</string>
     <string name="georestricted_content">هذا المحتوى غير متوفر في بلدك.</string>
@@ -448,12 +441,10 @@
     <string name="show_crash_the_player_summary">إظهار خيار تعطل عند استخدام المشغل</string>
     <string name="error_report_open_github_notice">يرجى مراجعة ما إذا توجد بالفعل مشكلة تناقش التحطم الموجود بالفعل. عند إنشاء تذاكر مكررة، فإنك تستغرق منا وقتًا يمكن أن نقضيه في إصلاح الخطأ الفعلي.</string>
     <string name="open_play_queue">فتح قائمة انتظار التسغيل</string>
-    <string name="notification_actions_summary">قم بتحرير كل إشعار أدناه من خلال النقر عليه. حدد ما يصل إلى ثلاثة منها لتظهر في الإشعار المضغوط باستخدام مربعات الاختيار الموجودة على اليمين</string>
     <string name="what_happened_headline">ماذا حدث:</string>
     <string name="caption_setting_title">ترجمات نصية توضيحية</string>
     <string name="detail_sub_channel_thumbnail_view_description">الصورة الرمزية للقناة</string>
     <string name="feed_use_dedicated_fetch_method_title">جلب من موجز مخصص عندما يكون متاحًا</string>
-    <string name="file_name_empty_error">لا يمكن أن يكون اسم الملف فارغًا</string>
     <string name="prefer_original_audio_summary">حدد المسار الصوتي الأصلي بغض النظر عن اللغة</string>
     <string name="notifications">الإشعارات</string>
     <string name="settings_category_video_audio_title">الفيديو والصوت</string>
@@ -481,7 +472,6 @@
     <string name="image_quality_none">لا تقم بتحميل الصور</string>
     <string name="enable_streams_notifications_summary">الإخطار بأحداث البث الجديدة من الاشتراكات</string>
     <string name="msg_name">اسم الملف</string>
-    <string name="invalid_file">الملف غير موجود أو الإذن بالقراءة أو الكتابة إليه غير موجود</string>
     <string name="show_next_and_similar_title">عرض مقاطع الفيديو \"التالية\" و \"المشابهة\"</string>
     <string name="feed_update_threshold_summary">الوقت بعد التحديث الأخير قبل اعتبار الاشتراك قديمًا — %s</string>
     <string name="player_recoverable_failure">استرداد المشغل من الخطأ</string>
@@ -514,8 +504,6 @@
     <string name="overwrite_unrelated_warning">يوجد ملف بهذا الاسم مسبقاً</string>
     <string name="show_description_summary">قم بإيقاف التشغيل لإخفاء وصف الفيديو والمعلومات الإضافية</string>
     <string name="default_video_format_title">صيغة الفيديو الافتراضية</string>
-    <string name="notification_action_2_title">زر الإجراء الثالث</string>
-    <string name="download_to_sdcard_error_message">لا يمكن التنزيل على بطاقة SD الخارجية. هل تريد إعادة تعيين موقع مجلد التنزيل؟</string>
     <string name="could_not_load_thumbnails">تعذر تحميل كافة الصور المصغرة</string>
     <string name="related_items_tab_description">التيارات ذات الصلة</string>
     <string name="error_download_resource_gone">لا يمكن استرداد هذا التنزيل</string>
@@ -553,7 +541,6 @@
     <string name="import_title">إستيراد</string>
     <string name="events">الأحداث</string>
     <string name="clear_playback_states_title">حذف مواقف التشغيل</string>
-    <string name="notification_action_0_title">زر الإجراء الأول</string>
     <string name="minimize_on_exit_none_description">لاشيء</string>
     <string name="auto_device_theme_title">تلقائي (سمة الجهاز)</string>
     <string name="saved_tabs_invalid_json">يتم الآن استخدام الألسنة الافتراضية بعد حدوث خطأ أثناء قراءة الألسنة المحفوظة</string>
@@ -574,7 +561,6 @@
     <string name="enqueue">إضافة إلى قائمة الانتظار</string>
     <string name="msg_running">يقوم نيوبايب بالتنزيل</string>
     <string name="image_quality_medium">النوعية متوسطة</string>
-    <string name="downloads_storage_use_saf_summary">يسمح \"Storage Access Framework\" بالتنزيل على بطاقة SD خارجية</string>
     <string name="could_not_import_all_files">تنبيه: تعذر استيراد كافة الملفات.</string>
     <string name="download_path_audio_title">مجلد الصوتيات المحفوظة</string>
     <string name="tab_bookmarks">الإشارات المرجعية</string>
@@ -599,7 +585,6 @@
     <string name="checksum">التوقيع</string>
     <string name="show_age_restricted_content_title">محتوى مقيد للبالغين</string>
     <string name="resume_on_audio_focus_gain_summary">متابعة التشغيل بعد المقاطعات (مثل المكالمات الهاتفية)</string>
-    <string name="import_ongoing">عملية الاستعادة جارية …</string>
     <string name="progressive_load_interval_summary">قم بتغيير حجم الفاصل الزمني للتحميل على المحتويات التدريجية (حاليا %s). قد تؤدي القيمة المنخفضة إلى تسريع التحميل الأولي</string>
     <string name="prefer_original_audio_title">تفضيل الصوت الأصلي</string>
     <string name="detail_likes_img_view_description">الإعجابات</string>
@@ -742,7 +727,6 @@
     <string name="no_playlist_bookmarked_yet">لا توجد إشارات مرجعية لقائمة التشغيل بعدُ</string>
     <string name="donation_encouragement">يتم تطوير NewPipe من قبل متطوعين يقضون وقت فراغهم لتقديم أفضل تجربة لك. حان الوقت لرد المساعدة مع المطورين وجعل NewPipe أكثر و أفضل بينما يستمتعون بفنجان من القهوة.</string>
     <string name="show_comments_title">إظهار التعليقات</string>
-    <string name="msg_copied">تم نسخه إلى الحافظة</string>
     <string name="more_options">المزيد من الخيارات</string>
     <string name="auto_queue_title">وضع البث القادم تلقائيا في قائمة الإنتظار</string>
     <string name="metadata_support">الدعم</string>
@@ -768,7 +752,6 @@
     <string name="app_license_title">تراخيص BravePipe</string>
     <string name="feed_update_threshold_option_always_update">تحديث دائمًا</string>
     <string name="tab_licenses">التراخيص</string>
-    <string name="export_ongoing">عملية التصدير جارية …</string>
     <string name="minimize_on_exit_background_description">تصغير إلى مشغل الخلفية</string>
     <string name="notification_channel_description">تنبيهات مشغل BravePipe</string>
     <string name="import_complete_toast">تمَّت عملية الإستيراد</string>
@@ -805,7 +788,6 @@
     <string name="duration">المدة</string>
     <string name="subscriptions_export_unsuccessful">لا يمكن تصدير الاشتراكات</string>
     <string name="no_streams">لاتوجد بثوث</string>
-    <string name="notification_actions_at_most_three">يمكنك تحديد ثلاثة إجراءات كحد أقصى لإظهارها في الإشعار المضغوط!</string>
     <string name="contribution_encouragement">إذا كانت لديك أفكار؛ أو ترجمة، أو تغييرات تخص التصميم، أو تنظيف و تحسين الشفرة البرمجية، أو تعديلات عميقة عليها، فتذكر أنّ مساعدتك دائما موضع ترحيب. وكلما أتممنا شيئا كلما كان ذلك أفضل!</string>
     <string name="main_page_content_summary">اختار الألسنة التي تودّ ظهورها على الصفحة الرئيسية</string>
     <string name="download_path_title">مجلد تحميل الفيديو</string>
@@ -821,7 +803,6 @@
     <string name="metadata_licence">الرخصة</string>
     <string name="unsubscribe">إلغاء الاشتراك</string>
     <string name="you_successfully_subscribed">لقد اشتركت الآن في هذه القناة</string>
-    <string name="downloads_storage_use_saf_summary_api_29">بدءًا من Android 10، يتم دعم \"Storage Access Framework\" فقط</string>
     <string name="generate_unique_name">إنشاء اسم فريد</string>
     <string name="error_ssl_exception">فشل الاتصال الآمن</string>
     <string name="youtube_music_premium_content">يتوفر هذا الفيديو فقط لأعضاء YouTube Music Premium، لذلك لا يمكن بثه أو تنزيله من قبل BravePipe.</string>
@@ -837,8 +818,6 @@
     <string name="done">منجز</string>
     <string name="error_report_title">تقرير عن المشكلة</string>
     <string name="enqueued">أُضيفَ إلى قائمة الانتظار</string>
-    <string name="no_appropriate_file_manager_message">لم يتم العثور على مدير ملفات مناسب لهذا الإجراء.
-\nيرجى تثبيت مدير ملفات أو محاولة تعطيل \"%s\" في إعدادات التنزيل</string>
     <string name="video_player">مشغل الفيديو</string>
     <string name="video_detail_by">بواسطة %s</string>
     <string name="description_tab_description">وصف</string>

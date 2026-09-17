@@ -21,9 +21,6 @@
     <string name="tab_subscriptions">چندے</string>
     <string name="show_play_with_kodi_title">”کوڈی نال چلاؤ“ چݨ دِکھاؤ</string>
     <string name="show_play_with_kodi_summary">کوڈی میڈیا کیندر نہیں ویڈیو چلاؤݨ دی چݨ وِکھاؤ</string>
-    <string name="notification_action_0_title">پہلا کاروائی بٹن</string>
-    <string name="notification_action_1_title">دوجا کاروائی بٹن</string>
-    <string name="notification_action_2_title">تیجا کاردائی بٹن</string>
     <string name="notification_action_3_title">چوتھا کاروائی بٹن</string>
     <string name="notification_action_repeat">دُہراؤ</string>
     <string name="notification_action_shuffle">پھینٹݨا</string>
@@ -84,7 +81,6 @@
     <string name="tab_bookmarks">سامبھیاں پلےلِسٹاں</string>
     <string name="download_path_audio_title">آڈیو ڈاؤن‌لوڈ فوکڈر</string>
     <string name="download_path_audio_summary">ڈاؤن‌لوڈ کیتیاں آڈیو اِتھے جمھاں ہندیاں ہن</string>
-    <string name="notification_actions_at_most_three">تسیں ودھ توں ودھ تِن کاروائیاں نوں پچیڑیاں اِطلاعاں وچ وِکھاؤݨ لئی چݨ سکدے او!</string>
     <string name="black_theme_title">ਕਾਲਾ</string>
     <string name="ok">ٹھيک اے</string>
     <string name="controls_download_desc">سٹریم دی فائل ڈاؤن‌لوڈ کرو</string>

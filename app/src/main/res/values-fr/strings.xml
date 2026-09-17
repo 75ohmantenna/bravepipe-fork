@@ -77,7 +77,6 @@
     <string name="msg_running">BravePipe télécharge</string>
     <string name="msg_running_detail">Appuyer pour plus de détails</string>
     <string name="msg_wait">Veuillez patienter…</string>
-    <string name="msg_copied">Copié dans le presse-papiers</string>
     <string name="no_available_dir">Veuillez définir ultérieurement un dossier de téléchargement dans les paramètres</string>
     <string name="app_ui_crash">L’application a planté</string>
     <string name="all">Tout</string>
@@ -246,10 +245,6 @@
     <string name="metadata_cache_wipe_complete_notice">Métadonnées en cache effacées</string>
     <string name="file">Fichier</string>
     <string name="invalid_directory">Aucun dossier de ce type</string>
-    <string name="invalid_source">Aucun fichier ou contenu de ce type</string>
-    <string name="invalid_file">Le fichier n’existe pas ou n’est pas accessible en lecture ou en écriture</string>
-    <string name="file_name_empty_error">Le nom du fichier ne peut pas être vide</string>
-    <string name="error_occurred_detail">Une erreur est survenue : %1$s</string>
     <string name="controls_download_desc">Télécharger le flux</string>
     <string name="auto_queue_title">Ajout automatique du flux suivant à la file de lecture</string>
     <string name="auto_queue_summary">Continue la file de lecture (non répétitive) en ajoutant un flux lié</string>
@@ -262,8 +257,6 @@
     <string name="import_title">Importer</string>
     <string name="import_from">Importer de</string>
     <string name="export_to">Exporter vers</string>
-    <string name="import_ongoing">Importation en cours…</string>
-    <string name="export_ongoing">Exportation en cours…</string>
     <string name="import_file_title">Importer le fichier</string>
     <string name="previous_export">Exportation précédente</string>
     <string name="subscriptions_import_unsuccessful">Impossible d’importer les abonnements</string>
@@ -335,13 +328,11 @@
     <string name="file_deleted">Fichier supprimé</string>
     <string name="app_update_notification_channel_name">Notification de mise à jour de l’application</string>
     <string name="app_update_notification_channel_description">Notifications pour des nouvelles versions de BravePipe</string>
-    <string name="download_to_sdcard_error_title">Stockage externe indisponible</string>
     <string name="restore_defaults">Restaurer les valeurs par défaut</string>
     <string name="restore_defaults_confirmation">Voulez-vous restaurer les valeurs par défaut \?</string>
     <string name="subscribers_count_not_available">Compteur du nombre d’abonnés indisponible</string>
     <string name="stop">Arrêter</string>
     <string name="events">Évènements</string>
-    <string name="download_to_sdcard_error_message">Impossible de télécharger dans la carte mémoire externe. Voulez-vous réinitialiser l’emplacement du dossier de téléchargement \?</string>
     <string name="main_page_content_summary">Choisir quels onglets seront visibles sur la page principale</string>
     <string name="updates_setting_title">Mises à jour</string>
     <string name="updates_setting_description">Afficher une notification pour proposer une mise à jour de l’application lorsqu’une nouvelle version est disponible</string>
@@ -400,14 +391,10 @@
     <string name="start_downloads">Démarrer les téléchargements</string>
     <string name="pause_downloads">Mettre les téléchargements en pause</string>
     <string name="downloads_storage_ask_title">Demander où télécharger</string>
-    <string name="downloads_storage_ask_summary">Vous allez être interrogé·e sur l’emplacement d’enregistrement de chaque téléchargement.
-\nAutorisez le sélecteur de dossier système si vous voulez télécharger vers une carte SD externe</string>
     <string name="enable_playback_resume_summary">Reprend la lecture à la dernière position</string>
     <string name="enable_playback_state_lists_title">Positions dans les listes</string>
     <string name="enable_playback_state_lists_summary">Afficher les indicateurs de position de lecture dans les listes</string>
     <string name="watch_history_states_deleted">Positions de reprise de lecture supprimées</string>
-    <string name="downloads_storage_use_saf_title">Utiliser le sélecteur de dossier système</string>
-    <string name="downloads_storage_use_saf_summary">L’« Infrastructure d’accès au stockage » permet le téléchargement sur une carte mémoire SD externe</string>
     <string name="clear_playback_states_title">Supprimer les positions de reprise de lecture</string>
     <string name="clear_playback_states_summary">Supprime toutes les positions de reprise de lecture</string>
     <string name="delete_playback_states_alert">Voulez-vous supprimer toutes les positions de reprise de lecture \?</string>
@@ -551,13 +538,8 @@
     <string name="notification_action_buffering">Chargement</string>
     <string name="notification_action_shuffle">Lire aléatoirement</string>
     <string name="notification_action_repeat">Répéter</string>
-    <string name="notification_actions_at_most_three">Vous pouvez sélectionner au maximum trois actions à faire figurer dans la notification compacte !</string>
-    <string name="notification_actions_summary">Modifiez chaque action de notification ci-dessous en appuyant dessus. Sélectionnez jusqu’à trois d’entre elles pour les faire apparaître dans la notification compacte en utilisant les cases à cocher à droite.</string>
     <string name="notification_action_4_title">Cinquième bouton d’action</string>
     <string name="notification_action_3_title">Quatrième bouton d’action</string>
-    <string name="notification_action_2_title">Troisième bouton d’action</string>
-    <string name="notification_action_1_title">Deuxième bouton d’action</string>
-    <string name="notification_action_0_title">Premier bouton d’action</string>
     <string name="notification_scale_to_square_image_summary">Recadrer la miniature de la vidéo affichée dans la notification du format 16:9 au format 1:1</string>
     <string name="notification_scale_to_square_image_title">Recadrer la miniature au format 1:1</string>
     <string name="show_memory_leaks">Afficher les fuites de mémoire</string>
@@ -631,7 +613,6 @@
     <string name="feed_load_error_terminated">Le compte de l’auteur a été résilié.
 \nBravePipe ne sera plus en mesure de charger ce flux à l’avenir.
 \nSouhaitez-vous vous désabonner de cette chaîne \?</string>
-    <string name="downloads_storage_use_saf_summary_api_29">À partir d’Android 10, seule « l’Infrastructure d’accès au stockage  » est prise en charge</string>
     <string name="feed_load_error_fast_unknown">Le mode flux rapide ne fournit pas plus d’info à ce sujet.</string>
     <string name="comments_are_disabled">Les commentaires sont désactivés</string>
     <string name="dont_show">Ne pas afficher</string>
@@ -673,8 +654,6 @@
     <string name="no_appropriate_file_manager_message_android_10">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
 \nVeuillez installer un gestionnaire de fichiers compatible avec l\'Infrastructure d\'accès au stockage</string>
     <string name="show_error_snackbar">Afficher une barre d’erreur</string>
-    <string name="no_appropriate_file_manager_message">Aucun gestionnaire de fichiers approprié n\'a été trouvé pour cette action.
-\nVeuillez installer un gestionnaire de fichiers ou essayez de désactiver « %s » dans les paramètres de téléchargement</string>
     <string name="detail_pinned_comment_view_description">Commentaire épinglé</string>
     <string name="leak_canary_not_available">LeakCanary n\'est pas disponible</string>
     <string name="progressive_load_interval_exoplayer_default">Valeur par défaut d’ExoPlayer</string>
@@ -849,9 +828,6 @@
     <string name="trending_podcasts">Tendances podcasts</string>
     <string name="trending_movies">Tendances films et séries</string>
     <string name="trending_music">Tendances musique</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="permission_display_over_apps_message">Pour utiliser le lecteur contextuel, veuillez sélectionner %1$s dans le menu des paramètres Android suivant et activer %2$s.</string>
     <string name="permission_display_over_apps_permission_name">« Autoriser l\'affichage sur d\'autres applications »</string>
     <string name="delete_file">Supprimer le fichier</string>

@@ -29,7 +29,6 @@
     <string name="install">Instalar</string>
     <string name="light_theme_title">Claro</string>
     <string name="msg_error">Erro</string>
-    <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="msg_name">Nome do arquivo</string>
     <string name="msg_running_detail">Toque para mais detalhes</string>
     <string name="msg_running">O BravePipe está baixando</string>
@@ -248,15 +247,9 @@
     <string name="auto_queue_summary">Continua a reprodução da fila (sem repetição) adicionando mais transmissões similares</string>
     <string name="file">Arquivo</string>
     <string name="invalid_directory">Essa pasta não existe</string>
-    <string name="invalid_source">Arquivo/fonte do conteúdo não existe</string>
-    <string name="invalid_file">O arquivo não existe ou não há permissão para leitura ou escrita</string>
-    <string name="file_name_empty_error">O nome do arquivo não pode ficar vazio</string>
-    <string name="error_occurred_detail">Ocorreu um erro: %1$s</string>
     <string name="import_title">Importar</string>
     <string name="import_from">Importar de</string>
     <string name="export_to">Exportar para</string>
-    <string name="import_ongoing">Importando…</string>
-    <string name="export_ongoing">Exportando…</string>
     <string name="import_file_title">Importar arquivo</string>
     <string name="previous_export">Exportação anterior</string>
     <string name="subscriptions_import_unsuccessful">Não foi possível importar as inscrições</string>
@@ -336,8 +329,6 @@
     <string name="file_deleted">Arquivo excluído</string>
     <string name="app_update_notification_channel_name">Notificação de atualização do aplicativo</string>
     <string name="app_update_notification_channel_description">Notificações para novas versões do BravePipe</string>
-    <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
-    <string name="download_to_sdcard_error_message">Não é possível baixar para o cartão SD externo. Redefinir o local da pasta de download\?</string>
     <string name="saved_tabs_invalid_json">Não foi possível carregar as guias salvas, portanto, usamos as guias padrão</string>
     <string name="restore_defaults">Restaurar configurações</string>
     <string name="restore_defaults_confirmation">Deseja restaurar os padrões?</string>
@@ -404,10 +395,6 @@
     <string name="start_downloads">Iniciar downloads</string>
     <string name="pause_downloads">Pausar downloads</string>
     <string name="downloads_storage_ask_title">Perguntar onde salvar o arquivo</string>
-    <string name="downloads_storage_ask_summary">Você será questionado onde salvar cada download.
-\nAtive o seletor de pasta do sistema (SAF) se você quiser baixar em um cartão SD externo</string>
-    <string name="downloads_storage_use_saf_title">Usar o seletor de pastas do sistema (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">A \"Estrutura de acesso ao armazenamento\" permite baixar em um cartão SD externo</string>
     <string name="clear_playback_states_title">Remover posições de reprodução</string>
     <string name="clear_playback_states_summary">Remove todas as posições de reprodução</string>
     <string name="delete_playback_states_alert">Remover todas as posições de reprodução?</string>
@@ -548,13 +535,8 @@
     <string name="notification_action_buffering">Carregando</string>
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_repeat">Repetir</string>
-    <string name="notification_actions_at_most_three">Você pode selecionar até no máximo três botões para mostrar na notificação compacta!</string>
-    <string name="notification_actions_summary">Edite os botões de ação da notificação abaixo tocando em cada um. Selecione até três deles para serem mostrados na notificação compacta usando as caixas de seleção à direita.</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
-    <string name="notification_action_2_title">Terceiro botão de ação</string>
-    <string name="notification_action_1_title">Segundo botão de ação</string>
-    <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1</string>
     <string name="notification_scale_to_square_image_title">Ajustar miniatura para a proporção de 1:1</string>
     <string name="show_memory_leaks">Mostrar vazamentos de memória</string>
@@ -625,7 +607,6 @@
 \nDeseja cancelar a inscrição neste canal\?</string>
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A \"Estrutura de acesso ao armazenamento\" é compatível apenas com versões a partir do Android 10</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Você será questionado onde salvar cada download</string>
     <string name="no_dir_yet">Nenhuma pasta de download definida ainda, escolha a pasta de download padrão agora</string>
     <string name="off">Desativado</string>
@@ -671,8 +652,6 @@
 \nInstale um gerenciador de arquivos compatível com a \"Estrutura de acesso ao armazenamento\"</string>
     <string name="error_report_notification_toast">Ocorreu um erro, consulte a notificação</string>
     <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
-    <string name="no_appropriate_file_manager_message">Nenhum gerenciador de arquivos apropriado foi encontrado para esta ação.
-\nInstale um gerenciador de arquivos ou tente desativar \'%s\' nas configurações de download</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
     <string name="leak_canary_not_available">O LeakCanary não está disponível</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer padrão</string>
@@ -843,9 +822,6 @@
     <string name="migration_info_6_7_message">O SoundCloud descontinuou as paradas originais do Top 50. A aba correspondente foi removida da sua página principal.</string>
     <string name="permission_display_over_apps_message">Para usar o Popup Player, selecione %1$s no seguinte menu de configurações do Android e ative %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Permitir exibição sobre outros aplicativos”</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="delete_file">Excluir arquivo</string>
     <string name="delete_entry">Excluir entrada</string>
     <string name="migration_info_7_8_title">Tendências combinadas do YouTube removidas</string>
@@ -889,7 +865,6 @@
     <string name="settings_category_sponsor_block_categories_summary">Personalize quais segmentos de vídeo pular, junto com suas marcações de cores na barra.</string>
     <string name="settings_category_sponsor_block_categories_reset_colors_title">Redefinir cores</string>
     <string name="settings_category_sponsor_block_category_enable_title">Ativar</string>
-    <string name="settings_category_sponsor_block_category_disabled_title">Desativar</string>
     <string name="settings_category_sponsor_block_category_color">Cor da barra</string>
     <string name="settings_category_sponsor_block_category_sponsor_title">Patrocinador</string>
     <string name="settings_category_sponsor_block_category_sponsor_summary">Promoção paga, referências pagas e anúncios diretos. Não é usado em auto promoção ou mensagens grátis para causas/criadores/sites/produtos que eles gostam.</string>
@@ -907,7 +882,6 @@
     <string name="settings_category_sponsor_block_category_filler_summary">Cenas tangenciais inseridas apenas por enrolação ou humor que não são necessárias para compreender o tópico principal do vídeo.</string>
     <string name="settings_category_sponsor_block_category_preview_title">Pré-visualização/Recapitulação</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Recapitulação rápida de episódios anteriores, ou uma prévia do que está chegando mais tarde no vídeo atual. Destinado a clipes editados juntos, não é para resumos falados.</string>
-    <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">Visitar site</string>
     <string name="sponsor_block_home_page_summary">Visite o site oficial do SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Pular patrocinadores</string>
@@ -920,9 +894,6 @@
     <string name="sponsor_block_privacy_summary">Veja a política de privacidade do SponsorBlock.</string>
     <string name="sponsor_block_api_url_help_text">Este é o URL que será consultado quando o aplicativo precisar saber quais partes de um vídeo devem ser ignoradas.\n\nVocê pode definir o URL oficial clicando na opção \'Usar oficial\' abaixo, embora seja altamente recomendável que você veja a política de privacidade do SponsorBlock antes de usá-lo.</string>
     <string name="sponsor_block_privacy_policy_text">Política de privacidade do SponsorBlock</string>
-    <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
-    <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
-    <string name="sponsor_block_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
     <string name="sponsor_block_skip_sponsor_toast">Patrocinador ignorado</string>
     <string name="sponsor_block_skip_intro_toast">Intervalo/Introdução ignorado</string>
     <string name="sponsor_block_skip_outro_toast">Finalização/Créditos ignorado</string>
@@ -942,7 +913,6 @@
     <string name="sponsor_block_confirm_clear_whitelist">Tem certeza de que deseja excluir a lista de canais permitidos?</string>
     <string name="sponsor_block_confirm_reset_colors">Tem certeza de que deseja redefinir as cores das categorias?</string>
     <string name="sponsor_block_reset_colors_toast">Cores redefinidas.</string>
-    <string name="extras">Extras</string>
     <string name="extras_todo_summary">Ajustes, correções e outros ajustes diversos pertencem aqui.</string>
     <string name="experimental_settings">Configurações experimentais</string>
     <string name="enable_local_player_title">Ativar player local (alfa)</string>

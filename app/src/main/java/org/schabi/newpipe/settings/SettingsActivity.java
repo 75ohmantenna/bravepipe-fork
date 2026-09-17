@@ -9,11 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.preference.Preference;
@@ -83,6 +87,12 @@ public class SettingsActivity extends AppCompatActivity implements
     String searchText;
     @State
     boolean wasSearchActive;
+    private final OnBackPressedCallback searchBackCallback = new OnBackPressedCallback(false) {
+        @Override
+        public void handleOnBackPressed() {
+            setSearchActive(false);
+        }
+    };
 
     @Override
     protected void onCreate(final Bundle savedInstanceBundle) {
@@ -95,6 +105,15 @@ public class SettingsActivity extends AppCompatActivity implements
         final SettingsLayoutBinding settingsLayoutBinding =
                 SettingsLayoutBinding.inflate(getLayoutInflater());
         setContentView(settingsLayoutBinding.getRoot());
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        ViewCompat.setOnApplyWindowInsetsListener(settingsLayoutBinding.getRoot(), (view, insets) -> {
+            final var safe = insets.getInsets(WindowInsetsCompat.Type.systemBars()
+                    | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime());
+            view.setPadding(safe.left, safe.top, safe.right, safe.bottom);
+            return WindowInsetsCompat.CONSUMED;
+        });
+        ViewCompat.requestApplyInsets(settingsLayoutBinding.getRoot());
+        getOnBackPressedDispatcher().addCallback(this, searchBackCallback);
         initSearch(settingsLayoutBinding, restored);
 
         setSupportActionBar(settingsLayoutBinding.settingsToolbarLayout.toolbar);
@@ -135,14 +154,6 @@ public class SettingsActivity extends AppCompatActivity implements
         return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (isSearchActive()) {
-            setSearchActive(false);
-            return;
-        }
-        super.onBackPressed();
-    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
@@ -296,6 +307,7 @@ public class SettingsActivity extends AppCompatActivity implements
         }
 
         wasSearchActive = active;
+        searchBackCallback.setEnabled(active);
 
         searchContainer.setVisibility(active ? View.VISIBLE : View.GONE);
         if (menuSearchItem != null) {

@@ -160,7 +160,6 @@
     <string name="start_downloads">Սկսել ներբեռնումները</string>
     <string name="users">Օգտատերեր</string>
     <string name="play_queue_remove">Հեռացնել</string>
-    <string name="import_ongoing">Ներմուծում եմ…</string>
     <string name="metadata_age_limit">Տարիքային սահմանափակում</string>
     <string name="unknown_quality">Անհայտ որակ</string>
     <string name="play_with_kodi_title">Նվագել Kodi֊ով</string>
@@ -272,9 +271,6 @@
     <string name="artists">Արվեստագետներ</string>
     <string name="donation_title">Նվիրել</string>
     <string name="dismiss">Անտեսել</string>
-    <string name="short_thousand">%sՀզր</string>
-    <string name="short_million">%sՄլն</string>
-    <string name="short_billion">%sԲլն</string>
     <string name="error_snackbar_action">Ազդարարել</string>
     <string name="invalid_directory">Այդպիսի պանակ չկա</string>
     <string name="tab_bookmarks_short">Նվագացանկեր</string>

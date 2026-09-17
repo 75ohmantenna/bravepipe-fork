@@ -13,8 +13,6 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
-import android.os.Build;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -271,20 +269,13 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     public void updateScreenSize() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            final var windowMetrics = windowManager.getCurrentWindowMetrics();
-            final var bounds = windowMetrics.getBounds();
-            final var windowInsets = windowMetrics.getWindowInsets();
-            final var insets = windowInsets.getInsetsIgnoringVisibility(
-                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
-            screenWidth = bounds.width() - (insets.left + insets.right);
-            screenHeight = bounds.height() - (insets.top + insets.bottom);
-        } else {
-            final DisplayMetrics metrics = new DisplayMetrics();
-            windowManager.getDefaultDisplay().getMetrics(metrics);
-            screenWidth = metrics.widthPixels;
-            screenHeight = metrics.heightPixels;
-        }
+        final var windowMetrics = windowManager.getCurrentWindowMetrics();
+        final var bounds = windowMetrics.getBounds();
+        final var windowInsets = windowMetrics.getWindowInsets();
+        final var insets = windowInsets.getInsetsIgnoringVisibility(
+                WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+        screenWidth = bounds.width() - (insets.left + insets.right);
+        screenHeight = bounds.height() - (insets.top + insets.bottom);
         if (DEBUG) {
             Log.d(TAG, "updateScreenSize() called: screenWidth = ["
                     + screenWidth + "], screenHeight = [" + screenHeight + "]");
@@ -546,11 +537,8 @@ public final class PopupPlayerUi extends VideoPlayerUi {
                 flags,
                 PixelFormat.TRANSLUCENT);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // Setting maximum opacity allowed for touch events to other apps for Android 12 and
-            // higher to prevent non interaction when using other apps with the popup player
-            closeOverlayLayoutParams.alpha = MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER;
-        }
+        // Allow touch events to reach other apps underneath the close overlay.
+        closeOverlayLayoutParams.alpha = MAXIMUM_OPACITY_ALLOWED_FOR_S_AND_HIGHER;
 
         closeOverlayLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
         closeOverlayLayoutParams.softInputMode =
@@ -559,9 +547,7 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     public static int popupLayoutParamType() {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.O
-                ? WindowManager.LayoutParams.TYPE_PHONE
-                : WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+        return WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
     }
     //endregion
 

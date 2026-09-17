@@ -72,7 +72,6 @@
     <string name="msg_name">Dateiname</string>
     <string name="msg_error">Fehler</string>
     <string name="msg_wait">Bitte warten …</string>
-    <string name="msg_copied">In Zwischenablage kopiert</string>
     <string name="no_available_dir">Bitte gib später in den Einstellungen einen Downloadordner an</string>
     <string name="start">Starten</string>
     <string name="pause">Pause</string>
@@ -236,14 +235,9 @@
     <string name="use_inexact_seek_summary">Mit ungenauem Suchen kann die ungefähre Abspielposition schneller erreicht werden. Das Spulen um 5, 15 oder 25 Sekunden funktioniert damit nicht</string>
     <string name="file">Datei</string>
     <string name="invalid_directory">Ordner existiert nicht</string>
-    <string name="invalid_file">Die Datei existiert nicht oder die Rechte zum Lesen oder Schreiben fehlen</string>
-    <string name="file_name_empty_error">Dateiname darf nicht leer sein</string>
-    <string name="error_occurred_detail">Ein Fehler ist aufgetreten: %1$s</string>
     <string name="caption_auto_generated">Automatisch erzeugt</string>
     <string name="import_from">Import von</string>
     <string name="export_to">Export nach</string>
-    <string name="import_ongoing">Wird importiert …</string>
-    <string name="export_ongoing">Wird exportiert …</string>
     <string name="import_file_title">Datei importieren</string>
     <string name="previous_export">Vorheriger Export</string>
     <string name="import_network_expensive_warning">Beachte, dass diese Aktion das Netzwerk stark belasten kann. 
@@ -254,7 +248,6 @@
     <string name="metadata_cache_wipe_summary">Alle zwischengespeicherten Website-Daten entfernen</string>
     <string name="metadata_cache_wipe_complete_notice">Metadatencache gelöscht</string>
     <string name="settings_category_debug_title">Fehlersuche</string>
-    <string name="invalid_source">Datei-/Inhaltsquelle existiert nicht</string>
     <string name="export_complete_toast">Exportiert</string>
     <string name="import_complete_toast">Importiert</string>
     <string name="name">Name</string>
@@ -336,8 +329,6 @@
     <string name="file_deleted">Datei gelöscht</string>
     <string name="app_update_notification_channel_name">Benachrichtigung über App-Update</string>
     <string name="app_update_notification_channel_description">Benachrichtigungen über neue BravePipe-Versionen</string>
-    <string name="download_to_sdcard_error_title">Kein externer Speicher verfügbar</string>
-    <string name="download_to_sdcard_error_message">Herunterladen auf externe SD-Karte ist nicht möglich. Downloadordner zurücksetzen\?</string>
     <string name="saved_tabs_invalid_json">Konnte gespeicherte Tabs nicht lesen, daher werden die Voreinstellungen genutzt</string>
     <string name="restore_defaults">Standardwerte wiederherstellen</string>
     <string name="restore_defaults_confirmation">Möchtest du die Standardwerte wiederherstellen\?</string>
@@ -410,10 +401,6 @@
     <string name="start_downloads">Downloads starten</string>
     <string name="pause_downloads">Downloads anhalten</string>
     <string name="downloads_storage_ask_title">Downloadziel abfragen</string>
-    <string name="downloads_storage_ask_summary">Du wirst gefragt, wo jede heruntergeladene Datei gespeichert werden soll.
-\nAktiviere die Systemordnerauswahl (SAF), wenn du auf eine externe SD-Karte herunterladen möchtest</string>
-    <string name="downloads_storage_use_saf_title">Systemordnerauswahl verwenden (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">Das „Storage Access Framework“ ermöglicht das Herunterladen auf eine externe SD-Karte</string>
     <string name="clear_playback_states_title">Wiedergabepositionen löschen</string>
     <string name="clear_playback_states_summary">Alle Wiedergabepositionen löschen</string>
     <string name="delete_playback_states_alert">Alle Wiedergabepositionen löschen\?</string>
@@ -535,14 +522,9 @@
     <string name="autoplay_summary">Wiedergabe automatisch starten — %s</string>
     <string name="wifi_only">Nur über WLAN</string>
     <string name="never">Nie</string>
-    <string name="notification_actions_at_most_three">Du kannst maximal drei Aktionen auswählen, die in der Kompaktbenachrichtigung angezeigt werden sollen!</string>
-    <string name="notification_actions_summary">Bearbeite jede Benachrichtigungsaktion unten, indem du auf sie tippst. Wähle mithilfe der Kontrollkästchen rechts bis zu drei aus, die in der Kompaktbenachrichtigung angezeigt werden sollen.</string>
     <string name="unsupported_url_dialog_message">Konnte die angegebene URL nicht erkennen. Mit einer anderen Anwendung öffnen\?</string>
     <string name="notification_action_4_title">Fünfte Aktionstaste</string>
     <string name="notification_action_3_title">Vierte Aktionstaste</string>
-    <string name="notification_action_2_title">Dritte Aktionstaste</string>
-    <string name="notification_action_1_title">Zweite Aktionstaste</string>
-    <string name="notification_action_0_title">Erste Aktionstaste</string>
     <string name="notification_scale_to_square_image_summary">Beschneidet das in der Benachrichtigung angezeigte Video-Vorschaubild von 16:9 auf ein 1:1 Seitenverhältnis</string>
     <string name="notification_scale_to_square_image_title">Vorschaubild auf 1:1 Seitenverhältnis zuschneiden</string>
     <string name="notification_action_shuffle">Zufällig</string>
@@ -622,7 +604,6 @@
     <string name="feed_load_error_fast_unknown">Der Schnellmodus liefert hierzu keine weiteren Informationen.</string>
     <string name="no_dir_yet">Noch kein Downloadordner festgelegt, wähle jetzt den Standard-Downloadordner</string>
     <string name="open_website_license">Webseite öffnen</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Ab Android 10 wird nur noch „Storage Access Framework“ unterstützt</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Du wirst jedes Mal gefragt werden, wohin der Download gespeichert werden soll</string>
     <string name="feed_load_error">Fehler beim Laden des Feeds</string>
     <string name="feed_load_error_account_info">Konnte Feed für \'%s\' nicht laden.</string>
@@ -660,8 +641,6 @@
     <string name="error_report_notification_toast">Ein Fehler ist aufgetreten, siehe die Benachrichtigung</string>
     <string name="create_error_notification">Eine Fehlermeldung erstellen</string>
     <string name="show_error_snackbar">Fehler-Kurzmeldung anzeigen</string>
-    <string name="no_appropriate_file_manager_message">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
-\nBitte installiere einen Dateimanager oder versuche, \'%s\' in den Downloadeinstellungen zu deaktivieren</string>
     <string name="no_appropriate_file_manager_message_android_10">Es wurde kein geeigneter Dateimanager für diese Aktion gefunden.
 \nBitte installiere einen Storage Access Framework kompatiblen Dateimanager</string>
     <string name="detail_pinned_comment_view_description">Angehefteter Kommentar</string>
@@ -827,9 +806,6 @@
     <string name="channel_tab_likes">Gefällt mir</string>
     <string name="migration_info_6_7_title">SoundCloud-Top-50-Seite entfernt</string>
     <string name="migration_info_6_7_message">SoundCloud hat die ursprünglichen Top-50-Charts abgeschafft. Der entsprechende Tab wurde von deiner Hauptseite entfernt.</string>
-    <string name="short_million">%sMio.</string>
-    <string name="short_billion">%sMrd.</string>
-    <string name="short_thousand">%sTsd.</string>
     <string name="trending_gaming">Gaming-Trends</string>
     <string name="trending_movies">Beliebte Filme und Shows</string>
     <string name="trending_music">Beliebte Musik</string>
@@ -871,7 +847,6 @@
     <string name="brave_about_title">Über diesen Fork</string>
     <string name="search_filters_short">Kurz</string>
     <string name="search_filters_long">Lang</string>
-    <string name="search_filters_rumbles">Rumbles</string>
     <string name="search_filters_most_recent">Neueste</string>
     <string name="search_filters_short_0_5_min">Kurz (0-5m)</string>
     <string name="search_filters_medium_5_20_min">Mittel (5-20m)</string>
@@ -881,31 +856,20 @@
     <string name="search_filters_oldest_first">Älteste zuerst</string>
     <string name="filter_search_sort_filters">Sortierfilter</string>
     <string name="filter_search_content_filters">Inhaltsfilter</string>
-    <string name="search_filters_10_30_min">10–30 min</string>
-    <string name="search_filters_2_10_min">2–10 min</string>
-    <string name="search_filters_360">360°</string>
-    <string name="search_filters_3d">3D</string>
-    <string name="search_filters_4_20_min">4–20 min</string>
-    <string name="search_filters_4k">4K</string>
     <string name="search_filters_added">Hinzugefügt</string>
     <string name="search_filters_artists_and_labels">Künstler &amp; Labels</string>
     <string name="search_filters_any_time">Jederzeit</string>
     <string name="search_filters_ascending">Aufsteigend</string>
-    <string name="search_filters_ccommons">Creative Commons</string>
     <string name="search_filters_creation_date">Erstellungsdatum</string>
     <string name="search_filters_date">Datum</string>
     <string name="search_filters_duration">Dauer</string>
     <string name="search_filters_features">Eigenschaften</string>
-    <string name="search_filters_greater_30_min">&gt; 30 min</string>
-    <string name="search_filters_hd">HD</string>
-    <string name="search_filters_hdr">HDR</string>
     <string name="search_filters_kind">Art</string>
     <string name="search_filters_last_30_days">Letzte 30 Tage</string>
     <string name="search_filters_last_7_days">Letzte 7 Tage</string>
     <string name="search_filters_last_hour">Letzte Stunde</string>
     <string name="search_filters_last_year">Letztes Jahr</string>
     <string name="search_filters_length">Länge</string>
-    <string name="search_filters_less_2_min">&lt; 2 min</string>
     <string name="search_filters_license">Lizenz</string>
     <string name="search_filters_location">Standort</string>
     <string name="search_filters_long_greater_10_min">Lang (&gt; 10 min)</string>
@@ -919,7 +883,6 @@
     <string name="search_filters_past_year">Vergangenes Jahr</string>
     <string name="search_filters_publish_date">Erscheinungsdatum</string>
     <string name="search_filters_published">Veröffentlicht</string>
-    <string name="search_filters_purchased">Gekauft</string>
     <string name="search_filters_rating">Bewertung</string>
     <string name="search_filters_relevance">Relevanz</string>
     <string name="search_filters_sensitive">Sensibler Inhalt</string>
@@ -934,7 +897,6 @@
     <string name="search_filters_upload_date">Hochladedatum</string>
     <string name="search_filters_views">Aufrufe</string>
     <string name="search_filters_vod_videos">VOD-Videos</string>
-    <string name="search_filters_vr180">VR180</string>
     <string name="search_filters_this_month">Dieser Monat</string>
     <string name="search_filters_this_week">Diese Woche</string>
     <string name="search_filters_this_year">Dieses Jahr</string>

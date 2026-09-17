@@ -138,7 +138,6 @@
     <string name="msg_running">BravePipe-hämtning</string>
     <string name="msg_running_detail">Tryck för detaljer</string>
     <string name="msg_wait">Vänta…</string>
-    <string name="msg_copied">Kopierat till urklipp</string>
     <string name="no_available_dir">Ange en hämtningsmapp senare i inställningarna</string>
     <string name="msg_popup_permission">Denna tillåtelse behövs för att
 \nöppna i popup-läge</string>
@@ -226,10 +225,6 @@
     <string name="video_streams_empty">Inga videoströmningar hittades</string>
     <string name="audio_streams_empty">Inga ljudspår hittades</string>
     <string name="invalid_directory">Ingen sådan mapp</string>
-    <string name="invalid_source">Ingen sådan fil/innehållskälla</string>
-    <string name="invalid_file">Filen finns inte eller behörighet att läsa eller skriva till den saknas</string>
-    <string name="file_name_empty_error">Filnamnet får inte vara tomt</string>
-    <string name="error_occurred_detail">Ett fel uppstod: %1$s</string>
     <string name="no_streams_available_download">Inga strömningar tillgängliga för hämtning</string>
     <string name="detail_drag_description">Dra för att ändra ordning</string>
     <string name="create">Skapa</string>
@@ -283,8 +278,6 @@
     <string name="import_title">Importera</string>
     <string name="import_from">Importera från</string>
     <string name="export_to">Exportera till</string>
-    <string name="import_ongoing">Importera…</string>
-    <string name="export_ongoing">Exporterar…</string>
     <string name="import_file_title">Importera fil</string>
     <string name="previous_export">Föregående export</string>
     <string name="subscriptions_import_unsuccessful">Kunde inte importera prenumerationer</string>
@@ -332,7 +325,6 @@
     <string name="file_deleted">Fil raderad</string>
     <string name="app_update_notification_channel_name">Avisering för appuppdatering</string>
     <string name="app_update_notification_channel_description">Aviseringar för nya BravePipe versioner</string>
-    <string name="download_to_sdcard_error_title">Extern lagring otillgänglig</string>
     <string name="saved_tabs_invalid_json">Fel vid läsning av sparade flikar, använder standardflikar</string>
     <string name="restore_defaults">Återställ standardvärden</string>
     <string name="restore_defaults_confirmation">Vill du återställa till standard\?</string>
@@ -390,7 +382,6 @@
     <string name="delete_playback_states_alert">Ta bort alla uppspelningspositioner\?</string>
     <string name="clear_playback_states_summary">Tar bort alla uppspelningspositioner</string>
     <string name="missing_file">Filen har flyttats eller tagits bort</string>
-    <string name="download_to_sdcard_error_message">Hämtning till externt SD-kort är inte möjligt. Återställ hämtningsmappens plats\?</string>
     <string name="watch_history_states_deleted">Uppspelningspositionerna har tagits bort</string>
     <string name="artists">Artister</string>
     <string name="albums">Album</string>
@@ -480,10 +471,6 @@
     <string name="systems_language">Systemstandard</string>
     <string name="app_language_title">Appspråk</string>
     <string name="choose_instance_prompt">Välj en instans</string>
-    <string name="downloads_storage_use_saf_summary">\"Storage Access Framework\" möjliggör hämtningar till ett externt SD-kort</string>
-    <string name="downloads_storage_use_saf_title">Använd systemmappväljaren (SAF)</string>
-    <string name="downloads_storage_ask_summary">Du kommer att bli tillfrågad var du vill spara varje hämtning.
-\nAktivera systemmappväljaren (SAF) om du vill hämta till ett externt SD-kort</string>
     <string name="downloads_storage_ask_title">Fråga var filen ska sparas</string>
     <string name="pause_downloads">Pausa hämtningar</string>
     <string name="start_downloads">Starta hämtningar</string>
@@ -523,9 +510,6 @@
     <string name="notification_action_repeat">Upprepa</string>
     <string name="notification_action_4_title">Femte åtgärdsknappen</string>
     <string name="notification_action_3_title">Fjärde åtgärdsknappen</string>
-    <string name="notification_action_2_title">Tredje åtgärdsknappen</string>
-    <string name="notification_action_1_title">Andra åtgärdsknappen</string>
-    <string name="notification_action_0_title">Första åtgärdsknappen</string>
     <string name="content_not_supported">Detta innehåll stöds ännu inte av BravePipe.
 \n
 \nDetta kommer förhoppningsvis ändras i en kommande version.</string>
@@ -539,7 +523,6 @@
     <string name="auto_device_theme_title">Automatiskt (enhetens tema)</string>
     <string name="notification_action_shuffle">Blanda</string>
     <string name="enqueued">Köad</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Från och med Android 10 stöds bara \"Storage Access Framework\"</string>
     <string name="soundcloud_go_plus_content">Det här är ett SoundCloud Go+-spår, åtminstone i ditt land, så det kan inte strömmas eller hämtas via BravePipe.</string>
     <string name="metadata_host">Värd</string>
     <string name="open_website_license">Öppna webbplats</string>
@@ -562,10 +545,8 @@
     <string name="show_description_summary">Inaktivera för att dölja videobeskrivning och ytterligare information</string>
     <string name="show_meta_info_title">Visa meta-information</string>
     <string name="show_thumbnail_summary">Använd miniatyrbild som bakgrund till både låsskärm och aviseringar</string>
-    <string name="notification_actions_summary">Redigera varje aviseringsåtgärd nedan genom att trycka på den. Välj upp till tre av dem som ska visas i den kompakta aviseringen genom att använda kryssrutorna till höger.</string>
     <string name="notification_colorize_summary">Låt Android färglägga varje avisering individuellt utifrån miniatyrbildens huvudsakliga färg (notera att detta inte är tillgängligt på alla enheter)</string>
     <string name="notification_colorize_title">Färglägg avisering</string>
-    <string name="notification_actions_at_most_three">Du kan som mest välja tre åtgärder att visa i den kompakta aviseringen!</string>
     <string name="recaptcha_solve">Lös</string>
     <string name="metadata_support">Support</string>
     <string name="metadata_privacy">Tillgänglighet</string>
@@ -657,8 +638,6 @@
     <string name="error_report_notification_toast">Ett fel uppstod, se aviseringen</string>
     <string name="show_error_snackbar">Visa en fel snackbar</string>
     <string name="create_error_notification">Skapa en felavisering</string>
-    <string name="no_appropriate_file_manager_message">Ingen lämplig filhanterare hittades för denna åtgärd.
-\nInstallera en filhanterare eller testa att inaktivera \'%s\' i nedladdningsinställningarna</string>
     <string name="no_appropriate_file_manager_message_android_10">Ingen lämplig filhanterare hittades för denna åtgärd.
 \nInstallera en filhanterare som är kompatibel med Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Fäst kommentar</string>
@@ -824,9 +803,6 @@
     <string name="feed_group_page_summary">Kanalgruppsida</string>
     <string name="search_with_service_name">Sök %1$s</string>
     <string name="search_with_service_name_and_filter">Sök %1$s (%2$s)</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="channel_tab_likes">Gillar</string>
     <string name="migration_info_6_7_title">SoundCloud Topp 50-sida borttagen</string>
     <string name="migration_info_6_7_message">SoundCloud har lagt ner de ursprungliga topp 50-listorna. Motsvarande flik har tagits bort från din startsida.</string>

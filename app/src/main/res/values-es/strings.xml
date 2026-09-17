@@ -75,7 +75,6 @@
     <string name="msg_running">BravePipe está descargando</string>
     <string name="msg_running_detail">Toca para ver detalles</string>
     <string name="msg_wait">Espere, por favor…</string>
-    <string name="msg_copied">Copiado al portapapeles</string>
     <string name="no_available_dir">Defina una carpeta de descargas más tarde en los ajustes</string>
     <string name="app_ui_crash">La interfaz de la aplicación dejó de funcionar</string>
     <string name="info_labels">Qué:\nSolicitud:\nIdioma del contenido:\nPaís del contenido:\nIdioma de la aplicación:\nServicio:\nMarca de tiempo:\nPaquete:\nVersión:\nVersión del SO:</string>
@@ -252,15 +251,9 @@
     <string name="file">Archivo</string>
     <string name="missing_file">Archivo movido o borrado</string>
     <string name="invalid_directory">La carpeta no existe</string>
-    <string name="invalid_source">No el archivo/en el origen del contenido</string>
-    <string name="invalid_file">El archivo no existe o falta permiso para poder leer o escribir en él</string>
-    <string name="file_name_empty_error">El nombre del archivo no puede estar vacío</string>
-    <string name="error_occurred_detail">Ocurrió un error: %1$s</string>
     <string name="import_title">Importar</string>
     <string name="import_from">Importar desde</string>
     <string name="export_to">Exportar a</string>
-    <string name="import_ongoing">Importando…</string>
-    <string name="export_ongoing">Exportando…</string>
     <string name="import_file_title">Importar archivo</string>
     <string name="previous_export">Exportación anterior</string>
     <string name="subscriptions_import_unsuccessful">No se pudo importar suscripciones</string>
@@ -373,17 +366,12 @@
     <string name="error_timeout">El tiempo de conexión expiro</string>
     <string name="error_download_resource_gone">No se puede recuperar esta descarga</string>
     <string name="downloads_storage_ask_title">Preguntar dónde descargar</string>
-    <string name="downloads_storage_ask_summary">Se te preguntará dónde guardar cada descarga. \nHabilita elegir carpetas del sistema (SAF) si quieres guardar las descargas en una tarjeta SD externa</string>
-    <string name="downloads_storage_use_saf_title">Usar Elegir carpetas del sistema (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">El \'Sistema de Acceso al Almacenamiento\' permite descargar en una tarjeta SD externa</string>
     <string name="unsubscribe">Desuscribirse</string>
     <string name="tab_choose">Elija la pestaña</string>
     <string name="settings_category_updates_title">Actualizaciones</string>
     <string name="events">Eventos</string>
     <string name="app_update_notification_channel_name">Notificación de actualización de la aplicación</string>
     <string name="app_update_notification_channel_description">Notificaciones de nuevas versiones de BravePipe</string>
-    <string name="download_to_sdcard_error_title">Almacenamiento externo no disponible</string>
-    <string name="download_to_sdcard_error_message">No es posible descargar a una tarjeta SD externa. ¿Restablecer la ubicación de la carpeta de descarga?</string>
     <string name="saved_tabs_invalid_json">No se pudo leer las pestañas guardadas, se usarán las pestañas predefinidas</string>
     <string name="restore_defaults">Restaurar valores predefinidos</string>
     <string name="restore_defaults_confirmation">¿Quieres restaurar los valores predefinidos\?</string>
@@ -544,13 +532,8 @@
     <string name="notification_action_nothing">Nada</string>
     <string name="notification_action_buffering">Almacenar en memoria (búfer)</string>
     <string name="notification_action_repeat">Repetir</string>
-    <string name="notification_actions_at_most_three">¡Puedes seleccionar como máximo tres acciones para mostrar en la notificación compacta!</string>
-    <string name="notification_actions_summary">Edite cada acción de notificación pulsando sobre ella. Seleccione hasta tres de ellas para que se muestren en la notificación compacta utilizando las casillas de verificación de la derecha.</string>
     <string name="notification_action_4_title">Botón de quinta acción</string>
     <string name="notification_action_3_title">Botón de cuarta acción</string>
-    <string name="notification_action_2_title">Botón de tercera acción</string>
-    <string name="notification_action_1_title">Botón de segunda acción</string>
-    <string name="notification_action_0_title">Botón de primera acción</string>
     <string name="notification_scale_to_square_image_summary">Recortar la relación de aspecto de la miniatura del vídeo mostrada en la notificación de 16:9 a 1:1</string>
     <string name="clear_cookie_summary">Vaciar las cookies que BravePipe guarda al resolver un reCAPTCHA</string>
     <string name="show_age_restricted_content_summary">Mostrar contenido inapropiado para niños porque tiene un limite de edad (como 18+)</string>
@@ -615,7 +598,6 @@
     <string name="feed_load_error_fast_unknown">El modo de muro rápido no arroja más información sobre esto.</string>
     <string name="feed_load_error_terminated">La cuenta del autor ha sido cancelada.\nBravePipe no podrá acceder a ella en el futuro.\n¿Quieres desuscribirte de este canal?</string>
     <string name="feed_load_error">Error al cargar el muro</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Desde Android 10 solo el \'Sistema de Acceso al Almacenamiento\' es soportado</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Se le preguntará dónde guardar cada descarga</string>
     <string name="disable_media_tunneling_summary">Deshabilita la tunelización de medios si experimentas una pantalla negra durante la reproducción o si la visualización de la imagen es intermitente.</string>
     <string name="disable_media_tunneling_title">Deshabilitar el túnel de medios</string>
@@ -662,7 +644,6 @@
     <string name="error_report_notification_toast">Se produjo un error, vea la notificación</string>
     <string name="create_error_notification">Crear una notificación de error</string>
     <string name="show_error_snackbar">Mostrar una barra de error</string>
-    <string name="no_appropriate_file_manager_message">No se ha encontrado un gestor de archivos apropiado para esta acción. \nPor favor, instala un gestor de archivos o intenta deshabilitarlo \'%s\' en los ajustes de la descarga</string>
     <string name="no_appropriate_file_manager_message_android_10">No se encontró ningún administrador de archivos apropiado para esta acción. 
 \n Instale un administrador de archivos compatible con Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentario fijado</string>
@@ -839,8 +820,6 @@
     <string name="trending_music">Tendencias música</string>
     <string name="permission_display_over_apps_permission_name">“Permitir mostrar sobre otras aplicaciones”</string>
     <string name="delete_file">Eliminar archivo</string>
-    <string name="short_thousand">%sM</string>
-    <string name="short_million">%sM</string>
     <string name="delete_entry">Eliminar entrada</string>
     <string name="account_terminated_service_provides_reason">Cuenta cancelada\n\n%1$s proporciona esta razón: %2$s</string>
     <string name="entry_deleted">Entrada eliminada</string>
@@ -848,7 +827,6 @@
     <string name="player_http_invalid_status">Error HTTP %1$s recibido del servidor durante la reproducción</string>
     <string name="youtube_player_http_403">Error HTTP 403 recibido del servidor durante la reproducción, probablemente causado por una prohibición de IP o problemas de desofuscación de la URL de transmisión</string>
     <string name="sign_in_confirm_not_bot_error">%1$s se negó a proporcionar datos y solicitó un inicio de sesión para confirmar que el solicitante no es un bot.\n\nEs posible que tu IP haya sido bloqueada temporalmente por %1$s. Puedes esperar un tiempo o cambiar a una IP diferente (por ejemplo, habilitando o deshabilitando una VPN, o cambiando de WiFi a datos móviles).</string>
-    <string name="short_billion">%sMM</string>
     <string name="unsupported_content_in_country">Este contenido no está disponible para el país seleccionado actualmente.\n\nCambia tu selección en «Ajustes &gt; Contenido &gt; País predefinido del contenido».</string>
     <string name="permission_display_over_apps_message">Para usar el reproductor emergente, seleccione %1$s en el siguiente menú de la configuración de Android y habilite %2$s.</string>
     <string name="kao_dialog_warning">En Agosto de 2025, Google ha anunciado que, a partir de 2026/2027, todas las aplicaciones en dispositivos Android certificados requerirán que los desarrolladores envíen sus datos personales de identidad directamente a Google. Como los desarrolladores de BravePipe no están de acuerdo con este requisito, la aplicación dejará de funcionar en dispositivos Android certificados después de esa fecha.</string>
@@ -880,7 +858,6 @@
     <string name="settings_category_sponsor_block_categories_reset_colors_title">Restablecer Colores</string>
     <string name="settings_category_sponsor_block_category_enable_title">Activar</string>
     <string name="settings_category_sponsor_block_category_color">Color en la Barra de Búsqueda</string>
-    <string name="settings_category_sponsor_block_category_sponsor_title">Sponsor</string>
     <string name="settings_category_sponsor_block_category_sponsor_summary">Promoción pagada, recomendaciones pagadas y anuncios directos. No para promoción propia o anuncios gratuitos a causas/creadores/sitios web/productos que les gusten.</string>
     <string name="settings_category_sponsor_block_category_intro_title">Intermisión/Animación de Introducción</string>
     <string name="settings_category_sponsor_block_category_intro_summary">Un intervalo sin contenido real. Podría ser una pausa, un cuadro estático, una animación repetida. Esto no debe ser usado para transiciones que contengan información ni utilizarse en videos musicales.</string>
@@ -892,7 +869,6 @@
     <string name="settings_category_sponsor_block_category_self_promo_summary">Similar a "sponsor", excepto que para la promoción propia o no remunerada. Esto incluye secciones sobre mercancía, donaciones o información sobre con quiénes colaboraron.</string>
     <string name="settings_category_sponsor_block_category_non_music_title">Música: Sección sin musica</string>
     <string name="settings_category_sponsor_block_category_non_music_summary">Sólo para el uso en vídeos musicales. Esto incluye introducciones u outros en videos musicales.</string>
-    <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">Ver Sitio Web</string>
     <string name="sponsor_block_home_page_summary">Ver sitio web oficial de SponsorBlock.</string>
     <string name="sponsor_block_enable_title">Saltar Sponsors</string>
@@ -905,9 +881,6 @@
     <string name="sponsor_block_privacy_summary">Ver la política de privacidad de SponsorBlock</string>
     <string name="sponsor_block_api_url_help_text">Esta es la URL que se consultará cuando la aplicación necesite saber qué partes de un vídeo debe omitir.\n\nPuedes establecer la URL oficial haciendo clic en la opción "Usar oficial" que aparece a continuación, aunque es muy recomendable que veas la política de privacidad de SponsorBlock antes de hacerlo.</string>
     <string name="sponsor_block_privacy_policy_text">Política de Privacidad de SponsorBlock</string>
-    <string name="sponsor_block_homepage_url">https://sponsor.ajay.app/</string>
-    <string name="sponsor_block_default_api_url">https://sponsor.ajay.app/api/</string>
-    <string name="sponsor_block_privacy_policy_url">https://gist.github.com/ajayyy/aa9f8ded2b573d4f73a3ffa0ef74f796</string>
     <string name="sponsor_block_skip_sponsor_toast">Sponsor Omitido</string>
     <string name="sponsor_block_skip_intro_toast">Intermisión/Introducción Omitida</string>
     <string name="sponsor_block_skip_outro_toast">Tarjetas/Créditos Omitidos</string>
@@ -925,7 +898,6 @@
     <string name="sponsor_block_confirm_clear_whitelist">¿Estás seguro/a de que quieres borrar la lista blanca?</string>
     <string name="sponsor_block_confirm_reset_colors">¿Estás seguro/a de que quieres restablecer los colores de las categorías?</string>
     <string name="sponsor_block_reset_colors_toast">Colores restablecidos.</string>
-    <string name="extras">Extras</string>
     <string name="extras_todo_summary">Los retoques, arreglos y otros ajustes misceláneos pertenecen aquí.</string>
     <string name="experimental_settings">Ajustes Experimentales</string>
     <string name="enable_local_player_title">Activar Reproductor Local (alfa)</string>

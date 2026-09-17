@@ -8,18 +8,33 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TabAdapter extends FragmentPagerAdapter {
-    private final List<Fragment> mFragmentList = new ArrayList<>();
-    private final List<String> mFragmentTitleList = new ArrayList<>();
+    private static final class TabEntry {
+        private Fragment fragment;
+        private final String title;
+        private final int icon;
+        private final int description;
+
+        TabEntry(final Fragment fragment, final String title, final int icon,
+                 final int description) {
+            this.fragment = fragment;
+            this.title = title;
+            this.icon = icon;
+            this.description = description;
+        }
+    }
+
+    private final List<TabEntry> tabs = new ArrayList<>();
     private final FragmentManager fragmentManager;
 
     public TabAdapter(final FragmentManager fm) {
-        // if changed to BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT => crash if enqueueing stream in
-        // the background and then clicking on it to open VideoDetailFragment:
-        // "Cannot setMaxLifecycle for Fragment not attached to FragmentManager"
+        // Resume-only behavior crashes when opening a stream enqueued in the background:
+        // "Cannot setMaxLifecycle for Fragment not attached to FragmentManager".
         super(fm, BEHAVIOR_SET_USER_VISIBLE_HINT);
         this.fragmentManager = fm;
     }
@@ -27,35 +42,37 @@ public class TabAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(final int position) {
-        return mFragmentList.get(position);
+        return tabs.get(position).fragment;
     }
 
     @Override
     public int getCount() {
-        return mFragmentList.size();
+        return tabs.size();
     }
 
     public void addFragment(final Fragment fragment, final String title) {
-        mFragmentList.add(fragment);
-        mFragmentTitleList.add(title);
+        addFragment(fragment, title, 0, 0);
+    }
+
+    void addFragment(final Fragment fragment, final String title, final int icon,
+                     final int description) {
+        tabs.add(new TabEntry(fragment, title, icon, description));
     }
 
     public void clearAllItems() {
-        mFragmentList.clear();
-        mFragmentTitleList.clear();
+        tabs.clear();
     }
 
     public void removeItem(final int position) {
-        mFragmentList.remove(position == 0 ? 0 : position - 1);
-        mFragmentTitleList.remove(position == 0 ? 0 : position - 1);
+        tabs.remove(position == 0 ? 0 : position - 1);
     }
 
     public void updateItem(final int position, final Fragment fragment) {
-        mFragmentList.set(position, fragment);
+        tabs.get(position).fragment = fragment;
     }
 
     public void updateItem(final String title, final Fragment fragment) {
-        final int index = mFragmentTitleList.indexOf(title);
+        final int index = getItemPositionByTitle(title);
         if (index != -1) {
             updateItem(index, fragment);
         }
@@ -63,27 +80,41 @@ public class TabAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getItemPosition(@NonNull final Object object) {
-        if (mFragmentList.contains(object)) {
-            return mFragmentList.indexOf(object);
-        } else {
-            return POSITION_NONE;
+        for (int i = 0; i < tabs.size(); i++) {
+            if (tabs.get(i).fragment.equals(object)) {
+                return i;
+            }
         }
+        return POSITION_NONE;
     }
 
     public int getItemPositionByTitle(final String title) {
-        return mFragmentTitleList.indexOf(title);
+        for (int i = 0; i < tabs.size(); i++) {
+            if (java.util.Objects.equals(tabs.get(i).title, title)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Nullable
     public String getItemTitle(final int position) {
-        if (position < 0 || position >= mFragmentTitleList.size()) {
-            return null;
-        }
-        return mFragmentTitleList.get(position);
+        return position < 0 || position >= tabs.size() ? null : tabs.get(position).title;
     }
 
     public void notifyDataSetUpdate() {
         notifyDataSetChanged();
+    }
+
+    void updateTabPresentation(final TabLayout layout) {
+        for (int i = 0; i < tabs.size(); i++) {
+            final TabEntry entry = tabs.get(i);
+            final TabLayout.Tab tab = layout.getTabAt(i);
+            if (tab != null && entry.icon != 0) {
+                tab.setIcon(entry.icon);
+                tab.setContentDescription(entry.description);
+            }
+        }
     }
 
     @Override
@@ -92,5 +123,4 @@ public class TabAdapter extends FragmentPagerAdapter {
                             @NonNull final Object object) {
         fragmentManager.beginTransaction().remove((Fragment) object).commitNowAllowingStateLoss();
     }
-
 }

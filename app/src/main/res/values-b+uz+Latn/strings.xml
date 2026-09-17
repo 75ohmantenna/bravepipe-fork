@@ -43,13 +43,8 @@
     <string name="notification_action_buffering">Buferlash</string>
     <string name="notification_action_shuffle">Aralash</string>
     <string name="notification_action_repeat">Takrorlash</string>
-    <string name="notification_actions_at_most_three">Bildirishnomada ko\'rsatish uchun eng ko\'p uchta amalni tanlashingiz mumkin!</string>
-    <string name="notification_actions_summary">Quyidagi har bir bildirishnomani ustiga bosib uni tahrir qiling. O\'ng tomondagi katakchalar yordamida ixcham bildirishnomada ko\'rsatilishi uchun ulardan uchtasini tanlang.</string>
     <string name="notification_action_4_title">Beshinchi harakat tugmasi</string>
     <string name="notification_action_3_title">To\'rtinchi harakat tugmasi</string>
-    <string name="notification_action_2_title">Uchinchi harakat tugmasi</string>
-    <string name="notification_action_1_title">Ikkinchi harakat tugmasi</string>
-    <string name="notification_action_0_title">Birinchi harakat tugmasi</string>
     <string name="notification_scale_to_square_image_summary">Bildirishnomada ko\'rsatilgan video eskizini 16: 9dan 1: 1 gacha tomonlarning nisbatiga qarab o\'lchamang (buzilishlarni keltirib chiqarishi mumkin)</string>
     <string name="notification_scale_to_square_image_title">Eskizini 1: 1 tomonlar nisbatiga o‘lchash</string>
     <string name="show_play_with_kodi_summary">Kodi media-markazi orqali videoni ijro etish variantini ko\'rsatish</string>
@@ -222,7 +217,6 @@
     <string name="msg_popup_permission">Ushbu ruxsat zarur
 \npopup rejimida oching</string>
     <string name="no_available_dir">Yuklab olish papkasini keyinroq sozlamalarda belgilang</string>
-    <string name="msg_copied">Buferga nusxa olindi</string>
     <string name="msg_wait">Iltimos kuting…</string>
     <string name="msg_running_detail">Tafsilotlar uchun bosing</string>
     <string name="msg_running">NePipe yuklab olinmoqda</string>
@@ -294,10 +288,6 @@
     <string name="restore_defaults">Birlamchi parametrlarni tiklash</string>
     <string name="saved_tabs_invalid_json">Saqlangan yorliqlarni o\'qib bo\'lmadi, shuning uchun standartlardan foydalaning</string>
     <string name="no_streams_available_download">Yuklash uchun stream mavjud emas</string>
-    <string name="error_occurred_detail">Xato yuz berdi: %1$s</string>
-    <string name="file_name_empty_error">Fayl nomi bo\'sh bo\'lishi mumkin emas</string>
-    <string name="invalid_file">Fayl mavjud emas yoki uni o\'qish yoki yozish uchun ruxsat yo\'q</string>
-    <string name="invalid_source">Bunday fayl / tarkib manbai yo\'q</string>
     <string name="invalid_directory">Bunday papka yo\'q</string>
     <string name="missing_file">Fayl ko\'chirildi yoki o\'chirildi</string>
     <string name="audio_streams_empty">Hech qanday audio stream topilmadi</string>
@@ -311,8 +301,6 @@
     <string name="parsing_error">Veb-saytni tahlil qilib bo\'lmadi</string>
     <string name="could_not_load_thumbnails">Barcha eskizlarni yuklab bo\'lmadi</string>
     <string name="network_error">Tarmoqda xato</string>
-    <string name="download_to_sdcard_error_message">Tashqi SD-kartaga yuklab olishning iloji yo\'q. Yuklash papkasining joylashuvi tiklansinmi\?</string>
-    <string name="download_to_sdcard_error_title">Tashqi xotira mavjud emas</string>
     <string name="general_error">Xato</string>
     <string name="search_history_deleted">Qidiruv tarixi o\'chirildi.</string>
     <string name="delete_search_history_alert">Butun qidiruv tarixi o\'chirilsinmi\?</string>
@@ -391,10 +379,6 @@
     <string name="systems_language">Tizimning standart qiymati</string>
     <string name="app_language_title">Ilova tili</string>
     <string name="choose_instance_prompt">Namunani tanlang</string>
-    <string name="downloads_storage_use_saf_summary">\"Saqlash uchun kirish doirasi\" tashqi SD-kartaga yuklab olishga imkon beradi.
-\nBa\'zi qurilmalar mos kelmaydi</string>
-    <string name="downloads_storage_use_saf_title">SAFdan foydalalnish</string>
-    <string name="downloads_storage_ask_summary">Sizdan har bir yuklab olishni qayerda saqlashingiz so\'raladi</string>
     <string name="downloads_storage_ask_title">Qayerdan yuklab olishni so\'rang</string>
     <string name="pause_downloads">Yuklashlarni to\'xtatib turish</string>
     <string name="start_downloads">Yuklashni boshlash</string>
@@ -490,8 +474,6 @@
     <string name="subscriptions_import_unsuccessful">Obunalarni import qilib bo‘lmadi</string>
     <string name="previous_export">Oldingi export</string>
     <string name="import_file_title">Import fayli</string>
-    <string name="export_ongoing">Eksport qilinmoqda…</string>
-    <string name="import_ongoing">Import qilinmoqda…</string>
     <string name="import_from">Dan Import qilish</string>
     <string name="export_to">Ga Export qilish</string>
     <string name="import_title">Import</string>

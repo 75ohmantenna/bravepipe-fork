@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -160,12 +159,10 @@ public final class ShareUtils {
         // is set as handler on Android >= 12, we actually remove the only eligible app
         // for this link, and browsers will not be offered to the user. For that, use
         // `openUrlInBrowser`.)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            chooserIntent.putExtra(
-                    Intent.EXTRA_EXCLUDE_COMPONENTS,
-                    new ComponentName[]{new ComponentName(context, RouterActivity.class)}
-            );
-        }
+        chooserIntent.putExtra(
+                Intent.EXTRA_EXCLUDE_COMPONENTS,
+                new ComponentName[]{new ComponentName(context, RouterActivity.class)}
+        );
 
         // Migrate any clip data and flags from the original intent.
         final int permFlags = intent.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
@@ -223,13 +220,9 @@ public final class ShareUtils {
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, title);
         }
 
-        // Content preview in the share sheet has been added in Android 10, so it's not needed to
-        // set a content preview which will be never displayed
         // See https://developer.android.com/training/sharing/send#adding-rich-content-previews
         // If loading of images has been disabled, don't try to generate a content preview
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
-                && !TextUtils.isEmpty(imagePreviewUrl)
-                && ImageStrategy.shouldLoadImages()) {
+        if (!TextUtils.isEmpty(imagePreviewUrl) && ImageStrategy.shouldLoadImages()) {
 
             final ClipData clipData = generateClipDataForImagePreview(context, imagePreviewUrl);
             if (clipData != null) {
@@ -284,8 +277,7 @@ public final class ShareUtils {
     }
 
     /**
-     * Copy the text to clipboard, and indicate to the user whether the operation was completed
-     * successfully using a Toast.
+     * Copy the text to clipboard. The system indicates success; failures are shown using a Toast.
      *
      * @param context the context to use
      * @param text    the text to copy
@@ -301,10 +293,6 @@ public final class ShareUtils {
 
         try {
             clipboardManager.setPrimaryClip(ClipData.newPlainText(null, text));
-            if (Build.VERSION.SDK_INT < 33) {
-                // Android 13 has its own "copied to clipboard" dialog
-                Toast.makeText(context, R.string.msg_copied, Toast.LENGTH_SHORT).show();
-            }
         } catch (final Exception e) {
             Log.e(TAG, "Error when trying to copy text to clipboard", e);
             Toast.makeText(context, R.string.msg_failed_to_copy, Toast.LENGTH_SHORT).show();
@@ -323,9 +311,9 @@ public final class ShareUtils {
      * <p>
      * In order to display the image in the content preview of the Android share sheet, an URI of
      * the content, accessible and readable by other apps has to be generated, so a new file inside
-     * the application cache will be generated, named {@code android_share_sheet_image_preview.jpg}
-     * (if a file under this name already exists, it will be overwritten). The thumbnail will be
-     * compressed in JPEG format, with a {@code 90} compression level.
+     * the application cache's {@code share_preview} directory will be generated, named
+     * {@code android_share_sheet_image_preview.jpg} (overwriting any existing file).
+     * The thumbnail will be compressed in JPEG format, with a {@code 90} compression level.
      * </p>
      *
      * <p>
@@ -372,7 +360,8 @@ public final class ShareUtils {
             }
 
             final var path = applicationContext.getCacheDir().toPath()
-                    .resolve("android_share_sheet_image_preview.jpg");
+                    .resolve("share_preview/android_share_sheet_image_preview.jpg");
+            Files.createDirectories(path.getParent());
             // Any existing file will be overwritten
             try (var outputStream = Files.newOutputStream(path)) {
                 cachedBitmap.compress(Bitmap.CompressFormat.JPEG, 90, outputStream);

@@ -4,8 +4,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.util.Log;
 
@@ -13,13 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
-import com.nononsenseapps.filepicker.Utils;
-
 import org.schabi.newpipe.MainActivity;
-import org.schabi.newpipe.settings.NewPipeSettings;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URI;
@@ -51,14 +44,12 @@ public class StoredFileHelper implements Serializable {
     private String srcType;
 
     public StoredFileHelper(final Context context, final Uri uri, final String mime) {
-        if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            final File ioFile = Utils.getFileForUri(uri);
-            ioPath = ioFile.toPath();
-            source = Uri.fromFile(ioFile).toString();
+        if (ContentResolver.SCHEME_FILE.equals(uri.getScheme())) {
+            ioPath = Paths.get(URI.create(uri.toString()));
         } else {
             docFile = DocumentFile.fromSingleUri(context, uri);
-            source = uri.toString();
         }
+        source = uri.toString();
 
         this.context = context;
         this.srcType = mime;
@@ -483,108 +474,39 @@ public class StoredFileHelper implements Serializable {
 
     public static Intent getPicker(@NonNull final Context ctx,
                                    @NonNull final String mimeType) {
-        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
-            return new Intent(Intent.ACTION_OPEN_DOCUMENT)
-                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    .setType(mimeType)
-                    .addCategory(Intent.CATEGORY_OPENABLE)
-                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                            | StoredDirectoryHelper.PERMISSION_FLAGS);
-        } else {
-            return new Intent(ctx, FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_SINGLE_CLICK, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_FILE);
-        }
+        return new Intent(Intent.ACTION_OPEN_DOCUMENT)
+                .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                .setType(mimeType)
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                        | StoredDirectoryHelper.PERMISSION_FLAGS);
     }
 
     public static Intent getPicker(@NonNull final Context ctx,
                                    @NonNull final String mimeType,
                                    @Nullable final Uri initialPath) {
-        return applyInitialPathToPickerIntent(ctx, getPicker(ctx, mimeType), initialPath, null);
+        return applyInitialPathToPickerIntent(getPicker(ctx, mimeType), initialPath);
     }
 
     public static Intent getNewPicker(@NonNull final Context ctx,
                                       @Nullable final String filename,
                                       @NonNull final String mimeType,
                                       @Nullable final Uri initialPath) {
-        final Intent i;
-        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
-            i = new Intent(Intent.ACTION_CREATE_DOCUMENT)
-                    .putExtra("android.content.extra.SHOW_ADVANCED", true)
-                    .setType(mimeType)
-                    .addCategory(Intent.CATEGORY_OPENABLE)
-                    .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
-                            | StoredDirectoryHelper.PERMISSION_FLAGS);
-            if (filename != null) {
-                i.putExtra(Intent.EXTRA_TITLE, filename);
-            }
-        } else {
-            i = new Intent(ctx, FilePickerActivityHelper.class)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_MULTIPLE, false)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_CREATE_DIR, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_ALLOW_EXISTING_FILE, true)
-                    .putExtra(FilePickerActivityHelper.EXTRA_MODE,
-                            FilePickerActivityHelper.MODE_NEW_FILE);
+        final Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT)
+                .putExtra("android.content.extra.SHOW_ADVANCED", true)
+                .setType(mimeType)
+                .addCategory(Intent.CATEGORY_OPENABLE)
+                .addFlags(Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION
+                        | StoredDirectoryHelper.PERMISSION_FLAGS);
+        if (filename != null) {
+            intent.putExtra(Intent.EXTRA_TITLE, filename);
         }
-        return applyInitialPathToPickerIntent(ctx, i, initialPath, filename);
+        return applyInitialPathToPickerIntent(intent, initialPath);
     }
 
-    private static Intent applyInitialPathToPickerIntent(@NonNull final Context ctx,
-                                                         @NonNull final Intent intent,
-                                                         @Nullable final Uri initialPath,
-                                                         @Nullable final String filename) {
-
-        if (NewPipeSettings.useStorageAccessFramework(ctx)) {
-            if (initialPath == null) {
-                return intent; // nothing to do, no initial path provided
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                return intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialPath);
-            } else {
-                return intent; // can't set initial path on API < 26
-            }
-
-        } else {
-            if (initialPath == null && filename == null) {
-                return intent; // nothing to do, no initial path and no file name provided
-            }
-
-            File file;
-            if (initialPath == null) {
-                // The only way to set the previewed filename in non-SAF FilePicker is to set a
-                // starting path ending with that filename. So when the initialPath is null but
-                // filename isn't just default to the external storage directory.
-                file = Environment.getExternalStorageDirectory();
-            } else {
-                try {
-                    file = Utils.getFileForUri(initialPath);
-                } catch (final Throwable ignored) {
-                    // getFileForUri() can't decode paths to 'storage', fallback to this
-                    file = new File(initialPath.toString());
-                }
-            }
-
-            // remove any filename at the end of the path (get the parent directory in that case)
-            if (!file.exists() || !file.isDirectory()) {
-                file = file.getParentFile();
-                if (file == null || !file.exists()) {
-                    // default to the external storage directory in case of an invalid path
-                    file = Environment.getExternalStorageDirectory();
-                }
-                // else: file is surely a directory
-            }
-
-            if (filename != null) {
-                // append a filename so that the non-SAF FilePicker shows it as the preview
-                file = new File(file, filename);
-            }
-
-            return intent
-                    .putExtra(FilePickerActivityHelper.EXTRA_START_PATH, file.getAbsolutePath());
-        }
+    private static Intent applyInitialPathToPickerIntent(@NonNull final Intent intent,
+                                                         @Nullable final Uri initialPath) {
+        return initialPath == null ? intent
+                : intent.putExtra(DocumentsContract.EXTRA_INITIAL_URI, initialPath);
     }
 }

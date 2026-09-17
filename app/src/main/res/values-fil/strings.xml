@@ -45,12 +45,9 @@
     <string name="open_with">Buksan gamit ang</string>
     <string name="notification_action_3_title">Pang-apat na action button</string>
     <string name="show_play_with_kodi_title">Ipakita ang \"I-play gamit Kodi\"</string>
-    <string name="notification_action_1_title">Pangalawang action button</string>
-    <string name="notification_action_2_title">Pangatlong action button</string>
     <string name="use_inexact_seek_summary">Pinapayagan ng di-saktong seek ang player na mag-seek sa mga posisyon nang mabilis ngunit na may pinababang kasaktuhan. Di ito gagana sa pag-seek nang 5, 15, o 25 segundo</string>
     <string name="show_search_suggestions_summary">Piliin ang mga mungkahing ipapakita habang naghahanap</string>
     <string name="show_description_summary">Patayin para itago ang paglalarawan ng video at karagdagang impormasyon</string>
-    <string name="notification_actions_summary">I-edit ang bawat action sa abiso sa baba sa pamamagitan ng pagpindot sa mga ito. Pumili ng hanggang tatlong ipapakita sa siksik na abiso gamit ang mga checkbox sa kanan</string>
     <string name="notification_action_buffering">Pag-buffer</string>
     <string name="notification_action_nothing">Wala</string>
     <string name="theme_title">Tema</string>
@@ -100,8 +97,6 @@
     <string name="kore_not_found">I-install ang nawawalang Kode app\?</string>
     <string name="notification_scale_to_square_image_title">I-scale ang thumbnail sa 1:1 aspect ratio</string>
     <string name="notification_scale_to_square_image_summary">I-scale ang thumbnail ng video sa abiso mula 16:9 papuntang 1:1 aspect ratio (pwedeng magkaroon ng distortion)</string>
-    <string name="notification_action_0_title">Unang action button</string>
-    <string name="notification_actions_at_most_three">Hanggang tatlo lang ang pwedeng maipakita sa siksik na abiso!</string>
     <string name="default_audio_format_title">Panimulang audio format</string>
     <string name="default_video_format_title">Panimulang video format</string>
     <string name="night_theme_title">Madilim na Tema</string>

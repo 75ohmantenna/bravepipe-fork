@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.ComponentDialog
+import androidx.activity.OnBackPressedCallback
 import androidx.core.content.getSystemService
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
@@ -118,12 +120,14 @@ class FeedGroupDialog : DialogFragment(), BackPressable {
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return object : Dialog(requireActivity(), theme) {
-            override fun onBackPressed() {
-                if (!this@FeedGroupDialog.onBackPressed()) {
-                    super.onBackPressed()
+        return ComponentDialog(requireActivity(), theme).apply {
+            onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    if (!this@FeedGroupDialog.onBackPressed()) {
+                        cancel()
+                    }
                 }
-            }
+            })
         }
     }
 

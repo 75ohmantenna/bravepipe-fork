@@ -1,11 +1,8 @@
 package org.schabi.newpipe.settings;
 
-import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
-import android.os.Environment;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -16,7 +13,6 @@ import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.DeviceUtils;
 
-import java.io.File;
 import java.util.Set;
 
 /*
@@ -62,61 +58,9 @@ public final class NewPipeSettings {
         PreferenceManager.setDefaultValues(context, R.xml.sponsor_block_category_settings, true);
         PreferenceManager.setDefaultValues(context, R.xml.backup_restore_settings, true);
 
-        saveDefaultVideoDownloadDirectory(context);
-        saveDefaultAudioDownloadDirectory(context);
-
         disableMediaTunnelingIfNecessary(context);
     }
 
-    static void saveDefaultVideoDownloadDirectory(final Context context) {
-        saveDefaultDirectory(context, R.string.download_path_video_key,
-                Environment.DIRECTORY_MOVIES);
-    }
-
-    static void saveDefaultAudioDownloadDirectory(final Context context) {
-        saveDefaultDirectory(context, R.string.download_path_audio_key,
-                Environment.DIRECTORY_MUSIC);
-    }
-
-    private static void saveDefaultDirectory(final Context context, final int keyID,
-                                             final String defaultDirectoryName) {
-        if (!useStorageAccessFramework(context)) {
-            final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-            final String key = context.getString(keyID);
-            final String downloadPath = prefs.getString(key, null);
-            if (!isNullOrEmpty(downloadPath)) {
-                return;
-            }
-
-            final SharedPreferences.Editor spEditor = prefs.edit();
-            spEditor.putString(key, getNewPipeChildFolderPathForDir(getDir(defaultDirectoryName)));
-            spEditor.apply();
-        }
-    }
-
-    @NonNull
-    public static File getDir(final String defaultDirectoryName) {
-        return new File(Environment.getExternalStorageDirectory(), defaultDirectoryName);
-    }
-
-    private static String getNewPipeChildFolderPathForDir(final File dir) {
-        return new File(dir, "NewPipe").toURI().toString();
-    }
-
-    public static boolean useStorageAccessFramework(final Context context) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            return true;
-        } else if (DeviceUtils.isFireTv()) {
-            // There's a FireOS bug which prevents SAF open/close dialogs from being confirmed with
-            // a remote (see #6455).
-            return false;
-        }
-
-        final String key = context.getString(R.string.storage_use_saf);
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-
-        return prefs.getBoolean(key, true);
-    }
 
     private static boolean showSearchSuggestions(final Context context,
                                                  final SharedPreferences sharedPreferences,

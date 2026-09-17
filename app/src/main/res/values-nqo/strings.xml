@@ -3,16 +3,11 @@
     <string name="show_play_with_kodi_summary">ߞߊ߬ ߢߣߊߕߊߟߌ ߘߏ߫ ߦߌ߬ߘߊ߬ ߞߊ߬ ߦߋߡߍ߲ߕߊ ߕߏߟߏ߲߫ Kodi ߞߟߋߞߟߋ߫ ߕߊ߲ߓߊ߲ ߘߐ߫</string>
     <string name="kore_not_found">Kore ߟߥߊߟߌߟߊ߲ ߡߊ߫ ߛߐ߬ߘߐ߲߬߸ ߞߵߊ߬ ߡߊߗߍ߫؟</string>
     <string name="notification_scale_to_square_image_summary">ߦߋߡߍ߲ߕߊ ߞߏ߬ߋߞߏ߬ߋ߫ ߡߍ߲ ߦߌ߬ߘߊ߬ߕߐ߫ ߛߏ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߘߐ߫߸ ߞߵߏ߬ ߟߊߕߍ߰ ߞߊ߬ ߓߐ߫ ߁߆:߉ ߞߊ߬ ߞߍ߫ ߁:߁ ߓߍ߲߬ߡߊ ߘߌ߫</string>
-    <string name="notification_action_1_title">ߞߍߟߌ߫ ߝߌߟߊߣߊ߲ ߞߎ߬ߘߎ</string>
-    <string name="notification_actions_summary">ߛߐ߬ߓߌ߬ߘߐ߬ߓߏ߲߫ ߞߍߟߌ ߞߋ߬ߟߋ߲߬ߞߋ߬ߟߋ߲߬ߠߊ ߡߊߝߊ߬ߟߋ߲߬ ߘߎ߰ߟߊ߫ ߛߐ߲߬ߞߌ߲߬ߠߌ߲ ߘߐ߫ ߊ߬ߟߎ߫ ߞߊ߲߬. ߘߏ߫ ߟߎ߫ ߓߊߕߐߡߐ߲߫ (ߞߣߊ߫ ߕߊ߬ߡߌ߲߬ ߃ ߟߊ߫) ߞߵߊ߬ߟߎ߫ ߝߍ߲߬ߛߍ߲߫ ߛߐ߬ߓߌ߬ߘߐ߬ߓߏ߲߫ ߜߘߋ ߘߐ߫߸ ߞߌߣߌ߲߫ ߛߐ߲߬ߞߌ߲ ߛߌߟߊ ߝߍ߬ ߘߋ߲߬ߞߊ߬ߣߍ߲߬ ߘߐߞߍߕߊ ߞߊ߲߬</string>
     <string name="show_play_with_kodi_title">ߞߊ߬ \"ߊ߬ ߕߏߟߏ߲߫ Kodi ߞߣߐ߫\" ߢߣߊߕߊߟߌ ߦߌ߬ߘߊ߬</string>
     <string name="crash_the_player">ߞߊ߬ ߕߏߟߏ߲ߟߊ߲ ߠߜߊߘߊ߲߫</string>
     <string name="notification_scale_to_square_image_title">ߞߏ߬ߋߞߏ߬ߋ ߟߊ߬ߕߍ߰ ߁:߁ ߡߊ߬</string>
-    <string name="notification_action_0_title">ߞߍߟߌ߫ ߝߟߐ ߞߎ߬ߘߎ</string>
-    <string name="notification_action_2_title">ߞߍߟߌ߫ ߛߓߊߣߊ߲ ߞߎ߬ߘߎ</string>
     <string name="notification_action_3_title">ߞߍߟߌ߫ ߣߊ߯ߣߌ߲ߣߊ߲ ߞߎ߬ߘߎ</string>
     <string name="notification_action_4_title">ߞߍߟߌ߫ ߟߏ߯ߟߎߣߊ߲ ߞߎ߬ߘߎ</string>
-    <string name="notification_actions_at_most_three">ߛߐ߬ߓߌ߬ߘߐ߬ߓߏ߲߬ ߜߘߋ ߘߐ߫ ߌ ߘߌ߫ ߛߋ߫ ߞߍߟߌ߫ ߛߓߊ߬ ߔߋ߫ ߟߋ߬ ߓߊߕߐߡߐ߲߫ ߠߊ߫ ߞߵߊ߬ ߝߍ߲߬ߛߍ߲߫߹</string>
     <string name="did_you_mean">ߕߎ߬ߡߊ߬ ߘߐ߫߸ ߌ ߞߊ߲߫ ߦߋ߫ \"%1$s\" ߟߋ߫ ߡߊ߬؟</string>
     <string name="upload_date_text">ߊ߬ ߟߊߖߍ߲ߛߍ߲߫ ߘߊ߫ %1$s</string>
     <string name="no_player_found">ߥߦߏ߬ ߕߏߟߏ߲ߟߊ߲߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬. ߞߊ߬ VLC ߡߊߗߍ߫؟</string>
@@ -148,17 +143,12 @@
     <string name="clear_search_history_summary">ߞߊ߬ ߢߌߣߌ߲ߠߌ߲߫ ߞߎߡߊߘߋ߲ ߠߎ߫ ߘߝߐ߬ߦߊ ߖߐ߬ߛߌ߫</string>
     <string name="fast_mode">ߗߏ߯ߦߊ߫ ߞߊߟߌ߲</string>
     <string name="general_error">ߝߎ߬ߕߎ߲߬ߕߌ</string>
-    <string name="download_to_sdcard_error_title">ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲߫ ߕߍ߫ ߦߋ߲߬</string>
     <string name="network_error">ߞߙߏ߬ߝߏ߫ ߝߎ߬ߕߎ߲߬ߕߌ</string>
     <string name="parsing_error">ߗߍߦߙߐ ߡߊ߫ ߛߋ߫ ߘߐߛߏ߯ߙߋ߫ ߟߊ߫</string>
     <string name="content_not_available">ߞߣߐߘߐ ߕߍ߫ ߡߊߛߐ߬ߘߐ߲߬</string>
     <string name="app_ui_crash">ߟߥߊ߬ߟߌ߬ߟߊ߲ ߓߘߊ߫ ߜߊߘߊ߲߫</string>
     <string name="missing_file">ߞߐߕߐ߮ ߓߘߊ߫ ߡߊߘߏ߬ߣߌ߲߬ ߥߟߴߊ߬ ߓߘߊ߫ ߖߐ߬ߛߌ߫</string>
     <string name="invalid_directory">ߞߎ߲ߓߍ߲ ߛߎߝߊ߫ ߏ߬ ߕߍ߫ ߦߋ߲߬</string>
-    <string name="invalid_source">ߞߎ߲ߓߍ߲ ߥߟߊ߫ ߞߣߐߘߐ߫ ߛߎߝߊ ߏ߬ ߕߍ߫ ߦߋ߲߬</string>
-    <string name="invalid_file">ߞߐߕߐ߮ ߕߍ߲߬ ߦߋ߲߬ ߥߟߴߊ߬ ߕߍ߫ ߟߊߛߐ߬ߘߐ߲߬ ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲ ߥߟߊ߫ ߛߓߍߟߌ߫ ߓߟߏ ߡߊ߬</string>
-    <string name="file_name_empty_error">ߞߐߕߐ߯ ߕߐ߮ ߘߐߞߏߟߏ߲ ߕߍ߫ ߛߋ߫ ߕߏ߫ ߟߊ߫</string>
-    <string name="error_occurred_detail">ߝߎ߬ߕߎ߲߬ߕߌ ߘߏ߫ ߓߘߊ߫ ߞߍ߫: %1$s</string>
     <string name="no_streams_available_download">ߥߦߏ߬ ߟߊߖߌ߰ߕߊ߬ ߕߍ߫߫ ߦߋ߲߬</string>
     <string name="saved_tabs_invalid_json">ߛߏ߬ߙߌ߲߬ߘߐ߬ ߟߊߞߎ߲߬ߘߎ߬ߣߍ߲ ߠߎ߬ ߕߍ߫ ߞߊ߬ߙߊ߲߬ ߠߊ߫߸ ߛߏ߬ߙߏ߲߬ߘߐ߬ ߖߏߣߡߊ ߟߎ߬ ߟߋ߬ ߟߊߓߊ߯ߙߊ ߌߘߐ߫</string>
     <string name="error_report_notification_toast">ߝߎ߬ߕߎ߲߬ߕߌ ߘߏ߫ ߓߘߊ߫ ߞߍ߫߸ ߛߐ߬ߓߌ߬ߘߐ߬ߓߏ߲ ߡߊߝߍߣߍ߲߫</string>
@@ -200,7 +190,6 @@
     <string name="clear_playback_states_title">ߞߊ߬ ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߫ ߖߐ߬ߛߌ߫</string>
     <string name="clear_search_history_title">ߞߊ߬ ߢߌߣߌ߲ߠߌ߲߫ ߘߝߐ߬ߦߊ ߟߎ߬ ߝߌߘߊ߲߫</string>
     <string name="clear_playback_states_summary">ߘߐ߬ߞߊ߬ߙߊ߲߬ߠߌ߲߫ ߘߊ߲߬ߘߌߦߊ ߟߎ߬ ߓߍ߯ ߖߐ߬ߛߌ߫</string>
-    <string name="download_to_sdcard_error_message">ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲߫ ߞߊ߲߬ ߟߊ߬ߖߌ߰ߟߌ ߕߍ߫ ߓߍ߲߬. ߦߴߊ߬ ߝߍ߬ ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ߬ ߞߎ߲ߓߍ߲ ߘߌ߲߬ߞߌߙߊ ߢߡߊߛߊ߬ߦߌ߬ ؟</string>
     <string name="could_not_setup_download_menu">ߟߊ߬ߖߌ߰ߟߌ ߢߣߊߥߟߊ߫ ߕߍ߫ ߛߋ߫ ߘߐߛߌ߰ ߟߊ߫</string>
     <string name="show_comments_title">ߞߊ߬ ߞߊ߲߬ߞߎߡߊ ߟߎ߫ ߦߌ߬ߘߊ߬</string>
     <string name="show_comments_summary">ߊ߬ ߟߊߛߊ߬ ߞߊ߬ ߞߊ߲߬ߞߎߡߊ ߟߎ߬ ߢߡߊߘߏ߲߰</string>
@@ -358,7 +347,6 @@
     <string name="import_title">ߞߵߊ߬ ߟߊߛߣߍ߫</string>
     <string name="import_from">ߊ߬ ߟߊߛߣߍ߫ ߞߊ߬ߓߌ߯</string>
     <string name="export_to">ߞߵߊ߬ ߟߊߓߐ߫ ߞߊߕߘߍ߬</string>
-    <string name="import_ongoing">ߟߊ߬ߛߣߍ߬ߟߌ ߦߴߌߘߐ߫…</string>
     <string name="import_file_title">ߞߊ߬ ߞߐߕߐ߮ ߟߊߛߣߍ߫</string>
     <string name="previous_export">ߟߊ߬ߓߐ߬ߟߌ߫ ߕߊ߬ߡߌ߲߬ߣߍ߲</string>
     <string name="enable_streams_notifications_title">ߦߋߡߍ߲ߕߊ߫ ߞߎߘߊ</string>
@@ -367,7 +355,6 @@
         <item quantity="other">ߦߋߡߍ߲ߕߊ߫ %s</item>
     </plurals>
     <string name="msg_wait">ߘߌ߬ߢߍ߬ ߦߴߊ߬ ߡߊߞߐ߬ߣߐ߲߬…</string>
-    <string name="msg_copied">ߊ߬ ߓߘߊ߫ ߓߊߓߌߟߊ߫ ߞߓߊ߬ߞߘߐ߬ߘߏ߲ ߘߐ߫</string>
     <string name="msg_failed_to_copy">ߊ߬ ߡߊ߫ ߛߋ߫ ߓߊߓߌߟߊ߫ ߟߊ߫ ߞߓߊ߬ߞߘߐ߬ߘߏ߲ ߘߐ߫</string>
     <string name="msg_calculating_hash">ߢߋߙߋ߲ߞߎ߲߫ ߖߊ߬ߕߋ߬ߓߐ</string>
     <string name="msg_popup_permission">ߡߊ߬ߞߏ ߦߋ߫ ߟߊ߬ߘߌ߬ߢߍ߬ߟߌ ߣߌ߲߬ ߠߊ߫ ߞߊ߬
@@ -436,7 +423,6 @@
     <string name="show_original_time_ago_summary">ߗߋߢߊߟߌ ߟߎ߬ ߞߟߏߜߍ߫ ߓߐߛߎ߲ߡߊ ߟߎ߬ ߦߌ߬ߘߊ߬ߕߐ߫ ߟߋ߬ ߟߊ߬ߖߍ߲߬ߛߍ߲߬ߠߌ߲ ߘߐ߫</string>
     <string name="disable_media_tunneling_title">ߞߋߟߋߞߋߟߋ ߟߊ߫ ߝߊߟߊ߲ߓߍߦߊ ߟߊߛߊ߬</string>
     <string name="disable_media_tunneling_summary">ߞߋߟߋߞߋߟߋ ߟߊ߫ ߝߊߟߊ߲ߓߍߦߊ ߟߊߛߊ߬ ߣߴߌ ߞߊ߬ ߥߊ߲߬ߊߥߊ߲߬ ߝߌ߲ ߦߋ߫ ߥߟߊ߫ ߜߊߘߊ߲ߜߊߘߊ߲ߠߌ߲ ߦߋߡߍ߲ߕߊ ߘߏ߫ ߘߐߛߊߙߌ߫ ߕߎߡߊ</string>
-    <string name="export_ongoing">ߟߊ߬ߓߐ߬ߟߌ ߦߴߌߘߐ߫…</string>
     <string name="start">ߞߵߊ߬ ߘߊߡߌ߬ߣߊ߬</string>
     <string name="comments_are_disabled">ߞߊ߲߬ߞߎߡߊ ߟߎ߬ ߟߊߛߊ߬ߣߍ߲ ߠߋ߬</string>
     <string name="delete">ߞߵߊ߬ ߖߏ߬ߛߌ߫</string>
@@ -545,12 +531,9 @@
     <string name="start_downloads">ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ ߟߎ߬ ߘߊߡߌ߬ߣߊ߬</string>
     <string name="pause_downloads">ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ ߟߎ߬ ߟߊߘߎ߲߫</string>
     <string name="downloads_storage_ask_title">ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ߫ ߥߊ߫ ߦߙߐ ߡߊߢߌ߬ߣߌ߲߬ߞߊ߫</string>
-    <string name="downloads_storage_ask_summary">ߌ ߣߊ߬ߕߐ߫ ߟߋ߬ ߡߊ߬ߢߌ߬ߣߌ߲߬ߞߊ߬ ߟߊ߫ ߟߊ߬ߖߌ߰ߟߌ߫ ߞߋ߬ߟߋ߲߬ߞߋ߬ߟߋ߲߬ߠߊ߫ ߟߊߞߎ߲߬ߘߎ߲߬ ߦߙߐ ߡߊ߬.
-\nߟߊ߬ߘߌߢߍ ߘߌ߫ ߞߊ߲ߞߋ߫ ߞߎ߲ߓߍ߲߫ ߛߎߥߊ߲ߘߌߟߊ߲ (SAF) ߡߊ߬ ߣߴߌ ߦߴߊ߬ ߝߍ߬ ߞߵߊ߬ ߟߊߖߌ߰ ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲ ߠߋ߫ ߞߊ߲߬</string>
     <string name="enable_queue_limit">ߞߊ߬ ߘߊ߲߭ߛߌ߰ ߟߊ߬ߖߌ߰ߟߌ߫ ߕߎ߲߰ߠߌ߲ ߠߊ߫</string>
     <string name="enable_queue_limit_desc">ߟߊ߬ߖߌ߰ߟߌ߬ ߞߋߟߋ߲߫ ߔߋ߫ ߟߋ߫ ߣߊ߬ߕߐ߬ ߞߍ߫ ߟߊ߫ ߕߎ߬ߡߊ߬ߣߍ߲߬ ߞߋߟߋ߲ ߠߊ߫</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">ߟߊ߬ߖߌ߰ߟߌ߫ ߞߋ߬ߟߋ߲߬ߞߋ߬ߟߋ߲߬ߠߊ߫ ߓߍ߯ ߟߊߞߎ߲߬ߘߎ߬ ߦߙߐ ߘߌߣߊ߬ ߡߊߢߌ߬ߣߌ߲߬ߞߵߌ ߟߊ߫</string>
-    <string name="downloads_storage_use_saf_title">ߞߊ߲ߞߋ߫ ߞߎ߲ߓߍ߲߫ ߛߎߥߊ߲ߘߌߟߊ߲ (SAF) ߟߊߓߊ߯ߙߊ߫</string>
     <string name="choose_instance_prompt">ߛߐߘߊ ߘߏ߫ ߛߎߥߊ߲ߘߌ߫</string>
     <string name="remove_duplicates">ߞߊ߬ ߓߊߟߌߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫</string>
     <string name="remove_duplicates_title">ߞߊ߬ ߓߊߟߌߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫ ؟</string>
@@ -585,8 +568,6 @@
     <string name="error_timeout">ߜߊ߲߬ߞߎ߲߬ߠߌ߲ ߛߕߊ ߓߘߊ߫ ߓߊ߲߫</string>
     <string name="clear_download_history">ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ߫ ߘߝߐ߬ߦߊ ߝߌߘߊ߲߫</string>
     <string name="confirm_prompt">ߌ ߦߴߊ߬ ߝߍ߬ ߟߋ߬ ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ߫ ߘߝߐ߬ߦߊ ߝߌߘߊ߲߫ ߥߟߊ߫ ߞߊ߬ ߞߐߕߐ߯ ߟߊߖߌ߰ߣߍ߲ ߠߎ߬ ߓߍ߯ ߖߏ߬ߛߌ߬ ؟</string>
-    <string name="downloads_storage_use_saf_summary">\"ߡߙߊ߬ߘߐ߬ߦߊ ߟߊߛߐ߬ߘߐ߲ ߡߎ߬ߙߊ߲߬ߞߊ߲ߞߋ\" ߟߋ߬ ߞߍ߫ ߟߊ߫ ߛߊߓߎ߫ ߘߌ߫ ߞߊ߬ ߟߊ߬ߖߌ߰ߟߌ ߞߍ߫ ߞߐߞߊ߲߫ ߦߟߌߕߏߟߊ߲ ߞߊ߲߬</string>
-    <string name="downloads_storage_use_saf_summary_api_29">ߞߵߊ߬ ߘߊߡߌ߲߬ߣߊ߬ ߊ߲ߘߙߏߌߘ 10 ߡߊ߬߸ \"ߡߙߊ߬ߘߐ߬ߦߊ ߟߊߛߐ߬ߘߐ߲ ߡߎ߬ߙߊ߲߬ߞߊ߲ߞߋ\" ߟߋ߬ ߘߐ߲߬ߙߐ߲߫ ߕߊ߬ ߟߊ߫</string>
     <string name="systems_language">ߞߊ߲ߞߋ ߟߊ߫ ߖߏߣߡߊ</string>
     <string name="remove_watched_popup_title">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫ ؟</string>
     <string name="remove_watched">ߞߊ߬ ߖߌ߬ߦߊ߬ߖߟߎ߬ ߦߋߣߍ߲ ߠߎ߫ ߖߏ߬ߛߌ߫</string>
@@ -690,8 +671,6 @@
     <string name="chapters">ߛߌ߰ߘߊ ߟߎ߬</string>
     <string name="show_thumbnail_title">ߞߊ߬ ߞߏ߬ߋߞߏ߬ߋ ߦߌ߬ߘߊ߬</string>
     <string name="no_app_to_open_intent">ߟߥߊߟߌߟߊ߲߫ ߛߌ߫ ߕߴߌ ߟߊ߫ ߕߙߏߞߏ ߞߊ߲߬ ߡߍ߲ ߘߌ߫ ߛߋ߫ ߣߌ߲߬ ߠߊߞߊ߬ ߟߊ߫</string>
-    <string name="no_appropriate_file_manager_message">ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲߫ ߛߌ߫ ߡߊ߫ ߛߐ߬ߘߐ߲߬ ߞߋߥߊߟߌ ߣߌ߲߬ ߞߊ߲ߡߊ߬.
-\nߘߌ߬ߢߍ߬ ߦߋ߫ ߞߐߕߐ߯ ߡߊߡߙߊߟߊ߲ ߘߏ߫ ߡߊߞߍ߫ ߥߟߊ߫ ߦߴߊ߬ ߡߊߝߍߣߍ߲߫ ߞߊ߬ \'%s\' ߟߊߛߊ߬ ߟߊ߬ߖߌ߰ߟߌ߲߫ ߢߊߓߐߟߌ ߟߎ߬ ߘߐ߫</string>
     <string name="private_content">ߞߣߐߘߐ ߣߌ߲߬ ߦߋ߫ ߘߎ߲߬ߘߎ߬ߡߊ ߟߋ߬ ߘߌ߫߸ ߏ߬ ߘߐ߫ ߊ߬ ߕߍ߫ ߛߋ߫ ߘߐߛߊߙߌ߫ ߟߊ߫ ߥߟߊ߫ ߞߵߊ߬ ߟߊߖߌ߰ ߣߌߎߔߌߔ ߓߟߏ߫.</string>
     <string name="account_terminated">ߖߊ߬ߕߋ߬ߘߊ ߓߘߊ߫ ߓߍ߰</string>
     <string name="description_select_enable">ߞߊ߬ ߞߟߏߜߍ߫ ߓߊߕߐߡߐ߲ ߠߊߢߊ߯ ߞߊ߲߬ߛߓߍ ߘߐ߫</string>

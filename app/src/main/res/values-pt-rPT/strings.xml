@@ -35,7 +35,6 @@
     <string name="overwrite_finished_warning">Já existe um ficheiro descarregado com este nome</string>
     <string name="caption_setting_title">Legendas</string>
     <string name="restore_defaults">Repor predefinições</string>
-    <string name="error_occurred_detail">Ocorreu um erro: %1$s</string>
     <string name="controls_popup_title">Pop-up</string>
     <string name="msg_running">Descarga BravePipe</string>
     <string name="new_seek_duration_toast">Devido às restrições de ExoPlayer, a duração da pesquisa foi definida para %d segundos</string>
@@ -260,7 +259,6 @@
     <string name="restore_defaults_confirmation">Deseja repor as predefinições\?</string>
     <string name="external_player_unsupported_link_type">Os reprodutores externos não suportam este tipo de hiperligações</string>
     <string name="rename">Mudar nome</string>
-    <string name="downloads_storage_use_saf_summary">\'Storage Access Framework\' permite transferências para um cartão SD externo</string>
     <string name="seek_duration_title">Duração da pesquisa de avanço/recuo rápido</string>
     <string name="missing_file">Ficheiro movido ou eliminado</string>
     <string name="title_last_played">Última reprodução</string>
@@ -276,7 +274,6 @@
     <string name="no_comments">Sem comentários</string>
     <string name="post_processing">pós-processamento</string>
     <string name="overwrite_failed">não é possível sobrescrever o ficheiro</string>
-    <string name="invalid_source">Fonte de conteúdo/ficheiro inexistente</string>
     <string name="app_update_notification_channel_description">Notificações para novas versões do BravePipe</string>
     <string name="action_history">Histórico</string>
     <string name="list">Lista</string>
@@ -305,7 +302,6 @@
     <string name="enable_leak_canary_summary">A monitorização de memória pode tornar a aplicação instável</string>
     <string name="copy_for_github">Copiar relatório formatado</string>
     <string name="resize_zoom">Ampliar</string>
-    <string name="file_name_empty_error">O nome do ficheiro não pode estar vazio</string>
     <string name="video_detail_by">Por %s</string>
     <string name="charset_most_special_characters">Mais caracteres especiais</string>
     <string name="download_path_audio_title">Pasta para ficheiros de áudio</string>
@@ -362,7 +358,6 @@
     <string name="limit_data_usage_none_description">Sem limite</string>
     <string name="general_error">Erro</string>
     <string name="clear_playback_states_title">Limpar posições de reprodução</string>
-    <string name="import_ongoing">A importar…</string>
     <string name="fragment_feed_title">Novidades</string>
     <string name="local">Local</string>
     <string name="app_ui_crash">Aplicação terminou em erro</string>
@@ -370,9 +365,7 @@
     <string name="resume_on_audio_focus_gain_title">Continuar reprodução</string>
     <string name="app_license">BravePipe é um software livre \"copyleft\": pode utilizar, estudar, partilhar e melhorar a aplicação. Especificamente, pode redistribuir e/ou modificar a aplicação nos termos da GNU General Public License, conforme publicada pela Free Software Foundation, tanto a versão 3 da licença ou (por opção) qualquer versão posterior.</string>
     <string name="infinite_videos">∞ vídeos</string>
-    <string name="export_ongoing">A exportar…</string>
     <string name="most_liked">Mais apreciados</string>
-    <string name="downloads_storage_use_saf_title">Utilizar seletor de pastas do sistema (SAF)</string>
     <string name="play_queue_stream_detail">Detalhes</string>
     <string name="network_error">Erro de rede</string>
     <string name="enable_search_history_title">Histórico de pesquisa</string>
@@ -413,7 +406,6 @@
     <string name="enable_disposed_exceptions_title">Reportar erros \'out-of-lifecycle\'</string>
     <string name="kore_not_found">Instalar Kore\?</string>
     <string name="name">Nome</string>
-    <string name="msg_copied">Copiado para a área de transferência</string>
     <string name="settings_file_charset_title">Carateres permitidos no nome dos ficheiros</string>
     <string name="caption_auto_generated">Gerado automaticamente</string>
     <string name="tab_bookmarks">Listas de reprodução favoritas</string>
@@ -434,7 +426,6 @@
     <string name="tab_subscriptions">Subscrições</string>
     <string name="give_back">Contribuir</string>
     <string name="default_audio_format_title">Formato padrão de áudio</string>
-    <string name="invalid_file">O ficheiro não existe ou não tem permissões para ler e/ou escrever</string>
     <string name="feed_group_dialog_empty_name">O nome do grupo está vazio</string>
     <string name="share_dialog_title">Partilhar com</string>
     <string name="feed_update_threshold_summary">Tempo após a última atualização antes de a subscrição ser considerada desatualizada - %s</string>
@@ -455,7 +446,6 @@
     <string name="downloads_storage_ask_title">Perguntar para onde transferir</string>
     <string name="show_info">Mostrar informação</string>
     <string name="clear_views_history_title">Limpar histórico de visualizações</string>
-    <string name="download_to_sdcard_error_message">Não é possível guardar no cartão SD. Repor pasta de descargas\?</string>
     <string name="checksum">Soma de controlo</string>
     <string name="enable_playback_resume_summary">Restaurar última posição de reprodução</string>
     <string name="minimize_on_exit_popup_description">Ativar reprodutor \'popup\'</string>
@@ -476,8 +466,6 @@
     <string name="metadata_cache_wipe_complete_notice">Meta-dados em cache limpos</string>
     <string name="show_hold_to_append_summary">Mostrar dica ao premir em segundo plano ou no botão \"Detalhes:\" da janela popup</string>
     <string name="no_player_found_toast">Não foi encontrado um reprodutor (pode instalar o VLC para reproduzir).</string>
-    <string name="downloads_storage_ask_summary">Ser-lhe-á perguntado onde guardar cada transferência.
-\nAtive o seletor de pastas do sistema (SAF) se quiser transferir para um cartão SD externo</string>
     <string name="show_play_with_kodi_title">Mostrar opção \"Reproduzir no Kodi\"</string>
     <string name="search_no_results">Sem resultados</string>
     <string name="disabled">Desativado</string>
@@ -526,7 +514,6 @@
     <string name="peertube_instance_add_title">Adicionar instância</string>
     <string name="tracks">Faixas</string>
     <string name="play_with_kodi_title">Reproduzir no Kodi</string>
-    <string name="download_to_sdcard_error_title">Armazenamento externo indisponível</string>
     <string name="download_failed">Falha ao descarregar</string>
     <string name="error_snackbar_action">Relatório</string>
     <string name="msg_running_detail">Toque para detalhes</string>
@@ -548,13 +535,8 @@
     <string name="notification_action_buffering">A carregar</string>
     <string name="notification_action_shuffle">Baralhar</string>
     <string name="notification_action_repeat">Repetir</string>
-    <string name="notification_actions_at_most_three">Pode selecionar, no máximo, três ações para mostrar na notificação compacta!</string>
-    <string name="notification_actions_summary">Edite cada ação de notificação abaixo, a tocar nela. Selecione até três delas para serem mostradas na notificação compacta, através das caixas de verificação à direita.</string>
     <string name="notification_action_4_title">Quinto botão de ação</string>
     <string name="notification_action_3_title">Quarto botão de ação</string>
-    <string name="notification_action_2_title">Terceiro botão de ação</string>
-    <string name="notification_action_1_title">Segundo botão de ação</string>
-    <string name="notification_action_0_title">Primeiro botão de ação</string>
     <string name="notification_scale_to_square_image_summary">Ajustar miniatura de vídeo mostrada na notificação de 16:9 para 1:1 (pode introduzir distorções)</string>
     <string name="notification_scale_to_square_image_title">Cortar miniatura na proporção 1:1</string>
     <string name="show_memory_leaks">Mostrar \'leaks\' de memória</string>
@@ -629,7 +611,6 @@
 \nQuer cancelar a inscrição deste canal\?</string>
     <string name="feed_load_error_account_info">Não foi possível carregar o feed para \'%s\'.</string>
     <string name="feed_load_error">Erro ao carregar o feed</string>
-    <string name="downloads_storage_use_saf_summary_api_29">A partir do Android 10, apenas o \'Storage Access Framework\' é compatível</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Sempre que descarregar um ficheiro, terá que indicar o local para o guardar</string>
     <string name="dont_show">Não mostrar</string>
     <string name="low_quality_smaller">Baixa qualidade (menor)</string>
@@ -669,8 +650,6 @@
     <string name="error_report_notification_toast">Ocorreu um erro, veja a notificação</string>
     <string name="show_error_snackbar">Mostrar um snackbar de erro</string>
     <string name="create_error_notification">Criar uma notificação de erro</string>
-    <string name="no_appropriate_file_manager_message">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
-\nPor favor, instale um gestor de ficheiros ou tente desativar \'%s\' nas configurações de descarregar</string>
     <string name="no_appropriate_file_manager_message_android_10">Nenhum gestor de ficheiros apropriado foi encontrado para esta ação.
 \nPor favor, instale um gestor de ficheiros compatível com o Storage Access Framework</string>
     <string name="detail_pinned_comment_view_description">Comentário fixado</string>
@@ -847,9 +826,6 @@
     <string name="trending_podcasts">Tendências de podcasts</string>
     <string name="trending_movies">Tendências de filmes e shows</string>
     <string name="trending_music">Tendências de música</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="permission_display_over_apps_message">Para usar o reprodutor pop-up, escolhe %1$s no menu seguinte de configurações do Android e ative %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Permitir exibição sobre outras apps”</string>
     <string name="delete_file">Apagar ficheiro</string>

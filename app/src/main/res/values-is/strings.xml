@@ -64,7 +64,6 @@
     <string name="show_comments_summary">Slökktu á til að fela ummæli</string>
     <string name="show_next_and_similar_title">Sýna „Næstu“ og „Svipuð“ myndskeið</string>
     <string name="notification_scale_to_square_image_title">1:1 smámyndir</string>
-    <string name="notification_actions_summary">Breyttu hverri tilkynningu hér fyrir neðan með því að ýta á hana. Veldu í gátreitunum hægra megin allt að þrjár þeirra til að birta í samþjöppuðum tilkynningum.</string>
     <string name="invalid_directory">Engin slík mappa</string>
     <string name="permission_display_over_apps">Gefðu leyfi til að birta yfir önnur forrit</string>
     <string name="error_report_notification_toast">Villa kom upp, sjáðu tilkynninguna</string>
@@ -163,12 +162,8 @@
     <string name="kore_not_found">Kore forritið fannst ekki, setja það upp\?</string>
     <string name="show_play_with_kodi_title">Sýna \"Spila með Kodi\" hnapp</string>
     <string name="notification_scale_to_square_image_summary">Skera smámynd myndskeiðs sem sýnd er í tilkynningum úr 16:9 niður í 1:1 stærðarhlutföll</string>
-    <string name="notification_action_2_title">Þriðji aðgerðahnappur</string>
-    <string name="notification_action_1_title">Annar aðgerðahnappur</string>
-    <string name="notification_action_0_title">Fyrsti aðgerðahnappur</string>
     <string name="notification_action_3_title">Fjórði aðgerðahnappur</string>
     <string name="notification_action_4_title">Fimmti aðgerðahnappur</string>
-    <string name="notification_actions_at_most_three">Þú getur valið mest þrjár aðgerðir til að birta í samþjöppuðum tilkynningum.!</string>
     <string name="notification_action_buffering">Í vinnslu</string>
     <string name="notification_colorize_title">Litaðar tilkynningar</string>
     <string name="notification_colorize_summary">Láta Android sérsníða lit tilkynningarinnar í samræmi við aðallitinn í smámyndinni (athugaðu að þetta er ekki fáanlegt í öllum tækjum)</string>
@@ -198,8 +193,6 @@
     <string name="unknown_content">[Óþekkt]</string>
     <string name="clear_views_history_title">Hreinsa áhorfsferil</string>
     <string name="missing_file">Skrá færð eða eytt</string>
-    <string name="invalid_file">Skráin er ekki til eða aðgangi var hafnað</string>
-    <string name="file_name_empty_error">Skráarnafn má ekki vera autt</string>
     <string name="copy_for_github">Afrita sniðna skýrslu</string>
     <string name="error_report_open_issue_button_text">Tilkynna á GitHub</string>
     <string name="restore_defaults">Endurheimta sjálfgefnar stillingar</string>
@@ -245,7 +238,6 @@
     <string name="msg_error">Villa</string>
     <string name="msg_running_detail">Ýttu til að fá nánari upplýsingar</string>
     <string name="msg_wait">Bíddu aðeins…</string>
-    <string name="msg_copied">Afritað á klemmuspjald</string>
     <string name="one_item_deleted">1 atriði eytt.</string>
     <string name="recaptcha_solve">Leysa</string>
     <string name="done">Lokið</string>
@@ -295,7 +287,6 @@
     <string name="caption_auto_generated">Sjálfvirkur</string>
     <string name="caption_setting_title">Skýringartexti</string>
     <string name="import_title">Flytja inn</string>
-    <string name="import_ongoing">Flytur inn…</string>
     <string name="start_accept_privacy_policy">Í samræmi við almenna persónuverndarreglugerðin ESB vekjum við athygli þína á persónuverndarstefnu BravePipe. Lestu hana vandlega. \nÞú verður að samþykkja hana til að senda okkur villuskýrsluna.</string>
     <string name="playback_tempo">Hraði</string>
     <string name="playback_pitch">Tónhæð</string>
@@ -335,7 +326,6 @@
     <string name="mute">Slökkva á hljóði</string>
     <string name="unmute">Kveikja á hljóði</string>
     <string name="playlist_add_stream_success">Bætt á spilunarlista</string>
-    <string name="export_ongoing">Flytur út…</string>
     <string name="minimize_on_exit_none_description">Ekki gera neitt</string>
     <string name="never">Aldrei</string>
     <string name="list">Listi</string>
@@ -350,7 +340,6 @@
     <string name="metadata_tags">Merki</string>
     <string name="donation_encouragement">NewPipe er þróað af sjálfboðaliðum sem eyða frítíma sínum í að færa þér bestu notendaupplifunina. Gefðu til baka til að hjálpa forriturum að gera NewPipe enn betri á meðan þeir njóta kaffibolla.</string>
     <string name="show_description_summary">Slökktu á til að fela lýsingu og viðbótarupplýsingar myndskeiðs</string>
-    <string name="error_occurred_detail">Villa kom upp: %1$s</string>
     <string name="title_activity_recaptcha">Þraut reCAPTCHA</string>
     <string name="subscribers_count_not_available">Fjöldi áskrifenda ekki tiltækur</string>
     <string name="playlist_page_summary">Spilunarlistasíða</string>
@@ -490,8 +479,6 @@
     <string name="toggle_all">Víxla öllu</string>
     <string name="unknown_format">Óþekkt snið</string>
     <string name="clear_search_history_summary">Eyðir ferli leitarorða</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Frá Android 10 er aðeins „Geymsluaðgangsrammi“ stutt</string>
-    <string name="downloads_storage_use_saf_summary">„Geymsluaðgangsrammi“ (SAF) gerir þér kleift að vista skrár á ytra SD-kort</string>
     <string name="choose_instance_prompt">Veldu netþjón</string>
     <string name="feed_group_show_only_ungrouped_subscriptions">Sýna aðeins óflokkaðar áskriftir</string>
     <string name="feed_load_error">Villa við að hlaða streymi</string>
@@ -512,7 +499,6 @@
     <string name="clear_search_history_title">Hreinsa leitarferil</string>
     <string name="delete_search_history_alert">Hreinsa allan leitarferil\?</string>
     <string name="search_history_deleted">Leitarferli eytt</string>
-    <string name="download_to_sdcard_error_title">Ytri geymsla ekki tiltæk</string>
     <string name="could_not_load_thumbnails">Gat ekki hlaðið inn öllum smámyndum</string>
     <string name="parsing_error">Gat ekki túlkað vefsíðu</string>
     <string name="could_not_setup_download_menu">Gat ekki sett upp niðurhalsvalmynd</string>
@@ -522,7 +508,6 @@
     <string name="external_player_unsupported_link_type">Utanaðkomandi spilarar styðja ekki þessar tegundir tengla</string>
     <string name="video_streams_empty">Engin myndstreymi fundust</string>
     <string name="audio_streams_empty">Engin hljóðstreymi fundust</string>
-    <string name="invalid_source">Ekkert slíkt efni fanst</string>
     <string name="no_streams_available_download">Engin streymi til að sækja</string>
     <string name="saved_tabs_invalid_json">Gat ekki lesið vistaða flipa þannig að mun nota sjálfgefna</string>
     <string name="detail_thumbnail_view_description">Spila myndskeið, lengd:</string>
@@ -544,10 +529,7 @@
     <string name="enable_queue_limit">Takmarka niðurhalsröð</string>
     <string name="enable_queue_limit_desc">Eitt niðurhal í einu</string>
     <string name="downloads_storage_ask_title">Spyrja hvert ætti að sækja skrár</string>
-    <string name="downloads_storage_ask_summary">Þú verður spurð(ur) hvert ætti að sækja skrár í hvert skipti.
-\nVirkjaðu kerfismöppuval (SAF) ef þú vilt nota ytra SD-kort</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">Þú verður spurð(ur) hvert ætti að sækja skrár í hvert skipti</string>
-    <string name="downloads_storage_use_saf_title">Virkja kerfismöppuval (SAF)</string>
     <string name="remove_watched_popup_title">Fjarlægja streymi sem búið er að horfa á?</string>
     <string name="feed_oldest_subscription_update">Streymi síðast uppfært %s</string>
     <string name="feed_subscription_not_loaded_count">Ekki hlaðið: %d</string>
@@ -567,7 +549,6 @@
     <string name="channel_created_by">Skapað af %s</string>
     <string name="show_thumbnail_summary">Nota smámynd fyrir tilkynningar og bakgrunn lásskjás</string>
     <string name="no_app_to_open_intent">Ekkert forrit í tækinu þínu getur opnað þetta</string>
-    <string name="no_appropriate_file_manager_message">Enginn viðeigandi skráastjóri fannst fyrir þessa aðgerð. \nEndilega settu upp skráastjóra eða reyndu að slökkva á \'%s\' í niðurhalsstillingunum</string>
     <string name="no_appropriate_file_manager_message_android_10">Enginn viðeigandi skráastjóri fannst fyrir þessa aðgerð. \nSettu upp skráastjóra sem styður Storage Access Framework</string>
     <string name="georestricted_content">Þetta efni er ekki fáanlegt í þínu landi.</string>
     <string name="paid_content">Þetta efni er aðeins í boði fyrir notendur sem hafa greitt — það er ekki hægt að streyma því eða sækja með BravePipe.</string>
@@ -625,7 +606,6 @@
     <string name="watch_history_deleted">Áhorfsferli eytt</string>
     <string name="clear_playback_states_title">Eyða spilunarstöðum</string>
     <string name="clear_playback_states_summary">Eyðir öllum spilunarstöðum</string>
-    <string name="download_to_sdcard_error_message">Niðurhal á SD kort er ekki mögulegt. Endurstilla niðurhalsmöppu\?</string>
     <string name="main_page_content_swipe_remove">Strjúktu til að fjarlægja</string>
     <string name="no_playlist_bookmarked_yet">Engir spilunarlistar bókamerktir ennþá</string>
     <string name="select_a_kiosk">Veldu sölusíðu</string>
@@ -803,9 +783,6 @@
     <string name="channel_tab_likes">Líkar við</string>
     <string name="migration_info_6_7_title">Topp 50 síða SoundCloud fjarlægð</string>
     <string name="migration_info_6_7_message">SoundCloud er hætt með Topp 50 vinsældalistann. Viðkomandi flipi hefur verið fjarlægður af aðalsíðunni þinni.</string>
-    <string name="short_thousand">%sK</string>
-    <string name="short_million">%sM</string>
-    <string name="short_billion">%sB</string>
     <string name="trending_gaming">Vinsælir leikir</string>
     <string name="trending_podcasts">Vinsæl hlaðvörp</string>
     <string name="trending_movies">Vinsælar kvikmyndir og þættir</string>

@@ -13,7 +13,6 @@
     <string name="subscriptions_import_unsuccessful">Importatzione de s\'iscritzione fallida</string>
     <string name="previous_export">Esportatzione anteposta</string>
     <string name="import_file_title">Importa su documentu</string>
-    <string name="import_ongoing">Importende…</string>
     <string name="export_to">Esporta in</string>
     <string name="import_from">Importa dae</string>
     <string name="import_title">Importa</string>
@@ -120,7 +119,6 @@
     <string name="title_activity_recaptcha">Disafiu reCAPTCHA</string>
     <string name="one_item_deleted">1 elementu iscantzelladu.</string>
     <string name="no_available_dir">Issèbera una cartella de iscarrigamentu prus a tardu in sas impostatziones</string>
-    <string name="msg_copied">Copiadu in punta de billete</string>
     <string name="msg_wait">Iseta…</string>
     <string name="msg_running_detail">Toca pro detàllios</string>
     <string name="msg_running">BravePipe est iscarrighende</string>
@@ -187,10 +185,6 @@
     <string name="restore_defaults">Riprìstina sos predefinidos</string>
     <string name="saved_tabs_invalid_json">No est istadu possìbile lèghere sas ischedas sarbadas. S\'ant a impreare sas predefinidas</string>
     <string name="no_streams_available_download">Perunu flussu a disponimentu pro s\'iscarrigamentu</string>
-    <string name="error_occurred_detail">B\'at àpidu un\'errore: %1$s</string>
-    <string name="file_name_empty_error">Su nùmene de su documentu non podet èssere bòidu</string>
-    <string name="invalid_file">Su documentu no esistit o mancat su permissu pro lèghere e pro b\'iscrìere cosa</string>
-    <string name="invalid_source">Custa fonte de documentos o cuntenutos no esistit</string>
     <string name="invalid_directory">Sa cartella no esistit</string>
     <string name="missing_file">Documentu iscostiadu o iscantzelladu</string>
     <string name="audio_streams_empty">Peruna trasmissione àudio agatada</string>
@@ -212,7 +206,6 @@
 \nYouTube est un\'esèmpiu de unu servìtziu chi frunit custu mètodu lestru cun sa fonte de cuntenutos RSS sua.
 \n
 \nDuncas s\'issèberu dipendet dae su chi preferis tue: sa lestresa o sas informatziones a sa minuda.</string>
-    <string name="downloads_storage_use_saf_summary">Sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) permitet sos iscarrigamentos in un\'ischeda SD esterna</string>
     <string name="queued">postu in lista</string>
     <string name="updates_setting_description">Ammustra una notìfica pro cussigiare un\'agiornamentu de s\'aplicatzione cando b\'est una versione noa a disponimentu</string>
     <string name="import_soundcloud_instructions">Importa unu profilu de SoundCloud iscriende o s\'URL o su còdighe identificativu (ID) tuo:
@@ -221,7 +214,6 @@
 \n 2. Bae a custu URL: %1$s
 \n 3. Intra in su contu tuo cando ti lu benit pedidu
 \n 4. Còpia s\'URL de su profilu a ue ses istadu mandadu.</string>
-    <string name="export_ongoing">Esportende…</string>
     <string name="msg_popup_permission">B\'at bisòngiu de custu permissu pro
 \nabèrrere sa modalidade ventanedda</string>
     <string name="info_labels">Ite:\nRechesta:\nLimba de su cuntenutu\nIstadu de su cuntenutu:\nLimba de s\'aplicatzione:\nServìtziu:\nOràriu GMT:\nPachete:\nVersione:\nVersione SO:</string>
@@ -291,9 +283,6 @@
     <string name="systems_language">Predefinida de su sistema</string>
     <string name="app_language_title">Limba de s\'aplicatzione</string>
     <string name="choose_instance_prompt">Issèbera un\'istàntzia</string>
-    <string name="downloads_storage_use_saf_title">Imprea s\'ischertadore de cartellas de sistema (SAF)</string>
-    <string name="downloads_storage_ask_summary">T\'at a bènnere pedidu in ue sarvare cada documentu.
-\nAbìlita s\'ischertadore de cartellas de sistema (SAF) si cheres iscarrigare in un\'ischeda SD esterna</string>
     <string name="downloads_storage_ask_title">Pedi in ue iscarrigare</string>
     <string name="pause_downloads">Pone in pàusa sos iscarrigamentos</string>
     <string name="start_downloads">Faghe incumintzare sos iscarrigamentos</string>
@@ -371,8 +360,6 @@
     <string name="parsing_error">Anàlisi de su situ web fallida</string>
     <string name="could_not_load_thumbnails">No est istadu possìbile carrigare totu sas miniaduras</string>
     <string name="network_error">Errore de retza</string>
-    <string name="download_to_sdcard_error_message">Impossìbile iscarrigare in s\'ischeda SD esterna. Cheres resetare sa positzione de sa cartella de iscarrigamentu\?</string>
-    <string name="download_to_sdcard_error_title">Memòria esterna non disponìbile</string>
     <string name="general_error">Errore</string>
     <string name="delete_search_history_alert">Cheres iscantzellare totu sa cronologia de sas chircas\?</string>
     <string name="clear_search_history_summary">Iscantzella sa cronologia de sas paràulas chircadas</string>
@@ -534,17 +521,12 @@
     <string name="clear_queue_confirmation_summary">Colende dae unu riproduidore a s\'àteru dias pòdere remplasare sa lista tua</string>
     <string name="clear_queue_confirmation_title">Pedi una cunfirma in antis de iscantzellare una lista</string>
     <string name="notification_action_shuffle">Òrdine casuale</string>
-    <string name="notification_actions_summary">Modìfica cada atzione de notìfica inoghe in suta incarchende·la. Ischerta·nde finas a tres de ammustrare in sa notìfica cumpata impreende sas casellas de controllu a destra.</string>
     <string name="notification_scale_to_square_image_summary">Sega sa miniadura ammustrada in sa notìfica dae su formadu in 16:9 a cussu 1:1</string>
     <string name="notification_action_nothing">Nudda</string>
     <string name="notification_action_buffering">Carrighende</string>
     <string name="notification_action_repeat">Repite</string>
-    <string name="notification_actions_at_most_three">Podes ischertare a su màssimu tres atziones de ammustrare in sas notìficas cumpatas!</string>
     <string name="notification_action_4_title">Su de chimbe butones de atzione</string>
     <string name="notification_action_3_title">Su de bator butones de atzione</string>
-    <string name="notification_action_2_title">Su de tres butones de atzione</string>
-    <string name="notification_action_1_title">Su de duos butones de atzione</string>
-    <string name="notification_action_0_title">Su de unu butone de atzione</string>
     <string name="notification_scale_to_square_image_title">Sega sa miniadura in formadu 1:1</string>
     <string name="show_memory_leaks">Ammustra sas pèrdidas de memòria</string>
     <string name="enqueued">Annànghidu a sa lista</string>
@@ -607,7 +589,6 @@
     <string name="description_select_disable">Disabìlita s\'ischerta de su testu in sa descritzione</string>
     <string name="description_select_enable">Abìlita s\'ischerta de su testu in sa descritzione</string>
     <string name="description_select_note">Como podes ischertare su testu in intro de sa descritzione. Ammenta·ti chi sa pàgina diat pòdere trèmere e sos ligàmenes si diant pòdere no abèrrere cando ses in modalidade de ischerta.</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Incumintzende dae Android 10 petzi sa \'Storage Access Framework\' (Istrutura de Atzessu a s\'Archiviatzione) est suportada</string>
     <string name="open_website_license">Aberi su situ web</string>
     <string name="account_terminated">Contu serradu</string>
     <string name="feed_load_error_fast_unknown">Su recùperu lestru de sos flussos non frunit àteras informatziones in subra de custu.</string>
@@ -655,8 +636,6 @@
     <string name="show_crash_the_player_summary">Ammustra un\'optzione pro fàghere serrare de repente su riproduidore cando l\'impreas</string>
     <string name="create_error_notification">Crea una notìfica de errore</string>
     <string name="feed_new_items">Elementos noos de su flussu</string>
-    <string name="no_appropriate_file_manager_message">No est istadu agatadu perunu gestore de documentos pro custa atzione.
-\nPro praghere installa·nde unu o proa a inabilitare \'%s\' in sas impostatziones de iscarrigamentu</string>
     <string name="show_crash_the_player_title">Ammustra \"faghe serrare su riproduidore\"</string>
     <string name="no_appropriate_file_manager_message_android_10">No est istadu agatadu perunu gestore de documentos pro custa atzione.
 \nPro praghere installa unu gestore de documentos cumpatìbile cun su \"Sistema de Atzessu a s\'Archiviatzione\"</string>

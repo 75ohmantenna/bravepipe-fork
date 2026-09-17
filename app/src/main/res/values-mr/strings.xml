@@ -47,15 +47,12 @@
     <string name="mark_as_watched">पाहिले म्हणून चिन्हांकित करा</string>
     <string name="ok">ठीक आहे</string>
     <string name="crash_the_player">प्लेअर क्रॅश करा</string>
-    <string name="notification_action_1_title">दुसरे क्रिया बटण</string>
-    <string name="notification_action_2_title">तिसरे क्रिया बटण</string>
     <string name="notification_action_3_title">चौथे क्रिया बटण</string>
     <string name="notification_action_4_title">पाचवे क्रिया बटण</string>
     <string name="did_you_mean">तुम्हाला \"%1$s\" म्हणायचे आहे का\?</string>
     <string name="use_external_video_player_summary">काही रेसॉल्युशनवर ऑडिओ काढून टाकते</string>
     <string name="kore_not_found">गहाळ Kode ॲप इंस्टॉल करायचे\?</string>
     <string name="notification_scale_to_square_image_summary">16:9 ते 1:1 आस्पेक्ट रेशो पर्यंत नोटिफिकेशनमध्ये दाखवलेली व्हिडिओ थंबनेल क्रॉप करा</string>
-    <string name="notification_action_0_title">प्रथम क्रिया बटण</string>
     <string name="notification_scale_to_square_image_title">1:1 आस्पेक्ट रेशोवर थंबनेल क्रॉप करा</string>
     <string name="users">वापरकर्ते</string>
     <string name="network_error">नेटवर्क बंद आहे</string>
@@ -99,8 +96,6 @@
     <string name="contribution_title">योगदान करा</string>
     <string name="resize_fill">भरुन</string>
     <string name="resize_zoom">झूम</string>
-    <string name="import_ongoing">आत टाकत आहोत…</string>
-    <string name="export_ongoing">बाहेर काढत आहोत…</string>
     <string name="playback_step">पाऊल</string>
     <string name="playback_reset">रीसेट करा</string>
     <string name="percent">टक्केवारी</string>

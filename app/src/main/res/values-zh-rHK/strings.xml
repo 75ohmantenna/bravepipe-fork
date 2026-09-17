@@ -75,7 +75,6 @@
     <string name="msg_running">BravePipe 下載緊</string>
     <string name="msg_running_detail">撳一下睇詳情</string>
     <string name="msg_wait">請等等…</string>
-    <string name="msg_copied">複製咗去剪貼簿</string>
     <string name="no_available_dir">請之後喺設定度揀定一個下載資料夾</string>
     <string name="open_in_popup_mode">以浮面模式開啟</string>
     <string name="default_popup_resolution_title">預設浮面播放器嘅解像度</string>
@@ -127,9 +126,6 @@
     <string name="use_inexact_seek_title">用粗略嘅快轉</string>
     <string name="controls_add_to_playlist_title">加入去</string>
     <string name="tab_choose">選擇標籤</string>
-    <string name="notification_action_0_title">第一粒動作掣</string>
-    <string name="notification_action_1_title">第二粒動作掣</string>
-    <string name="notification_action_2_title">第三粒動作掣</string>
     <string name="notification_action_3_title">第四粒動作掣</string>
     <string name="notification_action_shuffle">隨機播放</string>
     <string name="notification_action_buffering">緩衝緊</string>
@@ -152,8 +148,6 @@
     <string name="open_with">開啟方式係</string>
     <string name="search_showing_result_for">搜尋到嘅嘢係：%s</string>
     <string name="notification_action_4_title">第五粒動作掣</string>
-    <string name="notification_actions_summary">撳下面嘅掣去更改對應嘅通知動作。用右手邊嘅格仔剔選最多三個，擺落去精簡通知度。</string>
-    <string name="notification_actions_at_most_three">精簡通知最多淨係擺到三個動作！</string>
     <string name="notification_action_repeat">循環播放</string>
     <string name="show_comments_title">顯示留言</string>
     <string name="show_comments_summary">關閉去隱藏留言</string>
@@ -220,14 +214,10 @@
     <string name="video_streams_empty">搵唔到影像串流</string>
     <string name="audio_streams_empty">搵唔到聲音串流</string>
     <string name="missing_file">檔案搬走咗或剷走咗</string>
-    <string name="invalid_file">個檔案唔喺度，又或者欠缺讀寫權限</string>
-    <string name="file_name_empty_error">檔名冇得留空</string>
     <string name="player_recoverable_failure">復原緊播放器錯誤</string>
     <string name="invalid_directory">冇呢個資料夾</string>
-    <string name="invalid_source">冇呢個檔案/內容來源</string>
     <string name="saved_tabs_invalid_json">讀取唔到儲存咗嘅分頁，所以用返預設分頁</string>
     <string name="restore_defaults">還原返預設噉樣</string>
-    <string name="error_occurred_detail">發生錯誤：%1$s</string>
     <string name="restore_defaults_confirmation">你係咪要還原返做預設嗰個樣？</string>
     <string name="copy_for_github">複製執咗格式嘅報告</string>
     <string name="search_no_results">乜都搵唔到</string>
@@ -241,7 +231,6 @@
     </plurals>
     <string name="generate_unique_name">產生獨一無二嘅名稱</string>
     <string name="import_file_title">匯入檔案</string>
-    <string name="export_ongoing">匯出緊…</string>
     <string name="previous_export">先前嘅匯出</string>
     <string name="import_network_expensive_warning">請注意：呢項操作可能相當消耗網絡數據。
 \n
@@ -345,7 +334,6 @@
     <string name="import_title">匯入</string>
     <string name="import_from">由呢處匯入</string>
     <string name="export_to">匯出去呢度</string>
-    <string name="import_ongoing">匯入緊…</string>
     <string name="skip_silence_checkbox">無聲嘅時候快轉</string>
     <string name="playback_reset">重設</string>
     <string name="start_accept_privacy_policy">為符合歐盟嘅《通用數據保障條例》(GDPR) 規範，我哋謹請你注意 BravePipe 嘅私隱政策。請仔細閱讀。
@@ -486,8 +474,6 @@
     <string name="content_not_supported">BravePipe 仲未支援到呢樣。
 \n
 \n希望未來會喺日後嘅版本支援啦。</string>
-    <string name="no_appropriate_file_manager_message">搵唔到合適嘅檔案總管進行呢個動作。
-\n請安裝一個檔案管理程式，又或者試下喺下載設定度停用「%s」</string>
     <string name="no_appropriate_file_manager_message_android_10">搵唔到合適嘅檔案總管進行呢個動作。
 \n請安裝一個與儲存空間存取框架兼容嘅檔案管理程式</string>
     <string name="georestricted_content">呢部內容限區，喺你所在國家未有提供。</string>
@@ -552,17 +538,10 @@
     <string name="playlist_thumbnail_change_success">轉咗播放清單縮圖。</string>
     <string name="enable_disposed_exceptions_title">報告週期完結後嘅錯誤</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">每次下載都會問你要儲存去邊</string>
-    <string name="downloads_storage_ask_summary">每次下載都會問你要儲存去邊。
-\n如果你想儲存落外置 SD 卡入面，請啟用系統資料夾揀選器 (SAF)</string>
-    <string name="downloads_storage_use_saf_title">用系統資料夾揀選器 (SAF)</string>
     <string name="remove_watched_popup_warning">加入去播放清單之前或之後睇過嘅影片都會剷走個囉喎。 \n你肯定？剷走咗冇得掹個囉喎！</string>
-    <string name="downloads_storage_use_saf_summary">「儲存空間存取框架」係畀你下載落外置 SD 卡嗰度</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Android 10 打上，局住要用「儲存空間存取框架」</string>
     <string name="progressive_load_interval_exoplayer_default">ExoPlayer 預設值</string>
-    <string name="download_to_sdcard_error_title">外置儲存空間用唔到</string>
     <string name="enqueue_stream">排隊尾等待播放</string>
     <string name="search_history_deleted">剷走晒搜尋紀錄</string>
-    <string name="download_to_sdcard_error_message">冇得下載落外置 SD 卡嗰度。要唔要重設下載資料夾嘅位置？</string>
     <string name="start_here_on_popup">喺浮面開始播放</string>
     <string name="bookmark_playlist">收起播放清單</string>
     <string name="unbookmark_playlist">唔再收埋</string>

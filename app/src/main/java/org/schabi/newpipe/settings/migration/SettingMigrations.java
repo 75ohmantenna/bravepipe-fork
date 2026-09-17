@@ -19,7 +19,6 @@ import org.schabi.newpipe.error.ErrorUtil;
 import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.settings.tabs.Tab;
 import org.schabi.newpipe.settings.tabs.TabsManager;
-import org.schabi.newpipe.util.DeviceUtils;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -82,21 +81,6 @@ public final class SettingMigrations {
         }
     };
 
-    private static final Migration MIGRATION_2_3 = new Migration(2, 3) {
-        @Override
-        protected void migrate(@NonNull final Context context) {
-            // Storage Access Framework implementation was improved in #5415, allowing the modern
-            // and standard way to access folders and files to be used consistently everywhere.
-            // We reset the setting to its default value, i.e. "use SAF", since now there are no
-            // more issues with SAF and users should use that one instead of the old
-            // NoNonsenseFilePicker. Also, there's a bug on FireOS in which SAF open/close
-            // dialogs cannot be confirmed with a remote (see #6455).
-            sp.edit().putBoolean(
-                    context.getString(R.string.storage_use_saf),
-                    !DeviceUtils.isFireTv()
-            ).apply();
-        }
-    };
 
     private static final Migration MIGRATION_3_4 = new Migration(3, 4) {
         @Override
@@ -230,7 +214,6 @@ public final class SettingMigrations {
     private static final Migration[] SETTING_MIGRATIONS = {
             MIGRATION_0_1,
             MIGRATION_1_2,
-            MIGRATION_2_3,
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,

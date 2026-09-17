@@ -144,7 +144,6 @@
     <string name="msg_running">BravePipe בהורדה</string>
     <string name="msg_running_detail">יש לגעת לפרטים נוספים</string>
     <string name="msg_wait">נא להמתין…</string>
-    <string name="msg_copied">הועתק ללוח</string>
     <string name="no_available_dir">נא לציין תיקיית הורדה בהגדרות בהמשך</string>
     <string name="msg_popup_permission">הרשאה זו נדרשת לטובת 
 \nפתיחה בחלון צף</string>
@@ -214,8 +213,6 @@
     <string name="watch_history_deleted">היסטוריית הצפייה נמחקה</string>
     <string name="clear_search_history_title">מחיקת היסטוריית החיפוש</string>
     <string name="search_history_deleted">היסטוריית החיפוש נמחקה</string>
-    <string name="invalid_file">הקובץ אינו קיים או שחסרה הרשאה לקרוא אותו או לכתוב אליו</string>
-    <string name="file_name_empty_error">שם הקובץ אינו יכול להיות ריק</string>
     <string name="detail_drag_description">ניתן לסדר מחדש בגרירה</string>
     <string name="create">יצירה</string>
     <string name="dismiss">התעלמות</string>
@@ -246,8 +243,6 @@
     <string name="import_title">ייבוא</string>
     <string name="import_from">ייבוא מ־</string>
     <string name="export_to">ייצוא אל</string>
-    <string name="import_ongoing">מתבצע ייבוא…</string>
-    <string name="export_ongoing">מתבצע ייצוא…</string>
     <string name="import_file_title">ייבוא קובץ</string>
     <string name="previous_export">ייצוא קודם</string>
     <string name="subscriptions_import_unsuccessful">לא ניתן לייבא את המינויים</string>
@@ -280,8 +275,6 @@
     <string name="video_streams_empty">לא נמצאו תזרימי וידאו</string>
     <string name="audio_streams_empty">לא נמצאו תזרימי שמע</string>
     <string name="invalid_directory">אין תיקייה כזו</string>
-    <string name="invalid_source">אין מקור תיקייה/תוכן</string>
-    <string name="error_occurred_detail">אירעה שגיאה: %1$s</string>
     <string name="no_streams_available_download">אין תזרימים זמינים להורדה</string>
     <string name="privacy_policy_title">מדיניות הפרטיות של BravePipe</string>
     <string name="privacy_policy_encouragement">מיזם BravePipe שומר על הפרטיות שלך בצורה מאוד קפדנית. לפיכך, היישומון אינו אוסף נתונים ללא הסכמתך.
@@ -325,8 +318,6 @@
     <string name="file_deleted">קובץ נמחק</string>
     <string name="app_update_notification_channel_name">התראת עדכון יישומון</string>
     <string name="app_update_notification_channel_description">התראות על גרסאות חדשות של BravePipe</string>
-    <string name="download_to_sdcard_error_title">האחסון החיצוני אינו זמין</string>
-    <string name="download_to_sdcard_error_message">אין אפשרות להוריד לכרטיס SD. לאפס את מיקום תיקיית ההורדה\?</string>
     <string name="saved_tabs_invalid_json">לא ניתן לקרוא לשוניות שמורות, לכן נעשה שימוש באלו של ברירת המחדל</string>
     <string name="restore_defaults">שחזור ברירת מחדל</string>
     <string name="restore_defaults_confirmation">לשחזר ברירת מחדל\?</string>
@@ -407,10 +398,6 @@
     <string name="start_downloads">התחלת הורדות</string>
     <string name="pause_downloads">השהיית הורדות</string>
     <string name="downloads_storage_ask_title">לשאול לאן להוריד</string>
-    <string name="downloads_storage_ask_summary">תופיע שאלה לאן לשמור כל הורדה.
-\nיש להפעיל את בוחר התיקיות של המערכת (SAF) כדי להוריד לכרטיס SD חיצוני</string>
-    <string name="downloads_storage_use_saf_title">שימוש בבוחר התיקיות של המערכת (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">‚תשתית גישה לאחסון’ מאפשרת הורדות לכרטיס SD חיצוני</string>
     <string name="clear_playback_states_title">מחיקת מיקומי נגינה</string>
     <string name="clear_playback_states_summary">מחיקת כל מיקומי הנגינה</string>
     <string name="delete_playback_states_alert">למחוק את מיקומי הנגינה\?</string>
@@ -558,13 +545,8 @@
     <string name="notification_action_buffering">איסוף</string>
     <string name="notification_action_shuffle">ערבוב</string>
     <string name="notification_action_repeat">חזרה</string>
-    <string name="notification_actions_at_most_three">ניתן לבחור עד שלוש פעולות בלבד שתופענה בהתראות המצומצמות!</string>
-    <string name="notification_actions_summary">ניתן לערוך כל התראה להלן בלחיצה עליה. מותר לבחור עד שלוש מהן שתופענה בהתראה המצומצמת באמצעות תיבות הסימן שמשמאל.</string>
     <string name="notification_action_4_title">כפתור פעולה חמישי</string>
     <string name="notification_action_3_title">כפתור פעולה רביעי</string>
-    <string name="notification_action_2_title">כפתור פעולה שלישי</string>
-    <string name="notification_action_0_title">כפתור פעולה ראשון</string>
-    <string name="notification_action_1_title">כפתור פעולה שני</string>
     <string name="notification_scale_to_square_image_summary">חיתוך התצוגה הממוזערת שמופיעה בהתראות מיחס תצוגה של 16:9 ל־1:1</string>
     <string name="notification_scale_to_square_image_title">חיתוך התצוגה הממוזערת ליחס תצוגה 1:1</string>
     <string name="show_memory_leaks">הצגת דליפות זיכרון</string>
@@ -635,7 +617,6 @@
     <string name="feed_load_error_fast_unknown">מצב ההזנה המהירה לא מספק מידע נוסף על כך.</string>
     <string name="feed_load_error_account_info">לא ניתן לטעון את ההזנה עבור ‚%s’.</string>
     <string name="feed_load_error">שגיאה בהורדת ההזנה</string>
-    <string name="downloads_storage_use_saf_summary_api_29">התמיכה ב‚תשתית גישה לאחסון’ נתמכת מ־Android 10 בלבד</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">תופיע שאלה לאן לשמור כל הורדה</string>
     <string name="no_dir_yet">טרם הוגדרה תיקיית הורדה, נא לבחור את תיקיית ההורדה כעת</string>
     <string name="off">כבוי</string>
@@ -680,8 +661,6 @@
     <string name="create_error_notification">יצירת התראת שגיאה</string>
     <string name="error_report_notification_title">BravePipe נתקל בשגיאה, לחיצה תדווח על כך</string>
     <string name="error_report_notification_toast">אירעה שגיאה, נא לקרוא את ההתראה</string>
-    <string name="no_appropriate_file_manager_message">לא נמצא מנהל קבצים מתאים לפעולה זו.
-\nנא להתקין מנהל קבצים או לנסות להשבית את ‚%s’ בהגדרות ההורדה</string>
     <string name="error_report_channel_name">התראת דיווח שגיאה</string>
     <string name="no_appropriate_file_manager_message_android_10">לא נמצאו מנהלי קבצים שמתאימים לפעולה הזאת.
 \nנא להתקין מנהל קבצים שתומך בתשתית גישה לאחסון</string>
@@ -855,9 +834,6 @@
     <string name="account_terminated_service_provides_reason">חשבון הושמד\n\n%1$s מספק את הסיבה הבאה: %2$s</string>
     <string name="permission_display_over_apps_message">כדי להשתמש בנגן צף, נא לבחור ב־%1$s בתפריט ההגדרות הבא של Android ולהפעיל את %2$s.</string>
     <string name="permission_display_over_apps_permission_name">„תמיד להציג מעל יישומונים אחרים”</string>
-    <string name="short_thousand">%s אלף</string>
-    <string name="short_million">%s מיליון</string>
-    <string name="short_billion">%s מיליארד</string>
     <string name="migration_info_7_8_title">המובילים המשולבים של YouTube הוסרו</string>
     <string name="delete_file">מחיקת קובץ</string>
     <string name="delete_entry">מחיקת רשומה</string>

@@ -81,7 +81,6 @@
     <string name="msg_error">错误</string>
     <string name="msg_running_detail">点击了解详情</string>
     <string name="msg_wait">请稍候…</string>
-    <string name="msg_copied">已复制到剪贴板</string>
     <string name="controls_popup_title">悬浮窗播放</string>
     <string name="title_activity_about">关于 BravePipe</string>
     <string name="title_licenses">第三方许可</string>
@@ -273,15 +272,9 @@
     <string name="auto_queue_title">自动将“接下来”视频加入播放队列</string>
     <string name="auto_queue_summary">播放完（非循环）队列中的最后一个视频后，自动将一个相关视频添加到当前播放队列</string>
     <string name="invalid_directory">没有该文件夹</string>
-    <string name="invalid_source">无相似文件/内容源</string>
-    <string name="invalid_file">文件不存在，或缺少读写文件权限</string>
-    <string name="file_name_empty_error">文件名不能为空</string>
-    <string name="error_occurred_detail">发生错误：%1$s</string>
     <string name="import_title">导入</string>
     <string name="import_from">导入自</string>
     <string name="export_to">导出到</string>
-    <string name="import_ongoing">正在导入…</string>
-    <string name="export_ongoing">正在导出…</string>
     <string name="import_file_title">导入文件</string>
     <string name="previous_export">先前的导出</string>
     <string name="subscriptions_import_unsuccessful">无法导入订阅</string>
@@ -347,8 +340,6 @@
     <string name="content_language_title">视频默认语言</string>
     <string name="app_update_notification_channel_name">应用更新通知</string>
     <string name="app_update_notification_channel_description">BravePipe 新版本的通知</string>
-    <string name="download_to_sdcard_error_title">外置存储不可用</string>
-    <string name="download_to_sdcard_error_message">无法下载到外部 SD 卡，修改下载文件夹位置？</string>
     <string name="saved_tabs_invalid_json">读取已保存标签时发生错误，因此使用默认标签</string>
     <string name="restore_defaults">恢复默认</string>
     <string name="restore_defaults_confirmation">是否恢复默认值？</string>
@@ -399,10 +390,6 @@
     <string name="start_downloads">开始下载</string>
     <string name="pause_downloads">暂停下载</string>
     <string name="downloads_storage_ask_title">总是询问下载位置</string>
-    <string name="downloads_storage_ask_summary">系统将询问您将每次下载的保存位置。
-\n如果要下载到外部 SD 卡，请启用系统文件夹选择器 (SAF)</string>
-    <string name="downloads_storage_use_saf_title">使用系统文件夹选择器 (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">存储访问框架（SAF）允许下载文件到外部 SD 卡</string>
     <string name="clear_playback_states_title">删除播放痕迹历史</string>
     <string name="clear_playback_states_summary">删除所有播放痕迹历史</string>
     <string name="delete_playback_states_alert">是否删除全部播放痕迹历史？</string>
@@ -528,13 +515,8 @@
     <string name="notification_action_buffering">正在缓冲</string>
     <string name="notification_action_shuffle">随机播放</string>
     <string name="notification_action_repeat">单曲循环</string>
-    <string name="notification_actions_at_most_three">最多可以选择三个操作显示在紧凑通知中！</string>
-    <string name="notification_actions_summary">轻按下面的每一个通知操作进行编辑。使用右方的复选框选择在紧凑通知中显示的操作，最多可以选择三个。</string>
     <string name="notification_action_4_title">第五操作按钮</string>
     <string name="notification_action_3_title">第四操作按钮</string>
-    <string name="notification_action_2_title">第三操作按钮</string>
-    <string name="notification_action_1_title">第二操作按钮</string>
-    <string name="notification_action_0_title">第一操作按钮</string>
     <string name="notification_scale_to_square_image_summary">将通知中视频缩略图的长宽比从 16:9 裁剪到 1:1</string>
     <string name="notification_scale_to_square_image_title">裁剪缩略图至 1:1 比例</string>
     <string name="show_memory_leaks">显示内存泄漏</string>
@@ -605,7 +587,6 @@
 \n你要退订此频道吗？</string>
     <string name="feed_load_error_account_info">无法加载“%s”的 Feed。</string>
     <string name="feed_load_error">加载 Feed 时出错</string>
-    <string name="downloads_storage_use_saf_summary_api_29">仅 Android 10 及以上版本支持“存储访问框架”</string>
     <string name="downloads_storage_ask_summary_no_saf_notice">你会被问到在哪里保存每个下载</string>
     <string name="no_dir_yet">尚未设置下载文件夹，现在选择默认下载文件夹</string>
     <string name="tablet_mode_title">平板模式</string>
@@ -644,8 +625,6 @@
     <string name="error_report_notification_toast">发生错误，详见通知</string>
     <string name="show_error_snackbar">显示错误警示SnackBar</string>
     <string name="create_error_notification">创建一条错误通知</string>
-    <string name="no_appropriate_file_manager_message">找不到适合此操作的文件管理器。
-\n请安装一文件管理器或尝试在下载设置中禁用“%s”</string>
     <string name="no_appropriate_file_manager_message_android_10">找不到适合此操作的文件管理器。
 \n请安装兼容存储访问框架(SAF)的文件管理器</string>
     <string name="error_report_notification_title">BravePipe 遇到了一个错误，点击此处报告此错误</string>
@@ -819,9 +798,6 @@
     <string name="trending_podcasts">“时下流行”的播客</string>
     <string name="trending_movies">“时下流行”的电影和娱乐节目</string>
     <string name="trending_music">“时下流行”的音乐</string>
-    <string name="short_thousand">%s千</string>
-    <string name="short_million">%s百万</string>
-    <string name="short_billion">%s十亿</string>
     <string name="permission_display_over_apps_message">要使用弹窗播放器，请在接下来的安卓设置中选择 %1$s 并开启 %2$s。</string>
     <string name="permission_display_over_apps_permission_name">“允许显示在其他应用上方”</string>
     <string name="delete_file">删除文件</string>

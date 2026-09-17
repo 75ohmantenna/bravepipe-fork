@@ -96,7 +96,6 @@
     <string name="msg_running">BravePipe ডাউনলোড হচ্ছে</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করো…</string>
-    <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="no_available_dir">পরে সেটিংস থেকে একটি ডাউনলোড ফোল্ডার নির্ধারণ করে দিন</string>
     <string name="msg_popup_permission">পপআপ মোডে চালু হতে
 \nএই অনুমতির প্রয়োজন আছে</string>
@@ -211,15 +210,12 @@
     <string name="restore_defaults_confirmation">আপনি কি ডিফল্ট এ ফিরতে চান\?</string>
     <string name="restore_defaults">ডিফল্ট এ ফিরে যান</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
-    <string name="error_occurred_detail">একটা এরর হয়েছেঃ %1$s</string>
-    <string name="file_name_empty_error">ফাইল এর নাম খালি থাকতে পারে না</string>
     <string name="invalid_directory">কোন ফোল্ডার নেই</string>
     <string name="missing_file">ফাইল সরে গেছে না হয় মুছে ফেলা হয়েছে</string>
     <string name="audio_streams_empty">কোন অডিও স্ট্রিম পাওয়া যায় নি</string>
     <string name="video_streams_empty">কোন ভিডিও</string>
     <string name="player_recoverable_failure">প্লেয়ার এর এরর থেকে বেরিয়ে আসুন</string>
     <string name="player_stream_failure">স্ট্রিম টি চালানো গেল না</string>
-    <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="search_history_deleted">অনুসন্ধান ইতিহাস মোছা হয়েছে</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_summary">সার্চের ইতিহাস মোছা হয়</string>
@@ -290,7 +286,6 @@
     <string name="settings_category_clear_data_title">ডাটা মুছে ফেল</string>
     <string name="notification_action_nothing">কিছুই না</string>
     <string name="notification_action_repeat">পুনরায়</string>
-    <string name="notification_action_0_title">প্রথম ক্রিয়া বোতাম</string>
     <string name="notification_scale_to_square_image_title">থাম্বনেল ১:১ অনুপাতে সেট করো</string>
     <string name="systems_language">সিস্টেম ডিফল্ট</string>
     <string name="bookmark_playlist">প্লেলিস্ট বুকমার্ক করুন</string>
@@ -375,7 +370,6 @@
     <string name="enumeration_comma">,</string>
     <string name="night_theme_title">রাত্রিকালীন থিম</string>
     <string name="show_description_title">বর্ণনা দেখাও</string>
-    <string name="notification_action_1_title">দ্বিতীয় পদক্ষেপ বোতাম</string>
     <string name="notification_action_4_title">পঞ্চম পদক্ষেপ বোতাম</string>
     <string name="show_description_summary">ভিডিও বর্ণনা ও বাড়তি তথ্য লুকাতে বন্ধ করুন</string>
     <string name="dont_show">দেখিও না</string>
@@ -386,7 +380,6 @@
         <item quantity="other">%s বার দেখেছে</item>
     </plurals>
     <string name="overwrite">ওভাররাইট</string>
-    <string name="notification_action_2_title">তৃতীয় পদক্ষেপ বোতাম</string>
     <string name="local_search_suggestions">স্থানীয় অনুসন্ধানের পরামর্শ</string>
     <string name="limit_mobile_data_usage_title">মোবাইল ডেটা ব্যবহারের সময় রেজুলেশন সীমিত করো</string>
     <string name="queued">অপেক্ষমাণ</string>

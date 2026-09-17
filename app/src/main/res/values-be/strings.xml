@@ -135,10 +135,6 @@
     <string name="video_streams_empty">Відэапатокі не знойдзены</string>
     <string name="audio_streams_empty">Аўдыяпатокі не знойдзены</string>
     <string name="invalid_directory">Такой папкі не існуе</string>
-    <string name="invalid_source">Такога файла або крыніцы кантэнту не існуе</string>
-    <string name="invalid_file">Файл не існуе або няма дазволу на яго чытанне ці запіс</string>
-    <string name="file_name_empty_error">Назва файла не можа быць пустой</string>
-    <string name="error_occurred_detail">Адбылася памылка: %1$s</string>
     <string name="no_streams_available_download">Няма трансляцый, даступных для спампоўвання</string>
     <string name="sorry_string">Прабачце, гэта не павінна было адбыцца.</string>
     <string name="error_report_button_text">Паведаміць па электроннай пошце</string>
@@ -194,7 +190,6 @@
     <string name="msg_running">BravePipe спампоўвае</string>
     <string name="msg_running_detail">Падрабязнасці</string>
     <string name="msg_wait">Пачакайце…</string>
-    <string name="msg_copied">Скапіявана ў буфер абмену</string>
     <string name="no_available_dir">Пазней выберыце ў наладах папку для спампоўвання</string>
     <string name="msg_popup_permission">Гэты дазвол патрабуецца для\nпрайгравання ў акне</string>
     <string name="one_item_deleted">1 элемент выдалены.</string>
@@ -287,8 +282,6 @@
     <string name="import_title">Імпарт</string>
     <string name="import_from">Імпартаваць з</string>
     <string name="export_to">Экспартаваць у</string>
-    <string name="import_ongoing">Імпарт…</string>
-    <string name="export_ongoing">Экспарт…</string>
     <string name="import_file_title">Імпарт файла</string>
     <string name="previous_export">Папярэдні экспарт</string>
     <string name="subscriptions_import_unsuccessful">Не ўдалося імпартаваць падпіскі</string>
@@ -322,8 +315,6 @@
     <string name="file_deleted">Файл выдалены</string>
     <string name="app_update_notification_channel_name">Апавяшчэнне пра абнаўленне праграмы</string>
     <string name="app_update_notification_channel_description">Апавяшчэнні пра новыя версіі BravePipe</string>
-    <string name="download_to_sdcard_error_title">Знешняе сховішча недаступна</string>
-    <string name="download_to_sdcard_error_message">Спампоўванне на знешнюю SD-карту немагчыма. Скінуць размяшчэнне папкі спампоўвання?</string>
     <string name="saved_tabs_invalid_json">Не ўдалося прачытаць захаваныя ўкладкі, таму выкарыстоўваюцца прадвызначаныя</string>
     <string name="restore_defaults">Аднавіць прадвызначаныя значэнні</string>
     <string name="restore_defaults_confirmation">Аднавіць прадвызначаныя значэнні?</string>
@@ -391,9 +382,6 @@
     <string name="start_downloads">Пачаць спампоўванне</string>
     <string name="pause_downloads">Прыпыніць спампоўванне</string>
     <string name="downloads_storage_ask_title">Запытваць папку спампоўвання</string>
-    <string name="downloads_storage_ask_summary">Пры кожным спампоўванні вам будзе прапанавана выбраць месца захавання. \nУключыце сістэмны сродак выбару папак (SAF), калі хочаце спампоўваць файлы на знешнюю SD-карту</string>
-    <string name="downloads_storage_use_saf_title">Выкарыстоўваць сістэмны сродак выбару папак (SAF)</string>
-    <string name="downloads_storage_use_saf_summary">«Storage Access Framework» дазваляе выконваць спампоўванне на знешнюю SD-карту</string>
     <string name="drawer_header_description">Пераключэнне сэрвісу, зараз выбраны:</string>
     <string name="clear_playback_states_summary">Выдаліць усе пазіцыі прайгравання</string>
     <string name="youtube_restricted_mode_enabled_title">Уключыць «Абмежаваны рэжым» YouTube</string>
@@ -404,9 +392,6 @@
     <string name="notification_scale_to_square_image_title">Абразаць мініяцюру да прапорцый 1:1</string>
     <string name="notification_scale_to_square_image_summary">Абразаць мініяцюру відэа ў апавяшчэнні з прапорцый 16:9 да 1:1</string>
     <string name="notification_action_3_title">Кнопка чацвёртага дзеяння</string>
-    <string name="notification_action_2_title">Кнопка трэцяга дзеяння</string>
-    <string name="notification_action_1_title">Кнопка другога дзеяння</string>
-    <string name="notification_action_0_title">Кнопка першага дзеяння</string>
     <string name="feed_groups_header_title">Групы каналаў</string>
     <string name="systems_language">Як у сістэме</string>
     <string name="app_language_title">Мова прылады</string>
@@ -459,8 +444,6 @@
     <string name="notification_action_repeat">Паўтор</string>
     <string name="notification_action_4_title">Кнопка пятага дзеяння</string>
     <string name="notification_colorize_summary">Афарбоўваць апавяшчэнне асноўным колерам мініяцюры. Падтрымліваецца не ўсімі прыладамі</string>
-    <string name="notification_actions_at_most_three">У кампактным апавяшчэнні даступна не больш за тры дзеянні!</string>
-    <string name="notification_actions_summary">Каб адрэдагаваць кожнае з дзеянняў у апавяшчэнні, націсніце на яго. З дапамогай сцяжкоў справа, выберыце да трох дзеянняў, якія будуць паказвацца ў кампактным апавяшчэнні.</string>
     <string name="unsupported_url_dialog_message">Не ўдалося распазнаць URL-адрас. Адкрыць у іншай праграме\?</string>
     <string name="settings_category_player_notification_title">Апавяшчэнне плэера</string>
     <string name="notifications">Апавяшчэнні</string>
@@ -624,7 +607,6 @@
     <string name="semitone">Паўтон</string>
     <string name="any_network">Любая сетка</string>
     <string name="feed_subscription_not_loaded_count">Не загружана: %d</string>
-    <string name="downloads_storage_use_saf_summary_api_29">Пачынаючы з Android 10 падтрымліваецца толькі «Storage Access Framework»</string>
     <string name="checking_updates_toast">Праверка абнаўленняў…</string>
     <string name="remove_duplicates_title">Выдаліць дублікаты\?</string>
     <string name="remove_duplicates">Выдаліць дублікаты</string>
@@ -694,7 +676,6 @@
     <string name="playlist_page_summary">Старонка плэй-ліста</string>
     <string name="show_thumbnail_title">Паказваць мініяцюру</string>
     <string name="show_thumbnail_summary">Выкарыстоўваць мініяцюру як фон для экрана блакіроўкі і апавяшчэнняў</string>
-    <string name="no_appropriate_file_manager_message">Для гэтага дзеяння не знойдзены прыдатны файлавы менеджар. \nУсталюйце файлавы менеджар або паспрабуйце адключыць «%s» у наладах спампоўвання</string>
     <string name="georestricted_content">Гэты кантэнт недаступны ў вашай краіне.</string>
     <string name="soundcloud_go_plus_content">Гэта трэк SoundCloud Go+ (прынамсі ў вашай краіне), таму BravePipe не можа яго прайграць або спампаваць.</string>
     <string name="private_content">Гэты кантэнт прыватны, таму BravePipe не можа яго прайграць або спампаваць.</string>
@@ -816,9 +797,6 @@
     <string name="search_with_service_name_and_filter">Пошук %1$s (%2$s)</string>
     <string name="channel_tab_likes">Спадабалася</string>
     <string name="permission_display_over_apps_permission_name">«Дазволіць паказ па-над астатнімі праграмамі»</string>
-    <string name="short_thousand">%s тыс.</string>
-    <string name="short_million">%s млн</string>
-    <string name="short_billion">%s млрд</string>
     <string name="delete_file">Выдаліць файл</string>
     <string name="delete_entry">Выдаліць запіс</string>
     <string name="migration_info_6_7_title">Старонка SoundCloud Top 50 выдалена</string>

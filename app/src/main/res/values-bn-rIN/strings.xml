@@ -11,7 +11,6 @@
     <string name="title_activity_recaptcha">reCAPTCHA চ্যালেঞ্জ</string>
     <string name="msg_popup_permission">এই অনুমতিটি
 \nপপআপ মোডে খুলতে প্রয়োজন</string>
-    <string name="msg_copied">ক্লিপবোর্ডে অনুলিপি করা হয়েছে</string>
     <string name="msg_wait">অনুগ্রহপূর্বক অপেক্ষা করুন…</string>
     <string name="msg_running_detail">বিস্তারিত জানার জন্য আলতো চাপ</string>
     <string name="msg_running">BravePipe ডাউনলোড হচ্ছে</string>
@@ -180,7 +179,6 @@
     <string name="no_videos">কোন ভিডিও নেই</string>
     <string name="search_no_results">কোন রেজাল্ট নেই</string>
     <string name="invalid_directory">কোন ফোল্ডার নেই</string>
-    <string name="download_to_sdcard_error_title">বাহ্যিক স্টোরেজ নেই</string>
     <string name="search_history_deleted">সার্চ ইতিহাস মোছা হয়েছে</string>
     <string name="name">নাম</string>
     <string name="rename_playlist">নাম পরিবর্তন</string>
@@ -209,7 +207,6 @@
     <string name="enable_playback_resume_title">পুনরায় প্লে ব্যাক চালু করুন</string>
     <string name="tab_choose">ট্যাব পছন্দ করুন</string>
     <string name="restore_defaults_confirmation">আপনি কি ডিফল্ট এ ফিরতে চান\?</string>
-    <string name="error_occurred_detail">একটা এরর হয়েছেঃ %1$s</string>
     <string name="missing_file">ফাইল সরে গেছে না হয় মুছে ফেলা হয়েছে</string>
     <string name="audio_streams_empty">কোন অডিও স্ট্রিম পাওয়া যায় নি</string>
     <string name="player_recoverable_failure">প্লেয়ার এর এরর থেকে বেরিয়ে আসুন</string>
@@ -243,7 +240,6 @@
     <string name="no_comments">কোন মন্তব্য নেই</string>
     <string name="no_subscribers">কোন সাবস্ক্রাইবার নেই</string>
     <string name="no_streams_available_download">ডাউন লোড এর জন্য কোন স্ট্রিম নেই</string>
-    <string name="file_name_empty_error">ফাইল এর নাম খালি থাকতে পারে না</string>
     <string name="video_streams_empty">কোন ভিডিও</string>
     <string name="delete_search_history_alert">সমগ্র সার্চ ইতিহাস মুছবেন\?</string>
     <string name="clear_search_history_title">সার্চ ইতিহাস মুছুন</string>
@@ -283,13 +279,10 @@
     <string name="show_meta_info_title">মেটা ইনফো দেখান</string>
     <string name="show_description_title">বিবরণ দেখান</string>
     <string name="night_theme_title">রাত্রি থিম</string>
-    <string name="notification_action_2_title">তৃতীয় অ্যাকশান বোতাম</string>
     <string name="notification_action_3_title">চতুর্থ অ্যাকশান বোতাম</string>
     <string name="clear_queue_confirmation_description">সক্রিয় প্লেয়ার ক্রম পরিবর্তিত হয়ে যাবে</string>
     <string name="local_search_suggestions">স্থানীয় সার্চ সাজেশন</string>
     <string name="notification_action_4_title">পঞ্চম অ্যাকশান বোতাম</string>
-    <string name="notification_action_0_title">প্রথম অ্যাকশান বোতাম</string>
-    <string name="notification_action_1_title">দ্বিতীয় অ্যাকশান বোতাম</string>
     <string name="streams_notification_channel_name">নতুন স্ট্রিম</string>
     <string name="wifi_only">শুধুমাত্র ওয়াইফাইএ</string>
     <string name="metadata_language">ভাষা</string>

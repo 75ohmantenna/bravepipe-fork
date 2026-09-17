@@ -134,8 +134,6 @@
     <string name="delete_search_history_alert">सम्पूर्ण खोज इतिहास मेटाउने\?</string>
     <string name="search_history_deleted">खोज इतिहास मेटियो।</string>
     <string name="general_error">त्रुटि</string>
-    <string name="download_to_sdcard_error_title">बाह्य भण्डारण अनउपलब्ध</string>
-    <string name="download_to_sdcard_error_message">बाह्य एस डी कार्ड (SD card) छैन। डाउनलोड फोल्डर स्थान रिसेट गर्ने\?</string>
     <string name="network_error">नेटवर्क त्रुटि</string>
     <string name="could_not_load_thumbnails">सबै थम्बनेल लोड गर्न सकेन</string>
     <string name="parsing_error">वेबसाइट पार्स गर्न सकिँएन</string>
@@ -149,10 +147,6 @@
     <string name="video_streams_empty">कुनै भिडियो प्रवाह फेला परेन</string>
     <string name="audio_streams_empty">कुनै अडियो स्ट्रिम फेला परेन</string>
     <string name="invalid_directory">यस्तो कुनै फोल्डर भेटिएन</string>
-    <string name="invalid_source">यस्तो कुनै फाइल / सामग्री स्रोत भेटिएन</string>
-    <string name="invalid_file">फाइल अवस्थित छैन वा पढ्न वा यो लेख्न अनुमति अभाव छ</string>
-    <string name="file_name_empty_error">फाइलको नाम खाली हुन सक्दैन</string>
-    <string name="error_occurred_detail">एउटा त्रुटि देखापर्यो: %1$s</string>
     <string name="no_streams_available_download">कुनै धाराहरु डाउनलोड गर्न उपलब्ध छैनन्</string>
     <string name="saved_tabs_invalid_json">बचत गरिएका ट्याबहरू पढ्न सकिएन, पूर्वनिर्धारित प्रयोग गरिदै</string>
     <string name="restore_defaults">फेरी पहिलाकै अवस्थामा लैजाऊ</string>
@@ -203,7 +197,6 @@
     <string name="msg_running">BravePipe डाउनलोड गर्दै</string>
     <string name="msg_running_detail">विवरण लागि ट्याप गर्नुहोस्</string>
     <string name="msg_wait">कृपया पर्खनुहोस्…</string>
-    <string name="msg_copied">क्लिपबोर्डमा प्रतिलिपि</string>
     <string name="no_available_dir">कृपया पछि डाउनलोड फोल्डर सेटिङहरू मा परिभाषित गर्नुहोस</string>
     <string name="msg_popup_permission">पपअप मोडमा खोल्न
 \nयो अनुमति आवश्यक छ</string>
@@ -300,8 +293,6 @@
     <string name="import_title">आयात</string>
     <string name="import_from">आयात</string>
     <string name="export_to">निर्यात</string>
-    <string name="import_ongoing">आयात गर्दै …</string>
-    <string name="export_ongoing">निर्यात गर्दै …</string>
     <string name="import_file_title">फाइल आयात</string>
     <string name="previous_export">अघिल्लो निर्यात</string>
     <string name="subscriptions_import_unsuccessful">सदस्यताहरु आयात गर्न सकिएन</string>
@@ -395,10 +386,6 @@
     <string name="start_downloads">डाउनलोडहरु सुरु</string>
     <string name="pause_downloads">डाउनलोडहरु पज</string>
     <string name="downloads_storage_ask_title">डाउनलोड कहाँ गर्ने सोध</string>
-    <string name="downloads_storage_ask_summary">प्रत्येक डाउनलोड कहाँ सेव गर्ने भनि आग्रह गरिनेछ</string>
-    <string name="downloads_storage_use_saf_title">साफ (SAF) प्रयोग</string>
-    <string name="downloads_storage_use_saf_summary">\'भण्डारण पहुँच फ्रेमवर्क\' बाह्य एसडी कार्डमा डाउनलोड गर्न अनुमति दिन्छ।
-\nकेहि उपकरणहरू असंगत छन्</string>
     <string name="clear_playback_states_title">प्लेब्याक स्थान मेटाउ</string>
     <string name="clear_playback_states_summary">सबै प्लेब्याक स्थानहरु मेटाउँछ</string>
     <string name="delete_playback_states_alert">सबै प्लेब्याक स्थान मेटाउने\?</string>
@@ -518,12 +505,8 @@
     <string name="notification_action_buffering">Buffering हुँदै</string>
     <string name="notification_action_shuffle">Shuffle गर्नु</string>
     <string name="notification_action_repeat">दोहोर्‍याउनु</string>
-    <string name="notification_actions_summary">हरेक सूचना कार्यमा थिचेर परिवर्तन गर्नुहोस्। तपाईंले तीमध्धे तीनवटासम्म सूचना पाटीमा राख्न सक्नुहुन्छ, त्यसको लागि दाँयाँ बक्समा ठिक लगाउनुहोस्।</string>
     <string name="notification_action_4_title">पाँचौ कार्य बटन</string>
     <string name="notification_action_3_title">चौथो कार्य बटन</string>
-    <string name="notification_action_0_title">पहिलो कार्य बटन</string>
-    <string name="notification_action_1_title">दोस्रो कार्य बटन</string>
-    <string name="notification_action_2_title">तेस्रो कार्य बटन</string>
     <string name="notification_scale_to_square_image_title">थम्बनेल १:१ अनुपातमा परिवर्तन गर्नु</string>
     <string name="notification_scale_to_square_image_summary">भिडियोको सूचना केन्द्रमा रहेको थम्बनेललाई १६:९ बाट १:१ अनुपातमा परिवर्तन गर्नु (यसको कारणले गर्दा बाङ्गोटेढो हुन सक्छ)</string>
     <string name="search_showing_result_for">%s : का लागि परिणामहरु देखाइँदैछ</string>

@@ -5,7 +5,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -16,23 +15,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
-import androidx.preference.SwitchPreferenceCompat;
-
-import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
-
-import java.io.File;
 import java.io.IOException;
 
 public class DownloadSettingsFragment extends BasePreferenceFragment {
-    public static final boolean IGNORE_RELEASE_ON_OLD_PATH = true;
     private String downloadPathVideoPreference;
     private String downloadPathAudioPreference;
-    private String storageUseSafPreference;
 
     private Preference prefPathVideo;
     private Preference prefPathAudio;
@@ -52,28 +43,15 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         downloadPathVideoPreference = getString(R.string.download_path_video_key);
         downloadPathAudioPreference = getString(R.string.download_path_audio_key);
-        storageUseSafPreference = getString(R.string.storage_use_saf);
         final String downloadStorageAsk = getString(R.string.downloads_storage_ask);
 
         prefPathVideo = findPreference(downloadPathVideoPreference);
         prefPathAudio = findPreference(downloadPathAudioPreference);
         prefStorageAsk = findPreference(downloadStorageAsk);
 
-        final SwitchPreferenceCompat prefUseSaf = findPreference(storageUseSafPreference);
-        prefUseSaf.setChecked(NewPipeSettings.useStorageAccessFramework(ctx));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            prefUseSaf.setEnabled(false);
-            prefUseSaf.setSummary(R.string.downloads_storage_use_saf_summary_api_29);
-            prefStorageAsk.setSummary(R.string.downloads_storage_ask_summary_no_saf_notice);
-        }
 
         updatePreferencesSummary();
         updatePathPickers(!defaultPreferences.getBoolean(downloadStorageAsk, false));
-
-        if (hasInvalidPath(downloadPathVideoPreference)
-                || hasInvalidPath(downloadPathAudioPreference)) {
-            updatePreferencesSummary();
-        }
 
         prefStorageAsk.setOnPreferenceChangeListener((preference, value) -> {
             updatePathPickers(!(boolean) value);
@@ -114,42 +92,12 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
         target.setSummary(summary);
     }
 
-    private boolean isFileUri(final String path) {
-        return path.charAt(0) == File.separatorChar || path.startsWith(ContentResolver.SCHEME_FILE);
-    }
-
-    private boolean hasInvalidPath(final String prefKey) {
-        final String value = defaultPreferences.getString(prefKey, null);
-        return value == null || value.isEmpty();
-    }
 
     private void updatePathPickers(final boolean enabled) {
         prefPathVideo.setEnabled(enabled);
         prefPathAudio.setEnabled(enabled);
     }
 
-    // FIXME: after releasing the old path, all downloads created on the folder becomes inaccessible
-    private void forgetSAFTree(final Context context, final String oldPath) {
-        if (IGNORE_RELEASE_ON_OLD_PATH) {
-            return;
-        }
-
-        if (oldPath == null || oldPath.isEmpty() || isFileUri(oldPath)) {
-            return;
-        }
-
-        try {
-            final Uri uri = Uri.parse(oldPath);
-
-            context.getContentResolver()
-                    .releasePersistableUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
-            context.revokeUriPermission(uri, StoredDirectoryHelper.PERMISSION_FLAGS);
-
-            Log.i(TAG, "Revoke old path permissions success on " + oldPath);
-        } catch (final Exception err) {
-            Log.e(TAG, "Error revoking old path permissions on " + oldPath, err);
-        }
-    }
 
     private void showMessageDialog(@StringRes final int title, @StringRes final int message) {
         new AlertDialog.Builder(ctx)
@@ -168,17 +116,7 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
 
         final String key = preference.getKey();
 
-        if (key.equals(storageUseSafPreference)) {
-            if (!NewPipeSettings.useStorageAccessFramework(ctx)) {
-                NewPipeSettings.saveDefaultVideoDownloadDirectory(ctx);
-                NewPipeSettings.saveDefaultAudioDownloadDirectory(ctx);
-            } else {
-                defaultPreferences.edit().putString(downloadPathVideoPreference, null)
-                        .putString(downloadPathAudioPreference, null).apply();
-            }
-            updatePreferencesSummary();
-            return true;
-        } else if (key.equals(downloadPathVideoPreference)) {
+        if (key.equals(downloadPathVideoPreference)) {
             launchDirectoryPicker(requestDownloadVideoPathLauncher);
         } else if (key.equals(downloadPathAudioPreference)) {
             launchDirectoryPicker(requestDownloadAudioPathLauncher);
@@ -220,40 +158,17 @@ public class DownloadSettingsFragment extends BasePreferenceFragment {
             return;
         }
 
-
-        // revoke permissions on the old save path (required for SAF only)
+        // Keep old tree grants: existing downloads can still reference previous destinations.
         final Context context = requireContext();
-
-        forgetSAFTree(context, defaultPreferences.getString(key, ""));
-
-        if (!FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            // steps to acquire the selected path:
-            //     1. acquire permissions on the new save path
-            //     2. save the new path, if step(2) was successful
-            try {
-                context.grantUriPermission(context.getPackageName(), uri,
-                        StoredDirectoryHelper.PERMISSION_FLAGS);
-
-                final StoredDirectoryHelper mainStorage =
-                        new StoredDirectoryHelper(context, uri, null);
-                Log.i(TAG, "Acquiring tree success from " + uri.toString());
-
-                if (!mainStorage.canWrite()) {
-                    throw new IOException("No write permissions on " + uri.toString());
-                }
-            } catch (final IOException err) {
-                Log.e(TAG, "Error acquiring tree from " + uri.toString(), err);
-                showMessageDialog(R.string.general_error, R.string.no_available_dir);
-                return;
+        try {
+            final StoredDirectoryHelper storage = new StoredDirectoryHelper(context, uri, null);
+            if (!storage.canWrite()) {
+                throw new IOException("No write permissions on " + uri);
             }
-        } else {
-            final File target = Utils.getFileForUri(uri);
-            if (!target.canWrite()) {
-                showMessageDialog(R.string.download_to_sdcard_error_title,
-                        R.string.download_to_sdcard_error_message);
-                return;
-            }
-            uri = Uri.fromFile(target);
+        } catch (final IOException | SecurityException err) {
+            Log.e(TAG, "Error acquiring tree from " + uri, err);
+            showMessageDialog(R.string.general_error, R.string.no_available_dir);
+            return;
         }
 
         defaultPreferences.edit().putString(key, uri.toString()).apply();
