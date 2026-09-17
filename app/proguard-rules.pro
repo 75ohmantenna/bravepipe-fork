@@ -1,10 +1,6 @@
 # https://developer.android.com/build/shrink-code
 
 ###### begin -- BravePipe
-# conscrypt rules (where not needed on 2.4.0)
--dontwarn com.android.org.conscrypt.SSLParametersImpl
--dontwarn org.apache.harmony.xnet.provider.jsse.SSLParametersImpl
-
 # rules for greenrobot
 -keepattributes *Annotation*
 -keepclassmembers class * {
