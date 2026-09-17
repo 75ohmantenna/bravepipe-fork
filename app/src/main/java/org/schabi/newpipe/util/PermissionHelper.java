@@ -47,10 +47,12 @@ public final class PermissionHelper {
                 == PackageManager.PERMISSION_GRANTED;
     }
 
-
-
-
-    /** Requests overlay access when it has not been granted. */
+    /**
+     * Requests overlay access when it has not been granted.
+     *
+     * @param context the context used to show the request dialog
+     * @return true if overlay permission is already granted
+     */
     public static boolean checkSystemAlertWindowPermission(final Context context) {
         if (Settings.canDrawOverlays(context)) {
             return true;

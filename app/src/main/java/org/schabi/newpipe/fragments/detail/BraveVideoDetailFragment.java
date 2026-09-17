@@ -137,6 +137,7 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
 
         onChangeLayoutListener = new View.OnLayoutChangeListener() {
             @Override
+            @SuppressWarnings("checkstyle:ParameterNumber") // fixed OnLayoutChangeListener contract
             public void onLayoutChange(
                     final View v,
                     final int left,
