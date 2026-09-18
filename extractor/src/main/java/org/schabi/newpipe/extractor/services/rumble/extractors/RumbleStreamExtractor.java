@@ -50,14 +50,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.schabi.newpipe.extractor.stream.Stream.ID_UNKNOWN;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
-public class RumbleStreamExtractor extends StreamExtractor {
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
+public final class RumbleStreamExtractor extends StreamExtractor {
 
     private final String videoUploaderJsonKey = "author";
     private final String videoTitleJsonKey = "title";
@@ -385,7 +385,8 @@ public class RumbleStreamExtractor extends StreamExtractor {
                 } else { // video streams
                     if (res.equals("auto")) {
                         if (getStreamType() == StreamType.LIVE_STREAM) {
-                            extractStreamsFromMasterHlsPlaylist(downloader, videoUrl, videoStreamsList);
+                            extractStreamsFromMasterHlsPlaylist(
+                                    downloader, videoUrl, videoStreamsList);
                         } else {
                             // 'auto' provides a master HLS playlist but we only use it in
                             // case there are no other video streams available
@@ -476,10 +477,10 @@ public class RumbleStreamExtractor extends StreamExtractor {
             if (playlistUrl == null) {
                 continue;
             }
-            final int bitrate = (int)(stream.getBandwidth() * bandwidth2bitrateFactor);
+            final int bitrate = (int) (stream.getBandwidth() * bandwidth2bitrateFactor);
             final String actualRes = getHeight(stream.getResolution());
 
-            final String bitrateString = "@" + bitrate/1000 + "k";
+            final String bitrateString = "@" + bitrate / 1000 + "k";
             final VideoStream videoStream = createVideoStream(
                     "hls",
                     playlistUrl.toString(),

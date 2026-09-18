@@ -29,6 +29,7 @@ import javax.annotation.Nullable;
 
 import static org.schabi.newpipe.extractor.ServiceList.Rumble;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public final class RumbleParsingHelper {
 
     private RumbleParsingHelper() {
@@ -248,9 +249,11 @@ public final class RumbleParsingHelper {
         if (embedVideoIdsCache.containsKey(url))  {
             return embedVideoIdsCache.get(url);
         }
-        final String VALID_URL = "https?://(?:www\\.)?rumble\\.com/embed/(?:[0-9a-z]+\\.)?([0-9a-z]+)"; // id is group 1
-        final String EMBED_REGEX = "(?:<(?:script|iframe)[^>]+\\bsrc=|[\"']embedUrl[\"']\\s*:\\s*)[\"']" + VALID_URL;
-        Pattern pattern = Pattern.compile(EMBED_REGEX);
+        final String validUrl = "https?://(?:www\\.)?rumble\\.com/embed/"
+                + "(?:[0-9a-z]+\\.)?([0-9a-z]+)"; // id is group 1
+        final String embedRegex = "(?:<(?:script|iframe)[^>]+\\bsrc=|"
+                + "[\"']embedUrl[\"']\\s*:\\s*)[\"']" + validUrl;
+        Pattern pattern = Pattern.compile(embedRegex);
         final String content;
         try {
             content = contentProvider.call();
@@ -283,8 +286,7 @@ public final class RumbleParsingHelper {
             final String errMsg = code + " - " + getErrFromTitle(doc);
             if (errMsg.toLowerCase().contains("private")) {
                 throw new PrivateContentException(errMsg);
-            } // cloudflare challenge -- not possible to solve here
-            else if (doc.selectFirst("span#challenge-error-text") != null
+            } else if (doc.selectFirst("span#challenge-error-text") != null
                     || errMsg.toLowerCase().contains("just a moment...")) {
                 throw new BraveCloudFlareChallengeException(
                         errMsg + " for " + response.latestUrl());

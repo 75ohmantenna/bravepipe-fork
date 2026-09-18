@@ -28,6 +28,7 @@ import javax.annotation.Nonnull;
 
 import static org.schabi.newpipe.extractor.ListExtractor.ITEM_COUNT_UNKNOWN;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class RumbleChannelExtractor extends ChannelExtractor {
 
     private Document doc;
@@ -54,16 +55,18 @@ public class RumbleChannelExtractor extends ChannelExtractor {
     public void onFetchPage(@Nonnull final Downloader downloader)
             throws IOException, ExtractionException {
         doc = RumbleParsingHelper.fetchParseValidate(downloader, getUrl());
-        final String about_link = RumbleParsingHelper.extractSafely(false,
+        final String aboutLink = RumbleParsingHelper.extractSafely(false,
             "",
             () -> doc.selectFirst("[href*='about']").attr("href")
         );
-        if (null != about_link) {
+        if (null != aboutLink) {
             // somehow it is flawed within rumbles code. Some pages have complete url some not
-            if (about_link.startsWith("http")) {
-                about = Jsoup.parse(getDownloader().get(about_link).responseBody());
+            if (aboutLink.startsWith("http")) {
+                about = Jsoup.parse(getDownloader().get(aboutLink).responseBody());
             } else {
-                about = Jsoup.parse(getDownloader().get(getService().getBaseUrl() + about_link).responseBody());
+                about = Jsoup.parse(getDownloader()
+                        .get(getService().getBaseUrl() + aboutLink)
+                        .responseBody());
             }
         }
     }

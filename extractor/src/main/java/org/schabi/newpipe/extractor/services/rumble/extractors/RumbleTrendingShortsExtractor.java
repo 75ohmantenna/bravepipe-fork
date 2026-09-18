@@ -5,7 +5,6 @@ import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
 
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.Page;
 import org.schabi.newpipe.extractor.StreamingService;
@@ -25,6 +24,7 @@ import javax.annotation.Nonnull;
 import static org.schabi.newpipe.extractor.services.rumble.linkHandler.RumbleStreamLinkHandlerFactory.BASE_URL;
 
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class RumbleTrendingShortsExtractor extends KioskExtractor<StreamInfoItem> {
 
     public static final String KIOSK_SHORTS = "Shorts";
@@ -104,7 +104,7 @@ public class RumbleTrendingShortsExtractor extends KioskExtractor<StreamInfoItem
         return createPage(offset);
     }
 
-    @NotNull
+    @Nonnull
     private Page createPage(int offset) {
         offset += 10;
         return new Page(

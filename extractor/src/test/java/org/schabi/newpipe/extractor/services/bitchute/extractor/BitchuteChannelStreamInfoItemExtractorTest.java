@@ -21,7 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
+import static org.schabi.newpipe.downloader.DownloaderFactory.LEGACY_RESOURCE_PATH;
 
 /**
  * Test for {@link BitchuteChannelStreamInfoItemExtractor}
@@ -40,7 +40,7 @@ import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
 public class BitchuteChannelStreamInfoItemExtractorTest {
 
     private static final String CHANNEL_MOCK_PATH =
-            RESOURCE_PATH + "/services/bitchute/extractor/channel/";
+            LEGACY_RESOURCE_PATH + "/services/bitchute/extractor/channel/";
 
     private static String testInputJsonMockFile = CHANNEL_MOCK_PATH
             + "BitchuteChannelStreamInfoItemExtractor_mock_0.input.json";

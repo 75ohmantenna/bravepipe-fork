@@ -25,7 +25,7 @@ import java.util.NoSuchElementException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
+import static org.schabi.newpipe.downloader.DownloaderFactory.LEGACY_RESOURCE_PATH;
 import static org.schabi.newpipe.extractor.ServiceList.Bitchute;
 
 public class BitchuteStreamExtractorTest extends DefaultStreamExtractorTest {
@@ -52,19 +52,24 @@ public class BitchuteStreamExtractorTest extends DefaultStreamExtractorTest {
     private static String expectedArtistProfilePictureInfix = ".bitchute.com/live/channel_images/";
 
     protected static final String MOCK_PATH =
-            RESOURCE_PATH + "/services/bitchute/extractor/stream/";
+            LEGACY_RESOURCE_PATH + "/services/bitchute/extractor/stream/";
 
     @BeforeAll
-    public static void setUp() throws ExtractionException, IOException {
+    public static void setUpExtractor() throws ExtractionException, IOException {
         System.setProperty("downloader", "MOCK");
         //System.setProperty("downloader", "RECORDING");
 
-        NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH
+        NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH
                 + "/streamExtractor"));
 
         extractor = (BitchuteStreamExtractor) Bitchute
                 .getStreamExtractor(url);
         extractor.fetchPage();
+    }
+
+    @Override
+    protected StreamExtractor createExtractor() {
+        return extractor;
     }
 
     @Override

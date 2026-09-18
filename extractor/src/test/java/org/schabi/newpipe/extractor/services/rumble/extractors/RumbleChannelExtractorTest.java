@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
+import static org.schabi.newpipe.downloader.DownloaderFactory.LEGACY_RESOURCE_PATH;
 import static org.schabi.newpipe.extractor.ServiceList.Rumble;
 
 @SuppressWarnings({"checkstyle:LineLength", "checkstyle:MethodName", "checkstyle:InvalidJavadocPosition"})
@@ -130,7 +130,7 @@ public class RumbleChannelExtractorTest {
     public abstract static class TestChannel implements BaseChannelExtractorTest {
 
         protected static final String MOCK_PATH =
-                RESOURCE_PATH + "/services/rumble/extractor/channel/";
+                LEGACY_RESOURCE_PATH + "/services/rumble/extractor/channel/";
         public enum KeysForTestDataMap {
             channelUrl,
             expectedOriginalUrl,
@@ -152,7 +152,7 @@ public class RumbleChannelExtractorTest {
         protected static String[] someExpectedResults = null;
 
         public static void setUp() throws Exception {
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/"
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/"
                     + testDataMap.get(KeysForTestDataMap.mockPath)));
             extractor = (RumbleChannelExtractor) Rumble
                     .getChannelExtractor(testDataMap.get(KeysForTestDataMap.channelUrl));

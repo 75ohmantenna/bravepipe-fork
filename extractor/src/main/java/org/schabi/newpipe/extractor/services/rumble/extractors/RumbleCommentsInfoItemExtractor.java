@@ -19,6 +19,7 @@ import javax.annotation.Nullable;
 
 import static org.schabi.newpipe.extractor.services.rumble.extractors.RumbleCommentsExtractor.intArrayToString;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class RumbleCommentsInfoItemExtractor implements CommentsInfoItemExtractor {
     private final RumbleCommentsExtractor extractor;
     private final int[] id;
@@ -100,7 +101,9 @@ public class RumbleCommentsInfoItemExtractor implements CommentsInfoItemExtracto
     }
 
     public boolean isUploaderVerified() throws ParsingException {
-        return element.selectFirst("> div.comments-meta > div.comments-meta-user-badges > img[alt='Verified']") != null;
+        return element.selectFirst(
+                "> div.comments-meta > div.comments-meta-user-badges > img[alt='Verified']")
+                != null;
     }
 
     private int[] getReplyId() {
@@ -127,7 +130,8 @@ public class RumbleCommentsInfoItemExtractor implements CommentsInfoItemExtracto
     }
 
     public boolean isChannelOwner() throws ParsingException {
-        return element.selectFirst("> div.comments-meta > a.comments-meta-author-video-owner") != null;
+        return element.selectFirst(
+                "> div.comments-meta > a.comments-meta-author-video-owner") != null;
     }
 
     @Override
@@ -139,8 +143,7 @@ public class RumbleCommentsInfoItemExtractor implements CommentsInfoItemExtracto
     public String getUrl() {
         try {
             return extractor.getUrl();
-        }
-        catch (ParsingException e) {
+        } catch (ParsingException e) {
             return null;
         }
     }

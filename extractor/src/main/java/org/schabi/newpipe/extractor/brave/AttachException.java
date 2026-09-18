@@ -1,6 +1,5 @@
 package org.schabi.newpipe.extractor.brave;
 
-import org.jetbrains.annotations.NotNull;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 
 import java.util.ArrayList;
@@ -8,11 +7,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nonnull;
+
 /**
  * Substitute for ParsingException.
  * <p>
  * Attach data that might help the developer to fix the problem.
  */
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class AttachException extends ParsingException {
     private final List<String> exceptionData = new ArrayList<>();
 
@@ -20,7 +22,7 @@ public class AttachException extends ParsingException {
         super(message);
     }
 
-    @NotNull
+    @Nonnull
     public static AttachException createAttachException(
             final String errMsg,
             final String content,

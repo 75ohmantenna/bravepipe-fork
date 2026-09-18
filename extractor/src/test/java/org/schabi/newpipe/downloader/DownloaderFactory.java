@@ -10,6 +10,9 @@ import javax.annotation.Nullable;
 
 public class DownloaderFactory {
 
+    public static final String LEGACY_RESOURCE_PATH =
+            "src/test/resources/org/schabi/newpipe/extractor";
+
     private static final DownloaderType DEFAULT_DOWNLOADER = DownloaderType.REAL;
 
     private static DownloaderType cachedDownloaderType;
@@ -48,6 +51,10 @@ public class DownloaderFactory {
         return getDownloader(getMockPath(clazz, specificUseCase));
     }
 
+    public static Downloader getMockDownloader(final String path) {
+        return new MockDownloader(path);
+    }
+
     /**
      * Always returns a path without a trailing '/', so that it can be used both as a folder name
      * and as a filename. The {@link MockDownloader} will use it as a folder name, but other tests
@@ -84,7 +91,7 @@ public class DownloaderFactory {
      *
      * @param path The path to the folder where mocks are saved/retrieved.
      */
-    protected static Downloader getDownloader(final String path) {
+    public static Downloader getDownloader(final String path) {
         final DownloaderType type = getDownloaderType();
         switch (type) {
             case REAL:

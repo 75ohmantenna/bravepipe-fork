@@ -29,6 +29,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class RumbleCommentsExtractor extends CommentsExtractor {
     private final int maxCommentsPerPage = 15;
 
@@ -89,8 +90,8 @@ public class RumbleCommentsExtractor extends CommentsExtractor {
             }
             collector.commit(new RumbleCommentsInfoItemExtractor(this, ids, responseBody));
         }
-        return new InfoItemsPage<>(collector, next != null ?
-                new Page(intArrayToString(ids), responseBody) : null);
+        return new InfoItemsPage<>(collector, next != null
+                ? new Page(intArrayToString(ids), responseBody) : null);
     }
 
     @Override
@@ -124,8 +125,8 @@ public class RumbleCommentsExtractor extends CommentsExtractor {
         String attr = element.className();
         String[] classes = attr.split(" ");
         for (String name : classes) {
-            if (name.startsWith("user-image--img--id-") &&
-                    imageMap.containsKey(name)) {
+            if (name.startsWith("user-image--img--id-")
+                    && imageMap.containsKey(name)) {
                 return imageMap.get(name);
             }
         }
@@ -153,7 +154,9 @@ public class RumbleCommentsExtractor extends CommentsExtractor {
     }
 
     private void initImageMap(String css) {
-        Pattern pattern = Pattern.compile("i\\.user-image--img--id-(\\w+)\\s*\\{\\s*background-image:\\s*url\\(([^)]+)\\)");
+        Pattern pattern = Pattern.compile(
+                "i\\.user-image--img--id-(\\w+)\\s*\\{\\s*"
+                        + "background-image:\\s*url\\(([^)]+)\\)");
         Matcher matcher = pattern.matcher(css);
         imageMap = new HashMap<>();
         while (matcher.find()) {

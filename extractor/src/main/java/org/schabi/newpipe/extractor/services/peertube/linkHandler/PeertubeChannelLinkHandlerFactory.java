@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public final class PeertubeChannelLinkHandlerFactory extends ListLinkHandlerFactory {
