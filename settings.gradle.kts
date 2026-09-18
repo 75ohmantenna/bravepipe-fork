@@ -27,9 +27,9 @@ include (":app")
 // We assume, that NewPipe and NewPipe Extractor have the same parent directory.
 // If this is not the case, please change the path in includeBuild().
 
-//includeBuild("../BravePipeExtractor") {
+//includeBuild("../bravepipe-extractor-modern") {
 //    dependencySubstitution {
-//        substitute(module("com.github.75ohmantenna:BravePipeExtractor"))
+//        substitute(module("com.github.75ohmantenna:bravepipeextractor-fork"))
 //            .using(project(":extractor"))
 //    }
 //}
