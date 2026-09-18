@@ -11,10 +11,10 @@ public final class BravePeertubeChannelLinkHandlerFactoryHelper {
      * It also should not check as everyone can host their own instance.
      * But as rumble.com has similar parts like /c/ in its channel urls
      * we have a problem.
-     * -> the workaround is to check if the host is rumble.com and for
+     * The workaround is to check if the host is rumble.com and for
      *    completeness (even is maybe not necessary) we do the same for
      *    bitchute.com
-     * -> if above hosts are found Peertube should not declare them
+     * If either host is found, PeerTube should not declare it as one of
      *    their own urls.
      *
      * @param url the url man!

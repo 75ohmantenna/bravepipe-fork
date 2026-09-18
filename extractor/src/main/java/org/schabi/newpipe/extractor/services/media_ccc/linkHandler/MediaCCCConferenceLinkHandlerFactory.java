@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 /**
  * Since MediaCCC does not really have channel tabs (i.e. it only has one single "tab" with videos),
  * this link handler acts both as the channel link handler and the channel tab link handler. That's
- * why {@link #getAvailableContentFilter()} has been overridden.
+ * why the available content filter behavior is overridden.
  */
 public final class MediaCCCConferenceLinkHandlerFactory extends ListLinkHandlerFactory {
 

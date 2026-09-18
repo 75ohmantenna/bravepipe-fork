@@ -351,7 +351,8 @@ public class YoutubeSearchExtractorTest {
 
         @Override
         protected SearchExtractor createExtractor() throws Exception {
-            return YouTube.getSearchExtractor(QUERY, singletonList(VIDEOS), "");
+            final FilterItem item = getFilterItem(YouTube, YoutubeFilters.ID_CF_MAIN_VIDEOS);
+            return YouTube.getSearchExtractor(QUERY, singletonList(item), null);
         }
 
         @Override public StreamingService expectedService() { return YouTube; }

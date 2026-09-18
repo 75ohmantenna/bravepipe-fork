@@ -102,7 +102,9 @@ class SoundcloudChannelTabExtractorTest {
         }
 
         @Override public StreamingService expectedService() throws Exception { return SoundCloud; }
-        @Override public String expectedName() throws Exception { return ChannelTabs.TRACKS; }
+        @Override public String expectedName() throws Exception {
+            return ChannelTabs.TRACKS.getNameId().name();
+        }
         @Override public String expectedId() throws Exception { return "73637815"; }
         @Override public String expectedUrlContains() throws Exception { return "https://soundcloud.com/hurtbox/tracks"; }
         @Override public String expectedOriginalUrlContains() throws Exception { return "https://soundcloud.com/hurtbox/tracks"; }

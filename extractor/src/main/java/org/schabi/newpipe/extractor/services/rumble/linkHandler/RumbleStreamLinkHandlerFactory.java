@@ -11,6 +11,7 @@ import java.util.ArrayDeque;
 
 import javax.annotation.Nonnull;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
 
     public static final String BASE_URL = "https://rumble.com";
@@ -93,7 +94,7 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
         }
     }
 
-    private static class CacheShortStreamIds extends ArrayDeque<String> {
+    private static final class CacheShortStreamIds extends ArrayDeque<String> {
 
         private static final int CACHE_SIZE = 5;
 

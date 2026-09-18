@@ -32,6 +32,7 @@ import javax.annotation.Nonnull;
 
 import static org.schabi.newpipe.extractor.stream.Stream.ID_UNKNOWN;
 
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public class RumbleShortsStreamExtractor extends StreamExtractor {
 
     private JsonArray relatedItems;

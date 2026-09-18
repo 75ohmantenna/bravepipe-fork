@@ -18,12 +18,13 @@ import javax.annotation.Nullable;
 /**
  * Extractor for related Shorts items, used in getRelatedItems().
  */
+@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 class RumbleShortInfoItemExtractor implements StreamInfoItemExtractor {
 
     private final JsonObject item;
     private final JsonObject uploader;
 
-    public RumbleShortInfoItemExtractor(@Nonnull JsonObject item) {
+    RumbleShortInfoItemExtractor(@Nonnull JsonObject item) {
         this.item = item;
         this.uploader = item.getObject("by");
     }
@@ -71,7 +72,9 @@ class RumbleShortInfoItemExtractor implements StreamInfoItemExtractor {
     @Override
     public DateWrapper getUploadDate() throws ParsingException {
         String date = getTextualUploadDate();
-        if (date == null) return null;
+        if (date == null) {
+            return null;
+        }
         return DateWrapper.fromOffsetDateTime(date);
     }
 
@@ -89,7 +92,9 @@ class RumbleShortInfoItemExtractor implements StreamInfoItemExtractor {
     @Override
     public List<Image> getThumbnails() throws ParsingException {
         String thumbUrl = item.getString("thumb", null);
-        if (thumbUrl == null) return Collections.emptyList();
+        if (thumbUrl == null) {
+            return Collections.emptyList();
+        }
         return List.of(new Image(thumbUrl,
                 Image.HEIGHT_UNKNOWN, Image.WIDTH_UNKNOWN, Image.ResolutionLevel.UNKNOWN));
     }

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
+import static org.schabi.newpipe.downloader.DownloaderFactory.LEGACY_RESOURCE_PATH;
 import static org.schabi.newpipe.extractor.ServiceList.Rumble;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -37,19 +37,19 @@ import static org.schabi.newpipe.extractor.services.DefaultTests.assertNoDuplica
 public class RumbleSearchExtractorTest {
 
     private static final String MOCK_PATH =
-            RESOURCE_PATH + "/services/rumble/extractor/search/";
+            LEGACY_RESOURCE_PATH + "/services/rumble/extractor/search/";
 
     public static class MultiplePagesResults extends AbstractSearchBaseTest {
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             query = "paul";
             expectedSearchBaseUrl = "rumble.com/search/video?q=";
             expectedSearchOriginalBaseUrl = "rumble.com/search/video?q=";
 
             System.setProperty("downloader", "MOCK");
 //            System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH
                     + "/MultiplePagesResults"));
             final FilterItem videoFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_VIDEOS);
@@ -94,14 +94,14 @@ public class RumbleSearchExtractorTest {
     public static class OnlyOnePageResults extends AbstractSearchBaseTest {
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             query = "tigertest";
             expectedSearchBaseUrl = "rumble.com/search/video?q=";
             expectedSearchOriginalBaseUrl = "rumble.com/search/video?q=";
 
             System.setProperty("downloader", "MOCK");
 //            System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/OnlyOnePageResults"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/OnlyOnePageResults"));
             final FilterItem videoFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_VIDEOS);
             final FilterItem channelsFilterItem = DefaultSearchExtractorTest
@@ -122,14 +122,14 @@ public class RumbleSearchExtractorTest {
     public static class NoResultsAtAll extends AbstractSearchBaseTest {
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             query = "p3423n dkje ";
             expectedSearchBaseUrl = "rumble.com/search/video?q=";
             expectedSearchOriginalBaseUrl = "rumble.com/search/video?q=";
 
             System.setProperty("downloader", "MOCK");
 //            System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/NoResultsAtAll"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/NoResultsAtAll"));
             final FilterItem videoFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_VIDEOS);
             extractor = (RumbleSearchExtractor)
@@ -157,14 +157,14 @@ public class RumbleSearchExtractorTest {
 
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             query = "mark";
             expectedSearchBaseUrl = "rumble.com/search/channel?q=";
             expectedSearchOriginalBaseUrl = "rumble.com/search/channel?q=";
 
             System.setProperty("downloader", "MOCK");
             // System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/channel"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/channel"));
             final FilterItem channelFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_CHANNELS);
             extractor =
@@ -187,7 +187,7 @@ public class RumbleSearchExtractorTest {
         public void duplicatedItemsCheck() throws Exception {
             System.setProperty("downloader", "MOCK");
 //            System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/paging"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/paging"));
             final FilterItem videoFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_VIDEOS);
             final SearchExtractor extractor =
@@ -204,14 +204,14 @@ public class RumbleSearchExtractorTest {
     public static class ChannelVerified extends AbstractSearchBaseTest {
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             query = "Mark Dice";
             expectedSearchBaseUrl = "rumble.com/search/channel?q=";
             expectedSearchOriginalBaseUrl = "rumble.com/search/channel?q=";
 
             System.setProperty("downloader", "MOCK");
 //            System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "verified"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "verified"));
 
             final FilterItem channelFilterItem = DefaultSearchExtractorTest
                     .getFilterItem(Rumble, RumbleFilters.ID_CF_MAIN_CHANNELS);
@@ -249,6 +249,11 @@ public class RumbleSearchExtractorTest {
         protected static String query;
         protected static String expectedSearchBaseUrl;
         protected static String expectedSearchOriginalBaseUrl;
+
+        @Override
+        protected SearchExtractor createExtractor() {
+            return extractor;
+        }
 
         @Override public SearchExtractor extractor() { return extractor; }
         @Override public StreamingService expectedService() { return Rumble; }

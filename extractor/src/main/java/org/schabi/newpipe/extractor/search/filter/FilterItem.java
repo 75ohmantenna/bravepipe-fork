@@ -12,7 +12,7 @@ import javax.annotation.Nonnull;
  * <b>More in detail:</b>
  * For example youtube offers the filter group 'Sort order'. This group
  * consists of filter options like 'Relevance', 'Views', 'Rating' etc.
- * -> for each filter option a FilterItem has to be created.
+ * Each filter option requires its own {@code FilterItem}.
  */
 public class FilterItem implements Serializable {
 

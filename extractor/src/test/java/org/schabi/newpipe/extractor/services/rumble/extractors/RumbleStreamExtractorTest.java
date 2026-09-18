@@ -19,7 +19,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.schabi.newpipe.downloader.DownloaderFactory.RESOURCE_PATH;
+import static org.schabi.newpipe.downloader.DownloaderFactory.LEGACY_RESOURCE_PATH;
 import static org.schabi.newpipe.extractor.ExtractorAsserts.assertIsSecureUrl;
 import static org.schabi.newpipe.extractor.ServiceList.Rumble;
 
@@ -37,7 +37,7 @@ public class RumbleStreamExtractorTest {
     public static class NormalStreamExtractorTest extends DefaultStreamExtractorTest {
 
         protected static final String MOCK_PATH =
-                RESOURCE_PATH + "/services/rumble/extractor/stream/";
+                LEGACY_RESOURCE_PATH + "/services/rumble/extractor/stream/";
 
         protected static RumbleStreamExtractor extractor;
         protected static StreamingService expectedService = Rumble;
@@ -64,14 +64,19 @@ public class RumbleStreamExtractorTest {
         protected static long expectedLength = 12948;
 
         @BeforeAll
-        public static void setUp() throws ExtractionException, IOException {
+        public static void setUpExtractor() throws ExtractionException, IOException {
             System.setProperty("downloader", "MOCK");
             // System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH + "/streamExtractor"));
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/streamExtractor"));
 
             extractor = (RumbleStreamExtractor) Rumble
                     .getStreamExtractor(url);
             extractor.fetchPage();
+        }
+
+        @Override
+        protected StreamExtractor createExtractor() {
+            return extractor;
         }
 
         @Test
@@ -252,7 +257,7 @@ public class RumbleStreamExtractorTest {
 
 
         @BeforeAll
-        public static void setUp() throws ExtractionException, IOException {
+        public static void setUpExtractor() throws ExtractionException, IOException {
             url = "https://rumble.com/v3e90sa";
             expectedUrl = "https://rumble.com/v3e90sa";
             expectedName = "America 1st News & Politics Live TV | MAGA Media";
@@ -275,7 +280,7 @@ public class RumbleStreamExtractorTest {
             expectedLength = 0;
             System.setProperty("downloader", "MOCK");
             //System.setProperty("downloader", "RECORDING");
-            NewPipe.init(new DownloaderFactory().getDownloader(MOCK_PATH
+            NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH
                     + "/streamExtractorLiveStream"));
 
             extractor = (RumbleStreamExtractor) Rumble

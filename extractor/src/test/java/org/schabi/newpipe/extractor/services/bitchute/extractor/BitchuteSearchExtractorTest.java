@@ -109,11 +109,17 @@ public class BitchuteSearchExtractorTest {
         private static final String QUERY = "noise";
 
         @BeforeAll
-        public static void setUp() throws Exception {
+        public static void setUpExtractor() throws Exception {
             NewPipe.init(DownloaderTestImpl.getInstance());
+            setDefaultContentAndSortFilters();
             extractor = Bitchute.getSearchExtractor(QUERY,
                     defaultContentFilters, defaultSortFilters);
             extractor.fetchPage();
+        }
+
+        @Override
+        protected SearchExtractor createExtractor() {
+            return extractor;
         }
 
         @SuppressWarnings("checkstyle:LeftCurly")
