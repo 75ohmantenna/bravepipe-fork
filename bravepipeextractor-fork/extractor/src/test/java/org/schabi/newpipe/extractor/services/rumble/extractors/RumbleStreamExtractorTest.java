@@ -65,6 +65,21 @@ public class RumbleStreamExtractorTest {
 
         @BeforeAll
         public static void setUpExtractor() throws ExtractionException, IOException {
+            url = "https://rumble.com/v1a992g";
+            expectedUrl = "https://rumble.com/v1a992g";
+            expectedName = "The Truth Behind Arizona’s Paper Ballots; Jovan Pulitzer’s BOMBSHELL Paper Analysis Report 6/27/22";
+            expectedId = "v1a992g";
+            expectedDesc = "The evidence continues to reveal itself regarding the results of the 2020";
+            expectedViewCountAtLeast = 46658;
+            expectedUploaderName = "Right Side Broadcasting Network";
+            expectedUploadDate = "2022-06-28 05:36:31.000";
+            expectedTextualUploadDate = "2022-06-28T05:36:31+00:00";
+            expectedLikeCount = 1000;
+            expectedDislikeCount = 5;
+            expectedUploaderUrl = "https://rumble.com/c/RSBN";
+            expectedHasAudioStreams = true;
+            expectedHasVideoStreams = true;
+            expectedLength = 12948;
             System.setProperty("downloader", "MOCK");
             // System.setProperty("downloader", "RECORDING");
             NewPipe.init(DownloaderFactory.getMockDownloader(MOCK_PATH + "/streamExtractor"));
@@ -265,7 +280,9 @@ public class RumbleStreamExtractorTest {
             expectedDesc = "Patriot News Outlet Live | America 1st News & Politics";
             expectedCategory = "";
             expectedAgeLimit = 0;
-            expectedViewCountAtLeast = 66;
+            // The embed snapshot has live=1 with DVR enabled, which Rumble identifies as
+            // a finished broadcast rather than a currently live stream.
+            expectedViewCountAtLeast = -1;
             expectedUploaderName = "Patriot News Outlet Live";
             expectedUploadDate = "2023-09-02 23:01:40.000";
             expectedTextualUploadDate = "2023-09-02T23:01:40+00:00";
@@ -290,7 +307,7 @@ public class RumbleStreamExtractorTest {
 
         @Override
         public StreamType expectedStreamType() {
-            return StreamType.LIVE_STREAM;
+            return StreamType.VIDEO_STREAM;
         }
         /**
          *  Test for {@link RumbleStreamRelatedInfoItemExtractor}

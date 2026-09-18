@@ -1,27 +1,19 @@
 package org.schabi.newpipe.extractor.services.rumble.linkHandler;
 
-import org.schabi.newpipe.extractor.brave.AttachException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandlerFactory;
 import org.schabi.newpipe.extractor.utils.Utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayDeque;
 
-import javax.annotation.Nonnull;
-
-@SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
 
     public static final String BASE_URL = "https://rumble.com";
     private static final RumbleStreamLinkHandlerFactory INSTANCE =
             new RumbleStreamLinkHandlerFactory();
-    /**
-     * FIFO cache to keep some videoIds for getUrl(String id) working for shorts
-     */
-    private final CacheShortStreamIds cacheShortStreamIds = new CacheShortStreamIds();
-    private final String patternMatchId = "^v[a-zA-Z0-9]{4,}-?";
+    private static final String VIDEO_ID_PATTERN = "v[a-zA-Z0-9]{4,}";
 
     private RumbleStreamLinkHandlerFactory() {
     }
@@ -30,8 +22,8 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
         return INSTANCE;
     }
 
-    private String assertsID(final String id) throws ParsingException {
-        if (id == null || !id.matches(patternMatchId)) {
+    private String assertId(final String id) throws ParsingException {
+        if (id == null || !id.matches(VIDEO_ID_PATTERN)) {
             throw new ParsingException("Given string is not a Rumble Video ID: " + id);
         }
         return id;
@@ -39,10 +31,31 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
 
     @Override
     public String getUrl(final String id) throws ParsingException {
-        if (cacheShortStreamIds.has(id)) {
-            return BASE_URL + "/shorts/" + assertsID(id);
+        return BASE_URL + "/" + assertId(id);
+    }
+
+    @Override
+    public LinkHandler fromUrl(final String url) throws ParsingException {
+        if (Utils.isNullOrEmpty(url)) {
+            throw new IllegalArgumentException("The URL is null or empty");
         }
-        return BASE_URL + "/" + assertsID(id);
+        final String polishedUrl = Utils.followGoogleRedirectIfNeeded(url);
+        final String id = getId(polishedUrl);
+        final URL parsedUrl;
+        try {
+            parsedUrl = Utils.stringToURL(polishedUrl);
+        } catch (final MalformedURLException e) {
+            throw new ParsingException("The given URL is not valid: " + polishedUrl, e);
+        }
+        final String canonicalUrl;
+        if (parsedUrl.getPath().startsWith("/shorts/")) {
+            canonicalUrl = BASE_URL + "/shorts/" + id;
+        } else if (parsedUrl.getPath().startsWith("/embed/")) {
+            canonicalUrl = BASE_URL + "/embed/" + id;
+        } else {
+            canonicalUrl = getUrl(id);
+        }
+        return new LinkHandler(polishedUrl, canonicalUrl, id);
     }
 
     @Override
@@ -50,38 +63,39 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
         final URL url;
         try {
             url = Utils.stringToURL(urlString);
-            if (!url.getAuthority().equals(Utils.stringToURL(BASE_URL).getAuthority())
-                    || !url.getProtocol().equals(Utils.stringToURL(BASE_URL).getProtocol())) {
+            if (!Utils.isHTTP(url)
+                    || !("rumble.com".equalsIgnoreCase(url.getHost())
+                    || "www.rumble.com".equalsIgnoreCase(url.getHost()))) {
                 throw new MalformedURLException();
             }
         } catch (final MalformedURLException e) {
-            final AttachException exception =
-                    new AttachException("The given URL is not valid: " + urlString);
-            exception.addExceptionData(e.getMessage());
-            throw exception;
+            throw new ParsingException("The given URL is not a valid Rumble URL: " + urlString, e);
         }
 
 
         String path = url.getPath();
-        boolean isShorts = false;
-
         if (path.startsWith("/shorts/v")) {
             path = path.substring(8);
-            isShorts = true;
+        } else if (path.startsWith("/embed/")) {
+            path = path.substring(7);
+            final int dot = path.indexOf('.');
+            if (dot >= 0) {
+                path = path.substring(dot + 1);
+            }
         } else if (path.startsWith("/v")) {
             path = path.substring(1);
         } else {
-            return null; // or handle invalid path
+            throw new ParsingException("Unsupported Rumble video URL: " + urlString);
         }
 
-        int dash = path.indexOf('-');
-        String videoId = dash >= 2 ? path.substring(0, dash) : path;
-
-        if (isShorts) {
-            cacheShortStreamIds.enqueue(videoId);
+        final int slash = path.indexOf('/');
+        if (slash >= 0) {
+            path = path.substring(0, slash);
         }
+        final int dash = path.indexOf('-');
+        final String videoId = dash >= 2 ? path.substring(0, dash) : path;
 
-        return assertsID(videoId);
+        return assertId(videoId);
     }
 
     @Override
@@ -94,21 +108,4 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
         }
     }
 
-    private static final class CacheShortStreamIds extends ArrayDeque<String> {
-
-        private static final int CACHE_SIZE = 5;
-
-        public synchronized void enqueue(@Nonnull String id) {
-            remove(id); // move id to newest if already present
-            addLast(id);
-
-            if (size() > CACHE_SIZE) {
-                removeFirst();
-            }
-        }
-
-        public synchronized boolean has(@Nonnull String id) {
-            return contains(id);
-        }
-    }
 }

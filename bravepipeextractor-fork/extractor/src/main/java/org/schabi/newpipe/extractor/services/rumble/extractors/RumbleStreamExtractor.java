@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.services.rumble.extractors;
 
 import com.github.evermindzz.hlsdownloader.common.Fetcher;
 import com.github.evermindzz.hlsdownloader.parser.HlsParser;
+import com.grack.nanojson.JsonArray;
 import com.grack.nanojson.JsonObject;
 import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonParserException;
@@ -25,7 +26,6 @@ import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
 import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.extractor.services.rumble.RumbleParsingHelper;
-import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.Description;
@@ -59,34 +59,34 @@ import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 @SuppressWarnings({"checkstyle:FinalLocalVariable", "checkstyle:FinalParameters"})
 public final class RumbleStreamExtractor extends StreamExtractor {
 
-    private final String videoUploaderJsonKey = "author";
-    private final String videoTitleJsonKey = "title";
-    private final String videoCoverImageJsonKey = "i";
-    private final String videoDateJsonKey = "pubDate";
-    private final String videoDurationJsonKey = "duration";
-    private final String bitrateJsonKey = "bitrate";
-    private final String resHeightJsonKey = "h";
-
-    private final String videoViewerCountHtmlKey =
-            "div.media-engage div.video-counters--item.video-item--views";
-    private final String relatedStreamHtmlKey = "ul.mediaList-list";
+    private static final String AUTHOR = "author";
+    private static final String TITLE = "title";
+    private static final String COVER_IMAGE = "i";
+    private static final String PUBLICATION_DATE = "pubDate";
+    private static final String DURATION = "duration";
+    private static final String BITRATE = "bitrate";
+    private static final String HEIGHT = "h";
+    private static final String STREAMS = "ua";
+    private static final String STREAM_METADATA = "meta";
+    private static final String STREAM_URL = "url";
+    private static final String RELATED_STREAMS_SELECTOR = "ul.mediaList-list";
 
     private Document doc;
     JsonObject embedJsonStreamInfoObj;
+    private boolean embedOnly;
 
     private int ageLimit = -1;
     private List<VideoStream> videoStreams;
     private List<AudioStream> audioStreams;
-    private String hlsUrl = "";
+    private List<SubtitlesStream> subtitles = Collections.emptyList();
 
     public static StreamExtractor factory(
             final StreamingService service,
             final LinkHandler linkHandler) {
-       if (linkHandler.getOriginalUrl().contains("/shorts/")) {
-           return new RumbleShortsStreamExtractor(service, linkHandler);
-       } else {
-           return new RumbleStreamExtractor(service, linkHandler);
-       }
+        if (linkHandler.getOriginalUrl().contains("/shorts/")) {
+            return new RumbleShortsStreamExtractor(service, linkHandler);
+        }
+        return new RumbleStreamExtractor(service, linkHandler);
     }
 
     private RumbleStreamExtractor(final StreamingService service, final LinkHandler linkHandler) {
@@ -98,7 +98,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     public String getName() throws ParsingException {
         assertPageFetched();
         final String title =
-                Parser.unescapeEntities(embedJsonStreamInfoObj.getString(videoTitleJsonKey), true);
+                Parser.unescapeEntities(embedJsonStreamInfoObj.getString(TITLE), true);
 
         return title;
     }
@@ -107,7 +107,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public String getTextualUploadDate() throws ParsingException {
 
-        final String textualDate = embedJsonStreamInfoObj.getString(videoDateJsonKey);
+        final String textualDate = embedJsonStreamInfoObj.getString(PUBLICATION_DATE);
         return textualDate;
     }
 
@@ -127,7 +127,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public List<Image> getThumbnails() throws ParsingException {
         assertPageFetched();
-        final String thumbUrl = embedJsonStreamInfoObj.getString(videoCoverImageJsonKey);
+        final String thumbUrl = embedJsonStreamInfoObj.getString(COVER_IMAGE);
         return List.of(new Image(thumbUrl,
                 Image.HEIGHT_UNKNOWN, Image.WIDTH_UNKNOWN, Image.ResolutionLevel.UNKNOWN));
     }
@@ -136,6 +136,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public Description getDescription() throws ParsingException {
         assertPageFetched();
+        if (doc == null) {
+            return new Description("", Description.PLAIN_TEXT);
+        }
         String description = "";
 
         final Elements descriptionData = doc.select("p.media-description");
@@ -190,9 +193,8 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public long getLength() throws ParsingException {
         assertPageFetched();
-        final Number duration = embedJsonStreamInfoObj.getNumber(videoDurationJsonKey);
-
-        return duration.longValue();
+        final Number duration = embedJsonStreamInfoObj.getNumber(DURATION);
+        return duration == null ? 0 : duration.longValue();
     }
 
     /**
@@ -206,6 +208,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public long getViewCount() throws ParsingException {
         assertPageFetched();
+        if (doc == null) {
+            return -1;
+        }
         if (getStreamType() == StreamType.LIVE_STREAM) {
             return getLiveViewCount();
         } else {
@@ -228,6 +233,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     }
 
     public long getLikeOrDislikesCount(final String cssQuery) throws ParsingException {
+        if (doc == null) {
+            return -1;
+        }
         try {
             final String votes = RumbleParsingHelper.extractSafely(false, "",
                     () -> doc.select(cssQuery)
@@ -252,7 +260,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public String getUploaderUrl() throws ParsingException {
         assertPageFetched();
-        return embedJsonStreamInfoObj.getObject(videoUploaderJsonKey).getString("url");
+        return embedJsonStreamInfoObj.getObject(AUTHOR).getString("url");
     }
 
     @Nonnull
@@ -260,7 +268,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     public String getUploaderName() throws ParsingException {
         assertPageFetched();
         final String uploaderName =
-                embedJsonStreamInfoObj.getObject(videoUploaderJsonKey).getString("name");
+                embedJsonStreamInfoObj.getObject(AUTHOR).getString("name");
         return uploaderName;
     }
 
@@ -274,12 +282,18 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public List<Image> getUploaderAvatars() throws ParsingException {
         assertPageFetched();
+        if (doc == null) {
+            return Collections.emptyList();
+        }
         final Elements elems = doc.getElementsByClass("media-by--a");
+        if (elems.isEmpty()) {
+            return Collections.emptyList();
+        }
         final String theUserPathToHisAvatar =
                 elems.get(0).getElementsByTag("i").first().attributes().get("class");
         try {
             final String thumbnailUrl = RumbleParsingHelper
-                    .totalMessMethodToGetUploaderThumbnailUrl(theUserPathToHisAvatar, doc);
+                    .extractUploaderAvatarUrl(theUserPathToHisAvatar, doc);
             return List.of(new Image(thumbnailUrl,
                     Image.HEIGHT_UNKNOWN, Image.WIDTH_UNKNOWN, Image.ResolutionLevel.UNKNOWN));
         } catch (final Exception e) {
@@ -309,14 +323,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Nonnull
     @Override
     public String getHlsUrl() {
-        try {
-            this.hlsUrl = embedJsonStreamInfoObj.getObject("ua").getObject("hls")
-                    .getObject("auto").getString("url", "");
-
-        } catch (final Exception e) {
-
-        }
-        return this.hlsUrl;
+        final List<JsonObject> hlsEntries = getFormatEntries(
+                embedJsonStreamInfoObj.getObject(STREAMS).get("hls"));
+        return hlsEntries.isEmpty() ? "" : hlsEntries.get(0).getString(STREAM_URL, "");
     }
 
     @Override
@@ -333,100 +342,74 @@ public final class RumbleStreamExtractor extends StreamExtractor {
 
         final List<AudioStream> audioStreamsList = new ArrayList<>();
         final List<VideoStream> videoStreamsList = new ArrayList<>();
-        final String videoAlternativesKey = "ua";
-        final String videoMetaKey = "meta";
-        final String videoUrlKey = "url";
+        String fallbackHlsUrl = null;
 
-        String masterPlayListUrl = null;
-
-        final Set<String> formatKeys =
-                embedJsonStreamInfoObj.getObject(videoAlternativesKey).keySet();
-        // mp4 or webm or whatever format: 20250409 there are mp4, webm, tar, timeline, audio
-        // -> tar is a hls m3u8 playlist
+        final JsonObject streamFormats = embedJsonStreamInfoObj.getObject(STREAMS);
+        final Set<String> formatKeys = streamFormats.keySet();
         for (final String formatKey : formatKeys) {
-
-            // For some videos there is also a "timeline stream" that is identified
-            // by the key 'timeline'. It has only one frame per second and is
-            // not useful here --> so we skip it
-            if (formatKey.equals("timeline")) {
+            // Timeline streams contain one frame per second. Tar entries duplicate HLS variants
+            // when the embed endpoint is queried without its default parameters. Neither is a
+            // useful playback source. This mirrors yt-dlp's Rumble format handling.
+            if ("timeline".equals(formatKey) || "tar".equals(formatKey)) {
                 continue;
             }
 
-            // todo validate if we want to support this formats or not
-            final JsonObject formatObj =
-                    embedJsonStreamInfoObj.getObject(videoAlternativesKey).getObject(formatKey);
-            final Set<String> resolutionKeys = formatObj.keySet();
-            for (final String res : resolutionKeys) { // 240, 360 , 480 ...
-                // todo validate if we support this resolution
+            final Object formatData = streamFormats.get(formatKey);
+            for (final JsonObject stream : getFormatEntries(formatData)) {
+                final JsonObject metadata = stream.getObject(STREAM_METADATA);
+                final String videoUrl = stream.getString(STREAM_URL);
+                if (isNullOrEmpty(videoUrl)) {
+                    continue;
+                }
 
-                final JsonObject metadata =
-                        formatObj.getObject(res).getObject(videoMetaKey); // size w h bitrate
-                final String videoUrl =
-                        formatObj.getObject(res).getString(videoUrlKey); // where the mp4 sits
-
-                // rumble has some videos resolution data incorrect in 'res'
-                // --> now we use the apparently correct resolution from the available metadata.
-                // --> as the resolution is not sufficient to distinguish the streams, we also
-                //     add the bitrate to the resolution specification, e.g: "1080p@2000k"
-                final String actualRes;
-                final String bitrate;
-                if (metadata.has(resHeightJsonKey) && metadata.has(bitrateJsonKey)) {
-                    actualRes = String.valueOf(metadata.getInt(resHeightJsonKey));
-                    bitrate = "@" + metadata.getInt(bitrateJsonKey) + "k";
-                } else {
-                    actualRes = res;
-                    bitrate = "";
+                if ("hls".equals(formatKey)) {
+                    final int sizeBefore = videoStreamsList.size();
+                    extractStreamsFromMasterHlsPlaylist(downloader, videoUrl, videoStreamsList);
+                    if (videoStreamsList.size() == sizeBefore) {
+                        fallbackHlsUrl = videoUrl;
+                    }
+                    continue;
                 }
 
                 if ("audio".equals(formatKey)) {
-                    audioStreamsList.add(createAudioStream(
-                            videoUrl,
-                            metadata.getInt(bitrateJsonKey)));
-                } else { // video streams
-                    if (res.equals("auto")) {
-                        if (getStreamType() == StreamType.LIVE_STREAM) {
-                            extractStreamsFromMasterHlsPlaylist(
-                                    downloader, videoUrl, videoStreamsList);
-                        } else {
-                            // 'auto' provides a master HLS playlist but we only use it in
-                            // case there are no other video streams available
-                            masterPlayListUrl = videoUrl; // store for possible later use
-                            // -> skip it for now
-                        }
-                        continue;
-                    }
-
-                    final VideoStream videoStream = createVideoStream(
-                            formatKey,
-                            videoUrl,
-                            actualRes + (!bitrate.isBlank() ? "p" + bitrate : ""));
-                    if (metadata.has(bitrateJsonKey)) {
-
-                        // the bitrate is given in kbit but we need bits: -> factor 1000
-                        videoStream.braveSetBitrate(metadata.getInt(bitrateJsonKey) * 1000);
-                    }
-                    videoStreamsList.add(videoStream);
+                    audioStreamsList.add(createAudioStream(videoUrl, metadata.getInt(BITRATE)));
+                    continue;
                 }
+
+                final int height = metadata.getInt(HEIGHT, -1);
+                final int bitrate = metadata.getInt(BITRATE, -1);
+                final String resolution = height > 0 ? height + "p" : "unknown";
+                final String resolutionAndBitrate = bitrate > 0
+                        ? resolution + "@" + bitrate + "k" : resolution;
+                final VideoStream videoStream = createVideoStream(
+                        formatKey, videoUrl, resolutionAndBitrate);
+                if (bitrate > 0) {
+                    videoStream.braveSetBitrate(bitrate * 1000);
+                }
+                videoStreamsList.add(videoStream);
             }
         }
 
-        videoStreams = videoStreamsList;
-
-        if (videoStreams.isEmpty() && masterPlayListUrl != null) {
-            // Is only called if there are no "ua" streams (mp4/webm/tar) found.
-            // In this case we fall back to parsing the "auto" stream entry.
-            // The "auto" entry points to an HLS master playlist, so we need to
-            // fetch and parse it here in order to extract the available HLS variant playlists.
-            extractStreamsFromMasterHlsPlaylist(downloader, masterPlayListUrl, videoStreamsList);
+        if (videoStreamsList.isEmpty() && fallbackHlsUrl != null) {
+            videoStreamsList.add(hlsStream(fallbackHlsUrl, "auto", MediaFormat.MPEG_4));
         }
 
-        // - Some videos have only HLS video streams but audio as http progressive.
-        // - BravePipe/NewPipe switches to an audio only stream for background (if available)
-        //   -> problem is it starts from the beginning
-        //   -> workaround? disable possible audiostreams for now (20250409):
-        //      so BravePipe/NewPipe uses the video stream also for background
-        // audioStreams = audioStreamsList.isEmpty() ? Collections.emptyList() : audioStreamsList;
-        audioStreams = Collections.emptyList();
+        videoStreams = videoStreamsList;
+        audioStreams = audioStreamsList;
+    }
+
+    private static List<JsonObject> getFormatEntries(final Object formatData) {
+        final List<JsonObject> entries = new ArrayList<>();
+        if (formatData instanceof JsonObject) {
+            for (final Object value : ((JsonObject) formatData).values()) {
+                if (value instanceof JsonObject) {
+                    entries.add((JsonObject) value);
+                }
+            }
+        } else if (formatData instanceof JsonArray) {
+            ((JsonArray) formatData).streamAsJsonObjects().forEach(entries::add);
+        }
+        return entries;
     }
 
     /**
@@ -460,8 +443,8 @@ public final class RumbleStreamExtractor extends StreamExtractor {
             } catch (final NullPointerException ignored) {
                 // expect to throw a nullpointer and we ignore it
             }
-        } catch (final Exception e) {
-            System.out.println(e);
+        } catch (final Exception ignored) {
+            // Progressive formats remain usable if an HLS manifest cannot be parsed.
         }
     }
 
@@ -508,6 +491,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
                 .setId(ID_UNKNOWN)
                 .setContent(videoUrl, true)
                 .setDeliveryMethod(DeliveryMethod.PROGRESSIVE_HTTP)
+                .setMediaFormat(MediaFormat.M4A)
                 .setAverageBitrate(bitrate);
         return builder.build();
     }
@@ -516,7 +500,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
             final String formatKey,
             final String videoUrl,
             final String resolution) {
-        if ("tar".equals(formatKey) || "hls".equals(formatKey)) { // its a m3u8 playlist
+        if ("hls".equals(formatKey)) {
             return hlsStream(videoUrl, resolution, MediaFormat.MPEG_4);
         } else {
             final MediaFormat format = MediaFormat.getFromSuffix(formatKey);
@@ -554,20 +538,21 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Override
     public StreamType getStreamType() {
         final String videoLiveStreamKey = "live";
-        // There is actual a "meta" : { "live" : live } json entry next to the hls/auto tag,
-        // but that indication is not always a live stream:: shortly after a live stream just
-        // has ended this flag is still set but it is no longer a live stream so we have to
-        // ignore it. So we rely on the global entry: '1' is also assumed live stream.
+        // The embed API uses 2 for an active live stream. A value of 1 is upcoming or post-live,
+        // depending on livestream_has_dvr, and must not be exposed as currently live.
         final Number isLive = embedJsonStreamInfoObj.getNumber(videoLiveStreamKey);
-        final boolean isLiveStream = (isLive.intValue() == 1 || isLive.intValue() == 2);
+        final boolean isLiveStream = isLive != null && isLive.intValue() == 2;
         return isLiveStream ? StreamType.LIVE_STREAM : StreamType.VIDEO_STREAM;
     }
 
     @Nullable
     @Override
     public StreamInfoItemsCollector getRelatedItems() throws ExtractionException {
-        final List<Node> nodes = doc.select(relatedStreamHtmlKey).first().childNodes();
         final StreamInfoItemsCollector collector = new StreamInfoItemsCollector(getServiceId());
+        if (doc == null || doc.select(RELATED_STREAMS_SELECTOR).isEmpty()) {
+            return collector;
+        }
+        final List<Node> nodes = doc.select(RELATED_STREAMS_SELECTOR).first().childNodes();
         for (final Node node : nodes) {
             // we only want Element(s) as they might bear useful content
             if ((node instanceof Element)
@@ -595,10 +580,18 @@ public final class RumbleStreamExtractor extends StreamExtractor {
             throws IOException, ExtractionException {
 
 
-        doc = RumbleParsingHelper.fetchParseValidate(downloader, getUrl());
+        embedOnly = getUrl().contains("/embed/");
+        final String embedVideoId;
+        if (embedOnly) {
+            embedVideoId = getId();
+        } else {
+            doc = RumbleParsingHelper.fetchParseValidate(downloader, getUrl());
+            embedVideoId = "v" + RumbleParsingHelper.getEmbedVideoId(
+                    getUrl(), () -> doc.toString());
+        }
 
-        final String queryUrl = "https://rumble.com/embedJS/u4/?request=video&ver=2&v=v"
-                + RumbleParsingHelper.getEmbedVideoId(getUrl(), () -> doc.toString());
+        final String queryUrl = "https://rumble.com/embedJS/u3/?request=video&ver=2&v="
+                + embedVideoId;
 
         final Response response2 = downloader.get(
                 queryUrl);
@@ -612,9 +605,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
         try {
             embedJsonStreamInfoObj = JsonParser.object().from(response2.responseBody());
             extractStreams(downloader);
+            extractSubtitles();
         } catch (final JsonParserException e) {
-            e.printStackTrace();
-            throw new ParsingException("Could not read json from: " + queryUrl);
+            throw new ParsingException("Could not read JSON from: " + queryUrl, e);
         }
     }
 
@@ -679,16 +672,42 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     @Nonnull
     @Override
     public List<SubtitlesStream> getSubtitlesDefault() {
-        return Collections.emptyList();
+        return subtitles;
     }
 
     @Nonnull
     @Override
     public List<SubtitlesStream> getSubtitles(final MediaFormat format) {
-        return Collections.emptyList();
+        return format == MediaFormat.VTT ? subtitles : Collections.emptyList();
+    }
+
+    private void extractSubtitles() throws ParsingException {
+        final JsonObject captions = embedJsonStreamInfoObj.getObject("cc");
+        if (captions.isEmpty()) {
+            subtitles = Collections.emptyList();
+            return;
+        }
+
+        final List<SubtitlesStream> extractedSubtitles = new ArrayList<>();
+        for (final String languageCode : captions.keySet()) {
+            final JsonObject caption = captions.getObject(languageCode);
+            final String url = caption.getString("path");
+            if (!isNullOrEmpty(url)) {
+                extractedSubtitles.add(new SubtitlesStream.Builder()
+                        .setContent(url, true)
+                        .setMediaFormat(MediaFormat.VTT)
+                        .setLanguageCode(languageCode)
+                        .setAutoGenerated(false)
+                        .build());
+            }
+        }
+        subtitles = extractedSubtitles;
     }
 
     private long getLiveViewCount() throws ParsingException {
+        if (embedOnly || doc == null) {
+            return -1;
+        }
         final Pattern matchChecksum = Pattern.compile("viewer_id: \"(.*)\"");
         final Matcher matcher = matchChecksum.matcher(doc.toString());
         if (!matcher.find()) {
@@ -721,18 +740,11 @@ public final class RumbleStreamExtractor extends StreamExtractor {
             final JsonObject jsonObject =
                     JsonParser.object().from(response.responseBody());
             return jsonObject.getObject("data").getLong("viewer_count", -1);
-        } catch (final IOException | ReCaptchaException | JsonParserException e) {
-            e.printStackTrace();
+        } catch (final IOException | ReCaptchaException | JsonParserException ignored) {
+            // Live viewer counts are optional metadata.
         }
 
         return -1;
-    }
-
-    // as of somewhere in 2023 it is no longer working. Kept for reference
-    private String createRandomViewerId() {
-        // the magic 8 comes from: $$.generateRandomID(8));
-        // from the html page that belongs to the video
-        return YoutubeParsingHelper.generateTParameter().substring(0, 8);
     }
 
     private String retrieveNumericVideoId() {
