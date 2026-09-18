@@ -31,7 +31,8 @@ public class BitchuteStreamLinkHandlerFactoryTest {
 
         final String[] baseUrls = {
                 "https://www.bitchute.com/video/",
-                "https://www.bitchute.com/embed/"
+                "https://www.bitchute.com/embed/",
+                "https://old.bitchute.com/video/"
         };
 
         /** {@value correctIdExpectSuccess} */
@@ -83,5 +84,15 @@ public class BitchuteStreamLinkHandlerFactoryTest {
 
         assertTrue(linkHandler.acceptUrl(inputVideoUrl));
         assertTrue(linkHandler.acceptUrl(inputEmbedUrl));
+    }
+
+    @Test
+    public void acceptsTorrentUrlsAndRejectsLookalikeHosts() throws Exception {
+        assertEquals("Zee5BE49045h", linkHandler.fromUrl(
+                "https://www.bitchute.com/torrent/Zee5BE49045h/video.webtorrent").getId());
+        assertThrows(ParsingException.class,
+                () -> linkHandler.fromUrl("https://notbitchute.com/video/8gwdyYJ8BUk/"));
+        assertThrows(ParsingException.class,
+                () -> linkHandler.fromUrl("ftp://www.bitchute.com/video/8gwdyYJ8BUk/"));
     }
 }

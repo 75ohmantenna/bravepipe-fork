@@ -13,7 +13,6 @@ import org.schabi.newpipe.extractor.MetaInfo;
 import org.schabi.newpipe.extractor.StreamingService;
 import org.schabi.newpipe.extractor.brave.misc.BraveParsingHelper;
 import org.schabi.newpipe.extractor.downloader.Downloader;
-import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.linkhandler.LinkHandler;
@@ -22,6 +21,7 @@ import org.schabi.newpipe.extractor.services.bitchute.BitchuteParserHelper;
 import org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.Description;
+import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.StreamExtractor;
 import org.schabi.newpipe.extractor.stream.StreamInfoItemsCollector;
 import org.schabi.newpipe.extractor.stream.StreamSegment;
@@ -55,10 +55,6 @@ public class BitchuteStreamExtractor extends StreamExtractor {
     @Override
     public void onFetchPage(@Nonnull final Downloader downloader)
             throws IOException, ExtractionException {
-        final Response response = downloader.get(
-                getUrl(),
-                BitchuteParserHelper.getBasicHeader(), getExtractorLocalization());
-
         streamVideoResults = callApiAndGetResultsStreamVideo();
         streamVideoMediaResults = callApiAndGetResultsStreamVideoMedia();
         streamVideoViewCounts = callApiAndGetResultsStreamVideoCounts();
@@ -67,7 +63,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
 
     private ResultsStreamVideos callApiAndGetResultsStreamVideos()
             throws ExtractionException, IOException {
-        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonDjangoApi(
+        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonApi(
                 JsonObject.builder()
                         .value("selection", "suggested")
                         .value("offset", 1)
@@ -80,7 +76,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
 
     private ResultsStreamVideoCounts callApiAndGetResultsStreamVideoCounts()
             throws ExtractionException, IOException {
-        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonDjangoApi(
+        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonApi(
                 JsonObject.builder().value("video_id", getId()),
                 ResultsStreamVideoCounts.ENDPOINT
         );
@@ -90,7 +86,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
 
     private ResultsStreamVideoMedia callApiAndGetResultsStreamVideoMedia()
             throws ExtractionException, IOException {
-        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonDjangoApi(
+        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonApi(
                 JsonObject.builder().value("video_id", getId()),
                 ResultsStreamVideoMedia.ENDPOINT
         );
@@ -99,7 +95,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
 
     ResultsStreamVideo callApiAndGetResultsStreamVideo()
             throws ExtractionException, IOException {
-        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonDjangoApi(
+        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonApi(
                 JsonObject.builder().value("video_id", getId()),
                 ResultsStreamVideo.ENDPOINT
         );
@@ -232,7 +228,7 @@ public class BitchuteStreamExtractor extends StreamExtractor {
     @Nonnull
     @Override
     public String getHlsUrl() {
-        return "";
+        return isHlsMedia(streamVideoMediaResults) ? streamVideoMediaResults.getMediaUrl() : "";
     }
 
     @Override
@@ -243,21 +239,35 @@ public class BitchuteStreamExtractor extends StreamExtractor {
     @Override
     public List<VideoStream> getVideoStreams() throws ExtractionException {
         try {
-            final String videoUrl = streamVideoMediaResults.getMediaUrl();
-            final String extension = videoUrl.substring(videoUrl.lastIndexOf(".") + 1);
-            final MediaFormat format = MediaFormat.getFromSuffix(extension);
-
-            final VideoStream.Builder builder = new VideoStream.Builder()
-                    .setId(ID_UNKNOWN)
-                    .setIsVideoOnly(false)
-                    .setResolution("480p")
-                    .setContent(videoUrl, true)
-                    .setMediaFormat(format);
-
-            return Collections.singletonList(builder.build());
+            return Collections.singletonList(buildVideoStream(streamVideoMediaResults));
         } catch (final Exception e) {
-            throw new ParsingException("Error parsing video stream");
+            throw new ParsingException("Could not parse BitChute media URL", e);
         }
+    }
+
+    static VideoStream buildVideoStream(final ResultsStreamVideoMedia media)
+            throws ParsingException {
+        final String videoUrl = media.getMediaUrl();
+        final VideoStream.Builder builder = new VideoStream.Builder()
+                .setId(ID_UNKNOWN)
+                .setIsVideoOnly(false)
+                .setResolution("480p")
+                .setContent(videoUrl, true)
+                .setMediaFormat(MediaFormat.MPEG_4);
+
+        if (isHlsMedia(media)) {
+            builder.setDeliveryMethod(DeliveryMethod.HLS)
+                    .setManifestUrl(videoUrl);
+        }
+        return builder.build();
+    }
+
+    private static boolean isHlsMedia(final ResultsStreamVideoMedia media) {
+        final String mediaUrl = media.getMediaUrl();
+        final int queryStart = mediaUrl.indexOf('?');
+        final String path = queryStart < 0 ? mediaUrl : mediaUrl.substring(0, queryStart);
+        return "application/x-mpegURL".equalsIgnoreCase(media.getMediaType())
+                || path.toLowerCase(Locale.ROOT).endsWith(".m3u8");
     }
 
     @Override

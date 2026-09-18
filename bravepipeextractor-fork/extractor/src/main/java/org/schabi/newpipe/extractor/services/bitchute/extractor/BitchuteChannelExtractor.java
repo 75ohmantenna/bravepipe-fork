@@ -42,7 +42,7 @@ public class BitchuteChannelExtractor extends ChannelExtractor {
     public ResultsStreamChannel callApiAndGetResultsStreamChannel(
             final String channelId)
             throws ExtractionException, IOException {
-        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonDjangoApi(
+        final JsonObject streamVideoResultsJson = BitchuteParserHelper.callJsonApi(
                 JsonObject.builder().value("channel_id", channelId),
                 ResultsStreamChannel.ENDPOINT);
         return new ResultsStreamChannel(streamVideoResultsJson);

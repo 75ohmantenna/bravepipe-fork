@@ -12,6 +12,7 @@ import org.schabi.newpipe.extractor.downloader.Downloader;
 import org.schabi.newpipe.extractor.downloader.Response;
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException;
 import org.schabi.newpipe.extractor.exceptions.ExtractionException;
+import org.schabi.newpipe.extractor.exceptions.GeographicRestrictionException;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
 import org.schabi.newpipe.extractor.exceptions.ReCaptchaException;
 import org.schabi.newpipe.extractor.utils.Utils;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -40,26 +42,24 @@ import static org.schabi.newpipe.extractor.services.bitchute.BitchuteService.BIT
 
 public final class BitchuteParserHelper {
 
-    private static final Map<String, String> VIDEO_ID_2_COMMENT_CF_AUTH = new HashMap<>();
+    private static final Map<String, String> VIDEO_ID_2_COMMENT_CF_AUTH =
+            new ConcurrentHashMap<>();
     // the time interval the searchAuthTimestamp/Nonce value should be used (in seconds)
     // before renewing
     private static final int SEARCH_AUTH_DATA_TIMEOUT = 60 * 10;
-    private static String cookies;
-    private static String csrfToken;
-    private static String searchAuthNonce;
-    private static String searchAuthTimestamp;
+    private static volatile String cookies;
+    private static volatile String csrfToken;
+    private static volatile String searchAuthNonce;
+    private static volatile String searchAuthTimestamp;
 
     private BitchuteParserHelper() {
     }
 
     public static boolean isInitDone() {
-        if (cookies == null || csrfToken == null || cookies.isEmpty() || csrfToken.isEmpty()) {
-            return false;
-        }
-        return true;
+        return !Utils.isNullOrEmpty(cookies) && !Utils.isNullOrEmpty(csrfToken);
     }
 
-    public static void init() throws ReCaptchaException, IOException {
+    public static synchronized void init() throws ReCaptchaException, IOException {
         final Response response = getDownloader().get(BITCHUTE_LINK);
         initCookies(response);
     }
@@ -67,7 +67,7 @@ public final class BitchuteParserHelper {
     private static void initCookies(final Response response) {
         final StringBuilder sb = new StringBuilder();
         for (final Map.Entry<String, List<String>> entry : response.responseHeaders().entrySet()) {
-            if (entry.getKey().equals("set-cookie")) {
+            if ("set-cookie".equalsIgnoreCase(entry.getKey())) {
                 final List<String> values = entry.getValue();
                 for (final String v : values) {
                     final String val = v.split(";", 2)[0];
@@ -87,23 +87,13 @@ public final class BitchuteParserHelper {
         final Map<String, List<String>> headers = getBasicHeader();
         headers.put("Content-Type", Collections.singletonList("application/x-www-form-urlencoded"));
         headers.put("Content-Length", Collections.singletonList(String.valueOf(contentLength)));
-        // DBG System.out.println("Headers: ");
-        // DBG for (final Map.Entry m : headers.entrySet()) {
-        // DBG     System.out.println(m.getKey() + ": " + m.getValue());
-        // DBG }
         return headers;
     }
 
-    // evermind-zz: quick duplication of getPostHeader() adjusted to suit new API
-    public static Map<String, List<String>> getPostHeaderNew(final int contentLength) {
-        final Map<String, List<String>> headers = new HashMap<>();
-        headers.put("Content-Type", Collections.singletonList("application/json"));
-        //headers.put("Content-Length", Collections.singletonList(String.valueOf(contentLength)));
-        // DBG System.out.println("Headers: ");
-        // DBG for (final Map.Entry m : headers.entrySet()) {
-        // DBG     System.out.println(m.getKey() + ": " + m.getValue());
-        // DBG }
-        return headers;
+    private static Map<String, List<String>> getJsonApiHeaders() {
+        return Map.of(
+                "Accept", List.of("application/json"),
+                "Content-Type", List.of("application/json"));
     }
 
     public static Map<String, List<String>> getBasicHeader()
@@ -193,11 +183,11 @@ public final class BitchuteParserHelper {
             final Object jsonObject = JsonParser.any().from(response.responseBody());
             return Objects.requireNonNull(jsonObject);
         } catch (final JsonParserException e) {
-            throw new ParsingException("Could not parse bitchute comments results JsonObject");
+            throw new ParsingException("Could not parse BitChute comments response", e);
         }
     }
 
-    public static JsonObject callJsonDjangoApi(
+    public static JsonObject callJsonApi(
             final JsonBuilder<JsonObject> sortQueryJson,
             final String endpoint)
             throws IOException, ExtractionException {
@@ -206,7 +196,7 @@ public final class BitchuteParserHelper {
 
         final Response response = getDownloader().post(
                 endpoint,
-                getPostHeaderNew(data.length),
+                getJsonApiHeaders(),
                 data
         );
         return getJsonObject(response);
@@ -221,23 +211,27 @@ public final class BitchuteParserHelper {
                 return jsonObject;
             }
         } catch (final JsonParserException e) {
-            throw new ParsingException("Could not parse bitchute search results JsonObject: "
-                    + e.getMessage());
+            throw new ParsingException("Could not parse BitChute API response", e);
         }
 
         final String errorsKey = "errors";
-        if (response.responseCode() == 404 && jsonObject.has(errorsKey)) {
+        if (jsonObject.has(errorsKey)) {
             if (!jsonObject.getArray(errorsKey).isEmpty()) {
-                final String reason = ((JsonObject) jsonObject.getArray(errorsKey).get(0))
-                        .getString("message");
-                if (reason.contains("Not Found")) {
+                final JsonObject error = (JsonObject) jsonObject.getArray(errorsKey).get(0);
+                final String reason = error.getString("message", "BitChute API request failed");
+                if (response.responseCode() == 403
+                        && "reason".equals(error.getString("context"))
+                        && reason.toLowerCase().contains("location")) {
+                    throw new GeographicRestrictionException(reason);
+                }
+                if (response.responseCode() == 404 && reason.contains("Not Found")) {
                     throw new ContentNotAvailableException(reason);
                 }
             }
         }
 
         throw new ExtractionException(
-                "Server response for bitchute search results was not successful: (httpCode="
+                "BitChute API request failed: (httpCode="
                         + response.responseCode() + " body: " + response.responseBody());
     }
 

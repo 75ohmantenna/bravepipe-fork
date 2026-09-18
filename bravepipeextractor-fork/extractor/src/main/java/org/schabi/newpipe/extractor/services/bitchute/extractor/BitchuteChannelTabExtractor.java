@@ -100,7 +100,7 @@ public class BitchuteChannelTabExtractor extends ChannelTabExtractor {
         query.value("limit", BitchuteSearchExtractor.LIMIT_RESULTS_PER_QUERY);
 
         return new ResultsStreamChannelVideos(
-                BitchuteParserHelper.callJsonDjangoApi(
+                BitchuteParserHelper.callJsonApi(
                         query, ResultsStreamChannelVideos.ENDPOINT));
     }
 
