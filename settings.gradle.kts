@@ -21,18 +21,14 @@ dependencyResolutionManagement {
         maven(url = "https://repo.clojars.org")
     }
 }
-include (":app")
+include(":app")
 
-// Use a local copy of NewPipe Extractor by uncommenting the lines below.
-// We assume, that NewPipe and NewPipe Extractor have the same parent directory.
-// If this is not the case, please change the path in includeBuild().
-
-//includeBuild("../bravepipe-extractor-modern") {
-//    dependencySubstitution {
-//        substitute(module("com.github.75ohmantenna:bravepipeextractor-fork"))
-//            .using(project(":extractor"))
-//    }
-//}
+includeBuild("bravepipeextractor-fork") {
+    dependencySubstitution {
+        substitute(module("com.github.75ohmantenna:bravepipeextractor-fork"))
+            .using(project(":extractor"))
+    }
+}
 
 //includeBuild("../logcat-toolkit") {
 //    dependencySubstitution {
