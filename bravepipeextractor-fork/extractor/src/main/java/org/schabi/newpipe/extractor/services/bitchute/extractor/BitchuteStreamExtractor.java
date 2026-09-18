@@ -251,9 +251,9 @@ public class BitchuteStreamExtractor extends StreamExtractor {
         final VideoStream.Builder builder = new VideoStream.Builder()
                 .setId(ID_UNKNOWN)
                 .setIsVideoOnly(false)
-                .setResolution("480p")
+                .setResolution(VideoStream.RESOLUTION_UNKNOWN)
                 .setContent(videoUrl, true)
-                .setMediaFormat(MediaFormat.MPEG_4);
+                .setMediaFormat(detectMediaFormat(media));
 
         if (isHlsMedia(media)) {
             builder.setDeliveryMethod(DeliveryMethod.HLS)
@@ -263,11 +263,56 @@ public class BitchuteStreamExtractor extends StreamExtractor {
     }
 
     private static boolean isHlsMedia(final ResultsStreamVideoMedia media) {
-        final String mediaUrl = media.getMediaUrl();
-        final int queryStart = mediaUrl.indexOf('?');
-        final String path = queryStart < 0 ? mediaUrl : mediaUrl.substring(0, queryStart);
+        final String path = getMediaPath(media.getMediaUrl());
         return "application/x-mpegURL".equalsIgnoreCase(media.getMediaType())
+                || "application/vnd.apple.mpegurl".equalsIgnoreCase(media.getMediaType())
                 || path.toLowerCase(Locale.ROOT).endsWith(".m3u8");
+    }
+
+    @Nullable
+    private static MediaFormat detectMediaFormat(final ResultsStreamVideoMedia media) {
+        final String mediaType = media.getMediaType();
+        if (mediaType != null) {
+            final int parametersStart = mediaType.indexOf(';');
+            final String bareMediaType = (parametersStart < 0
+                    ? mediaType : mediaType.substring(0, parametersStart)).trim();
+            final MediaFormat mimeFormat = MediaFormat.getFromMimeType(
+                    bareMediaType.toLowerCase(Locale.ROOT));
+            if (isVideoFormat(mimeFormat)) {
+                return mimeFormat;
+            }
+        }
+
+        final String path = getMediaPath(media.getMediaUrl()).toLowerCase(Locale.ROOT);
+        final int extensionStart = path.lastIndexOf('.');
+        if (extensionStart >= 0) {
+            final MediaFormat suffixFormat = MediaFormat.getFromSuffix(
+                    path.substring(extensionStart + 1));
+            if (isVideoFormat(suffixFormat)) {
+                return suffixFormat;
+            }
+        }
+        return null;
+    }
+
+    private static String getMediaPath(final String mediaUrl) {
+        final int queryStart = mediaUrl.indexOf('?');
+        final int fragmentStart = mediaUrl.indexOf('#');
+        final int pathEnd;
+        if (queryStart < 0) {
+            pathEnd = fragmentStart < 0 ? mediaUrl.length() : fragmentStart;
+        } else if (fragmentStart < 0) {
+            pathEnd = queryStart;
+        } else {
+            pathEnd = Math.min(queryStart, fragmentStart);
+        }
+        return mediaUrl.substring(0, pathEnd);
+    }
+
+    private static boolean isVideoFormat(@Nullable final MediaFormat format) {
+        return format == MediaFormat.MPEG_4
+                || format == MediaFormat.WEBM
+                || format == MediaFormat.v3GPP;
     }
 
     @Override

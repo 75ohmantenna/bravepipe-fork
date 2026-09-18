@@ -5,6 +5,7 @@ import com.grack.nanojson.JsonObject;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Tag;
+import org.schabi.newpipe.extractor.MediaFormat;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
@@ -22,6 +23,8 @@ class BitchuteStreamFormatTest {
 
         assertEquals(DeliveryMethod.HLS, stream.getDeliveryMethod());
         assertEquals(url, stream.getManifestUrl());
+        assertEquals(VideoStream.RESOLUTION_UNKNOWN, stream.getResolution());
+        assertNull(stream.getFormat());
     }
 
     @Test
@@ -31,6 +34,33 @@ class BitchuteStreamFormatTest {
 
         assertEquals(DeliveryMethod.PROGRESSIVE_HTTP, stream.getDeliveryMethod());
         assertNull(stream.getManifestUrl());
+        assertEquals(MediaFormat.MPEG_4, stream.getFormat());
+        assertEquals(VideoStream.RESOLUTION_UNKNOWN, stream.getResolution());
+    }
+
+    @Test
+    void detectsProgressiveFormatFromMimeType() throws Exception {
+        final VideoStream stream = BitchuteStreamExtractor.buildVideoStream(
+                media("Video/WebM; codecs=vp9", "https://cdn.example/video/file.bin"));
+
+        assertEquals(MediaFormat.WEBM, stream.getFormat());
+    }
+
+    @Test
+    void fallsBackToProgressiveUrlSuffix() throws Exception {
+        final VideoStream stream = BitchuteStreamExtractor.buildVideoStream(
+                media(null, "https://cdn.example/video/file.3gp#fragment"));
+
+        assertEquals(MediaFormat.v3GPP, stream.getFormat());
+    }
+
+    @Test
+    void recognizesStandardHlsMimeType() throws Exception {
+        final VideoStream stream = BitchuteStreamExtractor.buildVideoStream(
+                media("application/vnd.apple.mpegurl", "https://cdn.example/manifest"));
+
+        assertEquals(DeliveryMethod.HLS, stream.getDeliveryMethod());
+        assertNull(stream.getFormat());
     }
 
     private static ResultsStreamVideoMedia media(final String type, final String url) {
