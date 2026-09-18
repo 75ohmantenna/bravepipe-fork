@@ -70,6 +70,8 @@ public final class RumbleStreamExtractor extends StreamExtractor {
     private static final String STREAM_METADATA = "meta";
     private static final String STREAM_URL = "url";
     private static final String RELATED_STREAMS_SELECTOR = "ul.mediaList-list";
+    private static final Pattern HLS_RESOLUTION_PATTERN =
+            Pattern.compile("^[1-9][0-9]*x([1-9][0-9]*)$");
 
     private Document doc;
     JsonObject embedJsonStreamInfoObj;
@@ -461,26 +463,26 @@ public final class RumbleStreamExtractor extends StreamExtractor {
                 continue;
             }
             final int bitrate = (int) (stream.getBandwidth() * bandwidth2bitrateFactor);
-            final String actualRes = getHeight(stream.getResolution());
-
-            final String bitrateString = "@" + bitrate / 1000 + "k";
             final VideoStream videoStream = createVideoStream(
                     "hls",
                     playlistUrl.toString(),
-                    actualRes + (!bitrateString.isBlank() ? "p" + bitrateString : "")
+                    resolutionLabel(stream.getResolution(), bitrate)
             );
             videoStream.braveSetBitrate(bitrate);
             videoStreamsList.add(videoStream);
         }
     }
 
-    private String getHeight(final String res) {
-        String[] parts = res.split("x");
-
-        if (parts.length == 2) {
-            return parts[1];
+    static String resolutionLabel(@Nullable final String resolution, final int bitrate) {
+        String height = null;
+        if (resolution != null) {
+            final Matcher matcher = HLS_RESOLUTION_PATTERN.matcher(resolution);
+            if (matcher.matches()) {
+                height = matcher.group(1);
+            }
         }
-        return null;
+        final String bitratePart = bitrate > 0 ? "@" + bitrate / 1000 + "k" : "";
+        return height == null ? "unknown" + bitratePart : height + "p" + bitratePart;
     }
 
     private AudioStream createAudioStream(
