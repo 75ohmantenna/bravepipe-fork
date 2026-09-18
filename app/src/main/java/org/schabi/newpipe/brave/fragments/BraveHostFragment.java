@@ -9,6 +9,7 @@ import org.schabi.newpipe.R;
 
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
@@ -33,6 +34,7 @@ public class BraveHostFragment extends BraveBackStackFragment {
     public void replaceFragment(
             final Fragment frag,
             final boolean addToBackstack) {
+        fragment = frag;
         if (addToBackstack) {
             getChildFragmentManager().beginTransaction().replace(R.id.hosted_fragment, frag)
                     .addToBackStack(null).commit();
@@ -40,6 +42,21 @@ public class BraveHostFragment extends BraveBackStackFragment {
             getChildFragmentManager().beginTransaction().replace(R.id.hosted_fragment, frag)
                     .commit();
         }
+    }
+
+    /**
+     * Returns the currently hosted fragment, including while its transaction is pending.
+     *
+     * @return the hosted fragment, or {@code null} when none has been supplied or restored
+     */
+    @Nullable
+    public Fragment getHostedFragment() {
+        if (!isAdded()) {
+            return fragment;
+        }
+        final Fragment restored = getChildFragmentManager()
+                .findFragmentById(R.id.hosted_fragment);
+        return restored == null ? fragment : restored;
     }
 
     public static BraveHostFragment newInstance(
