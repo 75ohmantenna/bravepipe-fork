@@ -13,6 +13,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
+import android.os.Build;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -269,13 +271,20 @@ public final class PopupPlayerUi extends VideoPlayerUi {
     }
 
     public void updateScreenSize() {
-        final var windowMetrics = windowManager.getCurrentWindowMetrics();
-        final var bounds = windowMetrics.getBounds();
-        final var windowInsets = windowMetrics.getWindowInsets();
-        final var insets = windowInsets.getInsetsIgnoringVisibility(
-                WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
-        screenWidth = bounds.width() - (insets.left + insets.right);
-        screenHeight = bounds.height() - (insets.top + insets.bottom);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final var windowMetrics = windowManager.getCurrentWindowMetrics();
+            final var bounds = windowMetrics.getBounds();
+            final var windowInsets = windowMetrics.getWindowInsets();
+            final var insets = windowInsets.getInsetsIgnoringVisibility(
+                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+            screenWidth = bounds.width() - (insets.left + insets.right);
+            screenHeight = bounds.height() - (insets.top + insets.bottom);
+        } else {
+            final DisplayMetrics metrics = new DisplayMetrics();
+            windowManager.getDefaultDisplay().getMetrics(metrics);
+            screenWidth = metrics.widthPixels;
+            screenHeight = metrics.heightPixels;
+        }
         if (DEBUG) {
             Log.d(TAG, "updateScreenSize() called: screenWidth = ["
                     + screenWidth + "], screenHeight = [" + screenHeight + "]");

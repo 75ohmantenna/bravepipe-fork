@@ -2,7 +2,6 @@ package org.schabi.newpipe;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.InetAddresses;
 
 import org.schabi.newpipe.brave.feature.challenge.BraveCfChallenge403Interceptor;
 
@@ -25,6 +24,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 import okhttp3.Dns;
 import okhttp3.Interceptor;
@@ -103,8 +103,22 @@ public final class BraveDownloaderImplUtils {
         }
         final String literal = normalized.startsWith("[") && normalized.endsWith("]")
                 ? normalized.substring(1, normalized.length() - 1) : normalized;
-        return InetAddresses.isNumericAddress(literal)
-                && isLocalAddress(InetAddresses.parseNumericAddress(literal));
+        final InetAddress address = parseNumericAddress(literal);
+        return address != null && isLocalAddress(address);
+    }
+
+    @Nullable
+    private static InetAddress parseNumericAddress(final String literal) {
+        final boolean isIpv4 = literal.matches("(?:[0-9]{1,3}\\.){3}[0-9]{1,3}");
+        final boolean isIpv6 = literal.indexOf(':') >= 0;
+        if (!isIpv4 && !isIpv6) {
+            return null;
+        }
+        try {
+            return InetAddress.getByName(literal);
+        } catch (final UnknownHostException ignored) {
+            return null;
+        }
     }
 
     private static boolean isLocalAddress(final InetAddress address) {

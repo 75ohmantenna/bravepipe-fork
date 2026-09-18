@@ -11,6 +11,7 @@ import android.hardware.input.InputManager;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.InputDevice;
 import android.view.KeyEvent;
@@ -254,11 +255,16 @@ public final class DeviceUtils {
     }
 
     public static int getWindowHeight(@NonNull final WindowManager windowManager) {
-        final var windowMetrics = windowManager.getCurrentWindowMetrics();
-        final var windowInsets = windowMetrics.getWindowInsets();
-        final var insets = windowInsets.getInsetsIgnoringVisibility(
-                WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
-        return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            final var windowMetrics = windowManager.getCurrentWindowMetrics();
+            final var windowInsets = windowMetrics.getWindowInsets();
+            final var insets = windowInsets.getInsetsIgnoringVisibility(
+                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+            return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
+        }
+        final DisplayMetrics metrics = new DisplayMetrics();
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        return metrics.heightPixels;
     }
 
     /**

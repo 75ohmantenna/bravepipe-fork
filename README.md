@@ -2,6 +2,8 @@
 
 Work in progress. Not ready for release.
 
+Requires Android 8.0 (API 26) or newer.
+
 Based on [BravePipe](https://github.com/bravepipeproject/BravePipe).
 
 ## Repository layout

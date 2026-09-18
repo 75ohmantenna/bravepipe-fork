@@ -32,8 +32,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowInsets;
-import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
@@ -47,6 +45,9 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.core.view.WindowInsetsControllerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -1726,7 +1727,8 @@ public final class VideoDetailFragment
             return;
         }
 
-        activity.getWindow().getInsetsController().show(WindowInsets.Type.systemBars());
+        WindowCompat.getInsetsController(activity.getWindow(),
+                activity.getWindow().getDecorView()).show(WindowInsetsCompat.Type.systemBars());
     }
 
     private void hideSystemUi() {
@@ -1738,12 +1740,13 @@ public final class VideoDetailFragment
             return;
         }
 
-        final WindowInsetsController controller = activity.getWindow().getInsetsController();
+        final WindowInsetsControllerCompat controller = WindowCompat.getInsetsController(
+                activity.getWindow(), activity.getWindow().getDecorView());
         controller.setSystemBarsBehavior(
-                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE);
         // Multiwindow keeps the status bar visible while navigation is hidden.
         controller.hide(DeviceUtils.isInMultiWindow(activity)
-                ? WindowInsets.Type.navigationBars() : WindowInsets.Type.systemBars());
+                ? WindowInsetsCompat.Type.navigationBars() : WindowInsetsCompat.Type.systemBars());
     }
 
     // Listener implementation

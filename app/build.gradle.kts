@@ -41,7 +41,7 @@ configure<ApplicationExtension> {
     defaultConfig {
         applicationId = "org.seventyfiveohmantenna.bravepipefork"
         resValue("string", "app_name", "BravePipe-fork")
-        minSdk = 37
+        minSdk = 26
         targetSdk = 37
 
         versionCode = (System.getProperty("versionCodeOverride")?.toInt() ?: 1013) + 580000

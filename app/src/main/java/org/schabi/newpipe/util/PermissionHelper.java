@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.provider.Settings;
 import android.text.Html;
 import android.widget.Toast;
@@ -25,6 +26,9 @@ public final class PermissionHelper {
 
     public static boolean checkPostNotificationsPermission(final Activity activity,
                                                            final int requestCode) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            return true;
+        }
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.POST_NOTIFICATIONS)
                 == PackageManager.PERMISSION_GRANTED) {
             return true;
@@ -43,7 +47,9 @@ public final class PermissionHelper {
      * @return true if ACCESS_LOCAL_NETWORK is granted
      */
     public static boolean hasLocalNetworkPermission(final Context context) {
-        return ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_LOCAL_NETWORK)
+        return Build.VERSION.SDK_INT < 37
+                || ContextCompat.checkSelfPermission(
+                        context, Manifest.permission.ACCESS_LOCAL_NETWORK)
                 == PackageManager.PERMISSION_GRANTED;
     }
 
