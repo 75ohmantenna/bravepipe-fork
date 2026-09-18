@@ -14,8 +14,8 @@ public final class RumbleFilters extends BaseSearchFilters {
      * The rumble searchpage has a kind of 'all' (channels and videos)
      * search feature. Nevertheless the found channels are more or
      * less like a preview and a link to the channel search.
-     * -> there is no backend based ' real search all feature with one result page.
-     * -> it is too much effort at the moment to have a 'all' feature for BraveNewPipe
+     * There is no backend-based search-all feature with one result page, and implementing one
+     * client-side would require combining multiple result sets.
      */
     public static final int ID_CF_MAIN_GRP = 0;
     public static final int ID_CF_MAIN_VIDEOS = 1;
