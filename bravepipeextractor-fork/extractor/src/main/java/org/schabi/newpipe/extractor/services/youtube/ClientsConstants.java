@@ -19,19 +19,22 @@ final class ClientsConstants {
      * The client version for InnerTube requests with the {@code WEB} client, used as the last
      * fallback if the extraction of the real one failed.
      */
-    static final String WEB_HARDCODED_CLIENT_VERSION = "2.20260120.01.00";
+    static final String WEB_HARDCODED_CLIENT_VERSION = "2.20260708.00.00";
 
     // WEB_REMIX (YouTube Music) client fields
 
     static final String WEB_REMIX_CLIENT_ID = "67";
     static final String WEB_REMIX_CLIENT_NAME = "WEB_REMIX";
-    static final String WEB_REMIX_HARDCODED_CLIENT_VERSION = "1.20260121.03.00";
+    static final String WEB_REMIX_HARDCODED_CLIENT_VERSION = "1.20260707.12.00";
 
     // WEB_EMBEDDED_PLAYER (YouTube embeds)
 
     static final String WEB_EMBEDDED_CLIENT_ID = "56";
     static final String WEB_EMBEDDED_CLIENT_NAME = "WEB_EMBEDDED_PLAYER";
-    static final String WEB_EMBEDDED_CLIENT_VERSION = "1.20260122.01.00";
+    static final String WEB_EMBEDDED_CLIENT_VERSION = "2.20260708.00.00";
+    static final String WEB_EMBEDDED_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X "
+            + "10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.5 "
+            + "Safari/605.1.15,gzip(gfe)";
 
     // WEB_MUSIC_ANALYTICS (YouTube charts)
 
@@ -53,7 +56,7 @@ final class ClientsConstants {
      * Store page of the YouTube app</a>, in the {@code What’s New} section.
      * </p>
      */
-    static final String IOS_CLIENT_VERSION = "21.03.2";
+    static final String IOS_CLIENT_VERSION = "21.26.4";
 
     /**
      * The device machine id for the iPhone 15 Pro Max, used to get 60fps with the {@code iOS}
@@ -81,7 +84,7 @@ final class ClientsConstants {
      *
      * @see #IOS_USER_AGENT_VERSION
      */
-    static final String IOS_OS_VERSION = "18.7.2.22H124";
+    static final String IOS_OS_VERSION = "18.3.2.22D82";
 
     /**
      * The iOS version to be used in the HTTP user agent for requests.
@@ -92,7 +95,7 @@ final class ClientsConstants {
      *
      * @see #IOS_OS_VERSION
      */
-    static final String IOS_USER_AGENT_VERSION = "18_7_2";
+    static final String IOS_USER_AGENT_VERSION = "18_3_2";
 
     // ANDROID (Android YouTube app) client fields
 
@@ -108,14 +111,15 @@ final class ClientsConstants {
      * such as <a href="https://www.apkmirror.com/apk/google-inc/youtube/">APKMirror</a>.
      * </p>
      */
-    static final String ANDROID_CLIENT_VERSION = "21.03.36";
+    static final String ANDROID_CLIENT_VERSION = "21.26.364";
 
     // visionOS client fields
 
     static final String VISIONOS_CLIENT_ID = "101";
     static final String VISIONOS_CLIENT_NAME = "VISIONOS";
     static final String VISIONOS_CLIENT_VERSION = "1.02";
-    static final String VISIONOS_DEVICE_MODEL = "RealityDevice14,1";
-    static final String VISIONOS_VERSION = "25.6.0.23O471";
-    static final String VISIONOS_USER_AGENT_VERSION = "25_6_0";
+    static final String VISIONOS_DEVICE_MODEL = "RealityDevice17,1";
+    static final String VISIONOS_VERSION = "26.5.23O471";
+    static final String VISIONOS_USER_AGENT = "Mozilla/5.0 (Macintosh; Intel Mac OS X 15_7_3) "
+            + "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15";
 }

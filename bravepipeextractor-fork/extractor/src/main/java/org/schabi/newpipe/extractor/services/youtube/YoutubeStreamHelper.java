@@ -19,6 +19,7 @@ import java.util.Map;
 import static org.schabi.newpipe.extractor.NewPipe.getDownloader;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_EMBEDDED_CLIENT_ID;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_EMBEDDED_CLIENT_VERSION;
+import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_EMBEDDED_USER_AGENT;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.CONTENT_CHECK_OK;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.CPN;
 import static org.schabi.newpipe.extractor.services.youtube.YoutubeParsingHelper.DISABLE_PRETTY_PRINT_PARAMETER;
@@ -42,7 +43,7 @@ public final class YoutubeStreamHelper {
     private static final String PLAYER = "player";
     private static final String SERVICE_INTEGRITY_DIMENSIONS = "serviceIntegrityDimensions";
     private static final String PO_TOKEN = "poToken";
-    private static final String BASE_YT_DESKTOP_WATCH_URL = "https://www.youtube.com/watch?v=";
+    private static final String BASE_YT_EMBED_URL = "https://www.youtube.com/embed/";
 
     private YoutubeStreamHelper() {
     }
@@ -94,8 +95,9 @@ public final class YoutubeStreamHelper {
         final Map<String, List<String>> headers = new HashMap<>(
                 getClientHeaders(WEB_EMBEDDED_CLIENT_ID, WEB_EMBEDDED_CLIENT_VERSION));
         headers.putAll(getOriginReferrerHeaders("https://www.youtube.com"));
+        headers.put("User-Agent", List.of(WEB_EMBEDDED_USER_AGENT));
 
-        final String embedUrl = BASE_YT_DESKTOP_WATCH_URL + videoId;
+        final String embedUrl = BASE_YT_EMBED_URL + videoId + "?html5=1";
 
         // We must always pass a valid visitorData to get valid player responses, which needs to be
         // got from YouTube
