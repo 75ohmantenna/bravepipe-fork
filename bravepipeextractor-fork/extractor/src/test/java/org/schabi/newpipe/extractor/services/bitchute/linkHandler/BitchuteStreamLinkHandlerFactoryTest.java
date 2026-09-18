@@ -2,6 +2,7 @@ package org.schabi.newpipe.extractor.services.bitchute.linkHandler;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.schabi.newpipe.downloader.DownloaderTestImpl;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test for {@link BitchuteStreamLinkHandlerFactory}
  */
 @SuppressWarnings("checkstyle:InvalidJavadocPosition")
+@Tag("offline")
 public class BitchuteStreamLinkHandlerFactoryTest {
     private static BitchuteStreamLinkHandlerFactory linkHandler;
 

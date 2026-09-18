@@ -4,12 +4,14 @@ import com.github.bravenewpipe.json2java4nanojson.bitchute.api.results.stream.vi
 import com.grack.nanojson.JsonObject;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.schabi.newpipe.extractor.stream.DeliveryMethod;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@Tag("offline")
 class BitchuteStreamFormatTest {
 
     @Test

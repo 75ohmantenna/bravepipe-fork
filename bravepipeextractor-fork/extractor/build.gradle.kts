@@ -56,6 +56,17 @@ tasks.test {
     dependsOn(tasks.checkstyleMain) // run checkstyle when testing
 }
 
+tasks.register<Test>("forkCiTest") {
+    group = "verification"
+    description = "Runs deterministic offline regression tests maintained by the fork."
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("offline")
+    }
+    dependsOn(tasks.checkstyleMain)
+}
+
 // https://checkstyle.org/#JRE_and_JDK
 tasks.withType<Checkstyle>().configureEach {
     javaLauncher = javaToolchains.launcherFor {
