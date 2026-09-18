@@ -1,6 +1,6 @@
 # NewPipe Extractor
 
-[![CI](https://github.com/75ohmantenna/bravepipeextractor-fork/actions/workflows/ci.yml/badge.svg?branch=master&event=schedule)](https://github.com/75ohmantenna/bravepipeextractor-fork/actions/workflows/ci.yml) [![JitPack](https://jitpack.io/v/75ohmantenna/bravepipeextractor-fork.svg)](https://jitpack.io/#75ohmantenna/bravepipeextractor-fork) [JDoc](https://teamnewpipe.github.io/NewPipeExtractor/javadoc/) • [Documentation](https://teamnewpipe.github.io/documentation/)
+[![JitPack](https://jitpack.io/v/75ohmantenna/bravepipeextractor-fork.svg)](https://jitpack.io/#75ohmantenna/bravepipeextractor-fork) [JDoc](https://teamnewpipe.github.io/NewPipeExtractor/javadoc/) • [Documentation](https://teamnewpipe.github.io/documentation/)
 
 NewPipe Extractor is a library for extracting things from streaming sites. It is a core component of [NewPipe](https://github.com/TeamNewPipe/NewPipe), but could be used independently.
 
