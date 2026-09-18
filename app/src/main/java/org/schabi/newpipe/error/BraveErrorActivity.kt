@@ -40,7 +40,7 @@ abstract class BraveErrorActivity : AppCompatActivity() {
 
         for (trace in stackTraces) {
             if (limit < size) {
-                finalList.add("BravePipe TRUNCATED trace")
+                finalList.add("BravePipe-fork TRUNCATED trace")
                 break
             }
             size += trace.length

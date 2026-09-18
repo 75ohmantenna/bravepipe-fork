@@ -1,6 +1,6 @@
 # https://developer.android.com/build/shrink-code
 
-###### begin -- BravePipe
+###### begin -- BravePipe-fork
 # rules for greenrobot
 -keepattributes *Annotation*
 -keepclassmembers class * {
@@ -11,7 +11,7 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
-###### end -- BravePipe
+###### end -- BravePipe-fork
 
 ## Helps debug release versions
 -dontobfuscate

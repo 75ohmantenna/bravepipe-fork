@@ -27,7 +27,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -392,11 +391,6 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
         shareIntent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 
         final Intent intent = createChooser(shareIntent, null);
-        // unneeded to set a title to the chooser on Android P and higher because the system
-        // ignores this title on these versions
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.O_MR1) {
-            intent.putExtra(Intent.EXTRA_TITLE, mContext.getString(R.string.share_dialog_title));
-        }
         intent.addFlags(FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(FLAG_GRANT_READ_URI_PERMISSION);
 

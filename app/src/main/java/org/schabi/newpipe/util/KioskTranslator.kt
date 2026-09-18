@@ -57,7 +57,7 @@ object KioskTranslator {
 
             "trending_podcasts_episodes" -> R.drawable.ic_podcasts
 
-            // BravePipe: In case you have additional platforms eg. rumble you
+            // BravePipe-fork: In case you have additional platforms eg. rumble you
             // need to supply icons. If you won't you get a weird crash that is not
             // easy to see where it originates from. Solution: we give back
             // a valid resource instead of a invalid of 0

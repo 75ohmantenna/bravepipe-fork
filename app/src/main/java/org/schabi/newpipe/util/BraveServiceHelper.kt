@@ -9,13 +9,13 @@ import org.schabi.newpipe.util.ServiceHelper.getTranslated
  * this class implements all the string mapping between the [org.schabi.newpipe.extractor.search.filter.FilterItem.nameId].
  *
  * Upstream NewPipe does not use [org.schabi.newpipe.extractor.search.filter.FilterItem]
- * as it is part of BravePipe's searchfilters sort and content filters framework used in
+ * as it is part of BravePipe-fork's searchfilters sort and content filters framework used in
  * BravePipeExtractor
  */
 abstract class BraveServiceHelper {
 
     /**
-     * Icons for BravePipe only services.
+     * Icons for BravePipe-fork only services.
      */
     protected fun braveGetIcon(serviceId: Int, default: Int): Int {
         return when (serviceId) {

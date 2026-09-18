@@ -10,13 +10,13 @@ pluginManagement {
         mavenCentral()
     }
 }
+rootProject.name = "org.seventyfiveohmantenna.bravepipefork"
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        // BravePipe: we have own maven repo for dependencies (jitpack replacement)
-        maven(url = "https://raw.githubusercontent.com/bravepipeproject/maven-repo/master/repository")
         maven(url = "https://jitpack.io")
         maven(url = "https://repo.clojars.org")
     }
@@ -29,7 +29,7 @@ include (":app")
 
 //includeBuild("../BravePipeExtractor") {
 //    dependencySubstitution {
-//        substitute(module("com.github.bravepipeproject:extractor"))
+//        substitute(module("com.github.75ohmantenna:BravePipeExtractor"))
 //            .using(project(":extractor"))
 //    }
 //}

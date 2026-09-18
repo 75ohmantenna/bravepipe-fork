@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -56,29 +54,19 @@ class AboutActivity : AppCompatActivity() {
      * A placeholder fragment containing a simple view.
      */
     class AboutFragment : BraveAboutFragment() {
-        private fun Button.openLink(@StringRes url: Int) {
-            setOnClickListener {
-                ShareUtils.openUrlInApp(context, requireContext().getString(url))
-            }
-        }
-
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
             FragmentAboutBinding.inflate(inflater, container, false).apply {
-                braveSetupViews(root, this)
                 braveAddSoftwareComponents(SOFTWARE_COMPONENTS)
                 aboutAppVersion.text = BuildConfig.VERSION_NAME
                 braveMore.braveAppSignature.text = BuildConfig.APPLICATION_ID
                 braveMore.aboutAppBuildType.text = BuildConfig.BUILD_TYPE
-                braveAbout.braveAboutGithubLink.openLink(R.string.brave_github_url)
-                aboutGithubLink.openLink(R.string.github_url)
-                aboutDonationLink.openLink(R.string.donation_url)
-                aboutWebsiteLink.openLink(R.string.website_url)
-                aboutPrivacyPolicyLink.openLink(R.string.privacy_policy_url)
-                faqLink.openLink(R.string.faq_url)
+                braveAbout.braveAboutGithubLink.setOnClickListener {
+                    ShareUtils.openUrlInApp(requireContext(), getString(R.string.brave_github_url))
+                }
                 return root
             }
         }

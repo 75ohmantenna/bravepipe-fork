@@ -34,7 +34,7 @@ import okhttp3.OkHttpClient;
 import static org.schabi.newpipe.DownloaderImpl.USER_AGENT;
 
 /**
- * Used for code that only exists in BravePipe and is used
+ * Used for code that only exists in BravePipe-fork and is used
  * within the {@link DownloaderImpl}.
  */
 public final class BraveDownloaderImplUtils {

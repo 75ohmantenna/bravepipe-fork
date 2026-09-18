@@ -27,7 +27,7 @@ import androidx.viewpager.widget.ViewPager;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 
 /**
- * Handle BravePipe specific features.
+ * Handle BravePipe-fork specific features.
  * <p>
  * It receives below events:
  * <ul>

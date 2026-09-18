@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.jetbrains.kotlin.parcelize)
     alias(libs.plugins.jetbrains.kotlinx.serialization)
-    alias(libs.plugins.sonarqube)
     checkstyle
 }
 
@@ -40,8 +39,8 @@ configure<ApplicationExtension> {
     namespace = "org.schabi.newpipe"
 
     defaultConfig {
-        applicationId = "com.github.bravenewpipe"
-        resValue("string", "app_name", "BravePipe")
+        applicationId = "org.seventyfiveohmantenna.bravepipefork"
+        resValue("string", "app_name", "BravePipe-fork")
         minSdk = 37
         targetSdk = 37
 
@@ -58,13 +57,13 @@ configure<ApplicationExtension> {
             isDebuggable = true
 
             applicationIdSuffix = ".debug"
-            resValue("string", "app_name", "BravePipe Debug")
+            resValue("string", "app_name", "BravePipe-fork Debug")
         }
 
         release {
             System.getProperty("packageSuffix")?.let { suffix ->
                 applicationIdSuffix = suffix
-                resValue("string", "app_name", "BravePipe $suffix")
+                resValue("string", "app_name", "BravePipe-fork $suffix")
             }
             isMinifyEnabled = true
             isShrinkResources = true
@@ -122,7 +121,7 @@ ksp {
 
 
 // Custom dependency configuration for ktlint
-val ktlint by configurations.creating
+val ktlint = configurations.create("ktlint")
 
 // https://checkstyle.org/#JRE_and_JDK
 tasks.withType<Checkstyle>().configureEach {
@@ -163,7 +162,7 @@ tasks.register<JavaExec>("runKtlint") {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
-    classpath = configurations.getByName("ktlint")
+    classpath = ktlint
     args = listOf("--editorconfig=../.editorconfig", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
@@ -172,7 +171,7 @@ tasks.register<JavaExec>("formatKtlint") {
     inputs.files(inputFiles)
     outputs.dir(outputDir)
     mainClass.set("com.pinterest.ktlint.Main")
-    classpath = configurations.getByName("ktlint")
+    classpath = ktlint
     args = listOf("--editorconfig=../.editorconfig", "-F", "src/**/*.kt")
     jvmArgs = listOf("--add-opens", "java.base/java.lang=ALL-UNNAMED")
 }
@@ -181,14 +180,6 @@ tasks.register<CheckDependenciesOrder>("checkDependenciesOrder") {
     tomlFile = layout.projectDirectory.file("../gradle/libs.versions.toml")
 }
 
-
-sonar {
-    properties {
-        property("sonar.projectKey", "TeamNewPipe_NewPipe")
-        property("sonar.organization", "teamnewpipe")
-        property("sonar.host.url", "https://sonarcloud.io")
-    }
-}
 
 dependencies {
     /** Desugaring **/
@@ -301,7 +292,7 @@ dependencies {
     androidTestImplementation(libs.assertj.core)
 }
 
-// keep the changed dependencies for BravePipe more
+// keep the changed dependencies for BravePipe-fork more
 // separate in hope of not getting to many merge conflicts
 val okHttpVersion: String = libs.versions.okhttp.get()
 // for JavaNetCookieJar see https://github.com/bravepipeproject/BravePipeExtractor/issues/123
@@ -309,13 +300,9 @@ project.dependencies.implementation("com.squareup.okhttp3:okhttp-urlconnection:$
 // for hls support on rumble
 project.dependencies.implementation("com.github.evermind-zz:hlsdownloader:1.0.0")
 project.dependencies.implementation("com.github.evermind-zz:slimhls-converter:1.0.0")
-// apk upgrade dialog/downloader
-project.dependencies.implementation("com.github.evermind-zz.AppUpdater:app-dialog:1.2.0-1.2.0")
-project.dependencies.implementation("com.github.evermind-zz.AppUpdater:app-updater:1.2.0-1.2.0")
 // the eventbus
 project.dependencies.implementation("org.greenrobot:eventbus:3.3.1")
 // the LogcatToolkit
 project.dependencies.implementation("com.github.evermind-zz:logcat-toolkit:1.0.0")
 // cf challenge helper
 project.dependencies.implementation("com.github.evermind-zz:challengeFloatsAway:1.1.1")
-

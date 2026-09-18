@@ -125,16 +125,6 @@
             android:name=".error.ErrorActivity"
             android:exported="false" />
 
-        <activity
-            android:name=".BraveUpgradeActivity"
-            android:theme="@style/Theme.Transparent"
-            android:excludeFromRecents="true"
-            android:exported="false" />
-
-        <activity
-            android:name=".brave.tip.BraveTipActivity"
-            android:exported="false" />
-
         <!-- giga get related -->
         <activity
             android:name=".download.DownloadActivity"

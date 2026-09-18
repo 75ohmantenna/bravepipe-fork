@@ -1,7 +1,6 @@
 package us.shandian.giga.util;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Environment;
 import android.os.StatFs;
 import android.util.Log;
@@ -218,17 +217,7 @@ public class Utility {
     }
 
     public static long getContentLength(HttpURLConnection connection) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return connection.getContentLengthLong();
-        }
-
-        try {
-            return Long.parseLong(connection.getHeaderField("Content-Length"));
-        } catch (Exception err) {
-            // nothing to do
-        }
-
-        return -1;
+        return connection.getContentLengthLong();
     }
 
     /**

@@ -3,7 +3,6 @@ package org.schabi.newpipe;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -167,10 +166,8 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
     }
 
     private void hideSystemUi(final boolean isLandscape) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            getWindow().getAttributes().layoutInDisplayCutoutMode =
-                    WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-        }
+        getWindow().getAttributes().layoutInDisplayCutoutMode =
+                WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
 
         int visibility;
 
@@ -192,7 +189,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
 
         getWindow().getDecorView().setSystemUiVisibility(visibility);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && (isInMultiWindow())) {
+        if (isInMultiWindow()) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);
             getWindow().setNavigationBarColor(Color.TRANSPARENT);
         }
@@ -200,7 +197,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
     }
 
     private boolean isInMultiWindow() {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && isInMultiWindowMode();
+        return isInMultiWindowMode();
     }
 
     boolean isLandscape() {
