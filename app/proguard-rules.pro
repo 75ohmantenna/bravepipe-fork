@@ -1,10 +1,6 @@
 # https://developer.android.com/build/shrink-code
 
-###### begin -- BravePipe
-# conscrypt rules (where not needed on 2.4.0)
--dontwarn com.android.org.conscrypt.SSLParametersImpl
--dontwarn org.apache.harmony.xnet.provider.jsse.SSLParametersImpl
-
+###### begin -- BravePipe-fork
 # rules for greenrobot
 -keepattributes *Annotation*
 -keepclassmembers class * {
@@ -15,7 +11,7 @@
 -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {
     <init>(java.lang.Throwable);
 }
-###### end -- BravePipe
+###### end -- BravePipe-fork
 
 ## Helps debug release versions
 -dontobfuscate

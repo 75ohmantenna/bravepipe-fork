@@ -3,11 +3,9 @@ package org.schabi.newpipe.settings.custom;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -26,22 +24,15 @@ import org.schabi.newpipe.util.ThemeHelper;
 import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.Objects;
-import java.util.function.BiConsumer;
 
 class NotificationSlot {
 
     private static final int[] SLOT_ITEMS = {
-            R.id.notificationAction0,
-            R.id.notificationAction1,
-            R.id.notificationAction2,
             R.id.notificationAction3,
             R.id.notificationAction4,
     };
 
     private static final int[] SLOT_TITLES = {
-            R.string.notification_action_0_title,
-            R.string.notification_action_1_title,
-            R.string.notification_action_2_title,
             R.string.notification_action_3_title,
             R.string.notification_action_4_title,
     };
@@ -49,7 +40,6 @@ class NotificationSlot {
     private final int i;
     private @NotificationConstants.Action int selectedAction;
     private final Context context;
-    private final BiConsumer<Integer, CheckBox> onToggleCompactSlot;
 
     private ImageView icon;
     private TextView summary;
@@ -57,26 +47,16 @@ class NotificationSlot {
     NotificationSlot(final Context context,
                      final SharedPreferences prefs,
                      final int actionIndex,
-                     final View parentView,
-                     final boolean isCompactSlotChecked,
-                     final BiConsumer<Integer, CheckBox> onToggleCompactSlot) {
+                     final View parentView) {
         this.context = context;
         this.i = actionIndex;
-        this.onToggleCompactSlot = onToggleCompactSlot;
 
         selectedAction = Objects.requireNonNull(prefs).getInt(
                 context.getString(NotificationConstants.SLOT_PREF_KEYS[i]),
                 NotificationConstants.SLOT_DEFAULTS[i]);
         final View view = parentView.findViewById(SLOT_ITEMS[i]);
-
-        // only show the last two notification slots on Android 13+
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU || i >= 3) {
-            setupSelectedAction(view);
-            setupTitle(view);
-            setupCheckbox(view, isCompactSlotChecked);
-        } else {
-            view.setVisibility(View.GONE);
-        }
+        setupSelectedAction(view);
+        setupTitle(view);
     }
 
     void setupTitle(final View view) {
@@ -86,20 +66,6 @@ class NotificationSlot {
                 v -> openActionChooserDialog());
     }
 
-    void setupCheckbox(final View view, final boolean isCompactSlotChecked) {
-        final CheckBox compactSlotCheckBox = view.findViewById(R.id.notificationActionCheckBox);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // there are no compact slots to customize on Android 13+
-            compactSlotCheckBox.setVisibility(View.GONE);
-            view.findViewById(R.id.notificationActionCheckBoxClickableArea)
-                    .setVisibility(View.GONE);
-            return;
-        }
-
-        compactSlotCheckBox.setChecked(isCompactSlotChecked);
-        view.findViewById(R.id.notificationActionCheckBoxClickableArea).setOnClickListener(
-                v -> onToggleCompactSlot.accept(i, compactSlotCheckBox));
-    }
 
     void setupSelectedAction(final View view) {
         icon = view.findViewById(R.id.notificationActionIcon);

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import java.util.Locale
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
@@ -13,7 +14,6 @@ import org.schabi.newpipe.brave.feature.savesearchpresets.data.Entry
 import org.schabi.newpipe.brave.feature.savesearchpresets.domain.SortDirection
 import org.schabi.newpipe.brave.feature.savesearchpresets.domain.SortType
 import org.schabi.newpipe.fragments.list.search.SearchViewModel
-import java.util.Locale
 
 /**
  * This ViewModel aggregates the flows:
@@ -56,7 +56,6 @@ class PresetListViewModel(
                 sorting = dbStateWrapper.sorting,
                 direction = dbStateWrapper.direction
             )
-
         }.stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
@@ -97,12 +96,11 @@ class PresetListViewModel(
         }
     }
 
-    private fun toggleDirection(): SortDirection =
-        if (uiState.value.direction == SortDirection.ASC) {
-            SortDirection.DESC
-        } else {
-            SortDirection.ASC
-        }
+    private fun toggleDirection(): SortDirection = if (uiState.value.direction == SortDirection.ASC) {
+        SortDirection.DESC
+    } else {
+        SortDirection.ASC
+    }
 
     private fun sortEntries(
         list: List<PresetUiEntry>,

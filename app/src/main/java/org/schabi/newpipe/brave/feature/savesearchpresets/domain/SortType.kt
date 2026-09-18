@@ -4,5 +4,5 @@ enum class SortType {
     NAME,
     LAST_USED,
     CREATED,
-    MODIFIED,
+    MODIFIED
 }

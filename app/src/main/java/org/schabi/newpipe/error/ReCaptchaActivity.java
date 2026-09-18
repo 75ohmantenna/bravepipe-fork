@@ -13,6 +13,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -74,6 +75,12 @@ public class ReCaptchaActivity extends AppCompatActivity {
         recaptchaBinding = ActivityRecaptchaBinding.inflate(getLayoutInflater());
         setContentView(recaptchaBinding.getRoot());
         setSupportActionBar(recaptchaBinding.toolbar);
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                saveCookiesAndFinish();
+            }
+        });
 
         final String url = sanitizeRecaptchaUrl(getIntent().getStringExtra(RECAPTCHA_URL_EXTRA));
         // set return to Cancel by default
@@ -125,11 +132,6 @@ public class ReCaptchaActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    @SuppressLint("MissingSuperCall") // saveCookiesAndFinish method handles back navigation
-    public void onBackPressed() {
-        saveCookiesAndFinish();
-    }
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {

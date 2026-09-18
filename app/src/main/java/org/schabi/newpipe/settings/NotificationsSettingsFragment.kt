@@ -3,7 +3,6 @@ package org.schabi.newpipe.settings
 import android.content.SharedPreferences
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
 import androidx.preference.Preference
 import androidx.preference.SwitchPreference
@@ -28,7 +27,7 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     private var loader: Disposable? = null
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        addPreferencesFromResource(R.xml.notifications_settings)
+        addPreferencesFromResourceRegistry()
         streamsNotificationsPreference = requirePreference(R.string.enable_streams_notifications)
 
         // main check is done in onResume, but also do it here to prevent flickering
@@ -113,13 +112,8 @@ class NotificationsSettingsFragment : BasePreferenceFragment(), OnSharedPreferen
     }
 
     private fun updateEnabledState(enabled: Boolean) {
-        // On Android 13 player notifications are exempt from notification settings
-        // so the preferences in app should always be available.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            streamsNotificationsPreference?.isEnabled = enabled
-        } else {
-            preferenceScreen.isEnabled = enabled
-        }
+        // Media notifications are exempt from notification permission; keep their settings enabled.
+        streamsNotificationsPreference?.isEnabled = enabled
     }
 
     private fun updateSubscriptions(subscriptions: List<SubscriptionEntity>) {

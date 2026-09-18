@@ -1,5 +1,6 @@
 package org.schabi.newpipe.download;
 
+import static org.schabi.newpipe.extractor.stream.DeliveryMethod.HLS;
 import static org.schabi.newpipe.extractor.stream.DeliveryMethod.PROGRESSIVE_HTTP;
 import static org.schabi.newpipe.util.ListHelper.getStreamsOfSpecifiedDelivery;
 
@@ -11,7 +12,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
@@ -39,7 +39,6 @@ import androidx.preference.PreferenceManager;
 
 import com.evernote.android.state.State;
 import com.livefront.bridge.Bridge;
-import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
@@ -55,23 +54,19 @@ import org.schabi.newpipe.extractor.stream.Stream;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.SubtitlesStream;
 import org.schabi.newpipe.extractor.stream.VideoStream;
-import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredDirectoryHelper;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
 import org.schabi.newpipe.util.AudioTrackAdapter;
 import org.schabi.newpipe.util.AudioTrackAdapter.AudioTracksWrapper;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
-import org.schabi.newpipe.util.PermissionHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
 import org.schabi.newpipe.util.ThemeHelper;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -202,14 +197,6 @@ public class DownloadDialog extends BraveDownloadDialog
                     + "savedInstanceState = [" + savedInstanceState + "]");
         }
 
-        if (!PermissionHelper.checkStoragePermissions(getActivity(),
-                PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE)) {
-            dismiss();
-            return;
-        }
-
-        // context will remain null if dismiss() was called above, allowing to check whether the
-        // dialog is being dismissed in onViewCreated()
         context = getContext();
 
         setStyle(STYLE_NO_TITLE, ThemeHelper.getDialogTheme(context));
@@ -294,9 +281,6 @@ public class DownloadDialog extends BraveDownloadDialog
                               @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dialogBinding = DownloadDialogBinding.bind(view);
-        if (context == null) {
-            return; // the dialog is being dismissed, see the call to dismiss() in onCreate()
-        }
 
         dialogBinding.fileName.setText(FilenameUtils.createFilename(getContext(),
                 currentInfo.getName()));
@@ -501,12 +485,6 @@ public class DownloadDialog extends BraveDownloadDialog
             return;
         }
 
-        if (FilePickerActivityHelper.isOwnFileUri(context, result.getData().getData())) {
-            final File file = Utils.getFileForUri(result.getData().getData());
-            checkSelectedDownload(null, Uri.fromFile(file), file.getName(),
-                    StoredFileHelper.DEFAULT_MIME);
-            return;
-        }
 
         final DocumentFile docFile = DocumentFile.fromSingleUri(context,
                 result.getData().getData());
@@ -532,13 +510,9 @@ public class DownloadDialog extends BraveDownloadDialog
             return;
         }
 
-        Uri uri = result.getData().getData();
-        if (FilePickerActivityHelper.isOwnFileUri(context, uri)) {
-            uri = Uri.fromFile(Utils.getFileForUri(uri));
-        } else {
-            context.grantUriPermission(context.getPackageName(), uri,
-                    StoredDirectoryHelper.PERMISSION_FLAGS);
-        }
+        final Uri uri = result.getData().getData();
+        context.grantUriPermission(context.getPackageName(), uri,
+                StoredDirectoryHelper.PERMISSION_FLAGS);
 
         PreferenceManager.getDefaultSharedPreferences(context).edit().putString(key,
                 uri.toString()).apply();
@@ -806,14 +780,10 @@ public class DownloadDialog extends BraveDownloadDialog
             throw new RuntimeException("No stream selected");
         }
 
-        if (!askForSavePath && (mainStorage == null
-                || mainStorage.isDirect() == NewPipeSettings.useStorageAccessFramework(context)
+        if (!askForSavePath && (mainStorage == null || mainStorage.isDirect()
                 || mainStorage.isInvalidSafStorage())) {
-            // Pick new download folder if one of:
-            // - Download folder is not set
-            // - Download folder uses SAF while SAF is disabled
-            // - Download folder doesn't use SAF while SAF is enabled
-            // - Download folder uses SAF but the user manually revoked access to it
+            // Pick a SAF folder if none is set, the saved path is legacy direct storage,
+            // or the user revoked access to the folder.
             Toast.makeText(context, getString(R.string.no_dir_yet),
                     Toast.LENGTH_LONG).show();
 
@@ -827,21 +797,8 @@ public class DownloadDialog extends BraveDownloadDialog
         }
 
         if (askForSavePath) {
-            final Uri initialPath;
-            if (NewPipeSettings.useStorageAccessFramework(context)) {
-                initialPath = null;
-            } else {
-                final File initialSavePath;
-                if (dialogBinding.videoAudioGroup.getCheckedRadioButtonId() == R.id.audio_button) {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-                } else {
-                    initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-                }
-                initialPath = Uri.parse(initialSavePath.getAbsolutePath());
-            }
-
             NoFileManagerSafeGuard.launchSafe(requestDownloadSaveAsLauncher,
-                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, initialPath), TAG,
+                    StoredFileHelper.getNewPicker(context, filenameTmp, mimeTmp, null), TAG,
                     context);
 
             return;
@@ -879,7 +836,7 @@ public class DownloadDialog extends BraveDownloadDialog
 
         try {
             if (mainStorage == null) {
-                // using SAF on older android version
+                // The user selected a document with Save As.
                 storage = new StoredFileHelper(context, null, targetFile, "");
             } else if (targetFile == null) {
                 // the file does not exist, but it is probably used in a pending download
@@ -917,10 +874,7 @@ public class DownloadDialog extends BraveDownloadDialog
                 break;
             case None: // there is no mission referring to the same file
                 if (mainStorage == null) {
-                    // This part is called if:
-                    // * using SAF on older android version
-                    // * save path not defined
-                    // * if the file exists overwrite it, is not necessary ask
+                    // Save As already confirmed overwriting an existing document.
                     if (!storage.existsAsFile() && !storage.create()) {
                         showFailedDialog(R.string.error_file_creation);
                         return;
@@ -961,9 +915,7 @@ public class DownloadDialog extends BraveDownloadDialog
 
 
         if (mainStorage == null) {
-            // This part is called if:
-            // * using SAF on older android version
-            // * save path not defined
+            // Save As has no parent folder in which to generate a unique filename.
             switch (state) {
                 case Pending:
                 case Finished:
@@ -1068,7 +1020,7 @@ public class DownloadDialog extends BraveDownloadDialog
                     .getAllSecondary()
                     .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
-            if (braveIsHlsStream(selectedStream)) {
+            if (selectedStream.getDeliveryMethod() == HLS) {
                 psName = Postprocessing.ALGORITHM_BRAVE_HLS_REMUXER;
             }
 

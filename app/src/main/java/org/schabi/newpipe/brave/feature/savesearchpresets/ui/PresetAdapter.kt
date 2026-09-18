@@ -9,10 +9,10 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import org.schabi.newpipe.R
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import org.schabi.newpipe.R
 
 class PresetAdapter(
     private val viewModel: PresetListViewModel,
@@ -36,7 +36,7 @@ class PresetAdapter(
 
             override fun areItemsTheSame(oldPos: Int, newPos: Int): Boolean {
                 return items[oldPos].entry.createdAt ==
-                        newList[newPos].entry.createdAt
+                    newList[newPos].entry.createdAt
             }
 
             override fun areContentsTheSame(oldPos: Int, newPos: Int): Boolean {

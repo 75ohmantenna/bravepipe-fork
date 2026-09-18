@@ -12,7 +12,7 @@ import androidx.annotation.StringRes;
 import androidx.preference.PreferenceManager;
 
 /**
- * generate Events from some BravePipe specific config options.
+ * generate Events from some BravePipe-fork specific config options.
  *
  * Not limited to EventBus Events
  */

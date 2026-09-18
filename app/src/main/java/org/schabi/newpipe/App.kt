@@ -208,10 +208,12 @@ open class App :
 
                 fun reportException(throwable: Throwable) {
                     // Throw uncaught exception that will trigger the report system
-                    Thread
-                        .currentThread()
-                        .uncaughtExceptionHandler
-                        .uncaughtException(Thread.currentThread(), throwable)
+                    val thread = Thread.currentThread()
+                    val handler = thread.uncaughtExceptionHandler
+                    if (handler == null) {
+                        throw throwable
+                    }
+                    handler.uncaughtException(thread, throwable)
                 }
             }
         )
@@ -243,14 +245,6 @@ open class App :
                 ).setName(getString(R.string.notification_channel_name))
                 .setDescription(getString(R.string.notification_channel_description))
                 .build()
-        val appUpdateChannel =
-            NotificationChannelCompat
-                .Builder(
-                    getString(R.string.app_update_notification_channel_id),
-                    NotificationManagerCompat.IMPORTANCE_LOW
-                ).setName(getString(R.string.app_update_notification_channel_name))
-                .setDescription(getString(R.string.app_update_notification_channel_description))
-                .build()
         val hashChannel =
             NotificationChannelCompat
                 .Builder(
@@ -276,7 +270,7 @@ open class App :
                 .setDescription(getString(R.string.streams_notification_channel_description))
                 .build()
 
-        val channels = listOf(mainChannel, appUpdateChannel, hashChannel, errorReportChannel, newStreamChannel)
+        val channels = listOf(mainChannel, hashChannel, errorReportChannel, newStreamChannel)
 
         NotificationManagerCompat.from(this).createNotificationChannelsCompat(channels)
     }
@@ -294,6 +288,6 @@ open class App :
 
     override fun onTerminate() {
         super.onTerminate()
-        BraveDownloaderImplUtils.CONFIG.unRegisterOnChanged(applicationContext)
+        BraveDownloaderImplUtils.CONFIG.unregisterOnChanged(applicationContext)
     }
 }

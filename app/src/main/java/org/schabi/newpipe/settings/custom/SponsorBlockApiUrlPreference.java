@@ -2,7 +2,6 @@ package org.schabi.newpipe.settings.custom;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -81,13 +80,10 @@ public class SponsorBlockApiUrlPreference extends Preference {
                         .setView(alertDialogView)
                         .setTitle(getContext().getString(R.string.sponsor_block_api_url_title))
                         .setPositiveButton("OK", (dialog, which) -> {
-                            final String newValue = editText.getText().toString();
-                            final SharedPreferences.Editor editor =
-                                    getPreferenceManager().getSharedPreferences().edit();
-                            editor.putString(getKey(), newValue);
-                            editor.apply();
-
-                            callChangeListener(newValue);
+                            final String newValue = editText.getText().toString().trim();
+                            if (callChangeListener(newValue)) {
+                                persistString(newValue);
+                            }
 
                             dialog.dismiss();
                         })

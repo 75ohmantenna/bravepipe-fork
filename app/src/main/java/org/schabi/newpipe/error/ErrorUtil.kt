@@ -5,12 +5,10 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.os.Build
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.PendingIntentCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
@@ -124,11 +122,6 @@ class ErrorUtil {
                 return
             }
 
-            var pendingIntentFlags = PendingIntent.FLAG_UPDATE_CURRENT
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                pendingIntentFlags = pendingIntentFlags or PendingIntent.FLAG_IMMUTABLE
-            }
-
             val notificationBuilder: NotificationCompat.Builder =
                 NotificationCompat.Builder(
                     context,
@@ -139,12 +132,11 @@ class ErrorUtil {
                     .setContentText(errorInfo.getMessage(context))
                     .setAutoCancel(true)
                     .setContentIntent(
-                        PendingIntentCompat.getActivity(
+                        PendingIntent.getActivity(
                             context,
                             0,
                             getErrorActivityIntent(context, errorInfo),
-                            PendingIntent.FLAG_UPDATE_CURRENT,
-                            false
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )
                     )
 
@@ -188,7 +180,8 @@ class ErrorUtil {
         private fun getIsErrorReportsDisabled(context: Context): Boolean {
             val prefs = PreferenceManager.getDefaultSharedPreferences(context)
             return prefs.getBoolean(
-                context.getString(R.string.disable_error_reports_key), false
+                context.getString(R.string.disable_error_reports_key),
+                false
             )
         }
     }

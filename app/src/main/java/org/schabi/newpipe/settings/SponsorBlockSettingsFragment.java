@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
+import androidx.preference.TwoStatePreference;
 
 import org.schabi.newpipe.R;
 
 import java.util.HashSet;
 
 public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
+    private final LocalNetworkPermissionGate localNetworkPermission =
+            new LocalNetworkPermissionGate(this);
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -43,9 +46,30 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
                 findPreference(getString(R.string.sponsor_block_api_url_key));
         sponsorBlockApiUrlPreference
                 .setOnPreferenceChangeListener((preference, newValue) -> {
-                    updateDependencies(preference, newValue);
-                    return true;
+                    final String url = (String) newValue;
+                    if (url.isEmpty()) {
+                        updateDependencies(preference, url);
+                        return true;
+                    }
+                    localNetworkPermission.run(url, () -> {
+                        getPreferenceManager().getSharedPreferences().edit()
+                                .putString(preference.getKey(), url).apply();
+                        updateDependencies(preference, url);
+                    });
+                    return false;
                 });
+
+        final TwoStatePreference enabled =
+                findPreference(getString(R.string.sponsor_block_enable_key));
+        enabled.setOnPreferenceChangeListener((preference, newValue) -> {
+            if (!Boolean.TRUE.equals(newValue)) {
+                return true;
+            }
+            final String url = getPreferenceManager().getSharedPreferences()
+                    .getString(getString(R.string.sponsor_block_api_url_key), "");
+            localNetworkPermission.run(url, () -> enabled.setChecked(true));
+            return false;
+        });
 
         final Preference sponsorBlockClearWhitelistPreference =
                 findPreference(getString(R.string.sponsor_block_clear_whitelist_key));
@@ -82,6 +106,20 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
                         .getSharedPreferences()
                         .getString(getString(R.string.sponsor_block_api_url_key), null);
         updateDependencies(sponsorBlockApiUrlPreference, sponsorBlockApiUrlPreferenceValue);
+        if (sponsorBlockApiUrlPreferenceValue != null
+                && !sponsorBlockApiUrlPreferenceValue.isEmpty()
+                && getPreferenceManager().getSharedPreferences()
+                .getBoolean(getString(R.string.sponsor_block_enable_key), false)) {
+            localNetworkPermission.run(sponsorBlockApiUrlPreferenceValue,
+                    () -> updateDependencies(sponsorBlockApiUrlPreference,
+                            sponsorBlockApiUrlPreferenceValue));
+        }
+    }
+
+    @Override
+    public void onDestroyView() {
+        localNetworkPermission.clear();
+        super.onDestroyView();
     }
 
     private void updateDependencies(final Preference preference, final Object newValue) {

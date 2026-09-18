@@ -1,9 +1,7 @@
 package org.schabi.newpipe.brave.feature.savesearchpresets.ui
 
 import android.app.Dialog
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.annotation.StringRes
@@ -31,7 +29,6 @@ import org.schabi.newpipe.fragments.list.search.SearchViewModel
 class PresetListDialogFragment : DialogFragment() {
 
     companion object {
-        val TAG: String = PresetListDialogFragment::class.java.simpleName
         const val MENU_GROUP_SORT_DIRECTION = 100
         const val MENU_ID_SORT_DIRECTION = 1
         const val MENU_GROUP_SORT_PRESETS = 101
@@ -71,7 +68,7 @@ class PresetListDialogFragment : DialogFragment() {
             MENU_ID_SORT_MODIFIED,
             R.string.sort_by_modified,
             SortType.MODIFIED
-        ),
+        )
     )
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -170,22 +167,7 @@ class PresetListDialogFragment : DialogFragment() {
     }
 
     private fun forceShowPopupIcons(popup: PopupMenu) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) { // API 29+
-            popup.setForceShowIcon(true)
-        } else {
-            try {
-                val field = PopupMenu::class.java.getDeclaredField("mPopup")
-                field.isAccessible = true
-                val menuPopupHelper = field.get(popup)
-                val setForceIcons = menuPopupHelper.javaClass.getDeclaredMethod(
-                    "setForceShowIcon",
-                    Boolean::class.javaPrimitiveType
-                )
-                setForceIcons.invoke(menuPopupHelper, true)
-            } catch (e: Exception) {
-                Log.w(TAG, "Could not force show icons in PopupMenu", e)
-            }
-        }
+        popup.setForceShowIcon(true)
     }
 }
 

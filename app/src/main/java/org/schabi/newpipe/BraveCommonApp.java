@@ -4,7 +4,7 @@ import org.schabi.newpipe.brave.bus.BraveSharedPrefsListenerToEventsBridge;
 
 import androidx.preference.PreferenceManager;
 
-public class BraveCommonApp extends BraveApp {
+public class BraveCommonApp extends android.app.Application {
     private BraveExtractorSettings extractorSettings;
 
     // keep a reference otherwise the listener will be garbage collected

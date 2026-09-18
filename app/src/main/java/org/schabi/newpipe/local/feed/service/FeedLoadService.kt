@@ -19,19 +19,17 @@
 
 package org.schabi.newpipe.local.feed.service
 
+import android.app.PendingIntent
 import android.app.Service
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
+import android.content.pm.ServiceInfo
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.app.PendingIntentCompat
-import androidx.core.app.ServiceCompat
-import androidx.core.content.ContextCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.Disposable
@@ -69,7 +67,7 @@ class FeedLoadService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        feedLoadManager = FeedLoadManager(this)
+        feedLoadManager = FeedLoadManager(applicationContext)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -92,10 +90,11 @@ class FeedLoadService : Service() {
         loadingDisposable = feedLoadManager.startLoading(groupId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                startForeground(NOTIFICATION_ID, notificationBuilder.build())
+                startForeground(NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
             }
             .subscribe { _, error: Throwable? ->
                 // explicitly mark error as nullable
+                loadingDisposable = null
                 if (error != null) {
                     Log.e(TAG, "Error while storing result", error)
                     handleError(error)
@@ -107,15 +106,29 @@ class FeedLoadService : Service() {
     }
 
     private fun disposeAll() {
-        unregisterReceiver(broadcastReceiver)
-        loadingDisposable?.dispose()
+        broadcastReceiver?.let { unregisterReceiver(it) }
+        broadcastReceiver = null
         notificationDisposable?.dispose()
+        notificationDisposable = null
     }
 
     private fun stopService() {
         disposeAll()
-        ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+        stopForeground(STOP_FOREGROUND_REMOVE)
         stopSelf()
+    }
+
+    override fun onTimeout(startId: Int, fgsType: Int) {
+        // Stop foreground work promptly; cooperative cancellation flushes collected feed results.
+        feedLoadManager.cancel()
+        stopService()
+    }
+
+    override fun onDestroy() {
+        feedLoadManager.cancel()
+        disposeAll()
+        // Do not dispose loading: its final buffered results must still reach the database.
+        super.onDestroy()
     }
 
     override fun onBind(intent: Intent): IBinder? {
@@ -136,8 +149,12 @@ class FeedLoadService : Service() {
     private lateinit var notificationBuilder: NotificationCompat.Builder
 
     private fun createNotification(): NotificationCompat.Builder {
-        val cancelActionIntent = PendingIntentCompat
-            .getBroadcast(this, NOTIFICATION_ID, Intent(ACTION_CANCEL), 0, false)
+        val cancelActionIntent = PendingIntent.getBroadcast(
+            this,
+            NOTIFICATION_ID,
+            Intent(ACTION_CANCEL).setPackage(packageName),
+            PendingIntent.FLAG_IMMUTABLE
+        )
 
         return NotificationCompat.Builder(this, getString(R.string.notification_channel_id))
             .setOngoing(true)
@@ -167,21 +184,12 @@ class FeedLoadService : Service() {
         notificationBuilder.setProgress(state.maxProgress, state.currentProgress, state.maxProgress == -1)
 
         if (state.maxProgress == -1) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) notificationBuilder.setContentInfo(null)
-            if (state.updateDescription.isNotEmpty()) notificationBuilder.setContentText(state.updateDescription)
             notificationBuilder.setContentText(state.updateDescription)
         } else {
             val progressText = state.currentProgress.toString() + "/" + state.maxProgress
 
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                if (state.updateDescription.isNotEmpty()) {
-                    notificationBuilder.setContentText("${state.updateDescription}  ($progressText)")
-                }
-            } else {
-                notificationBuilder.setContentInfo(progressText)
-                if (state.updateDescription.isNotEmpty()) {
-                    notificationBuilder.setContentText(state.updateDescription)
-                }
+            if (state.updateDescription.isNotEmpty()) {
+                notificationBuilder.setContentText("${state.updateDescription}  ($progressText)")
             }
         }
 
@@ -194,7 +202,7 @@ class FeedLoadService : Service() {
     // Notification Actions
     // /////////////////////////////////////////////////////////////////////////
 
-    private lateinit var broadcastReceiver: BroadcastReceiver
+    private var broadcastReceiver: BroadcastReceiver? = null
 
     private fun setupBroadcastReceiver() {
         broadcastReceiver = object : BroadcastReceiver() {
@@ -204,7 +212,7 @@ class FeedLoadService : Service() {
                 }
             }
         }
-        ContextCompat.registerReceiver(this, broadcastReceiver, IntentFilter(ACTION_CANCEL), ContextCompat.RECEIVER_NOT_EXPORTED)
+        registerReceiver(broadcastReceiver, IntentFilter(ACTION_CANCEL), RECEIVER_NOT_EXPORTED)
     }
 
     // /////////////////////////////////////////////////////////////////////////

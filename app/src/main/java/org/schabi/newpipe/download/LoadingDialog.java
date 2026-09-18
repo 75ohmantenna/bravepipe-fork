@@ -23,7 +23,10 @@ public class LoadingDialog extends DialogFragment {
     private static final String TAG = "LoadingDialog";
     private static final boolean DEBUG = MainActivity.DEBUG;
     private DownloadLoadingDialogBinding dialogLoadingBinding;
-    private final @StringRes int title;
+    private static final String TITLE = "title";
+
+    public LoadingDialog() {
+    }
 
     /**
      * Create a new LoadingDialog.
@@ -37,7 +40,9 @@ public class LoadingDialog extends DialogFragment {
      * @param title an informative title shown in the dialog's toolbar
      */
     public LoadingDialog(final @StringRes int title) {
-        this.title = title;
+        final Bundle arguments = new Bundle();
+        arguments.putInt(TITLE, title);
+        setArguments(arguments);
     }
 
     @Override
@@ -74,7 +79,7 @@ public class LoadingDialog extends DialogFragment {
         if (DEBUG) {
             Log.d(TAG, "initToolbar() called with: toolbar = [" + toolbar + "]");
         }
-        toolbar.setTitle(requireContext().getString(title));
+        toolbar.setTitle(requireArguments().getInt(TITLE, R.string.loading_metadata_title));
         toolbar.setNavigationOnClickListener(v -> dismiss());
 
     }

@@ -16,7 +16,6 @@ class EntryStore(private val db: EntryDatabase) {
         contentFilterData: List<Int>,
         sortFilterData: List<Int>
     ) {
-
         if (name.isBlank()) return
 
         if (!isNameAvailable(service, name)) return
@@ -59,7 +58,9 @@ class EntryStore(private val db: EntryDatabase) {
                     contentFilterData = contentFilterData,
                     sortFilterData = sortFilterData
                 )
-            } else it
+            } else {
+                it
+            }
         }
 
         if (!previousEntryFound) return false
@@ -69,7 +70,6 @@ class EntryStore(private val db: EntryDatabase) {
     }
 
     fun deleteEntry(createdAt: Long) {
-
         val newEntries = _state.value.entries.filter {
             it.createdAt != createdAt
         }
@@ -86,39 +86,39 @@ class EntryStore(private val db: EntryDatabase) {
 
         val duplicate = _state.value.entries.any {
             it.service == entry.service &&
-                    it.name.equals(newName, true) &&
-                    it.createdAt != createdAt
+                it.name.equals(newName, true) &&
+                it.createdAt != createdAt
         }
 
         if (duplicate) return
 
         val updated = _state.value.entries.map {
-
             if (it.createdAt == createdAt) {
                 it.copy(
                     name = newName,
                     modifiedAt = System.currentTimeMillis()
                 )
-            } else it
+            } else {
+                it
+            }
         }
 
         update(_state.value.copy(entries = updated))
     }
 
     fun updateLastUsed(createdAt: Long) {
-
         val updated = _state.value.entries.map {
-
             if (it.createdAt == createdAt) {
                 it.copy(lastUsed = System.currentTimeMillis())
-            } else it
+            } else {
+                it
+            }
         }
 
         update(_state.value.copy(entries = updated))
     }
 
     fun setDefault(service: String, createdAt: Long) {
-
         val filtered = _state.value.defaults.filter {
             it.service != service
         }
@@ -137,7 +137,6 @@ class EntryStore(private val db: EntryDatabase) {
     }
 
     private fun update(newState: DBState) {
-
         _state.value = newState
         db.save(newState)
     }
@@ -145,7 +144,7 @@ class EntryStore(private val db: EntryDatabase) {
     fun isNameAvailable(service: String, name: String): Boolean {
         return _state.value.entries.none {
             it.service == service &&
-                    it.name.equals(name, true)
+                it.name.equals(name, true)
         }
     }
 }

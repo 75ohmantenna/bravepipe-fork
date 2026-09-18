@@ -50,7 +50,7 @@ object BraveErrorInfoHelper {
                     val className = element.className.substringAfterLast(".")
                     Log.e(
                         "AttachExceptionData",
-                        "[${className}.${element.methodName}() line:${element.lineNumber}] DATA: $data"
+                        "[$className.${element.methodName}() line:${element.lineNumber}] DATA: $data"
                     )
                 } else {
                     Log.e(

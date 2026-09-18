@@ -27,7 +27,7 @@ import androidx.viewpager.widget.ViewPager;
 import static org.schabi.newpipe.ktx.ViewUtils.animateRotation;
 
 /**
- * Handle BravePipe specific features.
+ * Handle BravePipe-fork specific features.
  * <p>
  * It receives below events:
  * <ul>
@@ -46,7 +46,7 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         BraveEvents.EventBackPressedInCommentRepliesFragment.Handler,
         BraveEvents.PrefEventScrollOnlyBelowPlayer.Handler {
 
-    private FragmentVideoDetailBinding binding;
+    protected FragmentVideoDetailBinding binding;
     private int lastHeight = -1;
     private View.OnLayoutChangeListener onChangeLayoutListener = null;
 
@@ -137,6 +137,7 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
 
         onChangeLayoutListener = new View.OnLayoutChangeListener() {
             @Override
+            @SuppressWarnings("checkstyle:ParameterNumber") // fixed OnLayoutChangeListener contract
             public void onLayoutChange(
                     final View v,
                     final int left,
@@ -159,8 +160,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         return onChangeLayoutListener;
     }
 
-    // This method is already present in VideoDetailFragment but as we need to call
-    // it here too. We sneak it into this class here.
     public abstract void updateTabLayoutVisibility();
 
     /**
@@ -202,10 +201,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
         hostFragment.replaceFragment(new CommentRepliesFragment(comment), true);
     }
 
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void onViewCreated(
@@ -219,5 +214,6 @@ public abstract class BraveVideoDetailFragment extends BaseStateFragment<StreamI
     public void onDestroyView() {
         super.onDestroyView();
         BraveBus.getBus().unregister(this);
+        binding = null;
     }
 }

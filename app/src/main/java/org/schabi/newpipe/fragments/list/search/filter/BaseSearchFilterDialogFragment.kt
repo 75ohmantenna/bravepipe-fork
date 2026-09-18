@@ -103,27 +103,29 @@ abstract class BaseSearchFilterDialogFragment : DialogFragment() {
         val resetButton = toolbar.findViewById<View>(R.id.reset)
         resetButton.isEnabled = true
 
-        toolbar.setOnMenuItemClickListener(Toolbar.OnMenuItemClickListener { item: MenuItem? ->
-            if (item!!.itemId == R.id.search) {
-                searchViewModel!!.searchFilterLogic.prepareForSearch()
-                dismiss()
-                return@OnMenuItemClickListener true
-            } else if (item.itemId == R.id.reset) {
-                searchViewModel!!.searchFilterLogic.reset()
-                return@OnMenuItemClickListener true
-            } else if (item.itemId == R.id.save) {
-                onSavePresetClicked()
-                return@OnMenuItemClickListener true
-            } else if (item.itemId == R.id.saveAs) {
-                onSavePresetAsClicked()
-                return@OnMenuItemClickListener true
-            } else if (item.itemId == R.id.showPresets) {
-                PresetListDialogFragment()
-                    .show(parentFragmentManager, "fragment_search_presets")
-                return@OnMenuItemClickListener true
+        toolbar.setOnMenuItemClickListener(
+            Toolbar.OnMenuItemClickListener { item: MenuItem? ->
+                if (item!!.itemId == R.id.search) {
+                    searchViewModel!!.searchFilterLogic.prepareForSearch()
+                    dismiss()
+                    return@OnMenuItemClickListener true
+                } else if (item.itemId == R.id.reset) {
+                    searchViewModel!!.searchFilterLogic.reset()
+                    return@OnMenuItemClickListener true
+                } else if (item.itemId == R.id.save) {
+                    onSavePresetClicked()
+                    return@OnMenuItemClickListener true
+                } else if (item.itemId == R.id.saveAs) {
+                    onSavePresetAsClicked()
+                    return@OnMenuItemClickListener true
+                } else if (item.itemId == R.id.showPresets) {
+                    PresetListDialogFragment()
+                        .show(parentFragmentManager, "fragment_search_presets")
+                    return@OnMenuItemClickListener true
+                }
+                false
             }
-            false
-        })
+        )
     }
 
     private fun onSavePresetClicked() {
@@ -152,15 +154,13 @@ abstract class BaseSearchFilterDialogFragment : DialogFragment() {
             }
 
             searchViewModel!!.savePresetAs(name)
-
         }.show()
     }
 
     private fun showError(string: String) {
-        Log.e(TAG, "Error ${string}")
-        Toast.makeText(context, "Error ${string}", Toast.LENGTH_LONG).show()
+        Log.e(TAG, "Error $string")
+        Toast.makeText(context, "Error $string", Toast.LENGTH_LONG).show()
     }
-
 
     class SavePresetDialog(
         context: Context,

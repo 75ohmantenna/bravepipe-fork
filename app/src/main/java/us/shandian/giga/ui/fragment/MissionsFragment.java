@@ -8,7 +8,6 @@ import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,15 +27,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nononsenseapps.filepicker.Utils;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.settings.NewPipeSettings;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.FilePickerActivityHelper;
 
-import java.io.File;
 import java.io.IOException;
 
 import us.shandian.giga.get.DownloadMission;
@@ -264,23 +259,10 @@ public class MissionsFragment extends Fragment {
     private void recoverMission(@NonNull DownloadMission mission) {
         unsafeMissionTarget = mission;
 
-        final Uri initialPath;
-        if (NewPipeSettings.useStorageAccessFramework(mContext)) {
-            initialPath = null;
-        } else {
-            final File initialSavePath;
-            if (DownloadManager.TAG_AUDIO.equals(mission.storage.getType())) {
-                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MUSIC);
-            } else {
-                initialSavePath = NewPipeSettings.getDir(Environment.DIRECTORY_MOVIES);
-            }
-            initialPath = Uri.parse(initialSavePath.getAbsolutePath());
-        }
-
         NoFileManagerSafeGuard.launchSafe(
                 requestDownloadSaveAsLauncher,
                 StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
-                        mission.storage.getType(), initialPath),
+                        mission.storage.getType(), null),
                 TAG,
                 mContext
         );
@@ -327,15 +309,11 @@ public class MissionsFragment extends Fragment {
         }
 
         try {
-            Uri fileUri = result.getData().getData();
-            if (fileUri.getAuthority() != null && FilePickerActivityHelper.isOwnFileUri(mContext, fileUri)) {
-                fileUri = Uri.fromFile(Utils.getFileForUri(fileUri));
-            }
-
-            String tag = unsafeMissionTarget.storage.getTag();
+            final Uri fileUri = result.getData().getData();
+            final String tag = unsafeMissionTarget.storage.getTag();
             unsafeMissionTarget.storage = new StoredFileHelper(mContext, null, fileUri, tag);
             mAdapter.recoverMission(unsafeMissionTarget);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();
         }
     }

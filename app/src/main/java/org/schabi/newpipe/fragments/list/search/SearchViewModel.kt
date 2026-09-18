@@ -78,8 +78,9 @@ class SearchViewModel(
             userSelectedSortFilterList
         )
 
-        searchFilterLogic.setCallback { userSelectedContentFilter: List<FilterItem?>,
-                                        userSelectedSortFilter: List<FilterItem?>
+        searchFilterLogic.setCallback {
+                userSelectedContentFilter: List<FilterItem?>,
+                userSelectedSortFilter: List<FilterItem?>
             ->
             selectedContentFilterMutableLiveData.value =
                 userSelectedContentFilter as MutableList<FilterItem>
@@ -164,7 +165,7 @@ class SearchViewModel(
                 if (entry != null) {
                     searchFilterLogic.restorePreviouslySelectedFilters(
                         entry.contentFilterData,
-                        entry.sortFilterData,
+                        entry.sortFilterData
                     )
                     lastPresetId = entry.createdAt
                 } else {
@@ -175,8 +176,7 @@ class SearchViewModel(
         }
     }
 
-    fun savePreset(
-    ): Boolean {
+    fun savePreset(): Boolean {
         val currentService = getService().serviceInfo.name
         return entryStore.updateEntry(
             lastPresetId,
@@ -187,7 +187,7 @@ class SearchViewModel(
     }
 
     fun savePresetAs(
-        name: String,
+        name: String
     ) {
         val currentService = getService().serviceInfo.name
         entryStore.addEntry(

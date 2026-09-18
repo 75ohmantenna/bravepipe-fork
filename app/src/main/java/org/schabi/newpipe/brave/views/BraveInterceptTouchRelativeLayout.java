@@ -1,8 +1,6 @@
 package org.schabi.newpipe.brave.views;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -111,7 +109,6 @@ public class BraveInterceptTouchRelativeLayout extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public BraveInterceptTouchRelativeLayout(
             final Context context,
             final AttributeSet attrs,

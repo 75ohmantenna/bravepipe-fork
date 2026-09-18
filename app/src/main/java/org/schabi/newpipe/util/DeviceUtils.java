@@ -7,7 +7,6 @@ import android.app.UiModeManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
-import android.graphics.Point;
 import android.hardware.input.InputManager;
 import android.os.BatteryManager;
 import android.os.Build;
@@ -48,51 +47,10 @@ public final class DeviceUtils {
 
     // region: devices not supporting media tunneling / media tunneling blacklist
     /**
-     * <p>Formuler Z8 Pro, Z8, CC, Z Alpha, Z+ Neo.</p>
-     * <p>Blacklist reason: black screen</p>
-     * <p>Board: HiSilicon Hi3798MV200</p>
-     */
-    private static final boolean HI3798MV200 = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("Hi3798MV200");
-    /**
-     * <p>Zephir TS43UHD-2.</p>
-     * <p>Blacklist reason: black screen</p>
-     */
-    private static final boolean CVT_MT5886_EU_1G = Build.VERSION.SDK_INT == 24
-            && Build.DEVICE.equals("cvt_mt5886_eu_1g");
-    /**
-     * Hilife TV.
-     * <p>Blacklist reason: black screen</p>
-     */
-    private static final boolean REALTEKATV = Build.VERSION.SDK_INT == 25
-            && Build.DEVICE.equals("RealtekATV");
-    /**
      * <p>Phillips 4K (O)LED TV.</p>
      * Supports custom ROMs with different API levels
      */
-    private static final boolean PH7M_EU_5596 = Build.VERSION.SDK_INT >= 26
-            && Build.DEVICE.equals("PH7M_EU_5596");
-    /**
-     * <p>Philips QM16XE.</p>
-     * <p>Blacklist reason: black screen</p>
-     */
-    private static final boolean QM16XE_U = Build.VERSION.SDK_INT == 23
-            && Build.DEVICE.equals("QM16XE_U");
-    /**
-     * <p>Sony Bravia VH1.</p>
-     * <p>Processor: MT5895</p>
-     * <p>Blacklist reason: fullscreen crash / stuttering</p>
-     */
-    private static final boolean BRAVIA_VH1 = Build.VERSION.SDK_INT == 29
-            && Build.DEVICE.equals("BRAVIA_VH1");
-    /**
-     * <p>Sony Bravia VH2.</p>
-     * <p>Blacklist reason: fullscreen crash; this includes model A90J as reported in
-     * <a href="https://github.com/TeamNewPipe/NewPipe/issues/9023#issuecomment-1387106242">
-     * #9023</a></p>
-     */
-    private static final boolean BRAVIA_VH2 = Build.VERSION.SDK_INT == 29
-            && Build.DEVICE.equals("BRAVIA_VH2");
+    private static final boolean PH7M_EU_5596 = Build.DEVICE.equals("PH7M_EU_5596");
     /**
      * <p>Sony Bravia Android TV platform 2.</p>
      * Uses a MediaTek MT5891 (MT5596) SoC.
@@ -149,14 +107,12 @@ public final class DeviceUtils {
                 || pm.hasSystemFeature(PackageManager.FEATURE_LEANBACK);
 
         // from https://stackoverflow.com/a/58932366
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            final boolean isBatteryAbsent = context.getSystemService(BatteryManager.class)
-                    .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
-            isTv = isTv || (isBatteryAbsent
-                    && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
-                    && pm.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
-                    && pm.hasSystemFeature(PackageManager.FEATURE_ETHERNET));
-        }
+        final boolean isBatteryAbsent = context.getSystemService(BatteryManager.class)
+                .getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY) == 0;
+        isTv = isTv || (isBatteryAbsent
+                && !pm.hasSystemFeature(PackageManager.FEATURE_TOUCHSCREEN)
+                && pm.hasSystemFeature(PackageManager.FEATURE_USB_HOST)
+                && pm.hasSystemFeature(PackageManager.FEATURE_ETHERNET));
 
         DeviceUtils.isTV = isTv;
         return DeviceUtils.isTV;
@@ -287,7 +243,7 @@ public final class DeviceUtils {
     }
 
     public static boolean isInMultiWindow(final AppCompatActivity activity) {
-        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && activity.isInMultiWindowMode();
+        return activity.isInMultiWindowMode();
     }
 
     public static boolean hasAnimationsAnimatorDurationEnabled(final Context context) {
@@ -298,17 +254,11 @@ public final class DeviceUtils {
     }
 
     public static int getWindowHeight(@NonNull final WindowManager windowManager) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            final var windowMetrics = windowManager.getCurrentWindowMetrics();
-            final var windowInsets = windowMetrics.getWindowInsets();
-            final var insets = windowInsets.getInsetsIgnoringVisibility(
-                    WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
-            return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
-        } else {
-            final Point point = new Point();
-            windowManager.getDefaultDisplay().getSize(point);
-            return point.y;
-        }
+        final var windowMetrics = windowManager.getCurrentWindowMetrics();
+        final var windowInsets = windowMetrics.getWindowInsets();
+        final var insets = windowInsets.getInsetsIgnoringVisibility(
+                WindowInsets.Type.navigationBars() | WindowInsets.Type.displayCutout());
+        return windowMetrics.getBounds().height() - (insets.top + insets.bottom);
     }
 
     /**
@@ -324,13 +274,7 @@ public final class DeviceUtils {
      */
     public static boolean shouldSupportMediaTunneling() {
         // Maintainers note: update MEDIA_TUNNELING_DEVICES_UPDATE_APP_VERSION_CODE
-        return !HI3798MV200
-                && !CVT_MT5886_EU_1G
-                && !REALTEKATV
-                && !QM16XE_U
-                && !BRAVIA_VH1
-                && !BRAVIA_VH2
-                && !BRAVIA_ATV2
+        return !BRAVIA_ATV2
                 && !BRAVIA_ATV3_4K
                 && !PH7M_EU_5596
                 && !TX_50JXW834

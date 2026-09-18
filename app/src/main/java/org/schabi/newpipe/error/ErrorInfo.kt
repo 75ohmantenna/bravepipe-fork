@@ -286,7 +286,7 @@ class ErrorInfo private constructor(
                 throwable is ExtractionException ->
                     ErrorMessage(R.string.parsing_error)
 
-                // BravePipe: if enabled BraveRumbleCloudflareManager this Exception is rare
+                // BravePipe-fork: if enabled BraveRumbleCloudflareManager this Exception is rare
                 throwable is BraveCloudFlareChallengeException ->
                     ErrorMessage(R.string.brave_rumble_cf_exception_info)
 

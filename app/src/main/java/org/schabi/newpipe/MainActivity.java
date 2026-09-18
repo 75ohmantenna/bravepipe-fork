@@ -20,14 +20,12 @@
 
 package org.schabi.newpipe;
 
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -44,6 +42,7 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
@@ -52,6 +51,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
@@ -81,7 +83,6 @@ import org.schabi.newpipe.player.Player;
 import org.schabi.newpipe.player.event.OnKeyDownListener;
 import org.schabi.newpipe.player.helper.PlayerHolder;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
-import org.schabi.newpipe.settings.UpdateSettingsFragment;
 import org.schabi.newpipe.settings.migration.MigrationManager;
 import org.schabi.newpipe.util.Constants;
 import org.schabi.newpipe.util.DeviceUtils;
@@ -90,16 +91,12 @@ import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PeertubeHelper;
 import org.schabi.newpipe.util.PermissionHelper;
-import org.schabi.newpipe.util.ReleaseVersionUtil;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.StateSaver;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.FocusOverlayView;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -126,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
     private static final int ITEM_ID_DOWNLOADS = -4;
     private static final int ITEM_ID_HISTORY = -5;
     private static final int ITEM_ID_SETTINGS = 0;
-    private static final int ITEM_ID_DONATION = 1;
     private static final int ITEM_ID_ABOUT = 2;
 
     private static final int ORDER = 0;
@@ -134,6 +130,12 @@ public class MainActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedPrefEditor;
+    private final OnBackPressedCallback backCallback = new OnBackPressedCallback(true) {
+        @Override
+        public void handleOnBackPressed() {
+            handleBackPressed();
+        }
+    };
     /*//////////////////////////////////////////////////////////////////////////
     // Activity's LifeCycle
     //////////////////////////////////////////////////////////////////////////*/
@@ -172,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
                 .getHeaderView(0));
         toolbarLayoutBinding = mainBinding.toolbarLayout;
         setContentView(mainBinding.getRoot());
+        applyWindowInsets();
+        getOnBackPressedDispatcher().addCallback(this, backCallback);
 
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             initFragments();
@@ -194,35 +198,7 @@ public class MainActivity extends AppCompatActivity {
             // if this is enabled by the user.
             NotificationWorker.initialize(this);
         }
-        if (!UpdateSettingsFragment.wasUserAskedForConsent(this)
-                && !App.getInstance().isFirstRun()
-                && ReleaseVersionUtil.INSTANCE.isReleaseApk()) {
-            UpdateSettingsFragment.askForConsentToUpdateChecks(this);
-        }
-
-        // ReleaseVersionUtil.INSTANCE.isReleaseApk() will be true only for main official build
-        // We want every release build (nightly, nightly-refactor) to show the popup
-        if (!DEBUG) {
-            showKeepAndroidDialog();
-            showApi23RequirementDialog();
-        }
-
         MigrationManager.showUserInfoIfPresent(this);
-    }
-
-    @Override
-    protected void onPostCreate(final Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        final App app = App.getInstance();
-
-        if (sharedPreferences.getBoolean(app.getString(R.string.update_app_key), false)
-                && sharedPreferences
-                .getBoolean(app.getString(R.string.update_check_consent_key), false)) {
-            // Start the worker which is checking all conditions
-            // and eventually searching for a new version.
-            NewVersionWorker.enqueueNewVersionCheckingWork(app, false);
-        }
     }
 
     @Override
@@ -311,13 +287,8 @@ public class MainActivity extends AppCompatActivity {
                 .add(R.id.menu_options_about_group, ITEM_ID_SETTINGS, ORDER, R.string.settings)
                 .setIcon(R.drawable.ic_settings);
         drawerLayoutBinding.navigation.getMenu()
-                .add(R.id.menu_options_about_group, ITEM_ID_DONATION, ORDER,
-                        R.string.donation_title)
-                .setIcon(R.drawable.volunteer_activism_ic);
-        drawerLayoutBinding.navigation.getMenu()
                 .add(R.id.menu_options_about_group, ITEM_ID_ABOUT, ORDER, R.string.tab_about)
                 .setIcon(R.drawable.ic_info_outline);
-        BraveMainActivityHelper.addBraveDrawers(this, drawerLayoutBinding, ORDER);
     }
 
     private boolean drawerItemSelected(final MenuItem item) {
@@ -390,14 +361,10 @@ public class MainActivity extends AppCompatActivity {
             case ITEM_ID_SETTINGS:
                 NavigationHelper.openSettings(this);
                 break;
-            case ITEM_ID_DONATION:
-                ShareUtils.openUrlInBrowser(this, getString(R.string.donation_url));
-                break;
             case ITEM_ID_ABOUT:
                 NavigationHelper.openAbout(this);
                 break;
         }
-        BraveMainActivityHelper.onSelectedItemInDrawer(this, item);
     }
 
     private void setupDrawerHeader() {
@@ -596,17 +563,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @Override
-    public void onBackPressed() {
+    private void handleBackPressed() {
         if (DEBUG) {
             Log.d(TAG, "onBackPressed() called");
         }
 
-        if (DeviceUtils.isTv(this)) {
-            if (mainBinding.getRoot().isDrawerOpen(drawerLayoutBinding.navigation)) {
-                mainBinding.getRoot().closeDrawers();
-                return;
-            }
+        if (mainBinding.getRoot().isDrawerOpen(drawerLayoutBinding.navigation)) {
+            mainBinding.getRoot().closeDrawers();
+            return;
         }
 
         // In case bottomSheet is not visible on the screen or collapsed we can assume that the user
@@ -647,7 +611,12 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             finish();
         } else {
-            super.onBackPressed();
+            backCallback.setEnabled(false);
+            try {
+                getOnBackPressedDispatcher().onBackPressed();
+            } finally {
+                backCallback.setEnabled(true);
+            }
         }
     }
 
@@ -661,20 +630,9 @@ public class MainActivity extends AppCompatActivity {
                 return;
             }
         }
-        switch (requestCode) {
-            case PermissionHelper.DOWNLOADS_REQUEST_CODE:
-                NavigationHelper.openDownloads(this);
-                break;
-            case PermissionHelper.DOWNLOAD_DIALOG_REQUEST_CODE:
-                final Fragment fragment = getSupportFragmentManager()
-                        .findFragmentById(R.id.fragment_player_holder);
-                if (fragment instanceof VideoDetailFragment) {
-                    ((VideoDetailFragment) fragment).openDownloadDialog();
-                }
-                break;
-            case PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE:
-                NotificationWorker.initialize(this);
-                break;
+        if (requestCode == PermissionHelper.POST_NOTIFICATIONS_REQUEST_CODE
+                && grantResults.length > 0) {
+            NotificationWorker.initialize(this);
         }
     }
 
@@ -986,78 +944,25 @@ public class MainActivity extends AppCompatActivity {
                 || sheetState == BottomSheetBehavior.STATE_COLLAPSED;
     }
 
-    private void showKeepAndroidDialog() {
-        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final var lastCheckKey = getString(R.string.kao_last_checked_key);
-        final var lastCheck = Instant.ofEpochMilli(prefs.getLong(lastCheckKey, 0));
-        final var now = Instant.now();
-
-        if (lastCheck.plus(30, ChronoUnit.DAYS).isBefore(now)) {
-            final String detailsUrl = getKeepAndroidOpenDetailsUrl();
-            final var solutionUrl = "https://github.com/woheller69/FreeDroidWarn#solutions";
-
-            final var dialog = new AlertDialog.Builder(this)
-                    .setTitle("Keep Android Open")
-                    .setCancelable(false)
-                    .setMessage(R.string.kao_dialog_warning)
-                    .setPositiveButton(android.R.string.ok, (d, w) -> prefs.edit()
-                            .putLong(lastCheckKey, now.toEpochMilli())
-                            .apply())
-                    .setNeutralButton(R.string.kao_solution, null)
-                    .setNegativeButton(R.string.kao_dialog_more_info, null)
-                    .show();
-
-            // If we use setNeutralButton/setNegativeButton, dialog will close after pressing the
-            // buttons, but we want it to close only when positive button is pressed
-            dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, detailsUrl));
-            dialog.getButton(AlertDialog.BUTTON_NEUTRAL)
-                    .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, solutionUrl));
-        }
-    }
-
-    @NonNull
-    private static String getKeepAndroidOpenDetailsUrl() {
-        final var supportedLanguages = List.of("fr", "de", "ca", "es", "id", "it", "pl",
-                "pt", "cs", "sk", "fa", "ar", "tr", "el", "th", "ru", "uk", "ko", "zh", "ja");
-        final String kaoBaseUrl = "https://keepandroidopen.org/";
-        final var locale = Localization.getAppLocale();
-        if (supportedLanguages.contains(locale.getLanguage())) {
-            if ("zh".equals(locale.getLanguage())) {
-                return kaoBaseUrl + ("TW".equals(locale.getCountry()) ? "zh-TW" : "zh-CN");
-            } else {
-                return kaoBaseUrl + locale.getLanguage();
-            }
-        } else {
-            return kaoBaseUrl;
-        }
-    }
-
-    private void showApi23RequirementDialog() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return; // only show dialog on the devices that will stop being supported
-        }
-
-        final var prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        final var shownKey = getString(R.string.api23_requirement_dialog_shown_key);
-        if (prefs.getBoolean(shownKey, false)) {
-            return; // dialog was already shown in the past, no need to show it again
-        }
-
-        final var dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.api23_requirement_dialog_title)
-                .setCancelable(false)
-                .setMessage(R.string.api23_requirement_dialog_message)
-                .setPositiveButton(android.R.string.ok, (d, w) -> prefs.edit()
-                        .putBoolean(shownKey, true)
-                        .apply())
-                .setNegativeButton(R.string.api23_requirement_dialog_blogpost, null)
-                .show();
-
-        // If we use setNegativeButton, dialog will close after pressing the button,
-        // but we want it to close only when positive button is pressed
-        final var blogpostUrl = "https://newpipe.net/blog/pinned/announcement/drop-android-5/";
-        dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                .setOnClickListener(v -> ShareUtils.openUrlInBrowser(this, blogpostUrl));
+    private void applyWindowInsets() {
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
+        final View toolbar = toolbarLayoutBinding.getRoot();
+        final ViewGroup.MarginLayoutParams contentParams =
+                (ViewGroup.MarginLayoutParams) mainBinding.fragmentHolder.getLayoutParams();
+        final int toolbarHeight = contentParams.topMargin;
+        ViewCompat.setOnApplyWindowInsetsListener(mainBinding.getRoot(), (view, windowInsets) -> {
+            final var bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars()
+                    | WindowInsetsCompat.Type.displayCutout());
+            final var ime = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
+            toolbar.setPadding(bars.left, bars.top, bars.right, 0);
+            contentParams.setMargins(bars.left, toolbarHeight + bars.top, bars.right,
+                    Math.max(bars.bottom, ime.bottom));
+            mainBinding.fragmentHolder.setLayoutParams(contentParams);
+            drawerLayoutBinding.navigation.setPadding(bars.left, bars.top, bars.right,
+                    bars.bottom);
+            // The player container stays full bleed and handles its own insets.
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(mainBinding.getRoot());
     }
 }

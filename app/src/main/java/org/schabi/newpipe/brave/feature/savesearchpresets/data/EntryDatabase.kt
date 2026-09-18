@@ -67,7 +67,6 @@ class EntryDatabase(context: Context) {
         val entriesArray = root.getArray(EntryDbKeys.ENTRIES)
 
         if (entriesArray != null) {
-
             for (i in 0 until entriesArray.size) {
                 val obj = entriesArray.getObject(i)
 
@@ -92,7 +91,7 @@ class EntryDatabase(context: Context) {
                         obj.getLong(EntryDbKeys.MODIFIED_AT),
                         obj.getLong(EntryDbKeys.LAST_USED),
                         contentFilterData,
-                        sortFilterData,
+                        sortFilterData
                     )
                 )
             }

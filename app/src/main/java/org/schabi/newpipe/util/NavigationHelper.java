@@ -8,7 +8,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -325,8 +324,8 @@ public final class NavigationHelper {
                 new AlertDialog.Builder(context)
                         .setMessage(R.string.no_player_found)
                         .setPositiveButton(R.string.install, (dialog, which) ->
-                                ShareUtils.installApp(context,
-                                        context.getString(R.string.vlc_package)))
+                                ShareUtils.openUrlInApp(context,
+                                        context.getString(R.string.vlc_website)))
                         .setNegativeButton(R.string.cancel, (dialog, which) ->
                                 Log.i("NavigationHelper", "You unlocked a secret unicorn."))
                         .show();
@@ -688,19 +687,12 @@ public final class NavigationHelper {
     }
 
     public static void openDownloads(final Activity activity) {
-        if (PermissionHelper.checkStoragePermissions(
-                activity, PermissionHelper.DOWNLOADS_REQUEST_CODE)) {
-            final Intent intent = new Intent(activity, DownloadActivity.class);
-            activity.startActivity(intent);
-        }
+        final Intent intent = new Intent(activity, DownloadActivity.class);
+        activity.startActivity(intent);
     }
 
     public static Intent getPlayQueueActivityIntent(final Context context) {
-        final Intent intent = new Intent(context, PlayQueueActivity.class);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        }
-        return intent;
+        return new Intent(context, PlayQueueActivity.class);
     }
 
     public static void openPlayQueue(final Context context) {

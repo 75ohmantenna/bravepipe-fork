@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.icu.text.CompactDecimalFormat;
-import android.os.Build;
 import android.text.BidiFormatter;
 import android.text.TextUtils;
 import android.text.format.DateUtils;
@@ -31,8 +30,6 @@ import org.schabi.newpipe.extractor.localization.DateWrapper;
 import org.schabi.newpipe.extractor.stream.AudioStream;
 import org.schabi.newpipe.extractor.stream.AudioTrackType;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.time.OffsetDateTime;
 import java.time.ZoneId;
@@ -183,30 +180,8 @@ public final class Localization {
     }
 
     public static String shortCount(@NonNull final Context context, final long count) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            return CompactDecimalFormat.getInstance(getAppLocale(),
-                    CompactDecimalFormat.CompactStyle.SHORT).format(count);
-        }
-
-        final double value = (double) count;
-        if (count >= 1000000000) {
-            final double shortenedValue = value / 1000000000;
-            final int scale = shortenedValue >= 100 ? 0 : 1;
-            return context.getString(R.string.short_billion,
-                    localizeNumber(round(shortenedValue, scale)));
-        } else if (count >= 1000000) {
-            final double shortenedValue = value / 1000000;
-            final int scale = shortenedValue >= 100 ? 0 : 1;
-            return context.getString(R.string.short_million,
-                    localizeNumber(round(shortenedValue, scale)));
-        } else if (count >= 1000) {
-            final double shortenedValue = value / 1000;
-            final int scale = shortenedValue >= 100 ? 0 : 1;
-            return context.getString(R.string.short_thousand,
-                    localizeNumber(round(shortenedValue, scale)));
-        } else {
-            return localizeNumber(value);
-        }
+        return CompactDecimalFormat.getInstance(getAppLocale(),
+                CompactDecimalFormat.CompactStyle.SHORT).format(count);
     }
 
     public static String listeningCount(@NonNull final Context context, final long listeningCount) {
@@ -422,10 +397,6 @@ public final class Localization {
         }
     }
 
-    private static double round(final double value, final int scale) {
-        return new BigDecimal(value).setScale(scale, RoundingMode.HALF_UP).doubleValue();
-    }
-
     /**
      * A wrapper around {@code context.getResources().getQuantityString()} with some safeguard.
      *
@@ -466,11 +437,7 @@ public final class Localization {
         final String appLanguageKey = context.getString(R.string.app_language_key);
         final String appLanguageValue = sp.getString(appLanguageKey, null);
         if (appLanguageValue != null) {
-            // The app language key is used on Android versions < 33
-            // for more info, see ContentSettingsFragment
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                sp.edit().remove(appLanguageKey).apply();
-            }
+            sp.edit().remove(appLanguageKey).apply();
             final String appLanguageDefaultValue =
                     context.getString(R.string.default_localization_key);
             if (!appLanguageValue.equals(appLanguageDefaultValue)) {

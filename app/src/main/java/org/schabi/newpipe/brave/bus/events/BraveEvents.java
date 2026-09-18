@@ -4,7 +4,7 @@ import org.schabi.newpipe.brave.BraveConstants;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
 
 /**
- * Home of all BravePipe Events.
+ * Home of all BravePipe-fork Events.
  * <p>
  * Most Events also have an handler interface that is implemented and than
  * called via the {@link org.greenrobot.eventbus.EventBus} Subscribe notation.
@@ -55,10 +55,10 @@ public class BraveEvents {
         }
     }
 
-    ///region SharedPreferences Events for some BravePipe settings.
+    ///region SharedPreferences Events for some BravePipe-fork settings.
 
     /**
-     * Event for BravePipe config option show the comment replies in same 'fragment' than comments.
+     * Event for the BravePipe-fork option that shows comment replies in the same fragment.
      */
     public static class PrefEventSameWindowCommentReplies {
         public boolean doSameWindowCommentReplies = false;
@@ -70,7 +70,7 @@ public class BraveEvents {
     }
 
     /**
-     * Event for BravePipe config option to scroll only below player in the ViewPager.
+     * Event for BravePipe-fork config option to scroll only below player in the ViewPager.
      */
     public static class PrefEventScrollOnlyBelowPlayer {
         public boolean doScrollInViewPager = false;

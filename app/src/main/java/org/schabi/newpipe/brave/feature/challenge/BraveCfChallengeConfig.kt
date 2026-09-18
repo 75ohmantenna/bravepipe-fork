@@ -11,8 +11,7 @@ import org.schabi.newpipe.util.ThemeHelper
 
 object BraveCfChallengeConfig {
 
-    fun updateFloatingVisible(isInteractive: Boolean) =
-        ChallengeSettings.update { it.copy(isInteractive = isInteractive) }
+    fun updateFloatingVisible(isInteractive: Boolean) = ChallengeSettings.update { it.copy(isInteractive = isInteractive) }
 
     fun init(isInteractive: Boolean) {
         ChallengeSettings.update { current ->
