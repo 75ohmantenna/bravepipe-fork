@@ -206,7 +206,7 @@ public class YoutubePlaylistExtractor extends PlaylistExtractor {
                     .getObject(THUMBNAIL)
                     .getArray(THUMBNAILS);
         } else {
-            playlistMetadataThumbnailsArray = playlistInfo.getObject("thumbnailRenderer")
+            playlistMetadataThumbnailsArray = getPlaylistInfo().getObject("thumbnailRenderer")
                     .getObject("playlistVideoThumbnailRenderer")
                     .getObject(THUMBNAIL)
                     .getArray(THUMBNAILS);
