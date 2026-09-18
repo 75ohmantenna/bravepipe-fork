@@ -288,6 +288,6 @@ open class App :
 
     override fun onTerminate() {
         super.onTerminate()
-        BraveDownloaderImplUtils.CONFIG.unRegisterOnChanged(applicationContext)
+        BraveDownloaderImplUtils.CONFIG.unregisterOnChanged(applicationContext)
     }
 }

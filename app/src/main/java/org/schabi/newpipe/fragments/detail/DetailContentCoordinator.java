@@ -237,6 +237,9 @@ final class DetailContentCoordinator {
 
     public void scrollToComment(final CommentsInfoItem comment) {
         final int commentsTabPos = pageAdapter.getItemPositionByTitle(COMMENTS_TAB_TAG);
+        if (commentsTabPos < 0) {
+            return;
+        }
         final Fragment tabFragment = pageAdapter.getItem(commentsTabPos);
         if (!(tabFragment instanceof CommentsFragment)) {
             return;

@@ -290,9 +290,9 @@ public final class BraveDownloaderImplUtils {
             }
         }
 
-        public void unRegisterOnChanged(@NonNull final Context context) {
+        public void unregisterOnChanged(@NonNull final Context context) {
             PreferenceManager.getDefaultSharedPreferences(context)
-                    .registerOnSharedPreferenceChangeListener(this);
+                    .unregisterOnSharedPreferenceChangeListener(this);
         }
     }
 }
