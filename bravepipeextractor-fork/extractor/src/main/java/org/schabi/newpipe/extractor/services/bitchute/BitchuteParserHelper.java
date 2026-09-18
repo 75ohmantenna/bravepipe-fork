@@ -24,11 +24,11 @@ import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -43,8 +43,15 @@ import static org.schabi.newpipe.extractor.services.bitchute.BitchuteService.BIT
 
 public final class BitchuteParserHelper {
 
+    private static final int COMMENT_AUTH_CACHE_SIZE = 64;
     private static final Map<String, String> VIDEO_ID_2_COMMENT_CF_AUTH =
-            new ConcurrentHashMap<>();
+            Collections.synchronizedMap(new LinkedHashMap<String, String>(
+                    COMMENT_AUTH_CACHE_SIZE, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(final Map.Entry<String, String> eldest) {
+                    return size() > COMMENT_AUTH_CACHE_SIZE;
+                }
+            });
     // the time interval the searchAuthTimestamp/Nonce value should be used (in seconds)
     // before renewing
     private static final int SEARCH_AUTH_DATA_TIMEOUT = 60 * 10;
@@ -121,11 +128,9 @@ public final class BitchuteParserHelper {
         } else {
             final Downloader downloader = NewPipe.getDownloader();
             final Response response = downloader.get(url);
-            final Pattern pattern = Pattern.compile("\\{cf_auth: '([^']+)'");
-            final Matcher match = pattern.matcher(response.responseBody());
 
-            if (match.find()) {
-                jsonArray = getComments(match.group(1), commentCount);
+            if (extractAndStoreCfAuth(id, response.responseBody())) {
+                jsonArray = getComments(Objects.requireNonNull(getCfAuth(id)), commentCount);
             } else {
                 // could not find anything so empty array
                 jsonArray = new JsonArray();
