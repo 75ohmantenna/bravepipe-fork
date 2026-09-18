@@ -42,7 +42,9 @@ public class RumbleChannelLinkHandlerFactory extends ListLinkHandlerFactory {
             final URL urlObj = Utils.stringToURL(url).toURI().toURL();
             String path = urlObj.getPath();
 
-            if (!Utils.isHTTP(urlObj)) { // TODO check if it is a rumble URL
+            if (!Utils.isHTTP(urlObj)
+                    || !("rumble.com".equalsIgnoreCase(urlObj.getHost())
+                    || "www.rumble.com".equalsIgnoreCase(urlObj.getHost()))) {
                 throw new ParsingException("the URL given is not a Rumble-URL");
             }
 

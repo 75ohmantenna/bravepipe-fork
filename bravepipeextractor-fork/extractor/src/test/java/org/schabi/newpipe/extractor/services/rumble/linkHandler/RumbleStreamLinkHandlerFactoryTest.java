@@ -96,8 +96,27 @@ public class RumbleStreamLinkHandlerFactoryTest {
     public void testAcceptUrl() throws ParsingException {
         final String validShortVideoUrl = "https://rumble.com/vdofb7";
         final String validLongVideoUrl = "https://rumble.com/vg1hkl-youtube-ceo-wins-major-award-and-you-wont-believe-for-what.html";
+        final String validWwwVideoUrl = "https://www.rumble.com/vdofb7";
 
         assertTrue(linkHandler.acceptUrl(validShortVideoUrl));
         assertTrue(linkHandler.acceptUrl(validLongVideoUrl));
+        assertTrue(linkHandler.acceptUrl(validWwwVideoUrl));
+        assertThrows(ParsingException.class,
+                () -> linkHandler.fromUrl("https://notrumble.com/vdofb7"));
+    }
+
+    @Test
+    public void preservesShortsCanonicalUrlWithoutSharedState() throws Exception {
+        assertEquals("https://rumble.com/shorts/v6abcde",
+                linkHandler.fromUrl("https://rumble.com/shorts/v6abcde-title.html").getUrl());
+        assertEquals("https://rumble.com/vdofb7", linkHandler.fromId("vdofb7").getUrl());
+    }
+
+    @Test
+    public void acceptsEmbedUrlsAndUsesTheFinalIdSegment() throws Exception {
+        assertEquals("https://rumble.com/embed/v5pv5f",
+                linkHandler.fromUrl("https://rumble.com/embed/v5pv5f/").getUrl());
+        assertEquals("v5pv5f",
+                linkHandler.fromUrl("https://www.rumble.com/embed/ufe9n.v5pv5f").getId());
     }
 }

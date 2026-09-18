@@ -136,7 +136,7 @@ public final class InnertubeClientRequestInfo {
                 new InnertubeClientRequestInfo.ClientInfo(ANDROID_CLIENT_NAME,
                         ANDROID_CLIENT_VERSION, ANDROID_CLIENT_ID, WATCH_CLIENT_SCREEN, null),
                 new InnertubeClientRequestInfo.DeviceInfo(MOBILE_CLIENT_PLATFORM, null, null,
-                        "Android", "16", 36));
+                        "Android", "11", 30));
     }
 
     @Nonnull

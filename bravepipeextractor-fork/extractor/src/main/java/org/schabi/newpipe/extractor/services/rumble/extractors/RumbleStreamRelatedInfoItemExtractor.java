@@ -131,7 +131,7 @@ public class RumbleStreamRelatedInfoItemExtractor implements StreamInfoItemExtra
                 final String classStr =
                         element.getElementsByClass("user-image").first().attr("class");
                 channelUrl = RumbleParsingHelper
-                        .moreTotalMessMethodToGenerateUploaderUrl(classStr, doc, getUploaderName());
+                        .inferUploaderUrl(classStr, doc, getUploaderName());
             }
             return channelUrl;
         } catch (final Exception e) {

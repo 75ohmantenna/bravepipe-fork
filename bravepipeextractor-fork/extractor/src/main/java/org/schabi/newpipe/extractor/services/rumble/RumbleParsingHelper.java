@@ -111,8 +111,8 @@ public final class RumbleParsingHelper {
         }
     }
 
-    public static String totalMessMethodToGetUploaderThumbnailUrl(final String classStr,
-                                                                  final Document doc)
+    public static String extractUploaderAvatarUrl(final String classStr,
+                                                  final Document doc)
             throws ParsingException {
         return extractThumbnail(doc, classStr,
                 () -> {
@@ -129,11 +129,7 @@ public final class RumbleParsingHelper {
     }
 
     /**
-     * TODO implement a faster/easier way to achive same goals
-     *
-     * @param classStr
-     * @return null if there was a letter and not a image, xor url with the uploader thumbnail
-     * @throws ParsingException
+     * @return {@code null} when Rumble renders a letter avatar instead of an image
      */
     public static String extractThumbnail(final Document document,
                                           final String classStr,
@@ -169,12 +165,12 @@ public final class RumbleParsingHelper {
         throw new ParsingException("Could not extract thumbUrl: " + thumbIdentifier);
     }
 
-    public static String moreTotalMessMethodToGenerateUploaderUrl(final String classStr,
-                                                                  final Document doc,
-                                                                  final String uploaderName)
+    public static String inferUploaderUrl(final String classStr,
+                                          final Document doc,
+                                          final String uploaderName)
             throws ParsingException, MalformedURLException {
 
-        final String thumbnailUrl = totalMessMethodToGetUploaderThumbnailUrl(classStr, doc);
+        final String thumbnailUrl = extractUploaderAvatarUrl(classStr, doc);
         if (thumbnailUrl == null) {
             final String uploaderUrl = Rumble.getBaseUrl() + "/user/" + uploaderName
                     // remove all non alphanumeric characters except dash

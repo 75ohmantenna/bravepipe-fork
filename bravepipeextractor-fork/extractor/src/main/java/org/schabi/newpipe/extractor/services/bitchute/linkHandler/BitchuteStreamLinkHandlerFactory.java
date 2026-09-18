@@ -7,8 +7,12 @@ import org.schabi.newpipe.extractor.utils.Utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Set;
 
 public class BitchuteStreamLinkHandlerFactory extends LinkHandlerFactory {
+
+    private static final Set<String> SUPPORTED_HOSTS = Set.of(
+            "bitchute.com", "www.bitchute.com", "old.bitchute.com");
 
     private static final BitchuteStreamLinkHandlerFactory INSTANCE =
             new BitchuteStreamLinkHandlerFactory();
@@ -17,7 +21,7 @@ public class BitchuteStreamLinkHandlerFactory extends LinkHandlerFactory {
         return INSTANCE;
     }
 
-    private static String assertsID(final String id) throws ParsingException {
+    private static String assertId(final String id) throws ParsingException {
         if (id == null || !id.matches("[a-zA-Z0-9_-]{11,}")) {
             throw new ParsingException("Given string is not a Bitchute Video ID");
         }
@@ -35,25 +39,23 @@ public class BitchuteStreamLinkHandlerFactory extends LinkHandlerFactory {
         try {
             url = Utils.stringToURL(urlString);
         } catch (final MalformedURLException e) {
-            throw new IllegalArgumentException("The given URL is not valid");
+            throw new ParsingException("The given URL is not valid", e);
         }
 
-        String path = url.getPath();
-
-        if (!path.isEmpty()) {
-            //remove leading "/"
-            path = path.substring(1);
+        if (!Utils.isHTTP(url) || !SUPPORTED_HOSTS.contains(url.getHost().toLowerCase())) {
+            throw new ParsingException("URL is not hosted by BitChute: " + urlString);
         }
 
-        try {
-            final String[] splitPath = path.split("/", 0);
-            if (splitPath[0].equalsIgnoreCase("video") || splitPath[0].equalsIgnoreCase("embed")) {
-                return assertsID(splitPath[1]);
-            }
-        } catch (final ArrayIndexOutOfBoundsException e) {
-            throw new ParsingException("Error getting ID");
+        final String[] pathSegments = url.getPath().split("/");
+        if (pathSegments.length >= 3
+                && ("video".equalsIgnoreCase(pathSegments[1])
+                || "embed".equalsIgnoreCase(pathSegments[1]))) {
+            return assertId(pathSegments[2]);
         }
-        throw new ParsingException("Error url not suitable: " + urlString);
+        if (pathSegments.length >= 4 && "torrent".equalsIgnoreCase(pathSegments[1])) {
+            return assertId(pathSegments[2]);
+        }
+        throw new ParsingException("Unsupported BitChute video URL: " + urlString);
     }
 
     @Override

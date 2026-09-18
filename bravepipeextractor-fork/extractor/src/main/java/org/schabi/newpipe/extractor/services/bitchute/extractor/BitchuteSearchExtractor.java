@@ -206,7 +206,7 @@ public class BitchuteSearchExtractor extends SearchExtractor {
         sortQueryJson.value("offset", offset);
         sortQueryJson.value("query", searchString);
 
-        return BitchuteParserHelper.callJsonDjangoApi(sortQueryJson, endpoint);
+        return BitchuteParserHelper.callJsonApi(sortQueryJson, endpoint);
     }
 
     private static class BitchuteQuickStreamInfoItemExtractor implements StreamInfoItemExtractor {

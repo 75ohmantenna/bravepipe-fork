@@ -26,9 +26,7 @@ import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.DES
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.IOS_CLIENT_VERSION;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.IOS_DEVICE_MODEL;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.IOS_USER_AGENT_VERSION;
-import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.VISIONOS_CLIENT_VERSION;
-import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.VISIONOS_DEVICE_MODEL;
-import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.VISIONOS_USER_AGENT_VERSION;
+import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.VISIONOS_USER_AGENT;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_CLIENT_ID;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_CLIENT_NAME;
 import static org.schabi.newpipe.extractor.services.youtube.ClientsConstants.WEB_HARDCODED_CLIENT_VERSION;
@@ -1095,9 +1093,7 @@ public final class YoutubeParsingHelper {
     @Nonnull
     public static String getAndroidUserAgent(@Nullable final Localization localization) {
         return "com.google.android.youtube/" + ANDROID_CLIENT_VERSION
-                + " (Linux; U; Android 15; "
-                + (localization != null ? localization : Localization.DEFAULT).getCountryCode()
-                + ") gzip";
+                + " (Linux; U; Android 11) gzip";
     }
 
     /**
@@ -1136,11 +1132,7 @@ public final class YoutubeParsingHelper {
      */
     @Nonnull
     public static String getVisionOsUserAgent(@Nullable final Localization localization) {
-        return "com.google.visionos.youtube/" + VISIONOS_CLIENT_VERSION + "("
-                + VISIONOS_DEVICE_MODEL + "; U; CPU visionOS " + VISIONOS_USER_AGENT_VERSION
-                + " like Mac OS X; "
-                + (localization != null ? localization : Localization.DEFAULT).getCountryCode()
-                + ")";
+        return VISIONOS_USER_AGENT;
     }
 
     /**

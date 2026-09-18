@@ -93,7 +93,7 @@ public class BitchuteTrendingKioskExtractor extends KioskExtractor<StreamInfoIte
 
         return new ResultsStreamVideos(
                 BitchuteParserHelper
-                        .callJsonDjangoApi(query, ResultsStreamVideos.ENDPOINT));
+                        .callJsonApi(query, ResultsStreamVideos.ENDPOINT));
     }
 
     private String remapper() {
