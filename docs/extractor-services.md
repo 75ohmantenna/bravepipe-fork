@@ -39,6 +39,10 @@ Run extractor unit tests independently:
 ./bravepipeextractor-fork/gradlew -p bravepipeextractor-fork :extractor:test
 ```
 
+Snapshot publications default to `<extractor-version>-SNAPSHOT`. Override that
+version when publishing with `-PextractorSnapshotVersion=<version>`; configuring
+or building the extractor does not require Git metadata.
+
 Run the application checks and both APK builds:
 
 ```sh
