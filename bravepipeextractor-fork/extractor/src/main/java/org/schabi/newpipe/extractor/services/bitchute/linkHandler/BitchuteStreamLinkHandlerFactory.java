@@ -7,6 +7,7 @@ import org.schabi.newpipe.extractor.utils.Utils;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Locale;
 import java.util.Set;
 
 public class BitchuteStreamLinkHandlerFactory extends LinkHandlerFactory {
@@ -42,7 +43,8 @@ public class BitchuteStreamLinkHandlerFactory extends LinkHandlerFactory {
             throw new ParsingException("The given URL is not valid", e);
         }
 
-        if (!Utils.isHTTP(url) || !SUPPORTED_HOSTS.contains(url.getHost().toLowerCase())) {
+        if (!Utils.isHTTP(url)
+                || !SUPPORTED_HOSTS.contains(url.getHost().toLowerCase(Locale.ROOT))) {
             throw new ParsingException("URL is not hosted by BitChute: " + urlString);
         }
 

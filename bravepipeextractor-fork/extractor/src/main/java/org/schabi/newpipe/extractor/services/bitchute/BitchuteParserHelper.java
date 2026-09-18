@@ -25,6 +25,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -221,7 +222,7 @@ public final class BitchuteParserHelper {
                 final String reason = error.getString("message", "BitChute API request failed");
                 if (response.responseCode() == 403
                         && "reason".equals(error.getString("context"))
-                        && reason.toLowerCase().contains("location")) {
+                        && reason.toLowerCase(Locale.ROOT).contains("location")) {
                     throw new GeographicRestrictionException(reason);
                 }
                 if (response.responseCode() == 404 && reason.contains("Not Found")) {

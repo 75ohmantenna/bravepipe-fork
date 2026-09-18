@@ -19,6 +19,7 @@ import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
@@ -280,10 +281,10 @@ public final class RumbleParsingHelper {
         final int code = response.responseCode();
         if (code == 403) {
             final String errMsg = code + " - " + getErrFromTitle(doc);
-            if (errMsg.toLowerCase().contains("private")) {
+            if (errMsg.toLowerCase(Locale.ROOT).contains("private")) {
                 throw new PrivateContentException(errMsg);
             } else if (doc.selectFirst("span#challenge-error-text") != null
-                    || errMsg.toLowerCase().contains("just a moment...")) {
+                    || errMsg.toLowerCase(Locale.ROOT).contains("just a moment...")) {
                 throw new BraveCloudFlareChallengeException(
                         errMsg + " for " + response.latestUrl());
             } else {
