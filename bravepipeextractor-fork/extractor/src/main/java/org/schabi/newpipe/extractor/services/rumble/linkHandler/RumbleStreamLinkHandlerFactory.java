@@ -23,7 +23,7 @@ public final class RumbleStreamLinkHandlerFactory extends LinkHandlerFactory {
     }
 
     private String assertId(final String id) throws ParsingException {
-        if (id == null || !id.matches(VIDEO_ID_PATTERN)) {
+        if (id == null || "videos".equals(id) || !id.matches(VIDEO_ID_PATTERN)) {
             throw new ParsingException("Given string is not a Rumble Video ID: " + id);
         }
         return id;
