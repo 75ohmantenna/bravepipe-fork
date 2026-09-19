@@ -127,15 +127,17 @@ public final class PlayerHolder {
             Log.d(TAG, "startService() called with playAfterConnect=" + playAfterConnect);
         }
         final Context context = getCommonContext();
+        serviceConnection.doPlayAfterConnect(playAfterConnect);
         setListener(newListener);
-        if (isBound()) {
+        if (playerService != null) {
             return;
         }
         final Intent intent = new Intent(context, PlayerService.class);
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
         ContextCompat.startForegroundService(context, intent);
-        serviceConnection.doPlayAfterConnect(playAfterConnect);
-        bind(Context.BIND_AUTO_CREATE);
+        if (!isBound()) {
+            bind(Context.BIND_AUTO_CREATE);
+        }
     }
 
     public void stopService() {

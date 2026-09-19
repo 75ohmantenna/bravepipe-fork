@@ -193,7 +193,6 @@ public class StatisticsPlaylistFragment
 
     @Override
     public void onDestroyView() {
-        disposables.clear();
         super.onDestroyView();
 
         if (itemListAdapter != null) {

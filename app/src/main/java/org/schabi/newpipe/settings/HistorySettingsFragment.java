@@ -75,13 +75,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         return true;
     }
 
-    @Override
-    public void onDestroy() {
-        disposables.dispose();
-        recordManager = null;
-        super.onDestroy();
-    }
-
     private static Disposable getDeletePlaybackStatesDisposable(
             @NonNull final Context context, final HistoryRecordManager recordManager) {
         return recordManager.deleteCompleteStreamStateHistory()

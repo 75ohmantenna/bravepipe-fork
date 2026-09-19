@@ -277,6 +277,16 @@ public class DownloadManager {
         }
     }
 
+    @Nullable
+    public DownloadMission findPendingMission(final long timestamp) {
+        synchronized (this) {
+            return mMissionsPending.stream()
+                    .filter(mission -> mission.timestamp == timestamp)
+                    .findFirst()
+                    .orElse(null);
+        }
+    }
+
     public void pauseMission(DownloadMission mission) {
         if (mission.running) {
             mission.setEnqueued(false);

@@ -349,13 +349,8 @@ public class DownloadDialog extends BraveDownloadDialog
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
-    }
-
-    @Override
     public void onDestroyView() {
+        disposables.clear();
         downloadServiceBinding.unbind();
         okButton = null;
         dialogBinding = null;
