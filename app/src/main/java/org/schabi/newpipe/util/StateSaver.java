@@ -39,7 +39,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * A way to save state to disk or in a in-memory map
@@ -49,6 +52,15 @@ public final class StateSaver {
     public static final String KEY_SAVED_STATE = "key_saved_state";
     private static final ConcurrentHashMap<String, Queue<Object>> STATE_OBJECTS_HOLDER =
             new ConcurrentHashMap<>();
+    // Cleanup tasks consult this live set so that state created after cleanup was requested is not
+    // deleted when the task eventually runs.
+    private static final Set<String> ACTIVE_STATE_FILES = ConcurrentHashMap.newKeySet();
+    private static final ExecutorService FILE_DELETE_EXECUTOR =
+            Executors.newSingleThreadExecutor(runnable -> {
+                final Thread thread = new Thread(runnable, "state-saver-file-cleanup");
+                thread.setDaemon(true);
+                return thread;
+            });
     private static final String TAG = "StateSaver";
     private static final String CACHE_DIR_NAME = "state_cache";
     private static String cacheDirPath;
@@ -121,7 +133,9 @@ public final class StateSaver {
             }
 
             final File file = new File(savedState.getPathFileSaved());
+            ACTIVE_STATE_FILES.add(file.getAbsolutePath());
             if (!file.exists()) {
+                ACTIVE_STATE_FILES.remove(file.getAbsolutePath());
                 if (MainActivity.DEBUG) {
                     Log.d(TAG, "Cache file doesn't exist: " + file.getAbsolutePath());
                 }
@@ -140,6 +154,7 @@ public final class StateSaver {
 
             return savedState;
         } catch (final Exception e) {
+            ACTIVE_STATE_FILES.remove(new File(savedState.getPathFileSaved()).getAbsolutePath());
             Log.e(TAG, "Failed to restore state", e);
         }
         return null;
@@ -222,6 +237,7 @@ public final class StateSaver {
             }
         }
 
+        File stateFile = null;
         try {
             File cacheDir = new File(cacheDirPath);
             if (!cacheDir.exists()) {
@@ -238,11 +254,12 @@ public final class StateSaver {
                 }
             }
 
-            final File file = new File(cacheDir, prefixFileName
+            stateFile = new File(cacheDir, prefixFileName
                     + (TextUtils.isEmpty(suffixFileName) ? ".cache" : suffixFileName));
-            if (file.exists() && file.length() > 0) {
+            ACTIVE_STATE_FILES.add(stateFile.getAbsolutePath());
+            if (stateFile.exists() && stateFile.length() > 0) {
                 // If the file already exists, just return it
-                return new SavedState(prefixFileName, file.getAbsolutePath());
+                return new SavedState(prefixFileName, stateFile.getAbsolutePath());
             } else {
                 // Delete any file that contains the prefix
                 final File[] files = cacheDir.listFiles((dir, name) ->
@@ -252,20 +269,23 @@ public final class StateSaver {
                 }
             }
 
-            try (FileOutputStream fileOutputStream = new FileOutputStream(file);
+            try (FileOutputStream fileOutputStream = new FileOutputStream(stateFile);
                  ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream)) {
                 outputStream.writeObject(savedObjects);
             }
 
-            return new SavedState(prefixFileName, file.getAbsolutePath());
+            return new SavedState(prefixFileName, stateFile.getAbsolutePath());
         } catch (final Exception e) {
+            if (stateFile != null) {
+                ACTIVE_STATE_FILES.remove(stateFile.getAbsolutePath());
+            }
             Log.e(TAG, "Failed to save state", e);
         }
         return null;
     }
 
     /**
-     * Delete the cache file contained in the savedState.
+     * Schedule deletion of the cache file contained in the savedState.
      * Also remove any possible-existing value in the memory-cache.
      *
      * @param savedState the saved state to delete
@@ -277,16 +297,14 @@ public final class StateSaver {
 
         if (savedState != null && !savedState.getPathFileSaved().isEmpty()) {
             STATE_OBJECTS_HOLDER.remove(savedState.getPrefixFileSaved());
-            try {
-                //noinspection ResultOfMethodCallIgnored
-                new File(savedState.getPathFileSaved()).delete();
-            } catch (final Exception ignored) {
-            }
+            final File stateFile = new File(savedState.getPathFileSaved());
+            ACTIVE_STATE_FILES.remove(stateFile.getAbsolutePath());
+            FILE_DELETE_EXECUTOR.execute(() -> StateSaverFileCleanup.delete(stateFile));
         }
     }
 
     /**
-     * Clear all the files in cache (in memory and disk).
+     * Clear the in-memory cache immediately and schedule deletion of inactive disk cache files.
      */
     public static void clearStateFiles() {
         if (MainActivity.DEBUG) {
@@ -294,20 +312,10 @@ public final class StateSaver {
         }
 
         STATE_OBJECTS_HOLDER.clear();
-        File cacheDir = new File(cacheDirPath);
-        if (!cacheDir.exists()) {
-            return;
-        }
-
-        cacheDir = new File(cacheDir, CACHE_DIR_NAME);
-        if (cacheDir.exists()) {
-            final File[] list = cacheDir.listFiles();
-            if (list != null) {
-                for (final File file : list) {
-                    file.delete();
-                }
-            }
-        }
+        ACTIVE_STATE_FILES.clear();
+        final File cacheDir = new File(cacheDirPath, CACHE_DIR_NAME);
+        FILE_DELETE_EXECUTOR.execute(() ->
+                StateSaverFileCleanup.deleteInactiveFiles(cacheDir, ACTIVE_STATE_FILES));
     }
 
     /**
