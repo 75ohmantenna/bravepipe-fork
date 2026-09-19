@@ -97,41 +97,44 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
             db.execSQL(MISSIONS_CREATE_TABLE);
 
-            Cursor cursor = db.query(MISSIONS_TABLE_NAME_v2, null, null,
-                    null, null, null, KEY_TIMESTAMP);
+            try (Cursor cursor = db.query(MISSIONS_TABLE_NAME_v2, null, null,
+                    null, null, null, KEY_TIMESTAMP)) {
+                if (cursor.getCount() > 0) {
+                    db.beginTransaction();
+                    try {
+                        while (cursor.moveToNext()) {
+                            ContentValues values = new ContentValues();
+                            values.put(
+                                    KEY_SOURCE,
+                                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_SOURCE))
+                            );
+                            values.put(
+                                    KEY_DONE,
+                                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_DONE))
+                            );
+                            values.put(
+                                    KEY_TIMESTAMP,
+                                    cursor.getLong(cursor.getColumnIndexOrThrow(KEY_TIMESTAMP))
+                            );
+                            values.put(KEY_KIND,
+                                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_KIND)));
+                            values.put(KEY_PATH, Uri.fromFile(
+                                    new File(
+                                            cursor.getString(cursor.getColumnIndexOrThrow(
+                                                    KEY_LOCATION)),
+                                            cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME))
+                                    )
+                            ).toString());
 
-            int count = cursor.getCount();
-            if (count > 0) {
-                db.beginTransaction();
-                while (cursor.moveToNext()) {
-                    ContentValues values = new ContentValues();
-                    values.put(
-                            KEY_SOURCE,
-                            cursor.getString(cursor.getColumnIndexOrThrow(KEY_SOURCE))
-                    );
-                    values.put(
-                            KEY_DONE,
-                            cursor.getString(cursor.getColumnIndexOrThrow(KEY_DONE))
-                    );
-                    values.put(
-                            KEY_TIMESTAMP,
-                            cursor.getLong(cursor.getColumnIndexOrThrow(KEY_TIMESTAMP))
-                    );
-                    values.put(KEY_KIND, cursor.getString(cursor.getColumnIndexOrThrow(KEY_KIND)));
-                    values.put(KEY_PATH, Uri.fromFile(
-                            new File(
-                                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_LOCATION)),
-                                    cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME))
-                            )
-                    ).toString());
-
-                    db.insert(FINISHED_TABLE_NAME, null, values);
+                            db.insert(FINISHED_TABLE_NAME, null, values);
+                        }
+                        db.setTransactionSuccessful();
+                    } finally {
+                        db.endTransaction();
+                    }
                 }
-                db.setTransactionSuccessful();
-                db.endTransaction();
             }
 
-            cursor.close();
             db.execSQL("DROP TABLE " + MISSIONS_TABLE_NAME_v2);
             oldVersion++;
         }
@@ -190,18 +193,18 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
 
     public ArrayList<FinishedMission> loadFinishedMissions() {
         SQLiteDatabase database = getReadableDatabase();
-        Cursor cursor = database.query(FINISHED_TABLE_NAME, null, null,
-                null, null, null, KEY_TIMESTAMP + " DESC");
+        try (Cursor cursor = database.query(FINISHED_TABLE_NAME, null, null,
+                null, null, null, KEY_TIMESTAMP + " DESC")) {
+            int count = cursor.getCount();
+            if (count == 0) return new ArrayList<>(1);
 
-        int count = cursor.getCount();
-        if (count == 0) return new ArrayList<>(1);
+            ArrayList<FinishedMission> result = new ArrayList<>(count);
+            while (cursor.moveToNext()) {
+                result.add(getMissionFromCursor(cursor));
+            }
 
-        ArrayList<FinishedMission> result = new ArrayList<>(count);
-        while (cursor.moveToNext()) {
-            result.add(getMissionFromCursor(cursor));
+            return result;
         }
-
-        return result;
     }
 
     public void addFinishedMission(DownloadMission downloadMission) {
