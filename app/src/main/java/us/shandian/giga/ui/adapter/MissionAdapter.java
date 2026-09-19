@@ -344,7 +344,7 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
     }
 
     @Override
-    protected void braveOpen(Mission mission) {
+    protected void openInternally(Mission mission) {
         if (checkInvalidFile(mission)) return;
 
         String mimeType = resolveMimeType(mission);
@@ -363,7 +363,7 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
     }
 
     @Override
-    protected void braveOpenExternally(Mission mission) {
+    protected void openExternally(Mission mission) {
         if (checkInvalidFile(mission)) return;
 
         String mimeType = resolveMimeType(mission);
@@ -737,7 +737,8 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
             return true;
         }
 
-        if (braveSponsorBlockOpenExternally(id, h.item.mission)) {
+        if (id == R.id.open_externally) {
+            openExternally(h.item.mission);
             return true;
         }
 
@@ -920,7 +921,7 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
 
             itemView.setOnClickListener(v -> {
                 if (item.mission instanceof FinishedMission)
-                    braveSponsorOpenHelper(item);
+                    openFinishedMission(item);
             });
 
             itemView.setOnLongClickListener(v -> {

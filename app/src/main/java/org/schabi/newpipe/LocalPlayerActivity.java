@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -17,17 +16,11 @@ import com.google.android.exoplayer2.PlaybackParameters;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.grack.nanojson.JsonObject;
-import com.grack.nanojson.JsonParser;
-
 import org.schabi.newpipe.player.LocalPlayer;
 import org.schabi.newpipe.player.LocalPlayerListener;
 import org.schabi.newpipe.player.helper.PlaybackParameterDialog;
 import org.schabi.newpipe.util.ThemeHelper;
-import org.schabi.newpipe.util.VideoSegment;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 public class LocalPlayerActivity extends AppCompatActivity implements Player.Listener,
         LocalPlayerListener, PlaybackParameterDialog.Callback {
@@ -46,7 +39,7 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
         final Intent intent = getIntent();
 
         final String uri = parseUriFromIntent(intent);
-        final VideoSegment[] segments = parseSegmentsFromIntent(intent);
+        final SponsorBlockSegment[] segments = parseSegmentsFromIntent(intent);
 
         localPlayer = new LocalPlayer(this);
         localPlayer.initialize(uri, segments);
@@ -130,31 +123,8 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
         return intent.getDataString();
     }
 
-    private static VideoSegment[] parseSegmentsFromIntent(final Intent intent) {
-        final List<VideoSegment> result = new ArrayList<>();
-
-        final String segmentsJson = intent.getStringExtra("segments");
-
-        if (segmentsJson != null && segmentsJson.length() > 0) {
-            try {
-                final JsonObject obj = JsonParser.object().from(segmentsJson);
-
-                for (final Object item : obj.getArray("segments")) {
-                    final JsonObject itemObject = (JsonObject) item;
-
-                    final double startTime = itemObject.getDouble("start");
-                    final double endTime = itemObject.getDouble("end");
-                    final String category = itemObject.getString("category");
-
-                    final VideoSegment segment = new VideoSegment(startTime, endTime, category);
-                    result.add(segment);
-                }
-            } catch (final Exception e) {
-                Log.e(TAG, "Error initializing segments", e);
-            }
-        }
-
-        return result.toArray(new VideoSegment[0]);
+    private static SponsorBlockSegment[] parseSegmentsFromIntent(final Intent intent) {
+        return SponsorBlockSegment.fromJson(intent.getStringExtra("segments"));
     }
 
     private void setKeepScreenOn(final boolean keepScreenOn) {

@@ -1,16 +1,16 @@
 package org.schabi.newpipe.download;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import org.schabi.newpipe.databinding.DownloadDialogBinding;
-import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 import org.schabi.newpipe.extractor.stream.VideoStream;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
-import org.schabi.newpipe.util.SponsorBlockUtils;
-import org.schabi.newpipe.util.VideoSegment;
+import org.schabi.newpipe.util.SponsorBlock;
+import org.schabi.newpipe.util.SponsorBlockSegment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +28,10 @@ import static org.schabi.newpipe.ktx.ViewUtils.animate;
 import static org.schabi.newpipe.util.ListHelper.getStreamsOfSpecifiedDelivery;
 
 public abstract class BraveDownloadDialog extends DialogFragment {
+    private static final String TAG = BraveDownloadDialog.class.getSimpleName();
 
-    private VideoSegment[] segments;
-    private Disposable youtubeVideoSegmentsDisposable;
+    private SponsorBlockSegment[] sponsorBlockSegments = new SponsorBlockSegment[0];
+    private Disposable sponsorBlockDisposable;
 
     protected List<VideoStream> braveAddHlsStreams(
             final StreamInfo info,
@@ -42,44 +43,35 @@ public abstract class BraveDownloadDialog extends DialogFragment {
 
     @Override
     public void onDestroyView() {
-        if (youtubeVideoSegmentsDisposable != null) {
-            youtubeVideoSegmentsDisposable.dispose();
+        if (sponsorBlockDisposable != null) {
+            sponsorBlockDisposable.dispose();
         }
         super.onDestroyView();
     }
 
-    // SponsorBlock related methods
-    protected void braveSponsorBlockCheckForYoutubeVideoSegments(
+    protected void loadSponsorBlockSegments(
             final StreamInfo currentInfo,
             final MenuItem okButton,
             final DownloadDialogBinding dialogBinding) {
-        // only lookup SponsorBlock for youtube
-        if (currentInfo.getServiceId() != ServiceList.YouTube.getServiceId()) {
+        final Context applicationContext = requireContext().getApplicationContext();
+        if (!SponsorBlock.canFetch(applicationContext, currentInfo)) {
             return;
         }
 
         showLoading(dialogBinding);
-        okButton.setEnabled(false); // disable until segments fetched
-        youtubeVideoSegmentsDisposable = Single.fromCallable(() -> {
-                    VideoSegment[] videoSegments = null;
-                    try {
-                        videoSegments = SponsorBlockUtils
-                                .getYouTubeVideoSegments(getContext(), currentInfo);
-                    } catch (final Exception e) {
-                        // TODO: handle?
-                    }
-
-                    return videoSegments == null
-                            ? new VideoSegment[0]
-                            : videoSegments;
-                })
+        okButton.setEnabled(false);
+        sponsorBlockDisposable = Single.fromCallable(
+                        () -> SponsorBlock.getSegments(applicationContext, currentInfo))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(videoSegments -> {
-                    segments = videoSegments;
-                    okButton.setEnabled(true);
-                    hideLoading(dialogBinding);
-                });
+                .doFinally(() -> {
+                    if (getView() != null) {
+                        okButton.setEnabled(true);
+                        hideLoading(dialogBinding);
+                    }
+                })
+                .subscribe(segments -> sponsorBlockSegments = segments,
+                        error -> Log.w(TAG, "SponsorBlock lookup failed", error));
     }
 
     private void showLoading(final DownloadDialogBinding dialogBinding) {
@@ -92,6 +84,7 @@ public abstract class BraveDownloadDialog extends DialogFragment {
         dialogBinding.fileName.setVisibility(View.VISIBLE);
     }
 
+    @SuppressWarnings("checkstyle:ParameterNumber")
     protected void braveDownloadStartMissionWrapper(
             final Context context,
             final String[] urls,
@@ -104,6 +97,6 @@ public abstract class BraveDownloadDialog extends DialogFragment {
             final long nearLength,
             final ArrayList<MissionRecoveryInfo> recoveryInfo) {
         DownloadManagerService.startMission(context, urls, storage, kind, threads,
-                streamInfo, psName, psArgs, nearLength, recoveryInfo, segments);
+                streamInfo, psName, psArgs, nearLength, recoveryInfo, sponsorBlockSegments);
     }
 }

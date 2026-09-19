@@ -13,8 +13,8 @@ import androidx.preference.Preference;
 import androidx.preference.TwoStatePreference;
 
 import org.schabi.newpipe.R;
+import org.schabi.newpipe.util.SponsorBlockSettings;
 
-import java.util.HashSet;
 
 public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
     private final LocalNetworkPermissionGate localNetworkPermission =
@@ -77,12 +77,8 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
             new AlertDialog.Builder(p.getContext())
                     .setMessage(R.string.sponsor_block_confirm_clear_whitelist)
                     .setPositiveButton(R.string.yes, (dialog, which) -> {
-                        getPreferenceManager()
-                                .getSharedPreferences()
-                                .edit()
-                                .putStringSet(getString(
-                                        R.string.sponsor_block_whitelist_key), new HashSet<>())
-                                .apply();
+                        new SponsorBlockSettings(p.getContext(), getPreferenceManager()
+                                .getSharedPreferences()).clearIgnoredUploaders();
                         Toast.makeText(p.getContext(),
                                 R.string.sponsor_block_whitelist_cleared_toast,
                                 Toast.LENGTH_SHORT).show();
@@ -123,22 +119,15 @@ public class SponsorBlockSettingsFragment extends BasePreferenceFragment {
     }
 
     private void updateDependencies(final Preference preference, final Object newValue) {
-        // This is a workaround to force dependency updates for custom preferences.
-
-        // sponsor_block_api_url_key
-        if (preference.getKey().equals(getString(R.string.sponsor_block_api_url_key))) {
-            findPreference(getString(R.string.sponsor_block_enable_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_notifications_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_categories_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
-            findPreference(getString(R.string.sponsor_block_clear_whitelist_key))
-                    .onDependencyChanged(preference,
-                            newValue == null || newValue.equals(""));
+        final boolean disabled = newValue == null || newValue.equals("");
+        final int[] dependentKeys = {
+            R.string.sponsor_block_enable_key,
+            R.string.sponsor_block_notifications_key,
+            R.string.sponsor_block_categories_key,
+            R.string.sponsor_block_clear_whitelist_key
+        };
+        for (final int key : dependentKeys) {
+            findPreference(getString(key)).onDependencyChanged(preference, disabled);
         }
     }
 }

@@ -4,14 +4,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.settings.custom.EditColorPreference;
+import org.schabi.newpipe.util.SponsorBlockCategory;
 
 public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragment {
     @Override
@@ -34,30 +33,10 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
                                         .getSharedPreferences()
                                         .edit();
 
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_sponsor_color_key,
-                                R.color.sponsor_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_intro_color_key,
-                                R.color.intro_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_outro_color_key,
-                                R.color.outro_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_interaction_color_key,
-                                R.color.interaction_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_self_promo_color_key,
-                                R.color.self_promo_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_non_music_color_key,
-                                R.color.non_music_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_preview_color_key,
-                                R.color.preview_segment);
-                        setColorPreference(editor,
-                                R.string.sponsor_block_category_filler_color_key,
-                                R.color.filler_segment);
+                        for (final SponsorBlockCategory category
+                                : SponsorBlockCategory.values()) {
+                            setColorPreference(editor, category);
+                        }
 
                         editor.apply();
 
@@ -73,11 +52,12 @@ public class SponsorBlockCategoriesSettingsFragment extends BasePreferenceFragme
     }
 
     private void setColorPreference(final SharedPreferences.Editor editor,
-                                    @StringRes final int resId,
-                                    @ColorRes final int colorId) {
-        final String colorStr = "#" + Integer.toHexString(getResources().getColor(colorId));
-        editor.putString(getString(resId), colorStr);
-        final EditColorPreference colorPreference = findPreference(getString(resId));
+                                    final SponsorBlockCategory category) {
+        final String colorStr = "#" + Integer.toHexString(
+                getResources().getColor(category.defaultColor()));
+        editor.putString(getString(category.colorKey()), colorStr);
+        final EditColorPreference colorPreference =
+                findPreference(getString(category.colorKey()));
         colorPreference.setText(colorStr);
     }
 }

@@ -53,7 +53,7 @@ import org.schabi.newpipe.util.ThemeHelper;
 import java.util.List;
 import java.util.Optional;
 
-import static org.schabi.newpipe.util.SponsorBlockUtils.markSegments;
+import static org.schabi.newpipe.util.SponsorBlockSeekBar.markSegments;
 
 public final class PlayQueueActivity extends AppCompatActivity
         implements PlayerEventListener, SeekBar.OnSeekBarChangeListener,

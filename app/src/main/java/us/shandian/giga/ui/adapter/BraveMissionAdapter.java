@@ -11,31 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import us.shandian.giga.get.Mission;
 import us.shandian.giga.service.DownloadManager;
 
-// this is sponsorblock related stuff
 public abstract class BraveMissionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    protected void braveSponsorOpenHelper(final DownloadManager.MissionItem item) {
+    protected void openFinishedMission(final DownloadManager.MissionItem item) {
         final Context context = App.getInstance();
-        final SharedPreferences mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        if (mPrefs.getBoolean(context
+        final SharedPreferences preferences =
+                PreferenceManager.getDefaultSharedPreferences(context);
+        if (preferences.getBoolean(context
                 .getString(R.string.enable_local_player_key), false)) {
-            braveOpen(item.mission);
+            openInternally(item.mission);
         } else {
-            braveOpenExternally(item.mission);
+            openExternally(item.mission);
         }
     }
 
-    protected boolean braveSponsorBlockOpenExternally(int id, Mission mission) {
-        if (id == R.id.open_externally) {
-            braveOpenExternally(mission);
-            return true;
-        }
-        return false;
-    }
+    protected abstract void openInternally(Mission mission);
 
-    // the abstract method is only to mark what belongs to sponsorblock
-    protected abstract void braveOpen(Mission mission);
-
-    // the abstract method is only to mark what belongs to sponsorblock
-    protected abstract void braveOpenExternally(Mission mission);
+    protected abstract void openExternally(Mission mission);
 }
