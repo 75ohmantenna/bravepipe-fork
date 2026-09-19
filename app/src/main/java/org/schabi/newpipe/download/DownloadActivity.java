@@ -63,6 +63,9 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     private void updateFragments() {
+        if (getSupportFragmentManager().findFragmentByTag(MISSIONS_FRAGMENT_TAG) != null) {
+            return;
+        }
         final MissionsFragment fragment = new MissionsFragment();
 
         getSupportFragmentManager().beginTransaction()

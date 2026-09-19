@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 /**
  * Owns the paired bind/unbind lifecycle for one Android service connection.
  *
- * <p>Android requires the same context and connection for both operations, and calling
- * {@code unbindService} after a failed bind is an error. Keeping that state here makes those
- * invariants explicit and gives every owner an idempotent cleanup operation.</p>
+ * <p>Android requires the same context and connection for both operations, including when
+ * {@code bindService} returns {@code false} or throws {@link SecurityException}. Keeping that
+ * pairing here gives every owner an idempotent cleanup operation.</p>
  */
 public final class ServiceBinding {
     private final Context context;
@@ -36,9 +36,20 @@ public final class ServiceBinding {
      */
     public boolean bind(final int flags) {
         if (!bound) {
-            bound = context.bindService(intent, connection, flags);
+            bound = true;
+            final boolean serviceAvailable;
+            try {
+                serviceAvailable = context.bindService(intent, connection, flags);
+            } catch (final SecurityException exception) {
+                unbind();
+                throw exception;
+            }
+            if (!serviceAvailable) {
+                unbind();
+            }
+            return serviceAvailable;
         }
-        return bound;
+        return true;
     }
 
     /**

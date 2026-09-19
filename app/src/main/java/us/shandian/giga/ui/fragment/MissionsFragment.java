@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,7 +64,9 @@ public class MissionsFragment extends Fragment {
     private boolean mListening;
     private boolean mForceUpdate;
 
-    private DownloadMission unsafeMissionTarget = null;
+    private MissionRecoveryViewModel recoveryState;
+    private AlertDialog clearHistoryDialog;
+    private AlertDialog deleteFilesDialog;
     private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
             registerForActivityResult(new StartActivityForResult(), this::requestDownloadSaveAsResult);
     private final ServiceConnection mConnection = new ServiceConnection() {
@@ -84,6 +87,7 @@ public class MissionsFragment extends Fragment {
             setMenuAvailable(true);
             setAdapterButtons();
             updateList();
+            recoverPendingMission();
 
             if (isResumed()) {
                 resumeAdapter();
@@ -97,6 +101,12 @@ public class MissionsFragment extends Fragment {
 
 
     };
+
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recoveryState = new ViewModelProvider(this).get(MissionRecoveryViewModel.class);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -114,6 +124,9 @@ public class MissionsFragment extends Fragment {
         mGridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
+                if (mAdapter == null) {
+                    return 1;
+                }
                 switch (mAdapter.getItemViewType(position)) {
                     case DownloadManager.SPECIAL_PENDING:
                     case DownloadManager.SPECIAL_FINISHED:
@@ -141,8 +154,13 @@ public class MissionsFragment extends Fragment {
             mServiceBinding.unbind();
             mServiceBinding = null;
         }
+        if (mList != null) {
+            mList.setLayoutManager(null);
+        }
         mList = null;
         mEmpty = null;
+        mGridManager = null;
+        mLinearManager = null;
         mSwitch = null;
         mClear = null;
         mStart = null;
@@ -168,6 +186,11 @@ public class MissionsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
+        if ((itemId == R.id.switch_mode || itemId == R.id.clear_list
+                || itemId == R.id.start_downloads || itemId == R.id.pause_downloads)
+                && (mAdapter == null || mBinder == null)) {
+            return true;
+        }
         if (itemId == R.id.switch_mode) {
             mLinear = !mLinear;
             updateList();
@@ -188,27 +211,43 @@ public class MissionsFragment extends Fragment {
     }
 
     public void showClearDownloadHistoryPrompt() {
+        if (clearHistoryDialog != null) {
+            return;
+        }
         // ask the user whether he wants to just clear history or instead delete files on disk
-        new AlertDialog.Builder(requireContext())
+        clearHistoryDialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.clear_download_history)
                 .setMessage(R.string.confirm_prompt)
                 // Intentionally misusing buttons' purpose in order to achieve good order
                 .setNegativeButton(R.string.clear_download_history, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(false))
+                        clearFinishedDownloads(false))
                 .setNeutralButton(R.string.cancel, null)
                 .setPositiveButton(R.string.delete_downloaded_files, (dialog, which) ->
                         showDeleteDownloadedFilesConfirmationPrompt())
-                .show();
+                .create();
+        clearHistoryDialog.setOnDismissListener(dialog -> clearHistoryDialog = null);
+        clearHistoryDialog.show();
     }
 
     public void showDeleteDownloadedFilesConfirmationPrompt() {
+        if (deleteFilesDialog != null) {
+            return;
+        }
         // make sure the user confirms once more before deleting files on disk
-        new AlertDialog.Builder(requireContext())
+        deleteFilesDialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.delete_downloaded_files_confirm)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(true))
-                .show();
+                        clearFinishedDownloads(true))
+                .create();
+        deleteFilesDialog.setOnDismissListener(dialog -> deleteFilesDialog = null);
+        deleteFilesDialog.show();
+    }
+
+    private void clearFinishedDownloads(final boolean deleteFiles) {
+        if (mAdapter != null) {
+            mAdapter.clearFinishedDownloads(deleteFiles);
+        }
     }
 
     private void updateList() {
@@ -260,7 +299,7 @@ public class MissionsFragment extends Fragment {
     }
 
     private void recoverMission(@NonNull DownloadMission mission) {
-        unsafeMissionTarget = mission;
+        recoveryState.begin(mission);
 
         NoFileManagerSafeGuard.launchSafe(
                 requestDownloadSaveAsLauncher,
@@ -285,22 +324,38 @@ public class MissionsFragment extends Fragment {
     }
 
     private void requestDownloadSaveAsResult(final ActivityResult result) {
-        if (result.getResultCode() != Activity.RESULT_OK) {
+        if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null
+                || result.getData().getData() == null) {
+            recoveryState.clear();
             return;
         }
 
-        if (unsafeMissionTarget == null || result.getData() == null || mAdapter == null) {
+        recoveryState.setDestination(result.getData().getData());
+        recoverPendingMission();
+    }
+
+    private void recoverPendingMission() {
+        final Long missionTimestamp = recoveryState.getMissionTimestamp();
+        final Uri destination = recoveryState.getDestination();
+        if (missionTimestamp == null || destination == null || mAdapter == null
+                || mBinder == null) {
             return;
         }
 
+        final DownloadMission mission = mBinder.getDownloadManager()
+                .findPendingMission(missionTimestamp);
+        if (mission == null) {
+            recoveryState.clear();
+            return;
+        }
         try {
-            final Uri fileUri = result.getData().getData();
-            final String tag = unsafeMissionTarget.storage.getTag();
-            unsafeMissionTarget.storage = new StoredFileHelper(requireContext(), null,
-                    fileUri, tag);
-            mAdapter.recoverMission(unsafeMissionTarget);
+            final String tag = mission.storage.getTag();
+            mission.storage = new StoredFileHelper(requireContext(), null, destination, tag);
+            mAdapter.recoverMission(mission);
         } catch (final IOException e) {
             Toast.makeText(requireContext(), R.string.general_error, Toast.LENGTH_LONG).show();
+        } finally {
+            recoveryState.clear();
         }
     }
 
@@ -336,6 +391,15 @@ public class MissionsFragment extends Fragment {
 
     private void releaseAdapter() {
         setMenuAvailable(false);
+        if (clearHistoryDialog != null) {
+            clearHistoryDialog.dismiss();
+        }
+        if (deleteFilesDialog != null) {
+            deleteFilesDialog.dismiss();
+        }
+        if (mList != null) {
+            mList.setAdapter(null);
+        }
         if (mAdapter != null) {
             if (mBinder != null && mListening) {
                 mBinder.removeMissionEventListener(mAdapter);
