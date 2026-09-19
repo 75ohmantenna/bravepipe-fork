@@ -23,6 +23,7 @@ import org.schabi.newpipe.player.event.PlayerServiceEventListener;
 import org.schabi.newpipe.player.event.PlayerServiceExtendedEventListener;
 import org.schabi.newpipe.player.playqueue.PlayQueue;
 import org.schabi.newpipe.util.NavigationHelper;
+import org.schabi.newpipe.util.ServiceBinding;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -46,7 +47,7 @@ public final class PlayerHolder {
     @Nullable private PlayerServiceExtendedEventListener listener;
 
     private final PlayerServiceConnection serviceConnection = new PlayerServiceConnection();
-    private boolean bound;
+    @Nullable private ServiceBinding serviceBinding;
     @Nullable private PlayerService playerService;
 
     private Optional<Player> getPlayer() {
@@ -88,7 +89,7 @@ public final class PlayerHolder {
     }
 
     public boolean isBound() {
-        return bound;
+        return serviceBinding != null && serviceBinding.isBound();
     }
 
     public int getQueueSize() {
@@ -126,19 +127,17 @@ public final class PlayerHolder {
             Log.d(TAG, "startService() called with playAfterConnect=" + playAfterConnect);
         }
         final Context context = getCommonContext();
+        serviceConnection.doPlayAfterConnect(playAfterConnect);
         setListener(newListener);
-        if (bound) {
+        if (playerService != null) {
             return;
         }
-        // startService() can be called concurrently and it will give a random crashes
-        // and NullPointerExceptions inside the service because the service will be
-        // bound twice. Prevent it with unbinding first
-        unbind(context);
         final Intent intent = new Intent(context, PlayerService.class);
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
         ContextCompat.startForegroundService(context, intent);
-        serviceConnection.doPlayAfterConnect(playAfterConnect);
-        bind(context);
+        if (!isBound()) {
+            bind(Context.BIND_AUTO_CREATE);
+        }
     }
 
     public void stopService() {
@@ -149,7 +148,7 @@ public final class PlayerHolder {
             playerService.destroyPlayerAndStopService();
         }
         final Context context = getCommonContext();
-        unbind(context);
+        unbind();
         // destroyPlayerAndStopService() already runs the next line of code, but run it again just
         // to make sure to stop the service even if playerService is null by any chance.
         context.stopService(new Intent(context, PlayerService.class));
@@ -174,8 +173,7 @@ public final class PlayerHolder {
                 Log.d(TAG, "Player service is disconnected");
             }
 
-            final Context context = getCommonContext();
-            unbind(context);
+            unbind();
         }
 
         @Override
@@ -200,40 +198,39 @@ public final class PlayerHolder {
         }
     }
 
-    private void bind(final Context context) {
+    private void bind(final int flags) {
         if (DEBUG) {
             Log.d(TAG, "bind() called");
         }
-        // BIND_AUTO_CREATE starts the service if it's not already running
-        bound = bind(context, Context.BIND_AUTO_CREATE);
-        if (!bound) {
-            context.unbindService(serviceConnection);
-        }
+        getServiceBinding().bind(flags);
     }
 
-    public void tryBindIfNeeded(final Context context) {
-        if (!bound) {
+    public void tryBindIfNeeded() {
+        if (!isBound()) {
             // flags=0 means the service will not be started if it does not already exist. In this
             // case the return value is not useful, as a value of "true" does not really indicate
             // that the service is going to be bound.
-            bind(context, 0);
+            bind(0);
         }
     }
 
-    private boolean bind(final Context context, final int flags) {
+    private ServiceBinding getServiceBinding() {
+        if (serviceBinding != null) {
+            return serviceBinding;
+        }
+        final Context context = getCommonContext();
         final Intent serviceIntent = new Intent(context, PlayerService.class);
         serviceIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
-        return context.bindService(serviceIntent, serviceConnection, flags);
+        serviceBinding = new ServiceBinding(context, serviceIntent, serviceConnection);
+        return serviceBinding;
     }
 
-    private void unbind(final Context context) {
+    private void unbind() {
         if (DEBUG) {
             Log.d(TAG, "unbind() called");
         }
 
-        if (bound) {
-            context.unbindService(serviceConnection);
-            bound = false;
+        if (serviceBinding != null && serviceBinding.unbind()) {
             stopPlayerListener();
             playerService = null;
             if (listener != null) {
@@ -345,7 +342,7 @@ public final class PlayerHolder {
                     if (listener != null) {
                         listener.onServiceStopped();
                     }
-                    unbind(getCommonContext());
+                    unbind();
                 }
             };
 

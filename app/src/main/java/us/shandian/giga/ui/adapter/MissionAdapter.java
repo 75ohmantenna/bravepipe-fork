@@ -117,6 +117,8 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
     private final View mView;
     private final ArrayList<Mission> mHidden;
     private Snackbar mSnackbar;
+    private boolean resumed;
+    private boolean destroyed;
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
@@ -141,7 +143,6 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
         mHidden = new ArrayList<>();
 
         checkEmptyMessageVisibility();
-        onResume();
     }
 
     @Override
@@ -798,7 +799,7 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
     }
 
     private static void setButtonVisible(MenuItem button, boolean visible) {
-        if (button.isVisible() != visible)
+        if (button != null && button.isVisible() != visible)
             button.setVisible(visible);
     }
 
@@ -811,35 +812,51 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
     }
 
     public void onDestroy() {
+        if (destroyed) {
+            return;
+        }
+        destroyed = true;
+        onPaused();
         compositeDisposable.dispose();
         mDeleter.dispose();
     }
 
     public void onResume() {
+        if (resumed || destroyed) {
+            return;
+        }
+        resumed = true;
         mDeleter.resume();
         HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 0);
     }
 
     public void onPaused() {
+        if (!resumed) {
+            return;
+        }
+        resumed = false;
         mDeleter.pause();
         mHandler.removeCallbacksAndMessages(UPDATER);
     }
 
     public void recoverMission(DownloadMission mission) {
         ViewHolderItem h = getViewHolder(mission);
-        if (h == null) return;
-
         mission.errObject = null;
         mission.resetState(true, false, DownloadMission.ERROR_NOTHING);
 
-        h.status.setText(UNDEFINED_PROGRESS);
-        h.size.setText(Utility.formatBytes(mission.getLength()));
-        h.progress.setMarquee(true);
+        if (h != null) {
+            h.status.setText(UNDEFINED_PROGRESS);
+            h.size.setText(Utility.formatBytes(mission.getLength()));
+            h.progress.setMarquee(true);
+        }
 
         mDownloadManager.resumeMission(mission);
     }
 
     private void updater() {
+        if (!resumed) {
+            return;
+        }
         for (ViewHolderItem h : mPendingDownloadsItems) {
             // check if the mission is running first
             if (!((DownloadMission) h.item.mission).running) continue;
@@ -847,7 +864,9 @@ public class MissionAdapter extends BraveMissionAdapter implements Handler.Callb
             updateProgress(h);
         }
 
-        HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 1000);
+        if (resumed) {
+            HandlerCompat.postDelayed(mHandler, this::updater, UPDATER, 1000);
+        }
     }
 
     private boolean isNotFinite(double value) {

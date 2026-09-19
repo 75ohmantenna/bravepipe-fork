@@ -62,6 +62,7 @@ import org.schabi.newpipe.util.AudioTrackAdapter.AudioTracksWrapper;
 import org.schabi.newpipe.util.FilenameUtils;
 import org.schabi.newpipe.util.ListHelper;
 import org.schabi.newpipe.util.SecondaryStreamHelper;
+import org.schabi.newpipe.util.ServiceBinding;
 import org.schabi.newpipe.util.SimpleOnSeekBarChangeListener;
 import org.schabi.newpipe.util.StreamItemAdapter;
 import org.schabi.newpipe.util.StreamItemAdapter.StreamInfoWrapper;
@@ -121,6 +122,7 @@ public class DownloadDialog extends BraveDownloadDialog
     private DownloadDialogBinding dialogBinding;
 
     private SharedPreferences prefs;
+    private ServiceBinding downloadServiceBinding;
 
     // Variables for file name and MIME type when picking new folder because it's not set yet
     private String filenameTmp;
@@ -208,10 +210,13 @@ public class DownloadDialog extends BraveDownloadDialog
 
         final Intent intent = new Intent(context, DownloadManagerService.class);
         context.startService(intent);
-
-        context.bindService(intent, new ServiceConnection() {
+        downloadServiceBinding = new ServiceBinding(context, intent, new ServiceConnection() {
             @Override
             public void onServiceConnected(final ComponentName cname, final IBinder service) {
+                if (dialogBinding == null) {
+                    downloadServiceBinding.unbind();
+                    return;
+                }
                 final DownloadManagerBinder mgr = (DownloadManagerBinder) service;
 
                 mainStorageAudio = mgr.getMainStorageAudio();
@@ -220,15 +225,14 @@ public class DownloadDialog extends BraveDownloadDialog
                 askForSavePath = mgr.askForSavePath();
 
                 okButton.setEnabled(true);
-
-                context.unbindService(this);
+                downloadServiceBinding.unbind();
             }
 
             @Override
             public void onServiceDisconnected(final ComponentName name) {
                 // nothing to do
             }
-        }, Context.BIND_AUTO_CREATE);
+        });
     }
 
     /**
@@ -295,6 +299,7 @@ public class DownloadDialog extends BraveDownloadDialog
         dialogBinding.videoAudioGroup.setOnCheckedChangeListener(this);
 
         initToolbar(dialogBinding.toolbarLayout.toolbar);
+        downloadServiceBinding.bind(Context.BIND_AUTO_CREATE);
 
         loadSponsorBlockSegments(currentInfo, okButton, dialogBinding);
 
@@ -344,13 +349,10 @@ public class DownloadDialog extends BraveDownloadDialog
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
-    }
-
-    @Override
     public void onDestroyView() {
+        disposables.clear();
+        downloadServiceBinding.unbind();
+        okButton = null;
         dialogBinding = null;
         super.onDestroyView();
     }
