@@ -47,6 +47,7 @@ import org.schabi.newpipe.player.playqueue.PlayQueueItemTouchCallback;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.PermissionHelper;
+import org.schabi.newpipe.util.ServiceBinding;
 import org.schabi.newpipe.util.ServiceHelper;
 import org.schabi.newpipe.util.ThemeHelper;
 
@@ -67,8 +68,7 @@ public final class PlayQueueActivity extends AppCompatActivity
 
     private Player player;
 
-    private boolean serviceBound;
-    private ServiceConnection serviceConnection;
+    private ServiceBinding serviceBinding;
 
     private boolean seeking;
 
@@ -100,8 +100,10 @@ public final class PlayQueueActivity extends AppCompatActivity
             getSupportActionBar().setTitle(R.string.title_activity_play_queue);
         }
 
-        serviceConnection = getServiceConnection();
-        bind();
+        final Intent bindIntent = new Intent(this, PlayerService.class);
+        bindIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
+        serviceBinding = new ServiceBinding(this, bindIntent, createServiceConnection());
+        serviceBinding.bind(BIND_AUTO_CREATE);
     }
 
     @Override
@@ -185,22 +187,8 @@ public final class PlayQueueActivity extends AppCompatActivity
     // Service Connection
     ////////////////////////////////////////////////////////////////////////////
 
-    private void bind() {
-        // Note: this code should not really exist, and PlayerHolder should be used instead, but
-        // it will be rewritten when NewPlayer will replace the current player.
-        final Intent bindIntent = new Intent(this, PlayerService.class);
-        bindIntent.setAction(PlayerService.BIND_PLAYER_HOLDER_ACTION);
-        final boolean success = bindService(bindIntent, serviceConnection, BIND_AUTO_CREATE);
-        if (!success) {
-            unbindService(serviceConnection);
-        }
-        serviceBound = success;
-    }
-
     private void unbind() {
-        if (serviceBound) {
-            unbindService(serviceConnection);
-            serviceBound = false;
+        if (serviceBinding != null && serviceBinding.unbind()) {
             if (player != null) {
                 player.removeActivityListener(this);
             }
@@ -215,7 +203,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         }
     }
 
-    private ServiceConnection getServiceConnection() {
+    private ServiceConnection createServiceConnection() {
         return new ServiceConnection() {
             @Override
             public void onServiceDisconnected(final ComponentName name) {

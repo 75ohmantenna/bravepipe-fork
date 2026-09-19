@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.Preference;
 
@@ -17,6 +18,8 @@ import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.history.HistoryRecordManager;
 import org.schabi.newpipe.util.InfoCache;
 
+import java.util.function.Supplier;
+
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -27,7 +30,7 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     private String playbackStatesClearKey;
     private String searchHistoryClearKey;
     private HistoryRecordManager recordManager;
-    private CompositeDisposable disposables;
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     @Override
     public void onCreatePreferences(final Bundle savedInstanceState, final String rootKey) {
@@ -38,8 +41,6 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
         playbackStatesClearKey = getString(R.string.clear_playback_states_key);
         searchHistoryClearKey = getString(R.string.clear_search_history_key);
         recordManager = new HistoryRecordManager(getActivity());
-        disposables = new CompositeDisposable();
-
         final Preference clearCookiePref = requirePreference(R.string.clear_cookie_key);
         clearCookiePref.setOnPreferenceClickListener(preference -> {
             defaultPreferences.edit()
@@ -124,36 +125,39 @@ public class HistorySettingsFragment extends BasePreferenceFragment {
     public static void openDeleteWatchHistoryDialog(@NonNull final Context context,
                                                     final HistoryRecordManager recordManager,
                                                     final CompositeDisposable disposables) {
-        new AlertDialog.Builder(context)
-                .setTitle(R.string.delete_view_history_alert)
-                .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
-                .setPositiveButton(R.string.delete, ((dialog, which) -> {
-                    disposables.add(getDeletePlaybackStatesDisposable(context, recordManager));
-                    disposables.add(getWholeStreamHistoryDisposable(context, recordManager));
-                    disposables.add(getRemoveOrphanedRecordsDisposable(context, recordManager));
-                }))
-                .show();
+        openDeleteDialog(context, R.string.delete_view_history_alert, disposables,
+                () -> getDeletePlaybackStatesDisposable(context, recordManager),
+                () -> getWholeStreamHistoryDisposable(context, recordManager),
+                () -> getRemoveOrphanedRecordsDisposable(context, recordManager));
     }
 
     public static void openDeletePlaybackStatesDialog(@NonNull final Context context,
                                                       final HistoryRecordManager recordManager,
                                                       final CompositeDisposable disposables) {
-        new AlertDialog.Builder(context)
-                .setTitle(R.string.delete_playback_states_alert)
-                .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
-                .setPositiveButton(R.string.delete, ((dialog, which) ->
-                        disposables.add(getDeletePlaybackStatesDisposable(context, recordManager))))
-                .show();
+        openDeleteDialog(context, R.string.delete_playback_states_alert, disposables,
+                () -> getDeletePlaybackStatesDisposable(context, recordManager));
     }
 
     public static void openDeleteSearchHistoryDialog(@NonNull final Context context,
                                                      final HistoryRecordManager recordManager,
                                                      final CompositeDisposable disposables) {
+        openDeleteDialog(context, R.string.delete_search_history_alert, disposables,
+                () -> getDeleteSearchHistoryDisposable(context, recordManager));
+    }
+
+    @SafeVarargs
+    private static void openDeleteDialog(@NonNull final Context context,
+                                         @StringRes final int title,
+                                         final CompositeDisposable disposables,
+                                         final Supplier<Disposable>... operations) {
         new AlertDialog.Builder(context)
-                .setTitle(R.string.delete_search_history_alert)
-                .setNegativeButton(R.string.cancel, ((dialog, which) -> dialog.dismiss()))
-                .setPositiveButton(R.string.delete, ((dialog, which) ->
-                        disposables.add(getDeleteSearchHistoryDisposable(context, recordManager))))
+                .setTitle(title)
+                .setNegativeButton(R.string.cancel, null)
+                .setPositiveButton(R.string.delete, (dialog, which) -> {
+                    for (final Supplier<Disposable> operation : operations) {
+                        disposables.add(operation.get());
+                    }
+                })
                 .show();
     }
 }

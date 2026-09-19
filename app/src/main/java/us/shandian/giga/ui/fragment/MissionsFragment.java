@@ -22,6 +22,7 @@ import androidx.activity.result.contract.ActivityResultContracts.StartActivityFo
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.streams.io.NoFileManagerSafeGuard;
 import org.schabi.newpipe.streams.io.StoredFileHelper;
+import org.schabi.newpipe.util.ServiceBinding;
 
 import java.io.IOException;
 
@@ -57,40 +59,54 @@ public class MissionsFragment extends Fragment {
     private MissionAdapter mAdapter;
     private GridLayoutManager mGridManager;
     private LinearLayoutManager mLinearManager;
-    private Context mContext;
-
     private DownloadManagerBinder mBinder;
+    private ServiceBinding mServiceBinding;
+    private boolean mListening;
     private boolean mForceUpdate;
 
-    private DownloadMission unsafeMissionTarget = null;
+    private MissionRecoveryViewModel recoveryState;
+    private AlertDialog clearHistoryDialog;
+    private AlertDialog deleteFilesDialog;
     private final ActivityResultLauncher<Intent> requestDownloadSaveAsLauncher =
             registerForActivityResult(new StartActivityForResult(), this::requestDownloadSaveAsResult);
     private final ServiceConnection mConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
+            if (mServiceBinding == null) {
+                return;
+            }
             mBinder = (DownloadManagerBinder) binder;
             mBinder.clearDownloadNotifications();
 
-            mAdapter = new MissionAdapter(mContext, mBinder.getDownloadManager(), mEmpty, getView());
+            mAdapter = new MissionAdapter(requireContext(), mBinder.getDownloadManager(),
+                    mEmpty, requireView());
 
             mAdapter.setRecover(MissionsFragment.this::recoverMission);
 
+            setMenuAvailable(true);
             setAdapterButtons();
-
-            mBinder.addMissionEventListener(mAdapter);
-            mBinder.enableNotifications(false);
-
             updateList();
+            recoverPendingMission();
+
+            if (isResumed()) {
+                resumeAdapter();
+            }
         }
 
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            // What to do?
+            releaseAdapter();
         }
 
 
     };
+
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        recoveryState = new ViewModelProvider(this).get(MissionRecoveryViewModel.class);
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -98,9 +114,6 @@ public class MissionsFragment extends Fragment {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity());
         mLinear = mPrefs.getBoolean("linear", false);
-
-        // Bind the service
-        mContext.bindService(new Intent(mContext, DownloadManagerService.class), mConnection, Context.BIND_AUTO_CREATE);
 
         // Views
         mEmpty = v.findViewById(R.id.list_empty_view);
@@ -111,6 +124,9 @@ public class MissionsFragment extends Fragment {
         mGridManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
+                if (mAdapter == null) {
+                    return 1;
+                }
                 switch (mAdapter.getItemViewType(position)) {
                     case DownloadManager.SPECIAL_PENDING:
                     case DownloadManager.SPECIAL_FINISHED:
@@ -122,49 +138,34 @@ public class MissionsFragment extends Fragment {
         });
         mLinearManager = new LinearLayoutManager(getActivity());
 
+        mServiceBinding = new ServiceBinding(requireContext(),
+                new Intent(requireContext(), DownloadManagerService.class), mConnection);
+        mServiceBinding.bind(Context.BIND_AUTO_CREATE);
+
         setHasOptionsMenu(true);
 
         return v;
     }
 
-    /**
-     * Added in API level 23.
-     */
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        // Bug: in api< 23 this is never called
-        // so mActivity=null
-        // so app crashes with null-pointer exception
-        mContext = context;
-    }
-
-    /**
-     * deprecated in API level 23,
-     * but must remain to allow compatibility with api<23
-     */
-    @SuppressWarnings("deprecation")
-    @Override
-    public void onAttach(@NonNull Activity activity) {
-        super.onAttach(activity);
-
-        mContext = activity;
-    }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mBinder == null || mAdapter == null) return;
-
-        mBinder.removeMissionEventListener(mAdapter);
-        mBinder.enableNotifications(true);
-        mContext.unbindService(mConnection);
-        mAdapter.onDestroy();
-
-        mBinder = null;
-        mAdapter = null;
+    public void onDestroyView() {
+        releaseAdapter();
+        if (mServiceBinding != null) {
+            mServiceBinding.unbind();
+            mServiceBinding = null;
+        }
+        if (mList != null) {
+            mList.setLayoutManager(null);
+        }
+        mList = null;
+        mEmpty = null;
+        mGridManager = null;
+        mLinearManager = null;
+        mSwitch = null;
+        mClear = null;
+        mStart = null;
+        mPause = null;
+        super.onDestroyView();
     }
 
     @Override
@@ -174,7 +175,10 @@ public class MissionsFragment extends Fragment {
         mStart = menu.findItem(R.id.start_downloads);
         mPause = menu.findItem(R.id.pause_downloads);
 
-        if (mAdapter != null) setAdapterButtons();
+        setMenuAvailable(mAdapter != null);
+        if (mAdapter != null) {
+            setAdapterButtons();
+        }
 
         super.onPrepareOptionsMenu(menu);
     }
@@ -182,6 +186,11 @@ public class MissionsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
+        if ((itemId == R.id.switch_mode || itemId == R.id.clear_list
+                || itemId == R.id.start_downloads || itemId == R.id.pause_downloads)
+                && (mAdapter == null || mBinder == null)) {
+            return true;
+        }
         if (itemId == R.id.switch_mode) {
             mLinear = !mLinear;
             updateList();
@@ -202,27 +211,43 @@ public class MissionsFragment extends Fragment {
     }
 
     public void showClearDownloadHistoryPrompt() {
+        if (clearHistoryDialog != null) {
+            return;
+        }
         // ask the user whether he wants to just clear history or instead delete files on disk
-        new AlertDialog.Builder(mContext)
+        clearHistoryDialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.clear_download_history)
                 .setMessage(R.string.confirm_prompt)
                 // Intentionally misusing buttons' purpose in order to achieve good order
                 .setNegativeButton(R.string.clear_download_history, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(false))
+                        clearFinishedDownloads(false))
                 .setNeutralButton(R.string.cancel, null)
                 .setPositiveButton(R.string.delete_downloaded_files, (dialog, which) ->
                         showDeleteDownloadedFilesConfirmationPrompt())
-                .show();
+                .create();
+        clearHistoryDialog.setOnDismissListener(dialog -> clearHistoryDialog = null);
+        clearHistoryDialog.show();
     }
 
     public void showDeleteDownloadedFilesConfirmationPrompt() {
+        if (deleteFilesDialog != null) {
+            return;
+        }
         // make sure the user confirms once more before deleting files on disk
-        new AlertDialog.Builder(mContext)
+        deleteFilesDialog = new AlertDialog.Builder(requireContext())
                 .setTitle(R.string.delete_downloaded_files_confirm)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialog, which) ->
-                        mAdapter.clearFinishedDownloads(true))
-                .show();
+                        clearFinishedDownloads(true))
+                .create();
+        deleteFilesDialog.setOnDismissListener(dialog -> deleteFilesDialog = null);
+        deleteFilesDialog.show();
+    }
+
+    private void clearFinishedDownloads(final boolean deleteFiles) {
+        if (mAdapter != null) {
+            mAdapter.clearFinishedDownloads(deleteFiles);
+        }
     }
 
     private void updateList() {
@@ -250,71 +275,142 @@ public class MissionsFragment extends Fragment {
     }
 
     private void setAdapterButtons() {
-        if (mClear == null || mStart == null || mPause == null) return;
+        if (mClear == null || mStart == null || mPause == null) {
+            return;
+        }
 
         mAdapter.setClearButton(mClear);
         mAdapter.setMasterButtons(mStart, mPause);
     }
 
+    private void setMenuAvailable(final boolean available) {
+        if (mSwitch != null) {
+            mSwitch.setEnabled(available);
+        }
+        if (mClear != null) {
+            mClear.setEnabled(available);
+        }
+        if (mStart != null) {
+            mStart.setEnabled(available);
+        }
+        if (mPause != null) {
+            mPause.setEnabled(available);
+        }
+    }
+
     private void recoverMission(@NonNull DownloadMission mission) {
-        unsafeMissionTarget = mission;
+        recoveryState.begin(mission);
 
         NoFileManagerSafeGuard.launchSafe(
                 requestDownloadSaveAsLauncher,
-                StoredFileHelper.getNewPicker(mContext, mission.storage.getName(),
+                StoredFileHelper.getNewPicker(requireContext(), mission.storage.getName(),
                         mission.storage.getType(), null),
                 TAG,
-                mContext
+                requireContext()
         );
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
-        if (mAdapter != null) {
-            mAdapter.onResume();
-
-            if (mForceUpdate) {
-                mForceUpdate = false;
-                mAdapter.forceUpdate();
-            }
-
-            mBinder.addMissionEventListener(mAdapter);
-            mAdapter.checkMasterButtonsVisibility();
-        }
-        if (mBinder != null) mBinder.enableNotifications(false);
+        resumeAdapter();
     }
 
     @Override
     public void onPause() {
         super.onPause();
 
-        if (mAdapter != null) {
-            mForceUpdate = true;
-            mBinder.removeMissionEventListener(mAdapter);
-            mAdapter.onPaused();
-        }
-
-        if (mBinder != null) mBinder.enableNotifications(true);
+        pauseAdapter();
     }
 
     private void requestDownloadSaveAsResult(final ActivityResult result) {
-        if (result.getResultCode() != Activity.RESULT_OK) {
+        if (result.getResultCode() != Activity.RESULT_OK || result.getData() == null
+                || result.getData().getData() == null) {
+            recoveryState.clear();
             return;
         }
 
-        if (unsafeMissionTarget == null || result.getData() == null) {
+        recoveryState.setDestination(result.getData().getData());
+        recoverPendingMission();
+    }
+
+    private void recoverPendingMission() {
+        final Long missionTimestamp = recoveryState.getMissionTimestamp();
+        final Uri destination = recoveryState.getDestination();
+        if (missionTimestamp == null || destination == null || mAdapter == null
+                || mBinder == null) {
             return;
         }
 
+        final DownloadMission mission = mBinder.getDownloadManager()
+                .findPendingMission(missionTimestamp);
+        if (mission == null) {
+            recoveryState.clear();
+            return;
+        }
         try {
-            final Uri fileUri = result.getData().getData();
-            final String tag = unsafeMissionTarget.storage.getTag();
-            unsafeMissionTarget.storage = new StoredFileHelper(mContext, null, fileUri, tag);
-            mAdapter.recoverMission(unsafeMissionTarget);
+            final String tag = mission.storage.getTag();
+            mission.storage = new StoredFileHelper(requireContext(), null, destination, tag);
+            mAdapter.recoverMission(mission);
         } catch (final IOException e) {
-            Toast.makeText(mContext, R.string.general_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), R.string.general_error, Toast.LENGTH_LONG).show();
+        } finally {
+            recoveryState.clear();
         }
+    }
+
+    private void resumeAdapter() {
+        if (mAdapter == null || mBinder == null) {
+            return;
+        }
+        mAdapter.onResume();
+        if (mForceUpdate) {
+            mForceUpdate = false;
+            mAdapter.forceUpdate();
+        }
+        if (!mListening) {
+            mBinder.addMissionEventListener(mAdapter);
+            mListening = true;
+        }
+        mBinder.enableNotifications(false);
+        mAdapter.checkMasterButtonsVisibility();
+    }
+
+    private void pauseAdapter() {
+        if (mAdapter == null || mBinder == null) {
+            return;
+        }
+        mForceUpdate = true;
+        if (mListening) {
+            mBinder.removeMissionEventListener(mAdapter);
+            mListening = false;
+        }
+        mAdapter.onPaused();
+        mBinder.enableNotifications(true);
+    }
+
+    private void releaseAdapter() {
+        setMenuAvailable(false);
+        if (clearHistoryDialog != null) {
+            clearHistoryDialog.dismiss();
+        }
+        if (deleteFilesDialog != null) {
+            deleteFilesDialog.dismiss();
+        }
+        if (mList != null) {
+            mList.setAdapter(null);
+        }
+        if (mAdapter != null) {
+            if (mBinder != null && mListening) {
+                mBinder.removeMissionEventListener(mAdapter);
+            }
+            mAdapter.onDestroy();
+        }
+        if (mBinder != null) {
+            mBinder.enableNotifications(true);
+        }
+        mListening = false;
+        mBinder = null;
+        mAdapter = null;
     }
 }

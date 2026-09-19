@@ -693,18 +693,24 @@ public class RouterActivity extends AppCompatActivity {
             } else {
                 handleError(this, fetcher.error);
             }
-        } else if (fetcher.intent != null) {
+            return;
+        }
+        if (fetcher.intent != null) {
             startActivity(fetcher.intent);
             finish();
-        } else if (choice.playerChoice.equals(getString(R.string.download_key))) {
+            return;
+        }
+        if (choice.playerChoice.equals(getString(R.string.download_key))) {
             new DownloadDialog(this, (StreamInfo) fetcher.info)
                     .show(getSupportFragmentManager(), "downloadDialog");
-        } else if (fetcher.playlistDialog != null) {
-            fetcher.playlistDialog.show(getSupportFragmentManager(), "addToPlaylistDialog");
-        } else {
-            playResult(choice, fetcher.info);
-            finish();
+            return;
         }
+        if (fetcher.playlistDialog != null) {
+            fetcher.playlistDialog.show(getSupportFragmentManager(), "addToPlaylistDialog");
+            return;
+        }
+        playResult(choice, fetcher.info);
+        finish();
     }
 
     private static class AdapterChoiceItem {
@@ -822,38 +828,70 @@ public class RouterActivity extends AppCompatActivity {
     private void playResult(final Choice choice, final Info info) {
         final String videoPlayerKey = getString(R.string.video_player_key);
         final String backgroundPlayerKey = getString(R.string.background_player_key);
-        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-        final PlayQueue playQueue;
-        if (info instanceof StreamInfo) {
-            if (choice.playerChoice.equals(backgroundPlayerKey) && preferences.getBoolean(
-                    getString(R.string.use_external_audio_player_key), false)) {
-                NavigationHelper.playOnExternalAudioPlayer(this, (StreamInfo) info);
-                return;
-            } else if (choice.playerChoice.equals(videoPlayerKey) && preferences.getBoolean(
-                    getString(R.string.use_external_video_player_key), false)) {
-                NavigationHelper.playOnExternalVideoPlayer(this, (StreamInfo) info);
-                return;
-            }
-            playQueue = new SinglePlayQueue((StreamInfo) info);
-        } else if (info instanceof ChannelInfo) {
-            final Optional<ListLinkHandler> playableTab = ((ChannelInfo) info).getTabs().stream()
-                    .filter(ChannelTabHelper::isStreamsTab).findFirst();
-            if (playableTab.isEmpty()) {
-                return;
-            }
-            playQueue = new ChannelTabPlayQueue(info.getServiceId(), playableTab.get());
-        } else if (info instanceof PlaylistInfo) {
-            playQueue = new PlaylistPlayQueue((PlaylistInfo) info);
-        } else {
+        if (info instanceof StreamInfo && playExternally(choice.playerChoice,
+                (StreamInfo) info, videoPlayerKey, backgroundPlayerKey)) {
             return;
         }
-        if (choice.playerChoice.equals(videoPlayerKey)) {
+
+        final PlayQueue playQueue = createPlayQueue(info);
+        if (playQueue == null) {
+            return;
+        }
+        dispatchToPlayer(choice.playerChoice, playQueue, videoPlayerKey, backgroundPlayerKey);
+    }
+
+    private boolean playExternally(final String playerChoice, final StreamInfo info,
+                                   final String videoPlayerKey,
+                                   final String backgroundPlayerKey) {
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        if (playerChoice.equals(backgroundPlayerKey) && preferences.getBoolean(
+                getString(R.string.use_external_audio_player_key), false)) {
+            NavigationHelper.playOnExternalAudioPlayer(this, info);
+            return true;
+        }
+        if (playerChoice.equals(videoPlayerKey) && preferences.getBoolean(
+                getString(R.string.use_external_video_player_key), false)) {
+            NavigationHelper.playOnExternalVideoPlayer(this, info);
+            return true;
+        }
+        return false;
+    }
+
+    @Nullable
+    private PlayQueue createPlayQueue(final Info info) {
+        if (info instanceof StreamInfo) {
+            return new SinglePlayQueue((StreamInfo) info);
+        }
+        if (info instanceof ChannelInfo) {
+            final Optional<ListLinkHandler> playableTab = ((ChannelInfo) info).getTabs().stream()
+                    .filter(ChannelTabHelper::isStreamsTab)
+                    .findFirst();
+            return playableTab
+                    .map(tab -> new ChannelTabPlayQueue(info.getServiceId(), tab))
+                    .orElse(null);
+        }
+        if (info instanceof PlaylistInfo) {
+            return new PlaylistPlayQueue((PlaylistInfo) info);
+        }
+        return null;
+    }
+
+    private void dispatchToPlayer(final String playerChoice, final PlayQueue playQueue,
+                                  final String videoPlayerKey,
+                                  final String backgroundPlayerKey) {
+        if (playerChoice.equals(videoPlayerKey)) {
             NavigationHelper.playOnMainPlayer(this, playQueue, false);
-        } else if (choice.playerChoice.equals(backgroundPlayerKey)) {
+            return;
+        }
+        if (playerChoice.equals(backgroundPlayerKey)) {
             NavigationHelper.playOnBackgroundPlayer(this, playQueue, true);
-        } else if (choice.playerChoice.equals(getString(R.string.popup_player_key))) {
+            return;
+        }
+        if (playerChoice.equals(getString(R.string.popup_player_key))) {
             NavigationHelper.playOnPopupPlayer(this, playQueue, true);
-        } else if (choice.playerChoice.equals(getString(R.string.enqueue_key))) {
+            return;
+        }
+        if (playerChoice.equals(getString(R.string.enqueue_key))) {
             NavigationHelper.enqueueOnPlayer(this, playQueue);
         }
     }

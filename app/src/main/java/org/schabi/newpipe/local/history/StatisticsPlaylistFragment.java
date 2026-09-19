@@ -389,4 +389,3 @@ public class StatisticsPlaylistFragment
         MOST_PLAYED,
     }
 }
-
