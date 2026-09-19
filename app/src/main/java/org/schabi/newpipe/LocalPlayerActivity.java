@@ -72,8 +72,9 @@ public class LocalPlayerActivity extends AppCompatActivity implements Player.Lis
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
+        playerView.setPlayer(null);
         localPlayer.destroy();
+        super.onDestroy();
     }
 
     @Override

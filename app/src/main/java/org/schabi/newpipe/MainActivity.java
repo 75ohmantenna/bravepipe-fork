@@ -869,7 +869,7 @@ public class MainActivity extends AppCompatActivity {
 
             // If the PlayerHolder is not bound yet, but the service is running, try to bind to it.
             // Once the connection is established, the ACTION_PLAYER_STARTED will be sent.
-            PlayerHolder.getInstance().tryBindIfNeeded(this);
+            PlayerHolder.getInstance().tryBindIfNeeded();
         }
     }
 
