@@ -123,7 +123,6 @@ import org.schabi.newpipe.util.NavigationHelper;
 import org.schabi.newpipe.util.SerializedCache;
 import org.schabi.newpipe.util.SponsorBlockMode;
 import org.schabi.newpipe.util.StreamTypeUtil;
-import org.schabi.newpipe.util.VideoSegment;
 
 import java.util.List;
 import java.util.Objects;
@@ -1367,6 +1366,9 @@ public final class Player implements PlaybackListener, Listener {
 
         // Refresh the playback if there is a transition to the next video
         final int newIndex = newPosition.mediaItemIndex;
+        if (discontinuityReason == DISCONTINUITY_REASON_AUTO_TRANSITION) {
+            sponsorBlock.resetPlayback();
+        }
         switch (discontinuityReason) {
             case DISCONTINUITY_REASON_AUTO_TRANSITION:
             case DISCONTINUITY_REASON_REMOVE:
@@ -2354,10 +2356,6 @@ public final class Player implements PlaybackListener, Listener {
 
     public void setSponsorBlockMode(final SponsorBlockMode mode) {
         sponsorBlock.setMode(mode);
-    }
-
-    public VideoSegment getSkippableSegment(final int progress) {
-        return SponsorBlockController.segmentAt(currentItem, progress);
     }
 
     //endregion

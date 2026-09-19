@@ -875,6 +875,8 @@
     <string name="settings_category_sponsor_block_category_non_music_summary">Only for use in music videos. This includes introductions or outros in music videos.</string>
     <string name="settings_category_sponsor_block_category_preview_title">Preview/Recap</string>
     <string name="settings_category_sponsor_block_category_preview_summary">Quick recap of previous episodes, or a preview of what\'s coming up later in the current video. Meant for edited together clips, not for spoken summaries.</string>
+    <string name="settings_category_sponsor_block_category_hook_title">Hook/Greetings</string>
+    <string name="settings_category_sponsor_block_category_hook_summary">Narrated teasers for the upcoming video, greetings, and goodbyes. This does not include conclusions containing information.</string>
     <string name="settings_category_sponsor_block_category_filler_title">Filler Tangent/Jokes</string>
     <string name="settings_category_sponsor_block_category_filler_summary">This is for tangential scenes added only for filler or humor that are not required to understand the main content of the video.</string>
     <string name="later">Later</string>
@@ -902,6 +904,7 @@
     <string name="sponsor_block_skip_self_promo_toast">Skipped unpaid/self promo</string>
     <string name="sponsor_block_skip_non_music_toast">Skipped non-music</string>
     <string name="sponsor_block_skip_preview_toast">Skipped preview/recap</string>
+    <string name="sponsor_block_skip_hook_toast">Skipped hook/greeting</string>
     <string name="sponsor_block_skip_filler_toast">Skipped filler</string>
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
     <string name="sponsor_block_clear_whitelist_title">Clear Whitelist</string>

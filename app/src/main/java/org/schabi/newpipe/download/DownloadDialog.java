@@ -296,7 +296,7 @@ public class DownloadDialog extends BraveDownloadDialog
 
         initToolbar(dialogBinding.toolbarLayout.toolbar);
 
-        braveSponsorBlockCheckForYoutubeVideoSegments(currentInfo, okButton, dialogBinding);
+        loadSponsorBlockSegments(currentInfo, okButton, dialogBinding);
 
         setupDownloadOptions();
 

@@ -15,7 +15,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.formatSpeed;
 import static org.schabi.newpipe.player.helper.PlayerHelper.getTimeString;
 import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSaveToPrefs;
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
-import static org.schabi.newpipe.util.SponsorBlockUtils.markSegments;
+import static org.schabi.newpipe.util.SponsorBlockSeekBar.markSegments;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -84,16 +84,14 @@ import org.schabi.newpipe.player.seekbarpreview.SeekbarPreviewThumbnailHolder;
 import org.schabi.newpipe.util.DeviceUtils;
 import org.schabi.newpipe.util.Localization;
 import org.schabi.newpipe.util.NavigationHelper;
-import org.schabi.newpipe.util.SponsorBlockMode;
+import org.schabi.newpipe.util.SponsorBlockSettings;
 import org.schabi.newpipe.util.external_communication.KoreUtils;
 import org.schabi.newpipe.util.external_communication.ShareUtils;
 import org.schabi.newpipe.views.player.PlayerFastSeekOverlay;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBarChangeListener,
@@ -431,8 +429,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         setMuteButton(player.isMuted());
         animateRotation(binding.moreOptionsButton, DEFAULT_CONTROLS_DURATION, 0);
 
-        final boolean isSponsorBlockEnabled = player.getPrefs().getBoolean(
-                context.getString(R.string.sponsor_block_enable_key), false);
+        final boolean isSponsorBlockEnabled =
+                new SponsorBlockSettings(context, player.getPrefs()).isOperational();
         binding.switchSponsorBlocking.setVisibility(
                 isSponsorBlockEnabled ? View.VISIBLE : View.GONE);
 
@@ -1036,18 +1034,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         this.seekbarPreviewThumbnailHolder.resetFrom(player.getContext(), info.getPreviewFrames());
 
-        final boolean isSponsorBlockEnabled = player.getPrefs().getBoolean(
-                context.getString(R.string.sponsor_block_enable_key), false);
-        final Set<String> uploaderWhitelist = player.getPrefs().getStringSet(
-                context.getString(R.string.sponsor_block_whitelist_key), null);
-
-        if (uploaderWhitelist != null && uploaderWhitelist.contains(info.getUploaderName())) {
-            player.setSponsorBlockMode(SponsorBlockMode.IGNORE);
-        } else {
-            player.setSponsorBlockMode(isSponsorBlockEnabled
-                    ? SponsorBlockMode.ENABLED
-                    : SponsorBlockMode.DISABLED);
-        }
+        player.setSponsorBlockMode(new SponsorBlockSettings(context, player.getPrefs())
+                .modeForUploader(info.getUploaderName()));
 
         setBlockSponsorsButton(binding.switchSponsorBlocking);
     }
@@ -1618,16 +1606,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             Log.d(TAG, "onBlockingSponsorsButtonClicked() called");
         }
 
-        switch (player.getSponsorBlockMode()) {
-            case DISABLED:
-                player.setSponsorBlockMode(SponsorBlockMode.ENABLED);
-                break;
-            case ENABLED:
-                player.setSponsorBlockMode(SponsorBlockMode.DISABLED);
-                break;
-            case IGNORE:
-                // ignored
-        }
+        player.setSponsorBlockMode(player.getSponsorBlockMode().toggled());
 
         setBlockSponsorsButton(binding.switchSponsorBlocking);
     }
@@ -1643,32 +1622,17 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             return;
         }
 
-        final Set<String> uploaderWhitelist = new HashSet<>(player.getPrefs().getStringSet(
-                context.getString(R.string.sponsor_block_whitelist_key),
-                new HashSet<>()));
-
-        final String toastText;
-
         final String uploaderName = metaData.getUploaderName();
-
-        if (player.getSponsorBlockMode() == SponsorBlockMode.IGNORE) {
-            uploaderWhitelist.remove(uploaderName);
-            player.setSponsorBlockMode(SponsorBlockMode.ENABLED);
-            toastText = context
-                    .getString(R.string.sponsor_block_uploader_removed_from_whitelist_toast);
-        } else {
-            uploaderWhitelist.add(uploaderName);
-            player.setSponsorBlockMode(SponsorBlockMode.IGNORE);
-            toastText = context
-                    .getString(R.string.sponsor_block_uploader_added_to_whitelist_toast);
+        if (uploaderName == null || uploaderName.isBlank()) {
+            return;
         }
-
-        player.getPrefs()
-                .edit()
-                .putStringSet(
-                        context.getString(R.string.sponsor_block_whitelist_key),
-                        new HashSet<>(uploaderWhitelist))
-                .apply();
+        final SponsorBlockSettings settings =
+                new SponsorBlockSettings(context, player.getPrefs());
+        final boolean ignored = settings.toggleUploader(uploaderName);
+        player.setSponsorBlockMode(settings.modeForUploader(uploaderName));
+        final int toastText = ignored
+                ? R.string.sponsor_block_uploader_added_to_whitelist_toast
+                : R.string.sponsor_block_uploader_removed_from_whitelist_toast;
 
         setBlockSponsorsButton(binding.switchSponsorBlocking);
         Toast.makeText(context, toastText, Toast.LENGTH_LONG).show();
@@ -1679,21 +1643,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
             return;
         }
 
-        final int resId;
-
-        switch (player.getSponsorBlockMode()) {
-            case DISABLED:
-                resId = R.drawable.ic_sponsor_block_disable;
-                break;
-            case ENABLED:
-                resId = R.drawable.ic_sponsor_block_enable;
-                break;
-            case IGNORE:
-                resId = R.drawable.ic_sponsor_block_exclude;
-                break;
-            default:
-                return;
-        }
+        final int resId = switch (player.getSponsorBlockMode()) {
+            case DISABLED -> R.drawable.ic_sponsor_block_disable;
+            case ENABLED -> R.drawable.ic_sponsor_block_enable;
+            case IGNORED -> R.drawable.ic_sponsor_block_exclude;
+        };
 
         button.setImageDrawable(AppCompatResources.getDrawable(player.getService(), resId));
     }

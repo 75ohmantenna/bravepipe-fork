@@ -3,5 +3,13 @@ package org.schabi.newpipe.util;
 public enum SponsorBlockMode {
     DISABLED,
     ENABLED,
-    IGNORE
+    IGNORED;
+
+    public SponsorBlockMode toggled() {
+        return switch (this) {
+            case DISABLED -> ENABLED;
+            case ENABLED -> DISABLED;
+            case IGNORED -> IGNORED;
+        };
+    }
 }

@@ -22,9 +22,8 @@ import org.schabi.newpipe.player.playqueue.PlayQueueEvent.MoveEvent;
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent;
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.RemoveEvent;
 import org.schabi.newpipe.player.playqueue.PlayQueueEvent.ReorderEvent;
-import org.schabi.newpipe.util.SponsorBlockUtils;
+import org.schabi.newpipe.util.SponsorBlock;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -437,13 +436,8 @@ public class MediaSourceManager {
                                             final int serviceId = streamInfo.getServiceId();
                                             final long expiration = System.currentTimeMillis()
                                                     + getCacheExpirationMillis(serviceId);
-                                            try {
-                                                stream.setVideoSegments(
-                                                        SponsorBlockUtils.getYouTubeVideoSegments(
-                                                                context, streamInfo));
-                                            } catch (final UnsupportedEncodingException e) {
-                                                throw new RuntimeException(e);
-                                            }
+                                            stream.setSponsorBlockSegments(
+                                                    SponsorBlock.getSegments(context, streamInfo));
                                             return new LoadedMediaSource(source, tag, stream,
                                                     expiration);
                                         })
