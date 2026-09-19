@@ -119,7 +119,8 @@ public class LocalPlayer implements com.google.android.exoplayer2.Player.Listene
         simpleExoPlayer.removeListener(this);
         simpleExoPlayer.stop();
         simpleExoPlayer.release();
-        progressUpdateReactor.set(null);
+        progressUpdateReactor.dispose();
+        listener = null;
     }
 
     public void setPlaybackParameters(final float speed, final float pitch,
