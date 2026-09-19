@@ -3,12 +3,14 @@ package org.schabi.newpipe.extractor.services.youtube.extractors;
 import com.grack.nanojson.JsonObject;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Tag;
 import org.schabi.newpipe.extractor.utils.Pair;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("offline")
 class YoutubeAdaptedBehaviorTest {
 
     @Test

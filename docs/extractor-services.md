@@ -39,8 +39,21 @@ Run extractor unit tests independently:
 ./bravepipeextractor-fork/gradlew -p bravepipeextractor-fork :extractor:test
 ```
 
-Run the application checks and both APK builds:
+Snapshot publications default to `<extractor-version>-SNAPSHOT`. Override that
+version when publishing with `-PextractorSnapshotVersion=<version>`; configuring
+or building the extractor does not require Git metadata.
+
+Run all application checks, both APK builds, and the extractor's deterministic
+regression tests:
 
 ```sh
 make ci
+```
+
+The complete extractor suite uses live third-party services and is intentionally
+kept separate from the reproducible gate. Run it when validating broader
+service compatibility:
+
+```sh
+./bravepipeextractor-fork/gradlew -p bravepipeextractor-fork :extractor:test
 ```

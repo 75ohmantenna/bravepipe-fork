@@ -1,10 +1,13 @@
 package org.schabi.newpipe.extractor.services.bitchute.linkHandler;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.schabi.newpipe.downloader.DownloaderTestImpl;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.exceptions.ParsingException;
+
+import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test for {@link BitchuteStreamLinkHandlerFactory}
  */
 @SuppressWarnings("checkstyle:InvalidJavadocPosition")
+@Tag("offline")
 public class BitchuteStreamLinkHandlerFactoryTest {
     private static BitchuteStreamLinkHandlerFactory linkHandler;
 
@@ -94,5 +98,17 @@ public class BitchuteStreamLinkHandlerFactoryTest {
                 () -> linkHandler.fromUrl("https://notbitchute.com/video/8gwdyYJ8BUk/"));
         assertThrows(ParsingException.class,
                 () -> linkHandler.fromUrl("ftp://www.bitchute.com/video/8gwdyYJ8BUk/"));
+    }
+
+    @Test
+    public void acceptsUppercaseHostInTurkishLocale() throws Exception {
+        final Locale originalLocale = Locale.getDefault();
+        try {
+            Locale.setDefault(Locale.forLanguageTag("tr-TR"));
+            assertEquals("8gwdyYJ8BUk", linkHandler.fromUrl(
+                    "https://WWW.BITCHUTE.COM/video/8gwdyYJ8BUk/").getId());
+        } finally {
+            Locale.setDefault(originalLocale);
+        }
     }
 }

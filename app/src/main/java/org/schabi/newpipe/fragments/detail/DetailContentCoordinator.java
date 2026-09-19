@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
@@ -240,15 +241,23 @@ final class DetailContentCoordinator {
         if (commentsTabPos < 0) {
             return;
         }
-        final Fragment tabFragment = pageAdapter.getItem(commentsTabPos);
-        if (!(tabFragment instanceof CommentsFragment)) {
+        final CommentsFragment commentsFragment = resolveCommentsFragment(
+                pageAdapter.getItem(commentsTabPos));
+        if (commentsFragment == null) {
             return;
         }
 
         // unexpand the app bar only if scrolling to the comment succeeded
-        if (((CommentsFragment) tabFragment).scrollToComment(comment)) {
+        if (commentsFragment.scrollToComment(comment)) {
             binding.appBarLayout.setExpanded(false, false);
             binding.viewPager.setCurrentItem(commentsTabPos, false);
         }
+    }
+
+    @Nullable
+    static CommentsFragment resolveCommentsFragment(final Fragment tabFragment) {
+        final Fragment resolved = tabFragment instanceof BraveHostFragment
+                ? ((BraveHostFragment) tabFragment).getHostedFragment() : tabFragment;
+        return resolved instanceof CommentsFragment ? (CommentsFragment) resolved : null;
     }
 }

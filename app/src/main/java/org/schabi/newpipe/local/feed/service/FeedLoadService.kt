@@ -26,6 +26,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.pm.ServiceInfo
+import android.os.Build
 import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
@@ -90,7 +91,15 @@ class FeedLoadService : Service() {
         loadingDisposable = feedLoadManager.startLoading(groupId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
-                startForeground(NOTIFICATION_ID, notificationBuilder.build(), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    startForeground(
+                        NOTIFICATION_ID,
+                        notificationBuilder.build(),
+                        ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC
+                    )
+                } else {
+                    startForeground(NOTIFICATION_ID, notificationBuilder.build())
+                }
             }
             .subscribe { _, error: Throwable? ->
                 // explicitly mark error as nullable

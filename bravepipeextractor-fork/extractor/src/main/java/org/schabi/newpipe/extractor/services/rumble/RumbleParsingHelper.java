@@ -18,7 +18,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Callable;
@@ -238,12 +240,22 @@ public final class RumbleParsingHelper {
         }
         return HEADERS;
     }
-    private static Map<String, String> embedVideoIdsCache = new HashMap();
+    private static final int EMBED_VIDEO_ID_CACHE_SIZE = 64;
+    private static final Map<String, String> EMBED_VIDEO_IDS_CACHE =
+            Collections.synchronizedMap(new LinkedHashMap<String, String>(
+                    EMBED_VIDEO_ID_CACHE_SIZE, 0.75f, true) {
+                @Override
+                protected boolean removeEldestEntry(final Map.Entry<String, String> eldest) {
+                    return size() > EMBED_VIDEO_ID_CACHE_SIZE;
+                }
+            });
+
     public static String getEmbedVideoId(
             final String url,
             final Callable<String> contentProvider) throws ParsingException {
-        if (embedVideoIdsCache.containsKey(url))  {
-            return embedVideoIdsCache.get(url);
+        final String cachedId = EMBED_VIDEO_IDS_CACHE.get(url);
+        if (cachedId != null) {
+            return cachedId;
         }
         final String validUrl = "https?://(?:www\\.)?rumble\\.com/embed/"
                 + "(?:[0-9a-z]+\\.)?([0-9a-z]+)"; // id is group 1
@@ -261,7 +273,7 @@ public final class RumbleParsingHelper {
         if (matcher.find()) {
             // Remove v (first character) from the id
             final String result = matcher.group(1).substring(1);
-            embedVideoIdsCache.put(url, result);
+            EMBED_VIDEO_IDS_CACHE.put(url, result);
             return result;
         } else {
             throw AttachException.createAttachException(
@@ -280,10 +292,10 @@ public final class RumbleParsingHelper {
         final int code = response.responseCode();
         if (code == 403) {
             final String errMsg = code + " - " + getErrFromTitle(doc);
-            if (errMsg.toLowerCase().contains("private")) {
+            if (errMsg.toLowerCase(Locale.ROOT).contains("private")) {
                 throw new PrivateContentException(errMsg);
             } else if (doc.selectFirst("span#challenge-error-text") != null
-                    || errMsg.toLowerCase().contains("just a moment...")) {
+                    || errMsg.toLowerCase(Locale.ROOT).contains("just a moment...")) {
                 throw new BraveCloudFlareChallengeException(
                         errMsg + " for " + response.latestUrl());
             } else {

@@ -11,9 +11,8 @@ val ciSigningPassword: String? = System.getenv("PGP_PRIVATE_SIGNING_KEY_PASSWORD
 val shouldSignCIRelease: Boolean
     get() = !ciSigningKey.isNullOrEmpty() && !ciSigningPassword.isNullOrEmpty()
 
-val lastCommitHash: String = providers.exec {
-    commandLine("git", "rev-parse", "--short", "HEAD")
-}.standardOutput.asText.map { it.trim() }.get()
+val snapshotVersion = providers.gradleProperty("extractorSnapshotVersion")
+    .getOrElse("${rootProject.version}-SNAPSHOT")
 
 plugins {
     alias(libs.plugins.google.protobuf)
@@ -55,6 +54,17 @@ tasks.test {
     }
     useJUnitPlatform()
     dependsOn(tasks.checkstyleMain) // run checkstyle when testing
+}
+
+tasks.register<Test>("forkCiTest") {
+    group = "verification"
+    description = "Runs deterministic offline regression tests maintained by the fork."
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+    useJUnitPlatform {
+        includeTags("offline")
+    }
+    dependsOn(tasks.checkstyleMain)
 }
 
 // https://checkstyle.org/#JRE_and_JDK
@@ -184,7 +194,7 @@ publishing {
         create<MavenPublication>("snapshot") {
             groupId = mavenGroupId
             artifactId = mavenArtifactId
-            version = "$lastCommitHash-SNAPSHOT"
+            version = snapshotVersion
 
             afterEvaluate {
                 from(components["java"])

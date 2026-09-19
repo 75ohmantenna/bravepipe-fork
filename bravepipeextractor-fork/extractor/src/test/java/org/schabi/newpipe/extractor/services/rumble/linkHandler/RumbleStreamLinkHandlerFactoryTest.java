@@ -1,6 +1,7 @@
 package org.schabi.newpipe.extractor.services.rumble.linkHandler;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.schabi.newpipe.downloader.DownloaderTestImpl;
 import org.schabi.newpipe.extractor.NewPipe;
@@ -14,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * Test for {@link RumbleStreamLinkHandlerFactory}
  */
 @SuppressWarnings({"checkstyle:LineLength", "checkstyle:InvalidJavadocPosition"})
+@Tag("offline")
 public class RumbleStreamLinkHandlerFactoryTest {
     private static RumbleStreamLinkHandlerFactory linkHandler;
 
@@ -68,6 +70,10 @@ public class RumbleStreamLinkHandlerFactoryTest {
                 "https://rumble.com/user/Vlemx",
                 "https://rumble.com/c/Vlemx",
                 "https://rumble.com/user/vmpradio",
+                "https://rumble.com/videos",
+                "https://rumble.com/videos/",
+                "https://rumble.com/videos-featured.html",
+                "https://rumble.com/videos?sort=views&date=today",
         };
 
         for (final String invalidVideoUrl : invalidVideoUrls) {

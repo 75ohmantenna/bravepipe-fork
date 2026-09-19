@@ -60,9 +60,10 @@ object NewPipeDatabase {
     @JvmStatic
     fun checkpoint() {
         checkNotNull(databaseInstance) { "database is not initialized" }
-        val c = databaseInstance!!.query("pragma wal_checkpoint(full)", null)
-        if (c.moveToFirst() && c.getInt(0) == 1) {
-            throw RuntimeException("Checkpoint was blocked from completing")
+        databaseInstance!!.query("pragma wal_checkpoint(full)", null).use { cursor ->
+            if (cursor.moveToFirst() && cursor.getInt(0) == 1) {
+                throw RuntimeException("Checkpoint was blocked from completing")
+            }
         }
     }
 

@@ -13,21 +13,20 @@
     </style>
 
     <!-- Base Theme -->
-    <style name="Base" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppBaseTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="actionColor">@color/white</item>
         <item name="floatingActionButtonStyle">@style/FloatingActionButtonTheme</item>
         <item name="toolbarSearchColor">@color/white</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:enforceNavigationBarContrast">false</item>
     </style>
+    <style name="Base" parent="AppBaseTheme" />
 
     <!-- Light Theme -->
-    <style name="LightTheme" parent="Base">
+    <style name="AppLightTheme" parent="Base">
         <item name="colorPrimary">@color/light_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/light_youtube_primary_color</item>
         <item name="colorAccent">@color/light_youtube_accent_color</item>
-        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:windowBackground">@color/light_background_color</item>
         <item name="windowBackground">@color/light_background_color</item>
 
@@ -44,13 +43,13 @@
         <item name="border_color">@color/light_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_light</item>
     </style>
+    <style name="LightTheme" parent="AppLightTheme" />
 
     <!-- Dark Theme -->
-    <style name="DarkTheme" parent="Base">
+    <style name="AppDarkTheme" parent="Base">
         <item name="colorPrimary">@color/dark_youtube_primary_color</item>
         <item name="colorPrimaryDark">@color/dark_youtube_primary_color</item>
         <item name="colorAccent">@color/dark_youtube_accent_color</item>
-        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowBackground">@color/dark_background_color</item>
         <item name="windowBackground">@color/dark_background_color</item>
 
@@ -67,6 +66,7 @@
         <item name="border_color">@color/dark_border_color</item>
         <item name="dashed_border">@drawable/dashed_border_dark</item>
     </style>
+    <style name="DarkTheme" parent="AppDarkTheme" />
 
     <!-- Black Theme -->
     <style name="BlackTheme" parent="DarkTheme">
