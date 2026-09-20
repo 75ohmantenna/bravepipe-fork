@@ -7,8 +7,8 @@ class BadWebViewException(message: String) : Exception(message)
 
 fun buildExceptionForJsError(error: String): Exception {
     return if (error.contains("SyntaxError")) {
-        BadWebViewException(error)
+        BadWebViewException("JavaScript syntax error")
     } else {
-        PoTokenException(error)
+        PoTokenException("JavaScript execution failed")
     }
 }

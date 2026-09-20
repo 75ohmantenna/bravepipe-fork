@@ -88,6 +88,8 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
         // enable Javascript
         final WebSettings webSettings = recaptchaBinding.reCaptchaWebView.getSettings();
+        webSettings.setAllowFileAccess(false);
+        webSettings.setAllowContentAccess(false);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUserAgentString(DownloaderImpl.USER_AGENT);
 
@@ -96,7 +98,7 @@ public class ReCaptchaActivity extends AppCompatActivity {
             public boolean shouldOverrideUrlLoading(final WebView view,
                                                     final WebResourceRequest request) {
                 if (MainActivity.DEBUG) {
-                    Log.d(TAG, "shouldOverrideUrlLoading: url=" + request.getUrl().toString());
+                    Log.d(TAG, "shouldOverrideUrlLoading: navigation requested");
                 }
 
                 handleCookiesFromUrl(request.getUrl().toString());
@@ -145,9 +147,6 @@ public class ReCaptchaActivity extends AppCompatActivity {
     private void saveCookiesAndFinish() {
         // try to get cookies of unclosed page
         handleCookiesFromUrl(recaptchaBinding.reCaptchaWebView.getUrl());
-        if (MainActivity.DEBUG) {
-            Log.d(TAG, "saveCookiesAndFinish: foundCookies=" + foundCookies);
-        }
 
         if (!foundCookies.isEmpty()) {
             // save cookies to preferences
@@ -171,10 +170,6 @@ public class ReCaptchaActivity extends AppCompatActivity {
 
 
     private void handleCookiesFromUrl(@Nullable final String url) {
-        if (MainActivity.DEBUG) {
-            Log.d(TAG, "handleCookiesFromUrl: url=" + (url == null ? "null" : url));
-        }
-
         if (url == null) {
             return;
         }
@@ -192,17 +187,13 @@ public class ReCaptchaActivity extends AppCompatActivity {
             } catch (final StringIndexOutOfBoundsException e) {
                 if (MainActivity.DEBUG) {
                     Log.e(TAG, "handleCookiesFromUrl: invalid google abuse starting at "
-                            + abuseStart + " and ending at " + abuseEnd + " for url " + url, e);
+                            + abuseStart + " and ending at " + abuseEnd, e);
                 }
             }
         }
     }
 
     private void handleCookies(@Nullable final String cookies) {
-        if (MainActivity.DEBUG) {
-            Log.d(TAG, "handleCookies: cookies=" + (cookies == null ? "null" : cookies));
-        }
-
         if (cookies == null) {
             return;
         }
