@@ -35,13 +35,6 @@
 # See https://github.com/jhy/jsoup/issues/2459 - may be resolved in future, then this may be removed
 -dontwarn com.google.re2j.**
 
-## Rules for ExoPlayer
--keep class com.google.android.exoplayer2.** { *; }
-
-## Rules for OkHttp. Copy pasted from https://github.com/square/okhttp
--dontwarn okhttp3.**
--dontwarn okio.**
-
 ## See https://github.com/TeamNewPipe/NewPipe/pull/1441
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;
