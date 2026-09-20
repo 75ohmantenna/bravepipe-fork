@@ -21,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -132,9 +133,11 @@ public class ChooseTabsFragment extends Fragment {
                 .setMessage(R.string.restore_defaults_confirmation)
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
+                    final List<Tab> oldTabs = new ArrayList<>(tabList);
                     tabsManager.resetTabs();
                     updateTabList();
-                    selectedTabsAdapter.notifyDataSetChanged();
+                    DiffUtil.calculateDiff(new TabDiffCallback(oldTabs, tabList), true)
+                            .dispatchUpdatesTo(selectedTabsAdapter);
                 })
                 .show();
     }
@@ -160,8 +163,9 @@ public class ChooseTabsFragment extends Fragment {
     }
 
     private void addTab(final Tab tab) {
+        final int position = tabList.size();
         tabList.add(tab);
-        selectedTabsAdapter.notifyDataSetChanged();
+        selectedTabsAdapter.notifyItemInserted(position);
     }
 
     private void addTab(final int tabId) {
@@ -430,6 +434,36 @@ public class ChooseTabsFragment extends Fragment {
                     return false;
                 };
             }
+        }
+    }
+
+    static final class TabDiffCallback extends DiffUtil.Callback {
+        private final List<Tab> oldTabs;
+        private final List<Tab> newTabs;
+
+        TabDiffCallback(final List<Tab> oldTabs, final List<Tab> newTabs) {
+            this.oldTabs = new ArrayList<>(oldTabs);
+            this.newTabs = new ArrayList<>(newTabs);
+        }
+
+        @Override
+        public int getOldListSize() {
+            return oldTabs.size();
+        }
+
+        @Override
+        public int getNewListSize() {
+            return newTabs.size();
+        }
+
+        @Override
+        public boolean areItemsTheSame(final int oldItemPosition, final int newItemPosition) {
+            return oldTabs.get(oldItemPosition).equals(newTabs.get(newItemPosition));
+        }
+
+        @Override
+        public boolean areContentsTheSame(final int oldItemPosition, final int newItemPosition) {
+            return areItemsTheSame(oldItemPosition, newItemPosition);
         }
     }
 }
