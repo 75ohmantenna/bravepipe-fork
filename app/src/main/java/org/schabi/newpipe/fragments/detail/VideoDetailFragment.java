@@ -115,6 +115,7 @@ import java.util.function.Consumer;
 
 import coil3.util.CoilUtils;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -162,6 +163,8 @@ public final class VideoDetailFragment
     @Nullable
     private StreamInfo currentInfo = null;
     private Disposable currentWorker;
+    @Nullable
+    private Disposable dislikeWorker;
     @NonNull
     private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
@@ -367,6 +370,7 @@ public final class VideoDetailFragment
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        disposeDislikeWorker();
         content.detach();
         binding = null;
     }
@@ -761,6 +765,7 @@ public final class VideoDetailFragment
 
         content.initTabs(serviceId, url, title);
         currentInfo = null;
+        disposeDislikeWorker();
         if (currentWorker != null) {
             currentWorker.dispose();
         }
@@ -1279,6 +1284,7 @@ public final class VideoDetailFragment
     public void handleResult(@NonNull final StreamInfo info) {
         super.handleResult(info);
 
+        disposeDislikeWorker();
         currentInfo = info;
         setInitialData(info.getServiceId(), info.getOriginalUrl(), info.getName(), playQueue);
 
@@ -1316,20 +1322,18 @@ public final class VideoDetailFragment
             binding.detailThumbsDisabledView.setVisibility(View.VISIBLE);
         } else {
             if (info.getDislikeCount() == -1) {
-                new Thread(() -> {
-                    info.setDislikeCount(ReturnYouTubeDislikeUtils.getDislikes(getContext(), info));
-                    if (info.getDislikeCount() >= 0) {
-                        if (activity == null) {
-                            return;
-                        }
-                        activity.runOnUiThread(() -> {
-                            if (binding != null) {
+                final Context applicationContext = requireContext().getApplicationContext();
+                dislikeWorker = Single.fromCallable(() ->
+                                ReturnYouTubeDislikeUtils.getDislikes(applicationContext, info))
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(dislikeCount -> {
+                            info.setDislikeCount(dislikeCount);
+                            if (dislikeCount >= 0 && currentInfo == info && binding != null) {
                                 bindVoteCount(binding.detailThumbsDownCountView,
-                                        binding.detailThumbsDownImgView, info.getDislikeCount());
+                                        binding.detailThumbsDownImgView, dislikeCount);
                             }
-                        });
-                    }
-                }).start();
+                        }, throwable -> Log.w(TAG, "Failed to load dislike count", throwable));
             }
             bindVoteCount(binding.detailThumbsDownCountView,
                     binding.detailThumbsDownImgView, info.getDislikeCount());
@@ -1897,6 +1901,7 @@ public final class VideoDetailFragment
     private void cleanUp() {
         // New beginning
         stack.clear();
+        disposeDislikeWorker();
         if (currentWorker != null) {
             currentWorker.dispose();
         }
@@ -1904,6 +1909,13 @@ public final class VideoDetailFragment
         setInitialData(0, null, "", null);
         currentInfo = null;
         updateOverlayData(null, null, List.of());
+    }
+
+    private void disposeDislikeWorker() {
+        if (dislikeWorker != null) {
+            dislikeWorker.dispose();
+            dislikeWorker = null;
+        }
     }
 
     /*//////////////////////////////////////////////////////////////////////////
