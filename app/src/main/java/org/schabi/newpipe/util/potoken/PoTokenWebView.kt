@@ -40,7 +40,7 @@ class PoTokenWebView private constructor(
         if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
             WebSettingsCompat.setSafeBrowsingEnabled(webViewSettings, false)
         }
-        webViewSettings.userAgentString = USER_AGENT
+        webViewSettings.userAgentString = DownloaderImpl.USER_AGENT
         webViewSettings.blockNetworkLoads = true // the WebView does not need internet access
 
         // so that we can run async functions and get back the result
@@ -306,7 +306,7 @@ class PoTokenWebView private constructor(
                     url,
                     mapOf(
                         // replace the downloader user agent
-                        "User-Agent" to listOf(USER_AGENT),
+                        "User-Agent" to listOf(DownloaderImpl.USER_AGENT),
                         "Accept" to listOf("application/json"),
                         "Content-Type" to listOf("application/json+protobuf"),
                         "x-goog-api-key" to listOf(GOOGLE_API_KEY),
@@ -371,8 +371,6 @@ class PoTokenWebView private constructor(
         // Public API key used by BotGuard, which has been got by looking at BotGuard requests
         private const val GOOGLE_API_KEY = "AIzaSyDyT5W0Jh49F30Pqqtyfdf7pDLFKLJoAnw" // NOSONAR
         private const val REQUEST_KEY = "O43z0dpjhgX20SCx4KAo"
-        private const val USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.3"
         private const val JS_INTERFACE = "PoTokenWebView"
 
         override fun newPoTokenGenerator(context: Context): Single<PoTokenGenerator> = Single.create { emitter ->

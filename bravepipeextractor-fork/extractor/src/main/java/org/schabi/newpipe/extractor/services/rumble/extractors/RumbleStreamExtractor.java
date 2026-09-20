@@ -601,8 +601,9 @@ public final class RumbleStreamExtractor extends StreamExtractor {
         // TODO keep some cookies to be more browser like
         //curl 'https://rumble.com/embedJS/u3/?request=video&ver=2&v=vb294t&ext=%7B%22ad_count%22%3Anull%7D&ad_wt=0'
         // -H 'Referer: https://rumble.com/vdofb7-1-year-old-pulls-pony-behind-electric-car.html'
-        // -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko)
-        // Chrome/80.0.3987.149 Safari/537.36' -H 'Sec-Fetch-Dest: empty' --compressed
+        // -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+        // (KHTML, like Gecko)
+        // Chrome/145.0.0.0 Safari/537.36' -H 'Sec-Fetch-Dest: empty' --compressed
         //Document doc = Jsoup.parse(response.responseBody(), getUrl());
         try {
             embedJsonStreamInfoObj = JsonParser.object().from(response2.responseBody());
