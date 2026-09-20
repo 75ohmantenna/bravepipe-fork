@@ -20,6 +20,7 @@ import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleChannelTabE
 import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleCommentsExtractor;
 import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleSearchExtractor;
 import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleStreamExtractor;
+import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleSuggestionExtractor;
 import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleTrendingExtractor;
 import org.schabi.newpipe.extractor.services.rumble.extractors.RumbleTrendingShortsExtractor;
 import org.schabi.newpipe.extractor.services.rumble.linkHandler.RumbleChannelLinkHandlerFactory;
@@ -102,7 +103,7 @@ public class RumbleService extends StreamingService {
 
     @Override
     public SuggestionExtractor getSuggestionExtractor() {
-        return null;
+        return new RumbleSuggestionExtractor(this);
     }
 
     @Override
