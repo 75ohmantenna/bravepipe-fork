@@ -48,7 +48,6 @@ public class BraveCfChallenge403Interceptor implements Interceptor {
         // TODO reusing cookies from webview in okhttp might be useless as there it uses a different
         // TODO network stack. maybe use a config option to let the user decide.
         //USELESS->DISABLED // reuse previously retrieved cookies from the webView
-        final String cookies = ""; //USELESS->DISABLED bypassManager.getCurrentCookies();
         //USELESS->DISABLED final Request.Builder builder = request.newBuilder();
         //USELESS->DISABLED if (!cookies.isEmpty()) {
         //USELESS->DISABLED     builder.header("Cookie", cookies);
@@ -60,7 +59,7 @@ public class BraveCfChallenge403Interceptor implements Interceptor {
         //DBG if (!request.url().toString().contains("https://rumble.com/v")
         //DBG    && response.code() == 200) {
         if (response.code() == 200) {
-            debugMessage("CF_DBG Ic 1.0", response.code(), cookies, request.url().toString());
+            debugMessage("CF_DBG Ic 1.0", response.code());
             return response;
         }
 
@@ -70,13 +69,11 @@ public class BraveCfChallenge403Interceptor implements Interceptor {
             final ChallengeResult bypassResult =
                     bypassManager.fetchContentViaWebView(request.url().toString(), 30000);
 
-            debugMessage("CF_DBG Ic 2.0", response.code(),
-                    bypassResult.cookies, request.url().toString());
+            debugMessage("CF_DBG Ic 2.0", response.code());
 
             if (bypassResult.success && bypassResult.content != null) {
 
-                debugMessage("CF_DBG Ic 2.1 webview success", 200,
-                        bypassResult.cookies, request.url().toString());
+                debugMessage("CF_DBG Ic 2.1 webview success", 200);
 
                 // reuse the webView's content as a proper okHttp response.
                 final Request newRequest = request.newBuilder().build();
@@ -90,18 +87,16 @@ public class BraveCfChallenge403Interceptor implements Interceptor {
             }
         }
 
-        debugMessage("CF_DBG Ic 3.0", response.code(), cookies, request.url().toString());
+        debugMessage("CF_DBG Ic 3.0", response.code());
 
         return response;
     }
 
     private void debugMessage(
             final String prefix,
-            final int code,
-            final String cookies,
-            final String url
+            final int code
     ) {
-        Log.d(TAG, prefix + " code " + code + " cookies " + cookies + " url " + url);
+        Log.d(TAG, prefix + " code " + code);
     }
 
     public void cleanupBeforeDestroy() {

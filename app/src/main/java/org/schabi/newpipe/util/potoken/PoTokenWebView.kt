@@ -33,6 +33,8 @@ class PoTokenWebView private constructor(
     //region Initialization
     init {
         val webViewSettings = webView.settings
+        webViewSettings.allowFileAccess = false
+        webViewSettings.allowContentAccess = false
         //noinspection SetJavaScriptEnabled we want to use JavaScript!
         webViewSettings.javaScriptEnabled = true
         if (WebViewFeature.isFeatureSupported(WebViewFeature.SAFE_BROWSING_ENABLE)) {
@@ -52,9 +54,10 @@ class PoTokenWebView private constructor(
                     // indicates that there was a syntax error in the code, i.e. the WebView only
                     // supports a really old version of JS.
 
-                    val fmt = "\"${m.message()}\", source: ${m.sourceId()} (${m.lineNumber()})"
-                    val exception = BadWebViewException(fmt)
-                    Log.e(TAG, "This WebView implementation is broken: $fmt")
+                    val exception = BadWebViewException(
+                        "Uncaught JavaScript error at line ${m.lineNumber()}"
+                    )
+                    Log.e(TAG, "This WebView implementation reported an uncaught error")
 
                     onInitializationErrorCloseAndCancel(exception)
                     popAllPoTokenEmitters().forEach { (_, emitter) -> emitter.onError(exception) }
@@ -140,7 +143,7 @@ class PoTokenWebView private constructor(
     @JavascriptInterface
     fun onJsInitializationError(error: String) {
         if (BuildConfig.DEBUG) {
-            Log.e(TAG, "Initialization error from JavaScript: $error")
+            Log.e(TAG, "Initialization error from JavaScript")
         }
         onInitializationErrorCloseAndCancel(buildExceptionForJsError(error))
     }
@@ -152,14 +155,14 @@ class PoTokenWebView private constructor(
     @JavascriptInterface
     fun onRunBotguardResult(botguardResponse: String) {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "botguardResponse: $botguardResponse")
+            Log.d(TAG, "BotGuard response received")
         }
         makeBotguardServiceRequest(
             "https://www.youtube.com/api/jnn/v1/GenerateIT",
             "[ \"$REQUEST_KEY\", \"$botguardResponse\" ]"
         ) { responseBody ->
             if (BuildConfig.DEBUG) {
-                Log.d(TAG, "GenerateIT response: $responseBody")
+                Log.d(TAG, "GenerateIT response received")
             }
             val (integrityToken, expirationTimeInSeconds) = parseIntegrityTokenData(responseBody)
 
@@ -181,7 +184,7 @@ class PoTokenWebView private constructor(
     //region Obtaining poTokens
     override fun generatePoToken(identifier: String): Single<String> = Single.create { emitter ->
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "generatePoToken() called with identifier $identifier")
+            Log.d(TAG, "generatePoToken() called")
         }
         runOnMainThread(emitter) {
             addPoTokenEmitter(identifier, emitter)
@@ -211,7 +214,7 @@ class PoTokenWebView private constructor(
     @JavascriptInterface
     fun onObtainPoTokenError(identifier: String, error: String) {
         if (BuildConfig.DEBUG) {
-            Log.e(TAG, "obtainPoToken error from JavaScript: $error")
+            Log.e(TAG, "obtainPoToken error from JavaScript")
         }
         popPoTokenEmitter(identifier)?.onError(buildExceptionForJsError(error))
     }
@@ -223,7 +226,7 @@ class PoTokenWebView private constructor(
     @JavascriptInterface
     fun onObtainPoTokenResult(identifier: String, poTokenU8: String) {
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "Generated poToken (before decoding): identifier=$identifier poTokenU8=$poTokenU8")
+            Log.d(TAG, "Generated encoded poToken")
         }
         val poToken = try {
             u8ToBase64(poTokenU8)
@@ -233,7 +236,7 @@ class PoTokenWebView private constructor(
         }
 
         if (BuildConfig.DEBUG) {
-            Log.d(TAG, "Generated poToken: identifier=$identifier poToken=$poToken")
+            Log.d(TAG, "Decoded poToken")
         }
         popPoTokenEmitter(identifier)?.onSuccess(poToken)
     }

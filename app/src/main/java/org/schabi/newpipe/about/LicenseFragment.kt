@@ -101,6 +101,8 @@ class LicenseFragment : Fragment() {
                         Base64.NO_PADDING
                     )
                     val webView = WebView(context)
+                    webView.settings.allowFileAccess = false
+                    webView.settings.allowContentAccess = false
                     webView.loadData(webViewData, "text/html; charset=UTF-8", "base64")
 
                     val builder = AlertDialog.Builder(requireContext())

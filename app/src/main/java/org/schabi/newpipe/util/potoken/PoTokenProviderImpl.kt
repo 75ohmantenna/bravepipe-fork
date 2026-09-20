@@ -33,7 +33,7 @@ object PoTokenProviderImpl : PoTokenProvider {
             // RxJava's Single wraps exceptions into RuntimeErrors, so we need to unwrap them here
             when (val cause = e.cause) {
                 is BadWebViewException -> {
-                    Log.e(TAG, "Could not obtain poToken because WebView is broken", e)
+                    Log.e(TAG, "Could not obtain poToken because WebView is broken")
                     webViewBadImpl = true
                     return null
                 }
@@ -108,17 +108,13 @@ object PoTokenProviderImpl : PoTokenProvider {
                 // retry, this time recreating the [webPoTokenGenerator] from scratch;
                 // this might happen for example if NewPipe goes in the background and the WebView
                 // content is lost
-                Log.e(TAG, "Failed to obtain poToken, retrying", throwable)
+                Log.e(TAG, "Failed to obtain poToken, retrying")
                 return getWebClientPoToken(videoId = videoId, forceRecreate = true)
             }
         }
 
         if (BuildConfig.DEBUG) {
-            Log.d(
-                TAG,
-                "poToken for $videoId: playerPot=$playerPot, " +
-                    "streamingPot=$streamingPot, visitor_data=$visitorData"
-            )
+            Log.d(TAG, "Generated player and streaming poTokens")
         }
 
         return PoTokenResult(visitorData, playerPot, streamingPot)
