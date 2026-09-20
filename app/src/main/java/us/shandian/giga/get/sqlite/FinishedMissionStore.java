@@ -126,7 +126,7 @@ public class FinishedMissionStore extends SQLiteOpenHelper {
                                     )
                             ).toString());
 
-                            db.insert(FINISHED_TABLE_NAME, null, values);
+                            db.insertOrThrow(FINISHED_TABLE_NAME, null, values);
                         }
                         db.setTransactionSuccessful();
                     } finally {

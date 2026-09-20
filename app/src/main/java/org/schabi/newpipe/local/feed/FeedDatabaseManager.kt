@@ -12,6 +12,7 @@ import java.time.OffsetDateTime
 import java.time.ZoneOffset
 import org.schabi.newpipe.MainActivity.DEBUG
 import org.schabi.newpipe.NewPipeDatabase
+import org.schabi.newpipe.database.AppDatabase
 import org.schabi.newpipe.database.feed.model.FeedEntity
 import org.schabi.newpipe.database.feed.model.FeedGroupEntity
 import org.schabi.newpipe.database.feed.model.FeedLastUpdatedEntity
@@ -22,8 +23,9 @@ import org.schabi.newpipe.extractor.stream.StreamInfoItem
 import org.schabi.newpipe.extractor.stream.StreamType
 import org.schabi.newpipe.local.subscription.FeedGroupIcon
 
-class FeedDatabaseManager(context: Context) {
-    private val database = NewPipeDatabase.getInstance(context)
+class FeedDatabaseManager internal constructor(private val database: AppDatabase) {
+    constructor(context: Context) : this(NewPipeDatabase.getInstance(context))
+
     private val feedTable = database.feedDAO()
     private val feedGroupTable = database.feedGroupDAO()
     private val streamTable = database.streamDAO()
@@ -95,29 +97,35 @@ class FeedDatabaseManager(context: Context) {
             }
         }
 
-        feedTable.unlinkOldLivestreams(subscriptionId)
+        database.runInTransaction {
+            feedTable.unlinkOldLivestreams(subscriptionId)
 
-        if (itemsToInsert.isNotEmpty()) {
-            val streamEntities = itemsToInsert.map { StreamEntity(it) }
-            val streamIds = streamTable.upsertAll(streamEntities)
-            val feedEntities = streamIds.map { FeedEntity(it, subscriptionId) }
+            if (itemsToInsert.isNotEmpty()) {
+                val streamEntities = itemsToInsert.map { StreamEntity(it) }
+                val streamIds = streamTable.upsertAll(streamEntities)
+                val feedEntities = streamIds.map { FeedEntity(it, subscriptionId) }
 
-            feedTable.insertAll(feedEntities)
+                feedTable.insertAll(feedEntities)
+            }
+
+            feedTable.setLastUpdatedForSubscription(
+                FeedLastUpdatedEntity(subscriptionId, OffsetDateTime.now(ZoneOffset.UTC))
+            )
         }
-
-        feedTable.setLastUpdatedForSubscription(
-            FeedLastUpdatedEntity(subscriptionId, OffsetDateTime.now(ZoneOffset.UTC))
-        )
     }
 
     fun removeOrphansOrOlderStreams(oldestAllowedDate: OffsetDateTime = FEED_OLDEST_ALLOWED_DATE) {
-        feedTable.unlinkStreamsOlderThan(oldestAllowedDate)
-        streamTable.deleteOrphans()
+        database.runInTransaction {
+            feedTable.unlinkStreamsOlderThan(oldestAllowedDate)
+            streamTable.deleteOrphans()
+        }
     }
 
     fun clear() {
-        feedTable.deleteAll()
-        val deletedOrphans = streamTable.deleteOrphans()
+        val deletedOrphans = database.runInTransaction {
+            feedTable.deleteAll()
+            streamTable.deleteOrphans()
+        }
         if (DEBUG) {
             Log.d(
                 this::class.java.simpleName,

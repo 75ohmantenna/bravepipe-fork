@@ -33,6 +33,8 @@ import us.shandian.giga.util.Utility;
 import static org.schabi.newpipe.BuildConfig.DEBUG;
 
 public class DownloadMission extends Mission {
+    private static final int CONNECTION_TIMEOUT_MILLIS = 30_000;
+    private static final int READ_TIMEOUT_MILLIS = 30_000;
     private static final long serialVersionUID = 6L;// last bump: 07 october 2019
 
     static final int BUFFER_SIZE = 64 * 1024;
@@ -234,7 +236,8 @@ public class DownloadMission extends Mission {
         if (headRequest) conn.setRequestMethod("HEAD");
 
         // BUG workaround: switching between networks can freeze the download forever
-        conn.setConnectTimeout(30000);
+        conn.setConnectTimeout(CONNECTION_TIMEOUT_MILLIS);
+        conn.setReadTimeout(READ_TIMEOUT_MILLIS);
 
         if (rangeStart >= 0) {
             String req = "bytes=" + rangeStart + "-";
