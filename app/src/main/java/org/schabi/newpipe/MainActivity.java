@@ -703,6 +703,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(final Menu menu) {
+        final boolean prepared = super.onPrepareOptionsMenu(menu);
+        updateDrawerNavigation();
+        return prepared;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull final MenuItem item) {
         if (DEBUG) {
             Log.d(TAG, "onOptionsItemSelected() called with: item = [" + item + "]");
@@ -752,6 +759,7 @@ public class MainActivity extends AppCompatActivity {
         if (fragment instanceof MainFragment) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
             if (toggle != null) {
+                toggle.setDrawerIndicatorEnabled(true);
                 toggle.syncState();
                 toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> mainBinding.getRoot()
                         .open());
@@ -759,8 +767,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             mainBinding.getRoot().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            toolbarLayoutBinding.toolbar.setNavigationOnClickListener(v -> onHomeButtonPressed());
+            ToolbarNavigationHelper.configureUpNavigation(toggle, getSupportActionBar(),
+                    toolbarLayoutBinding.toolbar, v -> onHomeButtonPressed());
         }
     }
 
