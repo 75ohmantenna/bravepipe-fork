@@ -269,7 +269,7 @@ public final class VideoDetailFragment
 
         setupBroadcastReceiver();
 
-        settingsContentObserver = new ContentObserver(new Handler()) {
+        settingsContentObserver = new ContentObserver(new Handler(Looper.getMainLooper())) {
             @Override
             public void onChange(final boolean selfChange) {
                 if (activity != null && !globalScreenOrientationLocked(activity)) {

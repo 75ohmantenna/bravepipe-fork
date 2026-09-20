@@ -21,6 +21,7 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
@@ -138,7 +139,7 @@ public class DownloadManagerService extends BraveDownloadManagerService {
         }
 
         mBinder = new DownloadManagerBinder();
-        mHandler = new Handler(this::handleMessage);
+        mHandler = new Handler(Looper.getMainLooper(), this::handleMessage);
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 

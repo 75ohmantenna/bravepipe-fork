@@ -2,6 +2,7 @@ package org.schabi.newpipe.player.playback;
 
 import android.content.Context;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -127,7 +128,7 @@ public class MediaSourceManager {
     @NonNull
     private ManagedMediaSourcePlaylist playlist;
 
-    private final Handler removeMediaSourceHandler = new Handler();
+    private final Handler removeMediaSourceHandler = new Handler(Looper.getMainLooper());
 
     public MediaSourceManager(@NonNull final Context context,
                               @NonNull final PlaybackListener listener,
