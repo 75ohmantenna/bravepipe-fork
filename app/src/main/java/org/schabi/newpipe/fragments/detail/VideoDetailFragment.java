@@ -45,6 +45,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.core.view.WindowInsetsControllerCompat;
@@ -555,6 +556,8 @@ public final class VideoDetailFragment
 
         content.attach(binding);
 
+        applyDetailContentInsets();
+
         binding.detailThumbnailRootLayout.requestFocus();
 
         binding.detailControlsPlayWithKodi.setVisibility(
@@ -569,6 +572,34 @@ public final class VideoDetailFragment
                         : View.GONE
         );
         accommodateForTvAndDesktopMode();
+    }
+
+    private void applyDetailContentInsets() {
+        final int tabPaddingLeft = binding.tabLayout.getPaddingLeft();
+        final int tabPaddingTop = binding.tabLayout.getPaddingTop();
+        final int tabPaddingRight = binding.tabLayout.getPaddingRight();
+        final int tabPaddingBottom = binding.tabLayout.getPaddingBottom();
+        final int pagerPaddingLeft = binding.viewPager.getPaddingLeft();
+        final int pagerPaddingTop = binding.viewPager.getPaddingTop();
+        final int pagerPaddingRight = binding.viewPager.getPaddingRight();
+        final int pagerPaddingBottom = binding.viewPager.getPaddingBottom();
+
+        ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, windowInsets) -> {
+            final var navigationBars = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.navigationBars());
+            binding.tabLayout.setPadding(
+                    tabPaddingLeft + navigationBars.left,
+                    tabPaddingTop,
+                    tabPaddingRight + navigationBars.right,
+                    tabPaddingBottom + navigationBars.bottom);
+            binding.viewPager.setPadding(
+                    pagerPaddingLeft + navigationBars.left,
+                    pagerPaddingTop,
+                    pagerPaddingRight + navigationBars.right,
+                    pagerPaddingBottom + navigationBars.bottom);
+            return windowInsets;
+        });
+        ViewCompat.requestApplyInsets(binding.getRoot());
     }
 
     @Override
