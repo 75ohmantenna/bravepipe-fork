@@ -575,28 +575,29 @@ public final class VideoDetailFragment
     }
 
     private void applyDetailContentInsets() {
-        final int tabPaddingLeft = binding.tabLayout.getPaddingLeft();
-        final int tabPaddingTop = binding.tabLayout.getPaddingTop();
-        final int tabPaddingRight = binding.tabLayout.getPaddingRight();
-        final int tabPaddingBottom = binding.tabLayout.getPaddingBottom();
-        final int pagerPaddingLeft = binding.viewPager.getPaddingLeft();
-        final int pagerPaddingTop = binding.viewPager.getPaddingTop();
-        final int pagerPaddingRight = binding.viewPager.getPaddingRight();
-        final int pagerPaddingBottom = binding.viewPager.getPaddingBottom();
-
+        final int contentPaddingLeft = binding.detailMainContent.getPaddingLeft();
+        final int contentPaddingTop = binding.detailMainContent.getPaddingTop();
+        final int contentPaddingRight = binding.detailMainContent.getPaddingRight();
+        final int contentPaddingBottom = binding.detailMainContent.getPaddingBottom();
         ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), (view, windowInsets) -> {
+            final var statusBars = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.statusBars());
+            final var displayCutout = windowInsets.getInsets(
+                    WindowInsetsCompat.Type.displayCutout());
             final var navigationBars = windowInsets.getInsets(
                     WindowInsetsCompat.Type.navigationBars());
-            binding.tabLayout.setPadding(
-                    tabPaddingLeft + navigationBars.left,
-                    tabPaddingTop,
-                    tabPaddingRight + navigationBars.right,
-                    tabPaddingBottom + navigationBars.bottom);
-            binding.viewPager.setPadding(
-                    pagerPaddingLeft + navigationBars.left,
-                    pagerPaddingTop,
-                    pagerPaddingRight + navigationBars.right,
-                    pagerPaddingBottom + navigationBars.bottom);
+            final boolean statusBarsVisible = windowInsets.isVisible(
+                    WindowInsetsCompat.Type.statusBars());
+            final boolean useSafeInsets = !isFullscreen()
+                    || (activity != null && DeviceUtils.isInMultiWindow(activity));
+            binding.detailMainContent.setPadding(
+                    contentPaddingLeft + (useSafeInsets ? Math.max(navigationBars.left,
+                            statusBarsVisible ? displayCutout.left : 0) : 0),
+                    contentPaddingTop + (useSafeInsets ? Math.max(statusBars.top,
+                            statusBarsVisible ? displayCutout.top : 0) : 0),
+                    contentPaddingRight + (useSafeInsets ? Math.max(navigationBars.right,
+                            statusBarsVisible ? displayCutout.right : 0) : 0),
+                    contentPaddingBottom + (useSafeInsets ? navigationBars.bottom : 0));
             return windowInsets;
         });
         ViewCompat.requestApplyInsets(binding.getRoot());

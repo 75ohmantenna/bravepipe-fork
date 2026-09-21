@@ -590,6 +590,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
+            android:background="?attr/windowBackground"
             app:elevation="16dp"
             app:tabBackground="?attr/windowBackground"
             app:tabGravity="fill"
