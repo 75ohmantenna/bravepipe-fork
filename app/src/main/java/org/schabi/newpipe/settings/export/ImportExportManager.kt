@@ -162,6 +162,10 @@ class ImportExportManager(private val fileLocator: BackupFileLocator) {
 
                     is Float -> editor.putFloat(key, value)
 
+                    is Double -> value.toFloat().takeIf { it.isFinite() }?.let {
+                        editor.putFloat(key, it)
+                    }
+
                     is Int -> editor.putInt(key, value)
 
                     is Long -> editor.putLong(key, value)

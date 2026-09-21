@@ -5,7 +5,9 @@ import com.grack.nanojson.JsonParser
 import java.io.File
 import java.io.ObjectInputStream
 import java.nio.file.Paths
+import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
+import java.util.zip.ZipOutputStream
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.createTempFile
 import kotlin.io.path.deleteIfExists
@@ -175,6 +177,29 @@ class ImportExportManagerTest {
         verify(editor, atLeastOnce()).putBoolean(anyString(), anyBoolean())
         verify(editor, atLeastOnce()).putString(anyString(), anyString())
         verify(editor, atLeastOnce()).putInt(anyString(), anyInt())
+    }
+
+    @Test
+    fun `JSON decimal preferences must be imported as floats`() {
+        val zipFile = File.createTempFile("newpipe_", ".zip")
+        ZipOutputStream(zipFile.outputStream()).use { zip ->
+            zip.putNextEntry(ZipEntry(BackupFileLocator.FILE_NAME_JSON_PREFS))
+            zip.write(
+                """{"playback_speed_key":1.25,"overflow_float":1e100}""".toByteArray()
+            )
+            zip.closeEntry()
+        }
+        `when`(storedFileHelper.stream).thenReturn(FileStream(zipFile))
+
+        val preferences = Mockito.mock(SharedPreferences::class.java, withSettings().stubOnly())
+        val editor = Mockito.mock(SharedPreferences.Editor::class.java)
+        `when`(preferences.edit()).thenReturn(editor)
+        `when`(editor.commit()).thenReturn(true)
+
+        ImportExportManager(fileLocator).loadJsonPrefs(storedFileHelper, preferences)
+
+        verify(editor).putFloat("playback_speed_key", 1.25f)
+        verify(editor, Mockito.never()).putFloat(Mockito.eq("overflow_float"), Mockito.anyFloat())
     }
 
     @Test
