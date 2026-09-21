@@ -11,6 +11,7 @@ import android.provider.Settings;
 import android.text.Html;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -60,6 +61,20 @@ public final class PermissionHelper {
      * @return true if overlay permission is already granted
      */
     public static boolean checkSystemAlertWindowPermission(final Context context) {
+        return checkSystemAlertWindowPermission(context, null);
+    }
+
+    /**
+     * Requests overlay access when it has not been granted and notifies the caller when the
+     * explanatory dialog is dismissed.
+     *
+     * @param context the context used to show the request dialog
+     * @param onDialogDismissed optional callback invoked after the request dialog is dismissed
+     * @return true if overlay permission is already granted
+     */
+    public static boolean checkSystemAlertWindowPermission(
+            final Context context,
+            @Nullable final Runnable onDialogDismissed) {
         if (Settings.canDrawOverlays(context)) {
             return true;
         }
@@ -69,7 +84,7 @@ public final class PermissionHelper {
                 context.getString(R.string.permission_display_over_apps_permission_name);
         final String message = context.getString(R.string.permission_display_over_apps_message,
                 "<i>" + appName + "</i>", "<i>" + permissionName + "</i>");
-        new AlertDialog.Builder(context)
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context)
                 .setTitle(R.string.permission_display_over_apps)
                 .setMessage(Html.fromHtml(message, Html.FROM_HTML_MODE_COMPACT))
                 .setPositiveButton(R.string.ok, (dialog, which) -> {
@@ -79,8 +94,11 @@ public final class PermissionHelper {
                         context.startActivity(intent);
                     } catch (final ActivityNotFoundException ignored) {
                     }
-                })
-                .show();
+                });
+        if (onDialogDismissed != null) {
+            builder.setOnDismissListener(dialog -> onDialogDismissed.run());
+        }
+        builder.show();
         return false;
     }
 
@@ -93,7 +111,21 @@ public final class PermissionHelper {
      * @return whether the popup is enabled
      */
     public static boolean isPopupEnabledElseAsk(final Context context) {
-        if (checkSystemAlertWindowPermission(context)) {
+        return isPopupEnabledElseAsk(context, null);
+    }
+
+    /**
+     * Determines whether popup playback is enabled, notifying the caller when a required
+     * permission rationale is dismissed.
+     *
+     * @param context the Android context
+     * @param onDialogDismissed optional callback invoked after the request dialog is dismissed
+     * @return whether popup playback is enabled
+     */
+    public static boolean isPopupEnabledElseAsk(
+            final Context context,
+            @Nullable final Runnable onDialogDismissed) {
+        if (checkSystemAlertWindowPermission(context, onDialogDismissed)) {
             return true;
         } else {
             Toast.makeText(context, R.string.msg_popup_permission, Toast.LENGTH_LONG).show();

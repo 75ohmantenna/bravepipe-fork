@@ -107,6 +107,7 @@ public class RouterActivity extends AppCompatActivity {
     private FetcherViewModel fetcher;
     private Runnable whenResumed;
     private boolean dispatchingResult;
+    private boolean awaitingPopupPermissionDialog;
     private AlertDialog alertDialogChoice = null;
     private FragmentManager.FragmentLifecycleCallbacks dismissListener = null;
 
@@ -463,7 +464,8 @@ public class RouterActivity extends AppCompatActivity {
                 .setNegativeButton(R.string.just_once, dialogButtonsClickListener)
                 .setPositiveButton(R.string.always, dialogButtonsClickListener)
                 .setOnDismissListener(dialog -> {
-                    if (pendingChoice == null) {
+                    if (shouldFinishAfterChoiceDialogDismissed(
+                            pendingChoice != null, awaitingPopupPermissionDialog)) {
                         finish();
                     }
                 })
@@ -638,13 +640,24 @@ public class RouterActivity extends AppCompatActivity {
                     .apply();
         }
 
-        if (selectedChoiceKey.equals(getString(R.string.popup_player_key))
-                && !PermissionHelper.isPopupEnabledElseAsk(this)) {
-            finish();
-            return;
+        if (selectedChoiceKey.equals(getString(R.string.popup_player_key))) {
+            awaitingPopupPermissionDialog = true;
+            if (!PermissionHelper.isPopupEnabledElseAsk(this, () -> {
+                awaitingPopupPermissionDialog = false;
+                finish();
+            })) {
+                return;
+            }
+            awaitingPopupPermissionDialog = false;
         }
 
         startExtraction(selectedChoiceKey);
+    }
+
+    static boolean shouldFinishAfterChoiceDialogDismissed(
+            final boolean hasPendingChoice,
+            final boolean isAwaitingPopupPermissionDialog) {
+        return !hasPendingChoice && !isAwaitingPopupPermissionDialog;
     }
 
     private void startExtraction(final String selectedChoiceKey) {
