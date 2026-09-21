@@ -452,7 +452,7 @@
 
                 <data android:scheme="http" />
                 <data android:scheme="https" />
-                <data android:sspPattern="bandcamp.com/?show=*" />
+                <data android:sspPattern="//bandcamp.com/?show=.*" />
             </intent-filter>
 
         </activity>
