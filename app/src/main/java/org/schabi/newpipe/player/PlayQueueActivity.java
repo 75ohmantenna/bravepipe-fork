@@ -156,6 +156,7 @@ public final class PlayQueueActivity extends AppCompatActivity
         } else if (itemId == R.id.action_switch_main) {
             this.player.setRecovery();
             NavigationHelper.playOnMainPlayer(this, player.getPlayQueue(), true);
+            finish();
             return true;
         } else if (itemId == R.id.action_switch_popup) {
             if (PermissionHelper.isPopupEnabledElseAsk(this)) {
