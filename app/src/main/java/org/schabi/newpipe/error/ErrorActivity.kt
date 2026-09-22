@@ -15,6 +15,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.IntentCompat
 import androidx.core.net.toUri
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import com.grack.nanojson.JsonWriter
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
@@ -67,6 +70,17 @@ class ErrorActivity : BraveErrorActivity() {
 
         binding = ActivityErrorBinding.inflate(layoutInflater)
         setContentView(binding.getRoot())
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val safe = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or
+                    WindowInsetsCompat.Type.displayCutout() or
+                    WindowInsetsCompat.Type.ime()
+            )
+            view.setPadding(safe.left, safe.top, safe.right, safe.bottom)
+            WindowInsetsCompat.CONSUMED
+        }
+        ViewCompat.requestApplyInsets(binding.root)
 
         setSupportActionBar(binding.toolbarLayout.toolbar)
         supportActionBar?.apply {
