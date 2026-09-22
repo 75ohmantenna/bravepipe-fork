@@ -10,7 +10,6 @@ appcompat = "1.7.1"
 assertj = "3.27.7"
 autoservice-google = "1.1.1"
 autoservice-zacsweers = "1.2.0"
-pvcpipe-extractor = "local"
 bridge = "v2.0.2"
 cardview = "1.0.0"
 checkstyle = "13.3.0"
@@ -41,6 +40,7 @@ okhttp = "5.4.0"
 phoenix = "3.0.0"
 preference = "1.2.1"
 prettytime = "5.0.8.Final"
+pvcpipe-extractor = "local"
 recyclerview = "1.4.0"
 room = "2.7.2"
 runner = "1.7.0"
@@ -84,7 +84,6 @@ androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 androidx-work-runtime = { module = "androidx.work:work-runtime", version.ref = "work" }
 androidx-work-rxjava3 = { module = "androidx.work:work-rxjava3", version.ref = "work" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
-pvcpipe-extractor = { module = "com.github.75ohmantenna:pvcpipe-extractor", version.ref = "pvcpipe-extractor" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil" }
 evernote-statesaver-compiler = { module = "com.evernote:android-state-processor", version.ref = "statesaver" }
@@ -118,6 +117,7 @@ noties-markwon-linkify = { module = "io.noties.markwon:linkify", version.ref = "
 ocpsoft-prettytime = { module = "org.ocpsoft.prettytime:prettytime", version.ref = "prettytime" }
 pinterest-ktlint = { module = "com.pinterest.ktlint:ktlint-cli", version.ref = "ktlint" }
 puppycrawl-checkstyle = { module = "com.puppycrawl.tools:checkstyle", version.ref = "checkstyle" }
+pvcpipe-extractor = { module = "com.github.75ohmantenna:pvcpipe-extractor", version.ref = "pvcpipe-extractor" }
 reactivex-rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 reactivex-rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 squareup-leakcanary-core = { module = "com.squareup.leakcanary:leakcanary-android-core", version.ref = "leakcanary" }

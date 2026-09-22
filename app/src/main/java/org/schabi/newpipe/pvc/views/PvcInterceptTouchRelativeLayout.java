@@ -1,5 +1,6 @@
 package org.schabi.newpipe.pvc.views;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -20,18 +21,13 @@ public class PvcInterceptTouchRelativeLayout extends RelativeLayout {
     private boolean mDisallowIntercept;
 
     public interface OnInterceptTouchEventListener {
-        /*
-         * If disallowIntercept is true the touch event can't be stealed and the return value is
-         * ignored.
-         * @see android.view.ViewGroup#onInterceptTouchEvent(android.view.MotionEvent)
-         */
+        // If disallowIntercept is true the touch event cannot be stolen and the return value is
+        // ignored. See ViewGroup.onInterceptTouchEvent(MotionEvent).
         boolean onInterceptTouchEvent(View view,
                                       MotionEvent ev,
                                       boolean disallowIntercept);
 
-        /*
-         * @see android.view.View#onTouchEvent(android.view.MotionEvent)
-         */
+        // See View.onTouchEvent(MotionEvent).
         boolean onTouchEvent(View view, MotionEvent event);
     }
 
@@ -138,8 +134,10 @@ public class PvcInterceptTouchRelativeLayout extends RelativeLayout {
     }
 
     @Override
+    @SuppressLint("ClickableViewAccessibility")
     public boolean onTouchEvent(
             final MotionEvent event) {
+        // This container only delegates scroll interception; it does not recognize clicks.
         final boolean handled = mInterceptTouchEventListener.onTouchEvent(this, event);
         return handled || super.onTouchEvent(event);
     }

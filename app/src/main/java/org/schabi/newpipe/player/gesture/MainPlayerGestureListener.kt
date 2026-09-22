@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.gesture
 
+import android.annotation.SuppressLint
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
@@ -32,6 +33,7 @@ class MainPlayerGestureListener(
     private var isMoving = false
     private var pvcGestureHelper = PvcMainPlayerGestureListenerHelper()
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         super.onTouch(v, event)
         if (event.action == MotionEvent.ACTION_UP && isMoving) {

@@ -125,6 +125,8 @@ public class PlayQueueAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             case MOVE:
                 final MoveEvent moveEvent = (MoveEvent) message;
                 notifyItemMoved(moveEvent.getFromIndex(), moveEvent.getToIndex());
+                notifyItemChanged(moveEvent.getFromIndex());
+                notifyItemChanged(moveEvent.getToIndex());
                 break;
             case INIT:
             case REORDER:

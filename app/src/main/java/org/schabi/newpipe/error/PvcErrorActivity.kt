@@ -19,9 +19,10 @@ import java.time.format.DateTimeFormatter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper.PvcLogFileNameErrorInfo
+import org.schabi.newpipe.R
 import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper.Companion.isLogcatDumperEnabled
 import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper.Companion.logcatDump
+import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper.PvcLogFileNameErrorInfo
 import org.schabi.newpipe.util.external_communication.ShareUtils
 
 abstract class PvcErrorActivity : AppCompatActivity() {
@@ -113,7 +114,7 @@ abstract class PvcErrorActivity : AppCompatActivity() {
         val context = copyButton.context
 
         val newCopyLogcatButton = Button(context).apply {
-            text = "Copy related logcat entries"
+            setText(R.string.pvc_copy_related_logcat_entries)
             id = View.generateViewId() // important for accessibility and constraints
         }
 

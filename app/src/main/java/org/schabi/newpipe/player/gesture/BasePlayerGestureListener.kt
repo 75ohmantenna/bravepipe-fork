@@ -68,6 +68,14 @@ abstract class BasePlayerGestureListener(
         }
     }
 
+    fun onAccessibilityClick(): Boolean {
+        if (player.currentState == Player.STATE_BLOCKED) {
+            return false
+        }
+        onSingleTap()
+        return true
+    }
+
     open fun onScrollEnd(event: MotionEvent) {
         if (DEBUG) {
             Log.d(

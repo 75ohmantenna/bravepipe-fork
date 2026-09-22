@@ -17,6 +17,7 @@ import static org.schabi.newpipe.player.helper.PlayerHelper.nextResizeModeAndSav
 import static org.schabi.newpipe.player.helper.PlayerHelper.retrieveSeekDurationFromPreferences;
 import static org.schabi.newpipe.util.SponsorBlockSeekBar.markSegments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -49,6 +50,7 @@ import androidx.core.graphics.BitmapCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.math.MathUtils;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.exoplayer2.C;
@@ -200,6 +202,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     abstract BasePlayerGestureListener buildGestureListener();
 
+    @SuppressLint("ClickableViewAccessibility")
     protected void initListeners() {
         binding.qualityTextView.setOnClickListener(makeOnClickListener(this::onQualityClicked));
         binding.audioTrackTextView.setOnClickListener(
@@ -214,6 +217,11 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         playerGestureListener = buildGestureListener();
         gestureDetector = new GestureDetector(context, playerGestureListener);
         binding.getRoot().setOnTouchListener(playerGestureListener);
+        ViewCompat.replaceAccessibilityAction(binding.getRoot(),
+                AccessibilityNodeInfoCompat.AccessibilityActionCompat.ACTION_CLICK,
+                context.getString(R.string.toggle_player_controls),
+                (view, arguments) -> playerGestureListener != null
+                        && playerGestureListener.onAccessibilityClick());
 
         binding.repeatButton.setOnClickListener(v -> onRepeatClicked());
         binding.shuffleButton.setOnClickListener(v -> onShuffleClicked());
@@ -283,6 +291,7 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackControlRoot.addOnLayoutChangeListener(onLayoutChangeListener);
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     protected void deinitListeners() {
         binding.qualityTextView.setOnClickListener(null);
         binding.audioTrackTextView.setOnClickListener(null);
@@ -293,6 +302,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
         binding.playbackLiveSync.setOnClickListener(null);
 
         binding.getRoot().setOnTouchListener(null);
+        ViewCompat.removeAccessibilityAction(binding.getRoot(),
+                AccessibilityNodeInfoCompat.ACTION_CLICK);
         playerGestureListener = null;
         gestureDetector = null;
 
@@ -965,13 +976,16 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
         if (repeatMode == REPEAT_MODE_ALL) {
             binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
+                    R.drawable.ic_repeat_all);
+            binding.repeatButton.setContentDescription(context.getString(R.string.repeat_all));
         } else if (repeatMode == REPEAT_MODE_ONE) {
             binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
+                    R.drawable.ic_repeat_one);
+            binding.repeatButton.setContentDescription(context.getString(R.string.repeat_one));
         } else /* repeatMode == REPEAT_MODE_OFF */ {
             binding.repeatButton.setImageResource(
-                    com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
+                    R.drawable.ic_repeat_off);
+            binding.repeatButton.setContentDescription(context.getString(R.string.repeat_off));
         }
     }
 
@@ -994,6 +1008,8 @@ public abstract class VideoPlayerUi extends PlayerUi implements SeekBar.OnSeekBa
 
     private void setShuffleButton(final boolean shuffled) {
         binding.shuffleButton.setImageAlpha(shuffled ? 255 : 77);
+        binding.shuffleButton.setContentDescription(context.getString(
+                shuffled ? R.string.shuffle_on : R.string.shuffle_off));
     }
     //endregion
 

@@ -11,6 +11,7 @@
 
     <ImageView
         android:id="@+id/itemThumbnailView"
+        android:contentDescription="@null"
         android:layout_width="@dimen/video_item_search_thumbnail_image_width"
         android:layout_height="@dimen/video_item_search_thumbnail_image_height"
         android:layout_alignParentStart="true"

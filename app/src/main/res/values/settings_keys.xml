@@ -159,15 +159,9 @@
 
     <string name="scale_to_square_image_in_notifications_key">scale_to_square_image_in_notifications</string>
 
-    <string name="notification_slot_0_key">notification_slot_0_key</string>
-    <string name="notification_slot_1_key" tools:ignore="Typos">notification_slot_1_key</string>
-    <string name="notification_slot_2_key">notification_slot_2_key</string>
     <string name="notification_slot_3_key">notification_slot_3_key</string>
     <string name="notification_slot_4_key">notification_slot_4_key</string>
 
-    <string name="notification_slot_compact_0_key">notification_slot_compact_0_key</string>
-    <string name="notification_slot_compact_1_key" tools:ignore="Typos">notification_slot_compact_1_key</string>
-    <string name="notification_slot_compact_2_key">notification_slot_compact_2_key</string>
 
     <string name="notification_colorize_key">notification_colorize_key</string>
 

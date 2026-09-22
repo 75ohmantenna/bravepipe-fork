@@ -16,8 +16,8 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import org.schabi.newpipe.R
-import org.schabi.newpipe.pvc.feature.savesearchpresets.ui.PresetListDialogFragment
 import org.schabi.newpipe.fragments.list.search.SearchViewModel
+import org.schabi.newpipe.pvc.feature.savesearchpresets.ui.PresetListDialogFragment
 
 /**
  * Base dialog class for [DialogFragment] based search filter dialogs.

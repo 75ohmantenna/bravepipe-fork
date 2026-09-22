@@ -1,10 +1,10 @@
 package org.schabi.newpipe.error
 
 import android.util.Log
-import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper
 import org.schabi.newpipe.error.ErrorInfo.Companion.throwableListToStringList
 import org.schabi.newpipe.error.ErrorInfo.Companion.throwableToStringList
 import org.schabi.newpipe.extractor.pvc.AttachException
+import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper
 
 object PvcErrorInfoHelper {
 

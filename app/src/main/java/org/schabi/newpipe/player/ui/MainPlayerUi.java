@@ -794,6 +794,18 @@ public final class MainPlayerUi extends VideoPlayerUi implements View.OnLayoutCh
                     itemTouchHelper.startDrag(viewHolder);
                 }
             }
+
+            @Override
+            public boolean onMove(final PlayQueueItemHolder viewHolder, final int targetIndex) {
+                @Nullable final PlayQueue playQueue = player.getPlayQueue();
+                final int sourceIndex = viewHolder.getBindingAdapterPosition();
+                if (playQueue == null || sourceIndex < 0 || targetIndex < 0
+                        || targetIndex >= playQueue.size()) {
+                    return false;
+                }
+                playQueue.move(sourceIndex, targetIndex);
+                return true;
+            }
         };
     }
 

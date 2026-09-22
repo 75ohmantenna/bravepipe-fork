@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="UnusedResources">
     <group android:id="@+id/menu_services_group" />
     <group android:id="@+id/menu_tabs_group" />
     <group android:id="@+id/menu_kiosks_group" />

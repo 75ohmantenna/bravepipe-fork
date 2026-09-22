@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -15,7 +16,7 @@
             android:layout_width="72dp"
             android:layout_height="72dp"
             android:layout_centerVertical="true"
-            android:contentDescription="TODO"
+            android:contentDescription="@null"
             android:gravity="center"
             android:padding="15dp"
             android:scaleType="fitXY"
@@ -29,7 +30,7 @@
             android:layout_toRightOf="@id/item_icon"
             android:ellipsize="end"
             android:padding="6dp"
-            android:text="XXX.xx"
+            tools:text="XXX.xx"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -42,7 +43,7 @@
             android:layout_toRightOf="@id/item_icon"
             android:padding="6dp"
             android:singleLine="true"
-            android:text="100.00MB"
+            tools:text="100.00MB"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
@@ -57,7 +58,7 @@
             android:layout_toRightOf="@id/item_size"
             android:padding="6dp"
             android:singleLine="true"
-            android:text="0%"
+            tools:text="0%"
             android:textColor="@color/white"
             android:textSize="12sp"
             android:textStyle="bold" />
@@ -82,7 +83,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="4dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/more_options"
             android:scaleType="centerInside"
             android:src="@drawable/ic_more_vert"
             app:tint="?attr/actionColor" />

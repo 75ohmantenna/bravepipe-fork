@@ -7,4 +7,15 @@
     <issue id="MissingTranslation" severity="ignore" />
     <issue id="MissingQuantity" severity="ignore" />
     <issue id="ImpliedQuantity" severity="ignore" />
+    <!-- PVCPipe currently ships only English resources and explicitly does not support RTL. -->
+    <issue id="RtlHardcoded" severity="ignore" />
+    <!-- API 26+ uses these vector/adaptive resources; density PNGs remain as legacy fallbacks. -->
+    <issue id="IconXmlAndPng">
+        <ignore regexp="ic_launcher" />
+        <ignore regexp="ic_newpipe_triangle_white" />
+    </issue>
+    <!-- Dependency upgrades are reviewed separately instead of being mixed into lint cleanup. -->
+    <issue id="AndroidGradlePluginVersion" severity="ignore" />
+    <issue id="GradleDependency" severity="ignore" />
+    <issue id="NewerVersionAvailable" severity="ignore" />
 </lint>

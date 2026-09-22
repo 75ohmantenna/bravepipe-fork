@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.subscription.workers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.net.Uri
@@ -72,6 +73,7 @@ class SubscriptionExportWorker(
         }
     }
 
+    @SuppressLint("InlinedApi") // WorkManager handles the service type on older APIs.
     private fun createForegroundInfo(title: String): ForegroundInfo {
         val notification =
             NotificationCompat

@@ -15,13 +15,13 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.launch
 import org.schabi.newpipe.R
+import org.schabi.newpipe.databinding.DialogPresetListBinding
+import org.schabi.newpipe.fragments.list.search.SearchViewModel
 import org.schabi.newpipe.pvc.feature.savesearchpresets.domain.SortDirection
 import org.schabi.newpipe.pvc.feature.savesearchpresets.domain.SortType
 import org.schabi.newpipe.pvc.feature.savesearchpresets.ui.PresetListDialogFragment.Companion.MENU_GROUP_SORT_DIRECTION
 import org.schabi.newpipe.pvc.feature.savesearchpresets.ui.PresetListDialogFragment.Companion.MENU_GROUP_SORT_PRESETS
 import org.schabi.newpipe.pvc.feature.savesearchpresets.ui.PresetListDialogFragment.Companion.MENU_ID_SORT_DIRECTION
-import org.schabi.newpipe.databinding.DialogPresetListBinding
-import org.schabi.newpipe.fragments.list.search.SearchViewModel
 
 /**
  * RecyclerView + Flow collector.

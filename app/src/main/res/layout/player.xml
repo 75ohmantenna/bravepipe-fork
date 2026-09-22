@@ -448,6 +448,7 @@
 
                     <ImageView
                         android:id="@+id/currentSeekbarPreviewThumbnail"
+                        android:contentDescription="@null"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingTop="2dp"
@@ -633,7 +634,7 @@
                 android:focusable="true"
                 android:padding="10dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/exo_controls_repeat_off"
+                android:src="@drawable/ic_repeat_off"
                 android:tint="?attr/colorAccent"
                 tools:ignore="RtlHardcoded" />
 

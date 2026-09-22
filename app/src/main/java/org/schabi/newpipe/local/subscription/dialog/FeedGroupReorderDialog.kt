@@ -34,6 +34,7 @@ class FeedGroupReorderDialog : DialogFragment() {
     @JvmField
     var groupOrderedIdList = ArrayList<Long>()
     private val groupAdapter = GroupieAdapter()
+    private val groupItems = ArrayList<FeedGroupReorderItem>()
     private val itemTouchHelper = ItemTouchHelper(getItemTouchCallback())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +90,9 @@ class FeedGroupReorderDialog : DialogFragment() {
             groupList = list.sortedBy { groupOrderedIdList.indexOf(it.uid) }
         }
 
-        groupAdapter.update(groupList.map { FeedGroupReorderItem(it, itemTouchHelper) })
+        groupItems.clear()
+        groupItems.addAll(groupList.map { FeedGroupReorderItem(it, itemTouchHelper, ::moveGroup) })
+        groupAdapter.update(groupItems)
     }
 
     private fun disableInput() {
@@ -108,15 +111,24 @@ class FeedGroupReorderDialog : DialogFragment() {
                 val sourceIndex = source.bindingAdapterPosition
                 val targetIndex = target.bindingAdapterPosition
 
-                groupAdapter.notifyItemMoved(sourceIndex, targetIndex)
-                Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)
-
-                return true
+                return moveGroup(sourceIndex, targetIndex)
             }
 
             override fun isLongPressDragEnabled(): Boolean = false
             override fun isItemViewSwipeEnabled(): Boolean = false
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {}
         }
+    }
+
+    private fun moveGroup(sourceIndex: Int, targetIndex: Int): Boolean {
+        if (sourceIndex !in groupOrderedIdList.indices ||
+            targetIndex !in groupOrderedIdList.indices
+        ) {
+            return false
+        }
+        Collections.swap(groupOrderedIdList, sourceIndex, targetIndex)
+        Collections.swap(groupItems, sourceIndex, targetIndex)
+        groupAdapter.update(groupItems.toList())
+        return true
     }
 }

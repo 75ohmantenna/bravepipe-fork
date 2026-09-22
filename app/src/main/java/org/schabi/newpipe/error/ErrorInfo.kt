@@ -11,11 +11,9 @@ import java.net.UnknownHostException
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import org.schabi.newpipe.R
-import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.ServiceList.YouTube
-import org.schabi.newpipe.extractor.pvc.PvcCloudFlareChallengeException
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
@@ -29,9 +27,11 @@ import org.schabi.newpipe.extractor.exceptions.SignInConfirmNotBotException
 import org.schabi.newpipe.extractor.exceptions.SoundCloudGoPlusContentException
 import org.schabi.newpipe.extractor.exceptions.UnsupportedContentInCountryException
 import org.schabi.newpipe.extractor.exceptions.YoutubeMusicPremiumContentException
+import org.schabi.newpipe.extractor.pvc.PvcCloudFlareChallengeException
 import org.schabi.newpipe.ktx.isNetworkRelated
 import org.schabi.newpipe.player.mediasource.FailedMediaSource
 import org.schabi.newpipe.player.resolver.PlaybackResolver
+import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper
 import org.schabi.newpipe.util.text.getText
 
 /**

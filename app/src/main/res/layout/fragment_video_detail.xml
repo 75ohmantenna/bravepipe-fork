@@ -608,6 +608,7 @@
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
+            android:contentDescription="@string/expand_player"
             android:layout_width="62dp"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"
@@ -615,8 +616,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/video_item_search_padding"
             android:paddingRight="@dimen/video_item_search_padding"
-            android:scaleType="fitCenter"
-            tools:ignore="ContentDescription" />
+            android:scaleType="fitCenter" />
 
         <LinearLayout
             android:id="@+id/overlay_metadata_layout"

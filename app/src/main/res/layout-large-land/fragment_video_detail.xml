@@ -620,7 +620,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginTop="10dp"
-            android:layout_weight="3" />
+            android:layout_weight="3"
+            tools:ignore="InconsistentLayout" />
     </LinearLayout>
 
 
@@ -630,10 +631,11 @@
         android:layout_height="match_parent"
         android:alpha="0.9"
         android:background="?attr/windowBackground"
-        android:descendantFocusability="blocksDescendants">
+        android:descendantFocusability="afterDescendants">
 
         <ImageButton
             android:id="@+id/overlay_thumbnail"
+            android:contentDescription="@string/expand_player"
             android:layout_width="85dp"
             android:layout_height="60dp"
             android:layout_alignParentStart="true"

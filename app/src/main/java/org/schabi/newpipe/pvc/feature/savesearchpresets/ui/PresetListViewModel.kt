@@ -9,11 +9,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.stateIn
+import org.schabi.newpipe.fragments.list.search.SearchViewModel
 import org.schabi.newpipe.pvc.feature.savesearchpresets.data.DBState
 import org.schabi.newpipe.pvc.feature.savesearchpresets.data.Entry
 import org.schabi.newpipe.pvc.feature.savesearchpresets.domain.SortDirection
 import org.schabi.newpipe.pvc.feature.savesearchpresets.domain.SortType
-import org.schabi.newpipe.fragments.list.search.SearchViewModel
 
 /**
  * This ViewModel aggregates the flows:

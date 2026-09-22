@@ -340,6 +340,18 @@ public final class PlayQueueActivity extends AppCompatActivity
                     itemTouchHelper.startDrag(viewHolder);
                 }
             }
+
+            @Override
+            public boolean onMove(final PlayQueueItemHolder viewHolder, final int targetIndex) {
+                final int sourceIndex = viewHolder.getBindingAdapterPosition();
+                if (player == null || player.getPlayQueue() == null
+                        || sourceIndex < 0 || targetIndex < 0
+                        || targetIndex >= player.getPlayQueue().size()) {
+                    return false;
+                }
+                player.getPlayQueue().move(sourceIndex, targetIndex);
+                return true;
+            }
         };
     }
 
@@ -571,20 +583,28 @@ public final class PlayQueueActivity extends AppCompatActivity
         switch (repeatMode) {
             case com.google.android.exoplayer2.Player.REPEAT_MODE_OFF:
                 queueControlBinding.controlRepeat.setImageResource(
-                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_off);
+                        R.drawable.ic_repeat_off);
+                queueControlBinding.controlRepeat.setContentDescription(
+                        getString(R.string.repeat_off));
                 break;
             case com.google.android.exoplayer2.Player.REPEAT_MODE_ONE:
                 queueControlBinding.controlRepeat.setImageResource(
-                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_one);
+                        R.drawable.ic_repeat_one);
+                queueControlBinding.controlRepeat.setContentDescription(
+                        getString(R.string.repeat_one));
                 break;
             case com.google.android.exoplayer2.Player.REPEAT_MODE_ALL:
                 queueControlBinding.controlRepeat.setImageResource(
-                        com.google.android.exoplayer2.ui.R.drawable.exo_controls_repeat_all);
+                        R.drawable.ic_repeat_all);
+                queueControlBinding.controlRepeat.setContentDescription(
+                        getString(R.string.repeat_all));
                 break;
         }
 
         final int shuffleAlpha = shuffled ? 255 : 77;
         queueControlBinding.controlShuffle.setImageAlpha(shuffleAlpha);
+        queueControlBinding.controlShuffle.setContentDescription(getString(
+                shuffled ? R.string.shuffle_on : R.string.shuffle_off));
     }
 
     private void onPlaybackParameterChanged(@Nullable final PlaybackParameters parameters) {

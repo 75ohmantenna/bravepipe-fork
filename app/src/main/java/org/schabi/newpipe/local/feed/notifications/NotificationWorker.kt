@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.feed.notifications
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.util.Log
@@ -73,6 +74,7 @@ class NotificationWorker(
         Single.just(Result.success())
     }
 
+    @SuppressLint("InlinedApi") // WorkManager handles the service type on older APIs.
     private fun showLoadingFeedForegroundNotification() {
         val notification = NotificationCompat.Builder(
             applicationContext,

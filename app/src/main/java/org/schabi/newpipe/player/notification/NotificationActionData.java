@@ -11,7 +11,6 @@ import static org.schabi.newpipe.player.notification.NotificationConstants.ACTIO
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_REPEAT;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_SHUFFLE;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.DrawableRes;
@@ -56,7 +55,6 @@ public final class NotificationActionData {
     }
 
 
-    @SuppressLint("PrivateResource") // we currently use Exoplayer's internal strings and icons
     @Nullable
     public static NotificationActionData fromNotificationActionEnum(
             @NonNull final Player player,
@@ -69,48 +67,36 @@ public final class NotificationActionData {
         switch (selectedAction) {
             case NotificationConstants.PREVIOUS:
                 return new NotificationActionData(ACTION_PLAY_PREVIOUS,
-                        ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                .exo_controls_previous_description), baseActionIcon);
+                        ctx.getString(R.string.previous_stream), baseActionIcon);
 
             case NotificationConstants.NEXT:
                 return new NotificationActionData(ACTION_PLAY_NEXT,
-                        ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                .exo_controls_next_description), baseActionIcon);
+                        ctx.getString(R.string.next_stream), baseActionIcon);
 
             case NotificationConstants.REWIND:
                 return new NotificationActionData(ACTION_FAST_REWIND,
-                        ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                .exo_controls_rewind_description), baseActionIcon);
+                        ctx.getString(R.string.rewind), baseActionIcon);
 
             case NotificationConstants.FORWARD:
                 return new NotificationActionData(ACTION_FAST_FORWARD,
-                        ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                .exo_controls_fastforward_description), baseActionIcon);
+                        ctx.getString(R.string.forward), baseActionIcon);
 
             case NotificationConstants.SMART_REWIND_PREVIOUS:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return new NotificationActionData(ACTION_PLAY_PREVIOUS,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_previous_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_notification_previous);
+                            ctx.getString(R.string.previous_stream), R.drawable.ic_previous);
                 } else {
                     return new NotificationActionData(ACTION_FAST_REWIND,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_rewind_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_controls_rewind);
+                            ctx.getString(R.string.rewind), R.drawable.ic_fast_rewind);
                 }
 
             case NotificationConstants.SMART_FORWARD_NEXT:
                 if (player.getPlayQueue() != null && player.getPlayQueue().size() > 1) {
                     return new NotificationActionData(ACTION_PLAY_NEXT,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_next_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_notification_next);
+                            ctx.getString(R.string.next_stream), R.drawable.ic_next);
                 } else {
                     return new NotificationActionData(ACTION_FAST_FORWARD,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_fastforward_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_controls_fastforward);
+                            ctx.getString(R.string.forward), R.drawable.ic_fast_forward);
                 }
 
             case NotificationConstants.PLAY_PAUSE_BUFFERING:
@@ -126,56 +112,38 @@ public final class NotificationActionData {
             case NotificationConstants.PLAY_PAUSE:
                 if (player.getCurrentState() == Player.STATE_COMPLETED) {
                     return new NotificationActionData(ACTION_PLAY_PAUSE,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_pause_description),
+                            ctx.getString(R.string.replay),
                             R.drawable.ic_replay);
                 } else if (player.isPlaying()
                         || player.getCurrentState() == Player.STATE_PREFLIGHT
                         || player.getCurrentState() == Player.STATE_BLOCKED
                         || player.getCurrentState() == Player.STATE_BUFFERING) {
                     return new NotificationActionData(ACTION_PLAY_PAUSE,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_pause_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_notification_pause);
+                            ctx.getString(R.string.pause), R.drawable.ic_pause);
                 } else {
                     return new NotificationActionData(ACTION_PLAY_PAUSE,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_play_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_notification_play);
+                            ctx.getString(R.string.play), R.drawable.ic_play_arrow);
                 }
 
             case NotificationConstants.REPEAT:
                 if (player.getRepeatMode() == REPEAT_MODE_ALL) {
                     return new NotificationActionData(ACTION_REPEAT,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_repeat_all_description),
-                            com.google.android.exoplayer2.ext.mediasession.R.drawable
-                                    .exo_media_action_repeat_all);
+                            ctx.getString(R.string.repeat_all), R.drawable.ic_repeat_all);
                 } else if (player.getRepeatMode() == REPEAT_MODE_ONE) {
                     return new NotificationActionData(ACTION_REPEAT,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_repeat_one_description),
-                            com.google.android.exoplayer2.ext.mediasession.R.drawable
-                                    .exo_media_action_repeat_one);
+                            ctx.getString(R.string.repeat_one), R.drawable.ic_repeat_one);
                 } else /* player.getRepeatMode() == REPEAT_MODE_OFF */ {
                     return new NotificationActionData(ACTION_REPEAT,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_repeat_off_description),
-                            com.google.android.exoplayer2.ext.mediasession.R.drawable
-                                    .exo_media_action_repeat_off);
+                            ctx.getString(R.string.repeat_off), R.drawable.ic_repeat_off);
                 }
 
             case NotificationConstants.SHUFFLE:
                 if (player.getPlayQueue() != null && player.getPlayQueue().isShuffled()) {
                     return new NotificationActionData(ACTION_SHUFFLE,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_shuffle_on_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_controls_shuffle_on);
+                            ctx.getString(R.string.shuffle_on), R.drawable.ic_shuffle_on);
                 } else {
                     return new NotificationActionData(ACTION_SHUFFLE,
-                            ctx.getString(com.google.android.exoplayer2.ui.R.string
-                                    .exo_controls_shuffle_off_description),
-                            com.google.android.exoplayer2.ui.R.drawable.exo_controls_shuffle_off);
+                            ctx.getString(R.string.shuffle_off), R.drawable.ic_shuffle_off);
                 }
 
             case NotificationConstants.CLOSE:

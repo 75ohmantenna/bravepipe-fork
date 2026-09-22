@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/exo_controls_next_description"
+        android:text="@string/next_stream"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"

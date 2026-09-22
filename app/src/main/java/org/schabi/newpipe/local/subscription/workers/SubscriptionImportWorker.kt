@@ -1,5 +1,6 @@
 package org.schabi.newpipe.local.subscription.workers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.ServiceInfo
 import android.os.Parcelable
@@ -129,6 +130,7 @@ class SubscriptionImportWorker(
         }
     }
 
+    @SuppressLint("InlinedApi") // WorkManager handles the service type on older APIs.
     private fun createForegroundInfo(
         title: String,
         text: String?,

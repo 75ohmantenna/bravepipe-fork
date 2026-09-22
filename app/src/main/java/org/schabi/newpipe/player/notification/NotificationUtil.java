@@ -4,6 +4,7 @@ import static android.app.PendingIntent.FLAG_UPDATE_CURRENT;
 import static androidx.media.app.NotificationCompat.MediaStyle;
 import static org.schabi.newpipe.player.notification.NotificationConstants.ACTION_CLOSE;
 
+import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
@@ -166,6 +167,7 @@ public final class NotificationUtil {
                         NOTIFICATION_ID, new Intent(ACTION_CLOSE), FLAG_UPDATE_CURRENT, false));
     }
 
+    @SuppressLint("InlinedApi") // ServiceCompat safely handles this inlined type on older APIs.
     private static void startForeground(final PlayerService service,
                                         final Notification notification) {
         ServiceCompat.startForeground(service, NOTIFICATION_ID, notification,

@@ -1,5 +1,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -25,7 +26,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="6dp"
                 android:singleLine="true"
-                android:text="0%"
+                tools:text="0%"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -37,7 +38,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="1dp"
-                android:contentDescription="TODO"
+                android:contentDescription="@string/more_options"
                 android:scaleType="center"
                 android:src="@drawable/ic_more_vert"
                 app:tint="?attr/actionColor" />
@@ -50,7 +51,7 @@
             android:layout_height="72dp"
             android:layout_below="@id/item_title_line"
             android:layout_centerHorizontal="true"
-            android:contentDescription="TODO"
+            android:contentDescription="@null"
             android:gravity="center"
             android:padding="10dp"
             android:scaleType="fitXY"
@@ -66,7 +67,7 @@
             android:padding="6dp"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:text="XXX.xx"
+            tools:text="XXX.xx"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -78,7 +79,7 @@
             android:layout_below="@id/item_name"
             android:padding="6dp"
             android:singleLine="true"
-            android:text="100.00MB"
+            tools:text="100.00MB"
             android:textColor="@color/white"
             android:textSize="12sp" />
 

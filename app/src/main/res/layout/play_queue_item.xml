@@ -12,6 +12,7 @@
 
     <ImageView
         android:id="@+id/itemThumbnailView"
+        android:contentDescription="@null"
         android:layout_width="@dimen/play_queue_thumbnail_width"
         android:layout_height="@dimen/play_queue_thumbnail_height"
         android:layout_marginStart="@dimen/video_item_search_image_right_margin"

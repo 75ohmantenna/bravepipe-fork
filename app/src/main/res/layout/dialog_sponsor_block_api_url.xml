@@ -19,7 +19,7 @@
         android:inputType="textUri"
         android:maxLines="1"
         android:importantForAutofill="no"
-        android:hint="https://domain.com/api/"/>
+        android:hint="@string/sponsor_block_api_url_hint"/>
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/icon_api_url_help"
         android:layout_width="32dp"

@@ -22,7 +22,6 @@
     <string name="settings">Settings</string>
     <string name="did_you_mean">Did you mean \"%1$s\"?</string>
     <string name="search_showing_result_for">Showing results for: %s</string>
-    <string name="share_dialog_title">Share with</string>
     <string name="use_external_video_player_title">Use external video player</string>
     <string name="use_external_video_player_summary">Removes audio at some resolutions</string>
     <string name="use_external_audio_player_title">Use external audio player</string>
@@ -321,7 +320,6 @@
     <string name="delete_file">Delete file</string>
     <string name="delete_entry">Delete entry</string>
     <string name="checksum">Checksum</string>
-    <string name="dismiss">Dismiss</string>
     <string name="rename">Rename</string>
     <!-- Msg -->
     <string name="msg_name">Filename</string>
@@ -356,20 +354,12 @@
     <string name="tab_about">About \u0026 FAQ</string>
     <string name="tab_licenses">Licenses</string>
     <string name="app_description">Libre lightweight streaming on Android.</string>
-    <string name="contribution_title">Contribute</string>
-    <string name="contribution_encouragement">Whether you have ideas of; translation, design changes, code cleaning, or real heavy code changes—help is always welcome. The more is done the better it gets!</string>
     <string name="view_on_github">View on GitHub</string>
-    <string name="website_title">Website</string>
-    <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
     <string name="privacy_policy_title">PVCPipe\'s Privacy Policy</string>
-    <string name="privacy_policy_encouragement">The PVCPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nPVCPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
     <string name="app_license_title">PVCPipe\'s License</string>
     <string name="app_license">PVCPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
-    <string name="faq_title">Frequently asked questions</string>
-    <string name="faq_description">If you are having trouble using the app, be sure to check out these answers to common questions!</string>
-    <string name="faq">View on website</string>
     <!-- History -->
     <string name="title_activity_history">History</string>
     <string name="action_history">History</string>
@@ -432,8 +422,6 @@
     <string name="background_player">Background player</string>
     <string name="popup_player">Popup player</string>
     <string name="always_ask_open_action">Always ask</string>
-    <string name="preferred_player_fetcher_notification_title">Getting info…</string>
-    <string name="preferred_player_fetcher_notification_message">"Loading requested content"</string>
     <!-- Local Playlist -->
     <string name="create_playlist">New Playlist</string>
     <string name="duplicate_in_playlist">The playlists that are grayed out already contain this item.</string>
@@ -501,7 +489,6 @@
     <string name="export_subscriptions_title">Export subscriptions</string>
     <string name="import_subscriptions_summary">Import subscriptions from a previous .json export"</string>
     <string name="export_subscriptions_summary">Export your subscriptions to a .json file</string>
-    <string name="import_from_previous_export">Import from previous export</string>
     <string name="subscriptions_import_unsuccessful">Could not import subscriptions</string>
     <string name="subscriptions_export_unsuccessful">Could not export subscriptions</string>
     <string name="import_youtube_instructions">Import YouTube subscriptions from Google takeout:
@@ -544,10 +531,6 @@
         <item>360p</item>
         <item>240p</item>
         <item>144p</item>
-    </string-array>
-    <string-array name="high_resolution_limit_data_usage_description_list">
-        <item>2160p</item>
-        <item>1440p</item>
     </string-array>
     <!-- Notifications settings -->
     <string name="enable_streams_notifications_title">New streams notifications</string>
@@ -772,7 +755,6 @@
     <string name="notifications_disabled">Notifications are disabled</string>
     <string name="get_notified">Get notified</string>
     <string name="you_successfully_subscribed">You now subscribed to this channel</string>
-    <string name="enumeration_comma">,</string>
     <string name="toggle_all">Toggle all</string>
     <string name="streams_not_yet_supported_removed">Streams which are not yet supported by the downloader are not shown</string>
     <string name="audio_track_present_in_video">An audio track should be already present in this stream</string>
@@ -855,7 +837,6 @@
     <string name="youtube_player_http_403">HTTP error 403 received from server while playing, likely caused by an IP ban or streaming URL deobfuscation issues</string>
     <string name="sign_in_confirm_not_bot_error">%1$s refused to provide data, asking for a login to confirm the requester is not a bot.\n\nYour IP might have been temporarily banned by %1$s, you can wait some time or switch to a different IP (for example by turning on/off a VPN, or by switching from WiFi to mobile data).\n\nPlease see <a href="%2$s">this FAQ entry</a> for more information.</string>
     <string name="unsupported_content_in_country">This content is not available for the currently selected content country.\n\nChange your selection from \"Settings > Content > Default content country\".</string>
-    <string name="settings_category_sponsor_block_title">SponsorBlock (Beta, Third-Party Service)</string>
     <string name="settings_category_sponsor_block_categories_title">SponsorBlock Categories</string>
     <string name="settings_category_sponsor_block_categories_summary">Customize which video segments to skip, along with their color markings on the seek bar.</string>
     <string name="settings_category_sponsor_block_categories_reset_colors_title">Reset Colors</string>
@@ -879,7 +860,6 @@
     <string name="settings_category_sponsor_block_category_hook_summary">Narrated teasers for the upcoming video, greetings, and goodbyes. This does not include conclusions containing information.</string>
     <string name="settings_category_sponsor_block_category_filler_title">Filler Tangent/Jokes</string>
     <string name="settings_category_sponsor_block_category_filler_summary">This is for tangential scenes added only for filler or humor that are not required to understand the main content of the video.</string>
-    <string name="later">Later</string>
     <string name="invalid_color_toast">Invalid color</string>
     <string name="sponsor_block">SponsorBlock</string>
     <string name="sponsor_block_home_page_title">View Website</string>
@@ -909,8 +889,6 @@
     <string name="sponsor_block_toggle_skipping">Toggle skipping sponsors</string>
     <string name="sponsor_block_clear_whitelist_title">Clear Whitelist</string>
     <string name="sponsor_block_clear_whitelist_summary">Clear the list of uploaders SponsorBlock will ignore.</string>
-    <string name="sponsor_block_enabled_toast">SponsorBlock enabled</string>
-    <string name="sponsor_block_disabled_toast">SponsorBlock disabled</string>
     <string name="sponsor_block_whitelist_cleared_toast">Whitelist cleared</string>
     <string name="sponsor_block_uploader_added_to_whitelist_toast">Uploader added to whitelist</string>
     <string name="sponsor_block_uploader_removed_from_whitelist_toast">Uploader removed from whitelist</string>
@@ -1024,7 +1002,6 @@
     <string name="pvc_settings_hide_paid_content_key" translatable="false">pvc_settings_hide_paid_content_key</string>
     <string name="pvc_settings_hide_paid_content_description"><![CDATA[If enabled all Youtube/Rumble "members only/premium" videos will not be listed. Requires app restart on already loaded channels/search.]]></string>
     <string name="pvc_settings_hide_paid_content_title">Hide Paid Content Videos</string>
-    <string name="update">Update</string>
     <string name="settings_category_comment_view_handling_title">Comment View Handling</string>
     <string translatable="false" name="pvc_settings_comment_replies_same_window_key">pvc_settings_comment_replies_same_window_key</string>
     <string name="pvc_settings_comment_replies_same_window_title">Comment Replies same window</string>
@@ -1057,4 +1034,18 @@
     <string name="set_as_default">Set as default</string>
     <string name="last_used">Last used: %1$s</string>
     <string name="local_network_permission_required">Local network access is required for this server. Allow Nearby devices in app permissions, then retry.</string>
+    <string name="add_tab">Add tab</string>
+    <string name="expand_player">Expand player</string>
+    <string name="pvc_copy_related_logcat_entries">Copy related logcat entries</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+    <string name="reorder_item">Reorder %1$s</string>
+    <string name="toggle_player_controls">Show or hide player controls</string>
+    <string name="repeat_all">Repeat all</string>
+    <string name="repeat_one">Repeat one</string>
+    <string name="repeat_off">Repeat off</string>
+    <string name="shuffle_on">Shuffle on</string>
+    <string name="shuffle_off">Shuffle off</string>
+    <string name="loading_progress_unknown" translatable="false">∞/∞</string>
+    <string name="playback_speed_default" translatable="false">1×</string>
 </resources>
