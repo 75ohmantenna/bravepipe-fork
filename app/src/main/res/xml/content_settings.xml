@@ -6,8 +6,9 @@
     <Preference
         android:key="@string/app_language_android_13_and_up_key"
         android:title="@string/app_language_title"
-        app:singleLineTitle="false"
-        app:iconSpaceReserved="false" />
+        app:iconSpaceReserved="false"
+        app:isPreferenceVisible="false"
+        app:singleLineTitle="false" />
 
     <ListPreference
         android:defaultValue="@string/default_localization_key"

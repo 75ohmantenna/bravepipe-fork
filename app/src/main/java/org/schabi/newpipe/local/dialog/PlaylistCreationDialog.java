@@ -1,6 +1,7 @@
 package org.schabi.newpipe.local.dialog;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.InputType;
 import android.widget.Toast;
@@ -13,14 +14,29 @@ import org.schabi.newpipe.NewPipeDatabase;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.database.stream.model.StreamEntity;
 import org.schabi.newpipe.databinding.DialogEditTextBinding;
+import org.schabi.newpipe.error.ErrorInfo;
+import org.schabi.newpipe.error.ErrorUtil;
+import org.schabi.newpipe.error.UserAction;
 import org.schabi.newpipe.local.playlist.LocalPlaylistManager;
 import org.schabi.newpipe.util.ThemeHelper;
 
 import java.util.List;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
 
 public final class PlaylistCreationDialog extends PlaylistDialog {
+    @Nullable
+    private Disposable createPlaylistDisposable;
+
+    @Override
+    public void onDestroy() {
+        // Creating a playlist is a finite database transaction that must finish after the
+        // positive button dismisses this dialog. Keep it alive, but drop our completed-operation
+        // reference with the rest of the fragment state.
+        createPlaylistDisposable = null;
+        super.onDestroy();
+    }
 
     /**
      * Create a new instance of {@link PlaylistCreationDialog}.
@@ -59,15 +75,21 @@ public final class PlaylistCreationDialog extends PlaylistDialog {
                 .setNegativeButton(R.string.cancel, null)
                 .setPositiveButton(R.string.create, (dialogInterface, i) -> {
                     final String name = dialogBinding.dialogEditText.getText().toString();
+                    final Context applicationContext = requireContext().getApplicationContext();
                     final LocalPlaylistManager playlistManager =
-                            new LocalPlaylistManager(NewPipeDatabase.getInstance(requireContext()));
-                    final Toast successToast = Toast.makeText(getActivity(),
+                            new LocalPlaylistManager(NewPipeDatabase.getInstance(
+                                    applicationContext));
+                    final Toast successToast = Toast.makeText(applicationContext,
                             R.string.playlist_creation_success,
                             Toast.LENGTH_SHORT);
 
-                    playlistManager.createPlaylist(name, getStreamEntities())
+                    createPlaylistDisposable = playlistManager
+                            .createPlaylist(name, getStreamEntities())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(longs -> successToast.show());
+                            .subscribe(longs -> successToast.show(), throwable ->
+                                    ErrorUtil.createNotification(applicationContext,
+                                            new ErrorInfo(throwable, UserAction.REQUESTED_PLAYLIST,
+                                                    "Creating playlist")));
                 });
         return dialogBuilder.create();
     }

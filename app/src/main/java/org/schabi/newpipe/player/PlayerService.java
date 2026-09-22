@@ -21,16 +21,21 @@ package org.schabi.newpipe.player;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.BadParcelableException;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.os.Process;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ServiceCompat;
+import androidx.core.content.IntentCompat;
 import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector;
@@ -45,6 +50,8 @@ import org.schabi.newpipe.util.ThemeHelper;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 
@@ -57,6 +64,10 @@ public final class PlayerService extends MediaBrowserServiceCompat {
 
     public static final String SHOULD_START_FOREGROUND_EXTRA = "should_start_foreground_extra";
     public static final String BIND_PLAYER_HOLDER_ACTION = "bind_player_holder_action";
+    private static final String INTERNAL_START_TOKEN_EXTRA =
+            "org.schabi.newpipe.player.INTERNAL_START_TOKEN";
+    private static final String INTERNAL_START_TOKEN_PREFERENCES = "player_service_security";
+    private static final String INTERNAL_START_TOKEN_KEY = "internal_start_token";
 
     // These objects are used to cleanly separate the Service implementation (in this file) and the
     // media browser and playback preparer implementations. At the moment the playback preparer is
@@ -123,10 +134,31 @@ public final class PlayerService extends MediaBrowserServiceCompat {
 
     @Override
     public int onStartCommand(final Intent intent, final int flags, final int startId) {
+        if (intent == null) {
+            stopSelf(startId);
+            return START_NOT_STICKY;
+        }
+
+        final boolean internalIntent = isInternalIntent(intent);
+        final boolean mediaButtonIntent = Intent.ACTION_MEDIA_BUTTON.equals(intent.getAction());
         if (DEBUG) {
-            Log.d(TAG, "onStartCommand() called with: intent = [" + intent
-                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras())
+            Log.d(TAG, "onStartCommand() called with: action = [" + intent.getAction()
+                    + "], authenticated extras = ["
+                    + (internalIntent ? BundleKt.toDebugString(intent.getExtras()) : "hidden")
                     + "], flags = [" + flags + "], startId = [" + startId + "]");
+        }
+        if (!internalIntent) {
+            if (mediaButtonIntent && player != null) {
+                // Media-button starts are public by design. Only pass their key event to the
+                // media session; never honor internal player extras from an untrusted caller.
+                handleExternalMediaButtonIntent(intent);
+                return START_NOT_STICKY;
+            }
+            Log.w(TAG, "Ignoring an unauthenticated service start intent");
+            if (player == null) {
+                stopSelf(startId);
+            }
+            return START_NOT_STICKY;
         }
 
         // All internal NewPipe intents used to interact with the player, that are sent to the
@@ -173,10 +205,30 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         final PlayerType oldPlayerType = player.getPlayerType();
         player.handleIntent(intent);
         player.handleIntentPost(oldPlayerType);
-        player.UIs().get(MediaSessionPlayerUi.class)
-                .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
+        if (mediaButtonIntent) {
+            player.UIs().get(MediaSessionPlayerUi.class)
+                    .ifPresent(ui -> ui.handleMediaButtonIntent(intent));
+        }
 
         return START_NOT_STICKY;
+    }
+
+    private void handleExternalMediaButtonIntent(@NonNull final Intent intent) {
+        try {
+            final KeyEvent keyEvent = IntentCompat.getParcelableExtra(
+                    intent, Intent.EXTRA_KEY_EVENT, KeyEvent.class);
+            if (keyEvent == null) {
+                Log.w(TAG, "Ignoring a media-button intent without a key event");
+                return;
+            }
+
+            final Intent sanitizedIntent = new Intent(Intent.ACTION_MEDIA_BUTTON)
+                    .putExtra(Intent.EXTRA_KEY_EVENT, keyEvent);
+            player.UIs().get(MediaSessionPlayerUi.class)
+                    .ifPresent(ui -> ui.handleMediaButtonIntent(sanitizedIntent));
+        } catch (final BadParcelableException | ClassCastException exception) {
+            Log.w(TAG, "Ignoring a malformed media-button intent", exception);
+        }
     }
 
     public void stopForImmediateReusing() {
@@ -268,8 +320,7 @@ public final class PlayerService extends MediaBrowserServiceCompat {
     @Override
     public IBinder onBind(final Intent intent) {
         if (DEBUG) {
-            Log.d(TAG, "onBind() called with: intent = [" + intent
-                    + "], extras = [" + BundleKt.toDebugString(intent.getExtras()) + "]");
+            Log.d(TAG, "onBind() called with action = [" + intent.getAction() + "]");
         }
 
         if (BIND_PLAYER_HOLDER_ACTION.equals(intent.getAction())) {
@@ -296,8 +347,39 @@ public final class PlayerService extends MediaBrowserServiceCompat {
         }
 
         public PlayerService getService() {
+            if (Binder.getCallingUid() != Process.myUid()) {
+                throw new SecurityException("Player service binder is internal to this app");
+            }
             return playerService.get();
         }
+    }
+
+    public static Intent authenticateInternalIntent(@NonNull final Context context,
+                                                     @NonNull final Intent intent) {
+        return intent.putExtra(INTERNAL_START_TOKEN_EXTRA, getInternalStartToken(context));
+    }
+
+    private boolean isInternalIntent(@NonNull final Intent intent) {
+        try {
+            return Objects.equals(getInternalStartToken(this),
+                    intent.getStringExtra(INTERNAL_START_TOKEN_EXTRA));
+        } catch (final BadParcelableException | ClassCastException exception) {
+            Log.w(TAG, "Ignoring malformed service-start authentication", exception);
+            return false;
+        }
+    }
+
+    private static String getInternalStartToken(@NonNull final Context context) {
+        final SharedPreferences preferences = context.getSharedPreferences(
+                INTERNAL_START_TOKEN_PREFERENCES, Context.MODE_PRIVATE);
+        final String existingToken = preferences.getString(INTERNAL_START_TOKEN_KEY, null);
+        if (existingToken != null) {
+            return existingToken;
+        }
+
+        final String newToken = UUID.randomUUID().toString();
+        preferences.edit().putString(INTERNAL_START_TOKEN_KEY, newToken).apply();
+        return newToken;
     }
 
     /**

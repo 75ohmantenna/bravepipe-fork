@@ -1,5 +1,6 @@
 package org.schabi.newpipe.player.helper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.wifi.WifiManager;
 import android.os.PowerManager;
@@ -22,6 +23,7 @@ public class LockManager {
         wifiManager = ContextCompat.getSystemService(context, WifiManager.class);
     }
 
+    @SuppressLint("WakelockTimeout")
     public void acquireWifiAndCpu() {
         Log.d(TAG, "acquireWifiAndCpu() called");
         if (wakeLock != null && wakeLock.isHeld() && wifiLock != null && wifiLock.isHeld()) {
@@ -32,6 +34,9 @@ public class LockManager {
         wifiLock = wifiManager.createWifiLock(WifiManager.WIFI_MODE_FULL, TAG);
 
         if (wakeLock != null) {
+            // The download service releases this when it leaves the foreground and again during
+            // destruction. A fixed timeout would silently break downloads that legitimately run
+            // longer than the chosen limit because the service does not periodically renew it.
             wakeLock.acquire();
         }
         if (wifiLock != null) {

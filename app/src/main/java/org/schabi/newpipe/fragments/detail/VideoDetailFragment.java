@@ -170,6 +170,8 @@ public final class VideoDetailFragment
     private final CompositeDisposable disposables = new CompositeDisposable();
     @Nullable
     private Disposable positionSubscriber = null;
+    @Nullable
+    private Disposable playQueueBroadcastSubscriber = null;
 
     private BottomSheetBehavior<FrameLayout> bottomSheetBehavior;
     private BottomSheetBehavior.BottomSheetCallback bottomSheetCallback;
@@ -355,6 +357,9 @@ public final class VideoDetailFragment
         }
         if (currentWorker != null) {
             currentWorker.dispose();
+        }
+        if (playQueueBroadcastSubscriber != null) {
+            playQueueBroadcastSubscriber.dispose();
         }
         disposables.clear();
         positionSubscriber = null;
@@ -1569,10 +1574,13 @@ public final class VideoDetailFragment
 
         // Register broadcast receiver to listen to playQueue changes
         // and hide the overlayPlayQueueButton when the playQueue is empty / destroyed.
+        if (playQueueBroadcastSubscriber != null) {
+            playQueueBroadcastSubscriber.dispose();
+            playQueueBroadcastSubscriber = null;
+        }
         if (playQueue != null && playQueue.getBroadcastReceiver() != null) {
-            playQueue.getBroadcastReceiver().subscribe(
-                    event -> updateOverlayPlayQueueButtonVisibility()
-            );
+            playQueueBroadcastSubscriber = playQueue.getBroadcastReceiver().subscribe(
+                    event -> updateOverlayPlayQueueButtonVisibility());
         }
 
         // This should be the only place where we push data to stack.

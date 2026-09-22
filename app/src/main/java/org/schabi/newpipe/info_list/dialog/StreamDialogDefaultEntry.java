@@ -47,7 +47,11 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 public enum StreamDialogDefaultEntry {
     SHOW_CHANNEL_DETAILS(R.string.show_channel_details, (fragment, item) ->
             fetchUploaderUrlIfSparse(fragment.requireContext(), item.getServiceId(), item.getUrl(),
-                    item.getUploaderUrl(), url -> openChannelFragment(fragment, item, url))
+                    item.getUploaderUrl(), url -> {
+                        if (fragment.isAdded() && !fragment.isStateSaved()) {
+                            openChannelFragment(fragment, item, url);
+                        }
+                    })
     ),
 
     /**

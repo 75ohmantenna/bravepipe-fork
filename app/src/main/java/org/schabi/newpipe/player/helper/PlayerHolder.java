@@ -134,7 +134,8 @@ public final class PlayerHolder {
         }
         final Intent intent = new Intent(context, PlayerService.class);
         intent.putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true);
-        ContextCompat.startForegroundService(context, intent);
+        ContextCompat.startForegroundService(context,
+                PlayerService.authenticateInternalIntent(context, intent));
         if (!isBound()) {
             bind(Context.BIND_AUTO_CREATE);
         }

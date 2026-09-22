@@ -3,6 +3,7 @@ package org.schabi.newpipe.settings;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -39,6 +40,11 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
     private void setupAppLanguagePreferences() {
         final Preference appLanguagePref =
                 requirePreference(R.string.app_language_android_13_and_up_key);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            appLanguagePref.setVisible(false);
+            return;
+        }
+
         appLanguagePref.setSummaryProvider(preference -> {
             final Locale loc = AppCompatDelegate.getApplicationLocales().get(0);
             return loc != null ? loc.getDisplayName() : getString(R.string.systems_language);
@@ -49,6 +55,7 @@ public class ContentSettingsFragment extends BasePreferenceFragment {
             startActivity(intent);
             return true;
         });
+        appLanguagePref.setVisible(true);
     }
 
     private void setupImageQualityPref() {

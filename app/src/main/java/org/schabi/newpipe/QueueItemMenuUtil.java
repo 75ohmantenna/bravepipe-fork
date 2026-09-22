@@ -3,6 +3,7 @@ package org.schabi.newpipe;
 import static org.schabi.newpipe.util.SparseItemUtil.fetchStreamInfoAndSaveToDatabase;
 import static org.schabi.newpipe.util.external_communication.ShareUtils.shareText;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -69,9 +70,12 @@ public final class QueueItemMenuUtil {
                         // An intent must be used here.
                         // Opening with FragmentManager transactions is not working,
                         // as PlayQueueActivity doesn't use fragments.
-                        uploaderUrl -> NavigationHelper.openChannelFragmentUsingIntent(
-                                context, item.getServiceId(), uploaderUrl, item.getUploader()
-                        ));
+                        uploaderUrl -> {
+                            if (isContextActive(context)) {
+                                NavigationHelper.openChannelFragmentUsingIntent(context,
+                                        item.getServiceId(), uploaderUrl, item.getUploader());
+                            }
+                        });
                 return true;
             } else if (itemId == R.id.menu_item_share) {
                 shareText(context, item.getTitle(), item.getUrl(),
@@ -80,6 +84,9 @@ public final class QueueItemMenuUtil {
             } else if (itemId == R.id.menu_item_download) {
                 fetchStreamInfoAndSaveToDatabase(context, item.getServiceId(), item.getUrl(),
                         info -> {
+                            if (!isContextActive(context) || fragmentManager.isStateSaved()) {
+                                return;
+                            }
                             final DownloadDialog downloadDialog = new DownloadDialog(context,
                                     info);
                             downloadDialog.show(fragmentManager, "downloadDialog");
@@ -90,5 +97,10 @@ public final class QueueItemMenuUtil {
         });
 
         popupMenu.show();
+    }
+
+    private static boolean isContextActive(final Context context) {
+        return !(context instanceof Activity)
+                || (!((Activity) context).isFinishing() && !((Activity) context).isDestroyed());
     }
 }

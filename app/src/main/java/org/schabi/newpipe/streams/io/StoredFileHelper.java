@@ -19,6 +19,7 @@ import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import us.shandian.giga.io.FileStream;
 import us.shandian.giga.io.FileStreamSAF;
@@ -380,7 +381,7 @@ public class StoredFileHelper implements Serializable {
         // note: do not compare tags, files can have the same parent folder
         //if (stringMismatch(this.tag, storage.tag)) return false;
 
-        if (stringMismatch(getLowerCase(this.sourceTree), getLowerCase(this.sourceTree))) {
+        if (!Objects.equals(this.sourceTree, storage.sourceTree)) {
             return false;
         }
 
@@ -455,21 +456,6 @@ public class StoredFileHelper implements Serializable {
         }
 
         return res;
-    }
-
-    private String getLowerCase(final String str) {
-        return str == null ? null : str.toLowerCase();
-    }
-
-    private boolean stringMismatch(final String str1, final String str2) {
-        if (str1 == null && str2 == null) {
-            return false;
-        }
-        if ((str1 == null) != (str2 == null)) {
-            return true;
-        }
-
-        return !str1.equals(str2);
     }
 
     public static Intent getPicker(@NonNull final Context ctx,

@@ -2,6 +2,7 @@ package org.schabi.newpipe.util;
 
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.util.function.Consumer;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 /**
@@ -97,29 +99,31 @@ public final class SparseItemUtil {
      * @param url       url of the stream to load
      * @param callback  callback to be called with the result
      */
-    public static void fetchStreamInfoAndSaveToDatabase(@NonNull final Context context,
-                                                        final int serviceId,
-                                                        @NonNull final String url,
-                                                        final Consumer<StreamInfo> callback) {
-        Toast.makeText(context, R.string.loading_stream_details, Toast.LENGTH_SHORT).show();
+    @SuppressLint("CheckResult")
+    public static void fetchStreamInfoAndSaveToDatabase(
+            @NonNull final Context context,
+            final int serviceId,
+            @NonNull final String url,
+            final Consumer<StreamInfo> callback) {
+        final Context applicationContext = context.getApplicationContext();
+        Toast.makeText(applicationContext, R.string.loading_stream_details, Toast.LENGTH_SHORT)
+                .show();
+        // This finite operation intentionally survives its initiating UI. Callers guard any UI
+        // callbacks against stopped lifecycle state; database persistence must still complete.
         ExtractorHelper.getStreamInfo(serviceId, url, false)
                 .subscribeOn(Schedulers.io())
+                .flatMap(result -> Completable.fromAction(() ->
+                                NewPipeDatabase.getInstance(applicationContext)
+                                        .streamDAO().upsert(new StreamEntity(result)))
+                        .doOnError(throwable -> ErrorUtil.createNotification(applicationContext,
+                                new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
+                                        "Saving stream info to database", result)))
+                        .onErrorComplete()
+                        .andThen(Single.just(result)))
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(result -> {
-                    // save to database in the background (not on main thread)
-                    Completable.fromAction(() -> NewPipeDatabase.getInstance(context)
-                            .streamDAO().upsert(new StreamEntity(result)))
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(Schedulers.io())
-                            .doOnError(throwable ->
-                                    ErrorUtil.createNotification(context,
-                                            new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
-                                                    "Saving stream info to database", result)))
-                            .subscribe();
-
-                    // call callback on main thread with the obtained result
                     callback.accept(result);
-                }, throwable -> ErrorUtil.createNotification(context,
+                }, throwable -> ErrorUtil.createNotification(applicationContext,
                         new ErrorInfo(throwable, UserAction.REQUESTED_STREAM,
                                 "Loading stream info: " + url, serviceId, url)
                 ));

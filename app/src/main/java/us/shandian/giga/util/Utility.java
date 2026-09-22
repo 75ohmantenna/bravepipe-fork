@@ -109,7 +109,7 @@ public class Utility {
             if ((index = ext.indexOf("/")) > -1) {
                 ext = ext.substring(0, index);
             }
-            return ext.toLowerCase();
+            return ext.toLowerCase(Locale.ROOT);
         }
     }
 

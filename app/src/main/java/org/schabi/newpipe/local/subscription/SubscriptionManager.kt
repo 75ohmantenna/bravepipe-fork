@@ -78,14 +78,16 @@ class SubscriptionManager(context: Context) {
     fun updateNotificationMode(serviceId: Int, url: String, @NotificationMode mode: Int): Completable {
         return subscriptionTable().getSubscription(serviceId, url)
             .flatMapCompletable { entity: SubscriptionEntity ->
-                Completable.fromAction {
+                val updateMode = Completable.fromAction {
                     entity.notificationMode = mode
                     subscriptionTable().update(entity)
-                }.apply {
-                    if (mode != NotificationMode.DISABLED) {
-                        // notifications have just been enabled, mark all streams as "old"
-                        andThen(rememberAllStreams(entity))
-                    }
+                }
+
+                if (mode != NotificationMode.DISABLED) {
+                    // Notifications have just been enabled, mark all streams as "old".
+                    updateMode.andThen(rememberAllStreams(entity))
+                } else {
+                    updateMode
                 }
             }
     }

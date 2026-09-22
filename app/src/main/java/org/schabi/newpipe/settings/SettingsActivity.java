@@ -44,6 +44,8 @@ import org.schabi.newpipe.views.FocusOverlayView;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 /*
  * Created by Christian Schabesberger on 31.08.15.
  *
@@ -80,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity implements
 
     private View searchContainer;
     private EditText searchEditText;
+    private Disposable searchTextChanges;
 
     // State
     @State
@@ -198,6 +201,10 @@ public class SettingsActivity extends AppCompatActivity implements
 
     @Override
     protected void onDestroy() {
+        if (searchTextChanges != null) {
+            searchTextChanges.dispose();
+            searchTextChanges = null;
+        }
         setMenuSearchItem(null);
         searchFragment = null;
         super.onDestroy();
@@ -218,7 +225,7 @@ public class SettingsActivity extends AppCompatActivity implements
 
         // Configure input field for search
         searchEditText = searchContainer.findViewById(R.id.toolbar_search_edit_text);
-        RxTextView.textChanges(searchEditText)
+        searchTextChanges = RxTextView.textChanges(searchEditText)
                 // Wait some time after the last input before actually searching
                 .debounce(200, TimeUnit.MILLISECONDS)
                 .subscribe(v -> runOnUiThread(this::onSearchChanged));

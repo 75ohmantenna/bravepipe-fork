@@ -91,7 +91,7 @@ public final class NavigationHelper {
         final String cacheKey = Optional.ofNullable(playQueue)
                 .map(queue -> SerializedCache.getInstance().put(queue, PlayQueue.class))
                 .orElse(null);
-        return new Intent(context, targetClazz)
+        return PlayerService.authenticateInternalIntent(context, new Intent(context, targetClazz))
                 .putExtra(Player.PLAY_QUEUE_KEY, cacheKey)
                 .putExtra(Player.PLAYER_TYPE, PlayerType.MAIN)
                 .putExtra(PlayerService.SHOULD_START_FOREGROUND_EXTRA, true)
@@ -101,7 +101,8 @@ public final class NavigationHelper {
     @NonNull
     public static Intent getPlayerTimestampIntent(@NonNull final Context context,
                                                   @NonNull final TimestampChangeData data) {
-        return new Intent(context, PlayerService.class)
+        return PlayerService.authenticateInternalIntent(
+                context, new Intent(context, PlayerService.class))
                 .putExtra(Player.PLAYER_INTENT_TYPE, PlayerIntentType.TimestampChange)
                 .putExtra(Player.PLAYER_INTENT_DATA, data);
     }

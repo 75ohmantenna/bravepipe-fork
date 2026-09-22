@@ -19,9 +19,11 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -331,9 +333,9 @@ public class OggFromWebMWriter implements Closeable {
      * @return The binary data of the encoded metadata tag
      */
     private static byte[] makeOpusMetadataTag(final Pair<String, String> pair) {
-        final var keyValue = pair.first.toUpperCase() + "=" + pair.second.trim();
+        final var keyValue = pair.first.toUpperCase(Locale.ROOT) + "=" + pair.second.trim();
 
-        final var bytes = keyValue.getBytes();
+        final var bytes = keyValue.getBytes(StandardCharsets.UTF_8);
         final var buf = ByteBuffer.allocate(4 + bytes.length);
         buf.order(ByteOrder.LITTLE_ENDIAN);
         buf.putInt(bytes.length);

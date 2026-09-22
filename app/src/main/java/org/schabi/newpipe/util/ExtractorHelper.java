@@ -57,6 +57,7 @@ import org.schabi.newpipe.util.text.TextLinkifier;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Single;
@@ -354,7 +355,9 @@ public final class ExtractorHelper {
         if (text.isEmpty()) {
             return text;
         } else {
-            return text.substring(0, 1).toUpperCase() + text.substring(1).toLowerCase();
+            final Locale locale = Locale.getDefault();
+            return text.substring(0, 1).toUpperCase(locale)
+                    + text.substring(1).toLowerCase(locale);
         }
     }
 }

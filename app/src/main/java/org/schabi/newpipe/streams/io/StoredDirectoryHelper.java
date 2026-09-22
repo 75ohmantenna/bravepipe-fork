@@ -28,6 +28,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -78,11 +79,12 @@ public class StoredDirectoryHelper {
     public StoredFileHelper createUniqueFile(final String name, final String mime) {
         final List<String> matches = new ArrayList<>();
         final String[] filename = splitFilename(name);
-        final String lcFileName = filename[0].toLowerCase();
+        final String lcFileName = filename[0].toLowerCase(Locale.ROOT);
 
         if (docTree == null) {
             try (Stream<Path> stream = Files.list(ioTree)) {
-                matches.addAll(stream.map(path -> path.getFileName().toString().toLowerCase())
+                matches.addAll(stream.map(path -> path.getFileName().toString()
+                                .toLowerCase(Locale.ROOT))
                         .filter(fileName -> fileName.startsWith(lcFileName))
                         .collect(Collectors.toList()));
             } catch (final IOException e) {
@@ -94,11 +96,9 @@ public class StoredDirectoryHelper {
                     docTree.getUri(), DocumentsContract.getDocumentId(docTree.getUri()));
 
             final String[] projection = new String[]{COLUMN_DISPLAY_NAME};
-            final String selection = "(LOWER(" + COLUMN_DISPLAY_NAME + ") LIKE ?%";
             final ContentResolver cr = context.getContentResolver();
 
-            try (Cursor cursor = cr.query(docTreeChildren, projection, selection,
-                    new String[]{lcFileName}, null)) {
+            try (Cursor cursor = cr.query(docTreeChildren, projection, null, null, null)) {
                 if (cursor != null) {
                     while (cursor.moveToNext()) {
                         addIfStartWith(matches, lcFileName, cursor.getString(0));
@@ -112,7 +112,7 @@ public class StoredDirectoryHelper {
         }
 
         // check if the filename is in use
-        String lcName = name.toLowerCase();
+        String lcName = name.toLowerCase(Locale.ROOT);
         for (final String testName : matches) {
             if (testName.equals(lcName)) {
                 lcName = null;
@@ -303,7 +303,7 @@ public class StoredDirectoryHelper {
         if (isNullOrEmpty(str)) {
             return;
         }
-        final String lowerStr = str.toLowerCase();
+        final String lowerStr = str.toLowerCase(Locale.ROOT);
         if (lowerStr.startsWith(base)) {
             list.add(lowerStr);
         }
@@ -350,26 +350,19 @@ public class StoredDirectoryHelper {
         final int name = 0;
         final int documentId = 1;
 
-        // LOWER() SQL function is not supported
-        final String selection = COLUMN_DISPLAY_NAME + " = ?";
-        //final String selection = COLUMN_DISPLAY_NAME + " LIKE ?%";
-
         final Uri childrenUri = DocumentsContract.buildChildDocumentsUriUsingTree(tree.getUri(),
                 DocumentsContract.getDocumentId(tree.getUri()));
         final String[] projection = {COLUMN_DISPLAY_NAME, COLUMN_DOCUMENT_ID};
         final ContentResolver contentResolver = context.getContentResolver();
 
-        final String lowerFilename = filename.toLowerCase();
-
-        try (Cursor cursor = contentResolver.query(childrenUri, projection, selection,
-                new String[]{lowerFilename}, null)) {
+        try (Cursor cursor = contentResolver.query(childrenUri, projection, null, null, null)) {
             if (cursor == null) {
                 return null;
             }
 
             while (cursor.moveToNext()) {
                 if (cursor.isNull(name)
-                        || !cursor.getString(name).toLowerCase().startsWith(lowerFilename)) {
+                        || !cursor.getString(name).equals(filename)) {
                     continue;
                 }
 
