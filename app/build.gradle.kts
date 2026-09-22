@@ -299,7 +299,9 @@ val okHttpVersion: String = libs.versions.okhttp.get()
 project.dependencies.implementation("com.squareup.okhttp3:okhttp-urlconnection:$okHttpVersion")
 // for hls support on rumble
 project.dependencies.implementation("com.github.evermind-zz:hlsdownloader:1.0.0")
-project.dependencies.implementation("com.github.evermind-zz:slimhls-converter:1.0.0")
+project.dependencies.implementation(
+    "com.github.75ohmantenna:slimhls-converter:7e7f373dbf",
+)
 // the eventbus
 project.dependencies.implementation("org.greenrobot:eventbus:3.3.1")
 // the LogcatToolkit
