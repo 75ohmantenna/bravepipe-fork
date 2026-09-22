@@ -28,10 +28,10 @@ public class RumbleStreamExtractorTest {
 
     /*
      * This stream test has one speciality:
-     * - onw related Stream is the RSBN Live-Stream. So here we also testing
+     * - one related Stream is the RSBN Live-Stream. So here we also testing
      *   if the detection of a live stream in the the related streams works
      *
-     * -> Hopyfully RSBN has always a live strem in the related section
+     * -> Hopefully RSBN has always a live stream in the related section
      *    We will see when we have to update this test case.
      */
     public static class NormalStreamExtractorTest extends DefaultStreamExtractorTest {
@@ -235,7 +235,7 @@ public class RumbleStreamExtractorTest {
 
             /** more info see: {@link RumbleSharedTests#infoItemsResultsTest} */
             final String[] someExpectedResults = {
-                    /* here is the speciality 'streamType=LIVE_STREAM' detection test on releated streams */
+                    /* here is the speciality 'streamType=LIVE_STREAM' detection test on related streams */
                     "StreamInfoItem{streamType=VIDEO_STREAM, uploaderName='Right Side Broadcasting Network', textualUploadDate='null', viewCount=163000, duration=7359, uploaderUrl='https://rumble.com/user/RSBN', infoType=STREAM, serviceId=6, url='https://rumble.com/v6qzdqe-live-president-trump-and-pete-hegseth-give-remarks-32125.html?e9s=rel_v2_ep', name='LIVE REPLAY: President Trump and Pete Hegseth Give Remarks - 3/21/25', thumbnails='[Image {url=https://1a-1791.com/video/fww1/13/s8/1/g/j/2/u/gj2uy.0kob-small-LIVE-President-Trump-and-Pe.jpg, height=-1, width=-1, estimatedResolutionLevel=UNKNOWN}]', uploaderVerified='false'}",
                     "StreamInfoItem{streamType=LIVE_STREAM, uploaderName='The Quartering', textualUploadDate='null', viewCount=6700, duration=-1, uploaderUrl='https://rumble.com/user/TheQuartering', infoType=STREAM, serviceId=6, url='https://rumble.com/v6r3cmu-epstein-files-update-sodagate-snow-white-box-office-elon-and-trump-strike-b.html?e9s=rel_v2_ep', name='Epstein Files Update, SodaGate, Snow White Box Office, Elon & Trump Strike Back BIGLY!', thumbnails='[Image {url=https://1a-1791.com/video/fww1/e9/s8/1/2/w/J/v/2wJvy.0kob-small-Epstein-Files-Update-SodaGa.jpg, height=-1, width=-1, estimatedResolutionLevel=UNKNOWN}]', uploaderVerified='false'}",
                     "StreamInfoItem{streamType=VIDEO_STREAM, uploaderName='Russell Brand', textualUploadDate='null', viewCount=139000, duration=998, uploaderUrl='https://rumble.com/user/russellbrand', infoType=STREAM, serviceId=6, url='https://rumble.com/v6qncja-rumble-cdc-vaccine-autism-study-bunkr.html?e9s=rel_v2_ep', name='They Can't Hide This Any Longer', thumbnails='[Image {url=https://1a-1791.com/video/fww1/26/s8/1/2/e/T/s/2eTsy.0kob-small-They-Cant-Hide-This-Any-Lon.jpg, height=-1, width=-1, estimatedResolutionLevel=UNKNOWN}]', uploaderVerified='false'}"

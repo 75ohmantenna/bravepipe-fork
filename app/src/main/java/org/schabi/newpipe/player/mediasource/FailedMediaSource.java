@@ -149,7 +149,7 @@ public class FailedMediaSource extends BaseMediaSource implements ManagedMediaSo
 
     @Override
     public void releasePeriod(final MediaPeriod mediaPeriod) {
-        /* Do Nothing (we want to keep re-using the Silent MediaPeriod) */
+        /* Do Nothing (we want to keep reusing the Silent MediaPeriod) */
     }
 
     @Override

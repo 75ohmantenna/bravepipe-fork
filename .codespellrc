@@ -1,0 +1,5 @@
+[codespell]
+# Captured responses and generated language patterns are test data, not English prose.
+skip = .git,.gradle,.kotlin,.idea,build,*/build/*,captures,*/src/test/resources/*,*/raw/*,*/patterns/*,*.jar,*.png,*.jpg,*.jpeg,*.webp,*.zip
+# Protocol names, language codes, API keys, and identifiers used in source.
+ignore-words-list = OptIn,TE,ot,trun,mIs,mis,showIn,te,FO,Ser,ser,followings,thirdParty,doubleclick,errorprone,AfterAll,Methoden,Variablen,hel,gir,clen,ist,Thi

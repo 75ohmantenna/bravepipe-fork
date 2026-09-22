@@ -875,7 +875,7 @@ public class Mp4FromDashWriter {
         /*
          * Sample Group Description Box
          *
-         * ¿whats does?
+         * What does this do?
          * the table inside of this box gives information about the
          * characteristics of sample groups. The descriptive information is any other
          * information needed to define or characterize the sample group.

@@ -23,7 +23,7 @@ public class BitchuteTimeAgoParserTest {
         final String pattern4 = "2 hour ago";
         final String pattern5 = "1 year, 3 months ago";
         final String pattern6 = "2 years ago";
-        final String weiredPattern = "an hour ago";
+        final String weirdPattern = "an hour ago";
         final String minutesAgoPattern = "35 minutes ago";
         final String secondsAgoPattern = "16 seconds ago";
 
@@ -33,7 +33,7 @@ public class BitchuteTimeAgoParserTest {
         final OffsetDateTime pattern4OffsetDateTimeExpected = OffsetDateTime.parse("2020-12-31T20:30:00+00:00");
         final OffsetDateTime pattern5OffsetDateTimeExpected = OffsetDateTime.parse("2019-09-30T22:00:00+00:00");
         final OffsetDateTime pattern6OffsetDateTimeExpected = OffsetDateTime.parse("2018-12-30T22:00:00+00:00");
-        final OffsetDateTime weiredPatternOffsetDateTimeExpected = OffsetDateTime.parse("2020-12-31T21:30:00+00:00");
+        final OffsetDateTime weirdPatternOffsetDateTimeExpected = OffsetDateTime.parse("2020-12-31T21:30:00+00:00");
         final OffsetDateTime minutesAgoPatternOffsetDateTimeExpected = OffsetDateTime.parse("2020-12-31T21:55:00+00:00");
         final OffsetDateTime secondsAgoPatternOffsetDateTimeExpected = OffsetDateTime.parse("2020-12-31T22:29:44+00:00");
 
@@ -43,7 +43,7 @@ public class BitchuteTimeAgoParserTest {
         final OffsetDateTime pattern4OffsetDateTime = timeAgo.parse(pattern4).offsetDateTime();
         final OffsetDateTime pattern5OffsetDateTime = timeAgo.parse(pattern5).offsetDateTime();
         final OffsetDateTime pattern6OffsetDateTime = timeAgo.parse(pattern6).offsetDateTime();
-        final OffsetDateTime weiredPatternOffsetDateTime = timeAgo.parse(weiredPattern).offsetDateTime();
+        final OffsetDateTime weirdPatternOffsetDateTime = timeAgo.parse(weirdPattern).offsetDateTime();
         final OffsetDateTime minutesAgoPatternOffsetDateTime = timeAgo.parse(minutesAgoPattern).offsetDateTime();
         final OffsetDateTime secondsAgoPatternOffsetDateTime = timeAgo.parse(secondsAgoPattern).offsetDateTime();
 
@@ -53,7 +53,7 @@ public class BitchuteTimeAgoParserTest {
         assertEquals(pattern4OffsetDateTimeExpected, pattern4OffsetDateTime);
         assertEquals(pattern5OffsetDateTimeExpected, pattern5OffsetDateTime);
         assertEquals(pattern6OffsetDateTimeExpected, pattern6OffsetDateTime);
-        assertEquals(weiredPatternOffsetDateTimeExpected, weiredPatternOffsetDateTime);
+        assertEquals(weirdPatternOffsetDateTimeExpected, weirdPatternOffsetDateTime);
         assertEquals(minutesAgoPatternOffsetDateTimeExpected, minutesAgoPatternOffsetDateTime);
         assertEquals(secondsAgoPatternOffsetDateTimeExpected, secondsAgoPatternOffsetDateTime);
     }

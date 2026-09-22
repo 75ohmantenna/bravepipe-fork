@@ -40,7 +40,7 @@ public final class DeviceUtils {
     /**
      * <p>The app version code that corresponds to the last update
      * of the media tunneling device blacklist.</p>
-     * <p>The value of this variable needs to be updated everytime a new device that does not
+     * <p>The value of this variable needs to be updated every time a new device that does not
      * support media tunneling to match the <strong>upcoming</strong> version code.</p>
      * @see #shouldSupportMediaTunneling()
      */

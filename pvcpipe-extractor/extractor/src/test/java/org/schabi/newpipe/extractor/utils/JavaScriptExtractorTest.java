@@ -43,7 +43,7 @@ class JavaScriptExtractorTest
             }
         } catch (final Exception e){
             if (parsedToken != null) {
-                throw new ParsingException("Issue occured at pos " + parsedToken.end + ", after\n" +
+                throw new ParsingException("Issue occurred at pos " + parsedToken.end + ", after\n" +
                         js.substring(Math.max(0, parsedToken.start - 50), parsedToken.end), e);
             }
             throw e;

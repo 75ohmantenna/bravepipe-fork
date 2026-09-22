@@ -80,7 +80,7 @@ public class SeekbarPreviewThumbnailHolder {
 
         Log.d(TAG, "Frameset quality info: "
                 + "[width=" + frameset.getFrameWidth()
-                + ", heigh=" + frameset.getFrameHeight() + "]");
+                + ", height=" + frameset.getFrameHeight() + "]");
 
         // Abort method execution if we are not the latest request
         if (!isRequestIdentifierCurrent(updateRequestIdentifier)) {

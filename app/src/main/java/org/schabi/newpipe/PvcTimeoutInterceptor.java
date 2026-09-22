@@ -34,7 +34,7 @@ public class PvcTimeoutInterceptor implements Interceptor {
      * The timeout is done via a extra http header and read in an
      * {@link PvcTimeoutInterceptor} and
      *
-     * @param url     tha url you want to call
+     * @param url     the url you want to call
      * @param timeout the timeout you want to have for this request
      * @return the response
      * @throws IOException

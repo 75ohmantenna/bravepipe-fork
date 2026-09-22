@@ -78,7 +78,7 @@ public class PlayQueueItem implements Serializable {
      * for the sake of keeping the same player running when e.g. jumping between timestamps.
      *
      * @param other the {@link PlayQueueItem} to compare against.
-     * @return whether the two items are the same so the stream can be re-used.
+     * @return whether the two items are the same so the stream can be reused.
      */
     public boolean isSameItem(@Nullable final PlayQueueItem other) {
         if (other == null) {

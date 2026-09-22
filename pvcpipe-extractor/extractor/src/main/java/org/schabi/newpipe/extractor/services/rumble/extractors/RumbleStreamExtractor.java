@@ -121,7 +121,7 @@ public final class RumbleStreamExtractor extends StreamExtractor {
         if (isNullOrEmpty(textualUploadDate)) {
             return null;
         }
-        // the format is: 2021-02-08T19:37:25+00:00  youtube-dl pares it with iso8601b
+        // the format is: 2021-02-08T19:37:25+00:00  youtube-dl parses it with iso8601b
         return new DateWrapper(PvcParsingHelper.parseDateFrom(textualUploadDate), false);
     }
 

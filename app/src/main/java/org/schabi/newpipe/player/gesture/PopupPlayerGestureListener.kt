@@ -133,7 +133,7 @@ class PopupPlayerGestureListener(
         )
 
         val popupWidth = playerUi.popupLayoutParams.width.toDouble()
-        // change co-ordinates of popup so the center stays at the same position
+        // change coordinates of popup so the center stays at the same position
         val newWidth = popupWidth * currentPointerDistance / initPointerDistance
         initPointerDistance = currentPointerDistance
         playerUi.popupLayoutParams.x += ((popupWidth - newWidth) / 2.0).toInt()

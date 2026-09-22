@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 public class YoutubeStreamInfoItemLockupExtractor implements StreamInfoItemExtractor {
 
     private static final String NO_VIEWS_LOWERCASE = "no views";
-    // This approach is language dependant (en-GB)
+    // This approach is language dependent (en-GB)
     // Leading end space is voluntary included
     private static final String PREMIERES_VIDEOS_TEXT = "Premieres ";
     private static final String PREMIERES_LIVES_TEXT = "Scheduled for ";

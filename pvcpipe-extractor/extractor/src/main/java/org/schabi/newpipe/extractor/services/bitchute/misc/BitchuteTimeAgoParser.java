@@ -50,10 +50,10 @@ public class BitchuteTimeAgoParser {
         OffsetDateTime offsetDateTime = now;
         boolean isApproximation = false;
 
-        // bitchute has the weired behavior to call it "an hour ago"
+        // bitchute has the weird behavior to call it "an hour ago"
         // instead "1 hour ago" as they do for longer ago dates.
-        final String weiredPattern = "an hour ago";
-        if (weiredPattern.equals(textualDate)) {
+        final String weirdPattern = "an hour ago";
+        if (weirdPattern.equals(textualDate)) {
             // ready to go back
             offsetDateTime = getResultFor(offsetDateTime, 1, ChronoUnit.HOURS);
             return new DateWrapper(offsetDateTime, false);

@@ -219,7 +219,7 @@ public class DownloadInitializer extends Thread {
         dispose();
     }
 
-    // connect ot http server and disconnect afterwards
+    // connect to http server and disconnect afterwards
     private boolean httpSession(
             @Nullable final String url, final boolean headRequest,
             final long rangeStart, final long rangeEnd)

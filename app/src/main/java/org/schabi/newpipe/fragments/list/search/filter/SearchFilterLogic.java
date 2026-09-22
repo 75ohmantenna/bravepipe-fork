@@ -515,7 +515,7 @@ public class SearchFilterLogic {
      * Prepare the content and sort filters {@link FilterItem}'s lists for a now filtered
      * search.
      * <p>
-     * If a callback is registered it wil be called with copy's of the local sort and
+     * If a callback is registered it will be called with copy's of the local sort and
      * content lists. To avoid concurrently modification of the lists. As they are progressed
      * through async javarx calls. Note: The members aka {@link FilterItem}'s are not copied.
      */

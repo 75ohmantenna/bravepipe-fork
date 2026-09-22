@@ -182,7 +182,7 @@ public abstract class StreamExtractor extends Extractor {
      * The name of the creator/uploader of the stream.
      * If the name is not available you can simply return an empty string.
      *
-     * @return the name of the creator/uploader of the stream or an empty tring
+     * @return the name of the creator/uploader of the stream or an empty string
      */
     @Nonnull
     public abstract String getUploaderName() throws ParsingException;
@@ -283,7 +283,7 @@ public abstract class StreamExtractor extends Extractor {
      * I am not sure if this is in use, and how this is used. However the frontend is missing
      * support for HLS streams. Prove me if I am wrong. Please open an
      * <a href="https://github.com/teamnewpipe/newpipe/issues">issue</a>,
-     * or fix this description if you know whats up with this.
+     * or fix this description if you know what's up with this.
      *
      * @return The Url to the hls stream or an empty string if not available.
      */

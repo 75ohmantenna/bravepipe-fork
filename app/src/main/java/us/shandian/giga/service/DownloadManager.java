@@ -239,7 +239,7 @@ public class DownloadManager {
                 if (!mission.metadata.isFile() && !mission.metadata.exists()) {
                     try {
                         if (!mission.metadata.createNewFile())
-                            throw new RuntimeException("Cant create download metadata file");
+                            throw new RuntimeException("Can't create download metadata file");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

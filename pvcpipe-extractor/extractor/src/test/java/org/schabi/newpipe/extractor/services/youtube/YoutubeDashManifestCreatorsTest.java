@@ -74,7 +74,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * </p>
  *
  * <p>
- * So the real downloader will be used everytime on this test class.
+ * So the real downloader will be used every time on this test class.
  * </p>
  */
 class YoutubeDashManifestCreatorsTest extends DefaultSimpleExtractorTest<YoutubeStreamExtractor>
