@@ -4,7 +4,9 @@ Work in progress. Not ready for release.
 
 Requires Android 8.0 (API 26) or newer.
 
-Based on [NewPipe](https://github.com/TeamNewPipe/NewPipe).
+PVCPipe is a fork of [BravePipe](https://github.com/bravepipeproject/BravePipe),
+created by [evermind](https://github.com/evermind-zz). BravePipe is based on
+[NewPipe](https://github.com/TeamNewPipe/NewPipe).
 
 ## Repository layout
 
