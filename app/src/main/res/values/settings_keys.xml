@@ -304,7 +304,7 @@
         <item>@string/show_channel_tabs_playlists</item>
         <item>@string/show_channel_tabs_albums</item>
         <item>@string/show_channel_tabs_likes</item>
-        <item>@string/show_channel_tabs_podcasts</item> <!-- BravePipe-fork Feature -->
+        <item>@string/show_channel_tabs_podcasts</item> <!-- PVCPipe Feature -->
         <item>@string/show_channel_tabs_about</item>
     </string-array>
     <string-array name="show_channel_tabs_description_list">
@@ -316,7 +316,7 @@
         <item>@string/channel_tab_playlists</item>
         <item>@string/channel_tab_albums</item>
         <item>@string/channel_tab_likes</item>
-        <item>@string/channel_tab_podcasts</item> <!-- BravePipe-fork Feature -->
+        <item>@string/channel_tab_podcasts</item> <!-- PVCPipe Feature -->
         <item>@string/channel_tab_about</item>
     </string-array>
     <string name="show_search_suggestions_key">show_search_suggestions</string>
@@ -401,7 +401,7 @@
         <item>@string/fetch_channel_tabs_shorts</item>
         <item>@string/fetch_channel_tabs_livestreams</item>
         <item>@string/fetch_channel_tabs_likes</item>
-        <item>@string/fetch_channel_tabs_podcasts</item> <!-- BravePipe-fork Feature -->
+        <item>@string/fetch_channel_tabs_podcasts</item> <!-- PVCPipe Feature -->
     </string-array>
     <string-array name="feed_fetch_channel_tabs_description_list">
         <item>@string/channel_tab_videos</item>
@@ -409,7 +409,7 @@
         <item>@string/channel_tab_shorts</item>
         <item>@string/channel_tab_livestreams</item>
         <item>@string/channel_tab_likes</item>
-        <item>@string/channel_tab_podcasts</item> <!-- BravePipe-fork Feature -->
+        <item>@string/channel_tab_podcasts</item> <!-- PVCPipe Feature -->
     </string-array>
 
     <string name="import_export_data_path">import_export_data_path</string>
@@ -1340,19 +1340,19 @@
         <item>@string/image_quality_medium_key</item>
         <item>@string/image_quality_high_key</item>
     </string-array>
-    <string name="brave_settings_host_replace_entry_youtube_image_host">yt3.ggpht.com -> yt4.ggpht.com</string>
-    <string name="brave_settings_host_replace_value_youtube_image_host">yt3.ggpht.com:yt4.ggpht.com</string>
-    <string-array name="brave_settings_host_replace_entries">
-        <item>@string/brave_settings_host_replace_entry_youtube_image_host</item>
+    <string name="pvc_settings_host_replace_entry_youtube_image_host">yt3.ggpht.com -> yt4.ggpht.com</string>
+    <string name="pvc_settings_host_replace_value_youtube_image_host">yt3.ggpht.com:yt4.ggpht.com</string>
+    <string-array name="pvc_settings_host_replace_entries">
+        <item>@string/pvc_settings_host_replace_entry_youtube_image_host</item>
     </string-array>
-    <string-array name="brave_settings_host_replace_values">
-        <item>@string/brave_settings_host_replace_value_youtube_image_host</item>
+    <string-array name="pvc_settings_host_replace_values">
+        <item>@string/pvc_settings_host_replace_value_youtube_image_host</item>
     </string-array>
-    <string-array name="brave_settings_host_replace_default_values"></string-array>
+    <string-array name="pvc_settings_host_replace_default_values"></string-array>
     <string name="show_channel_tabs_podcasts">show_channel_tabs_podcasts</string>
     <string name="fetch_channel_tabs_podcasts">fetch_channel_tabs_podcasts</string>
-    <string name="brave_settings_handle_cloudflare_challenge_enable_key">brave_settings_handle_cloudflare_challenge_enable_key</string>
-    <string name="brave_settings_handle_cloudflare_challenge_interactive_enable_key">brave_settings_handle_cloudflare_challenge_interactive_enable_key</string>
-    <string name="brave_settings_debug_logcat_viewer_key">brave_settings_debug_logcat_viewer_key</string>
-    <string name="brave_settings_debug_logcat_dumper_key">brave_settings_debug_logcat_dumper_key</string>
+    <string name="pvc_settings_handle_cloudflare_challenge_enable_key">pvc_settings_handle_cloudflare_challenge_enable_key</string>
+    <string name="pvc_settings_handle_cloudflare_challenge_interactive_enable_key">pvc_settings_handle_cloudflare_challenge_interactive_enable_key</string>
+    <string name="pvc_settings_debug_logcat_viewer_key">pvc_settings_debug_logcat_viewer_key</string>
+    <string name="pvc_settings_debug_logcat_dumper_key">pvc_settings_debug_logcat_dumper_key</string>
 </resources>

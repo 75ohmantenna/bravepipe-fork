@@ -17,7 +17,7 @@ import androidx.media.AudioManagerCompat;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 
-public class AudioReactor extends BraveAudioReactor
+public class AudioReactor extends PvcAudioReactor
         implements AudioManager.OnAudioFocusChangeListener, AnalyticsListener {
 
     private static final String TAG = "AudioFocusReactor";
@@ -103,7 +103,7 @@ public class AudioReactor extends BraveAudioReactor
     private void onAudioFocusGain() {
         Log.d(TAG, "onAudioFocusGain() called");
         player.setVolume(DUCK_AUDIO_TO);
-        animateAudio(DUCK_AUDIO_TO, braveGetSavedInternalVolume());
+        animateAudio(DUCK_AUDIO_TO, pvcGetSavedInternalVolume());
 
         if (PlayerHelper.isResumeAfterAudioFocusGain(context)) {
             player.play();
@@ -112,13 +112,13 @@ public class AudioReactor extends BraveAudioReactor
 
     private void onAudioFocusLoss() {
         Log.d(TAG, "onAudioFocusLoss() called");
-        braveSaveInternalVolume();
+        pvcSaveInternalVolume();
         player.pause();
     }
 
     private void onAudioFocusLossCanDuck() {
         Log.d(TAG, "onAudioFocusLossCanDuck() called");
-        braveSaveInternalVolume();
+        pvcSaveInternalVolume();
         // Set the volume to 1/10 on ducking
         player.setVolume(DUCK_AUDIO_TO);
     }

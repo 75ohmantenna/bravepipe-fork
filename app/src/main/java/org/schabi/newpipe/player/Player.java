@@ -592,7 +592,7 @@ public final class Player implements PlaybackListener, Listener {
 
         UIs.call(PlayerUi::initPlayback);
 
-        audioReactor.braveDoMute(isMuted());
+        audioReactor.pvcDoMute(isMuted());
         notifyQueueUpdateToListeners();
     }
 
@@ -1250,7 +1250,7 @@ public final class Player implements PlaybackListener, Listener {
 
     public void toggleMute() {
         final boolean wasMuted = isMuted();
-        audioReactor.braveDoMute(!wasMuted);
+        audioReactor.pvcDoMute(!wasMuted);
         if (wasMuted) {
             audioReactor.requestAudioFocus();
         } else {

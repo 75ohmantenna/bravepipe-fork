@@ -50,14 +50,14 @@ public final class DownloaderImpl extends Downloader {
         theBuilder.readTimeout(30, TimeUnit.SECONDS);
 //                .cache(new Cache(new File(context.getExternalCacheDir(), "okhttp"),
 //                        16 * 1024 * 1024))
-        BraveDownloaderImplUtils.addOrRemoveInterceptors(theBuilder);
-        BraveDownloaderImplUtils.addCookieManager(theBuilder);
+        PvcDownloaderImplUtils.addOrRemoveInterceptors(theBuilder);
+        PvcDownloaderImplUtils.addCookieManager(theBuilder);
         this.client = theBuilder.build();
     }
 
     public void reInitInterceptors() {
         final OkHttpClient.Builder builder = client.newBuilder();
-        BraveDownloaderImplUtils.addOrRemoveInterceptors(builder);
+        PvcDownloaderImplUtils.addOrRemoveInterceptors(builder);
         this.client = builder.build();
     }
 
@@ -138,7 +138,7 @@ public final class DownloaderImpl extends Downloader {
         try {
             final Response response = head(url);
             if (response.responseCode() == 405) { // HEAD Method not allowed
-                return BraveDownloaderImplUtils.getContentLengthViaGet(url);
+                return PvcDownloaderImplUtils.getContentLengthViaGet(url);
             } else {
                 return Long.parseLong(response.getHeader("Content-Length"));
             }

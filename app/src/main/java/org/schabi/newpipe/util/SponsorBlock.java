@@ -11,7 +11,7 @@ import com.grack.nanojson.JsonParser;
 import com.grack.nanojson.JsonStringWriter;
 import com.grack.nanojson.JsonWriter;
 
-import org.schabi.newpipe.BraveTimeoutInterceptor;
+import org.schabi.newpipe.PvcTimeoutInterceptor;
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.downloader.Response;
@@ -86,7 +86,7 @@ public final class SponsorBlock {
         }
 
         try {
-            final Response response = BraveTimeoutInterceptor
+            final Response response = PvcTimeoutInterceptor
                     .get(requestUrl.toString(), REQUEST_TIMEOUT_SECONDS);
             if (response.responseCode() == 404) {
                 cache(cacheKey, NO_SEGMENTS);

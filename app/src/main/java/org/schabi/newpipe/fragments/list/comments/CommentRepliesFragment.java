@@ -36,7 +36,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 
 public final class CommentRepliesFragment
-        extends BraveCommentRepliesFragment {
+        extends PvcCommentRepliesFragment {
 
     public static final String TAG = CommentRepliesFragment.class.getSimpleName();
 
@@ -59,7 +59,7 @@ public final class CommentRepliesFragment
             final View rootView,
             final Bundle savedInstanceState) {
         super.initViews(rootView, savedInstanceState);
-        braveInitReplyTitleAndCustomBackButton(rootView, commentsInfoItem);
+        pvcInitReplyTitleAndCustomBackButton(rootView, commentsInfoItem);
     }
 
     public CommentRepliesFragment(@NonNull final CommentsInfoItem commentsInfoItem) {

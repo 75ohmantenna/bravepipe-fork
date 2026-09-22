@@ -83,7 +83,7 @@ import us.shandian.giga.service.DownloadManagerService;
 import us.shandian.giga.service.DownloadManagerService.DownloadManagerBinder;
 import us.shandian.giga.service.MissionState;
 
-public class DownloadDialog extends BraveDownloadDialog
+public class DownloadDialog extends PvcDownloadDialog
         implements RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
     private static final String TAG = "DialogFragment";
     private static final boolean DEBUG = MainActivity.DEBUG;
@@ -170,7 +170,7 @@ public class DownloadDialog extends BraveDownloadDialog
         // TODO: Adapt this code when the downloader support other types of stream deliveries
         final List<VideoStream> videoStreams = ListHelper.getSortedStreamVideosList(
                 context,
-                braveAddHlsStreams(info,
+                pvcAddHlsStreams(info,
                         getStreamsOfSpecifiedDelivery(info.getVideoStreams(), PROGRESSIVE_HTTP)),
                 getStreamsOfSpecifiedDelivery(info.getVideoOnlyStreams(), PROGRESSIVE_HTTP),
                 false,
@@ -1023,7 +1023,7 @@ public class DownloadDialog extends BraveDownloadDialog
                     .get(wrappedVideoStreams.getStreamsList().indexOf(selectedStream));
 
             if (selectedStream.getDeliveryMethod() == HLS) {
-                psName = Postprocessing.ALGORITHM_BRAVE_HLS_REMUXER;
+                psName = Postprocessing.ALGORITHM_PVC_HLS_REMUXER;
             }
 
             if (secondary != null) {
@@ -1080,7 +1080,7 @@ public class DownloadDialog extends BraveDownloadDialog
             );
         }
 
-        braveDownloadStartMissionWrapper(context, urls, storage, kind, threads,
+        pvcDownloadStartMissionWrapper(context, urls, storage, kind, threads,
                 currentInfo, psName, psArgs, nearLength, new ArrayList<>(recoveryInfo));
 
         Toast.makeText(context, getString(R.string.download_has_started),

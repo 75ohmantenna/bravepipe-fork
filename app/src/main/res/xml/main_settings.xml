@@ -66,8 +66,8 @@
         app:iconSpaceReserved="false" />
 
     <PreferenceScreen
-        android:fragment="org.schabi.newpipe.settings.BraveSettingsFragment"
-        android:icon="@drawable/ic_brave_settings"
-        android:title="@string/brave_settings"
+        android:fragment="org.schabi.newpipe.settings.PvcSettingsFragment"
+        android:icon="@drawable/ic_pvc_settings"
+        android:title="@string/pvc_settings"
         app:iconSpaceReserved="false" />
 </PreferenceScreen>

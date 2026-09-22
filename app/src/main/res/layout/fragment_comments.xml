@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/brave_replies_main_header" />
+    <include layout="@layout/pvc_replies_main_header" />
 
     <org.schabi.newpipe.views.NewPipeRecyclerView
         android:id="@+id/items_list"

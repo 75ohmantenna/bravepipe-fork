@@ -98,7 +98,7 @@ public class DownloadMission extends Mission {
     /**
      * store arbitrary data. Object should be serializable.
      */
-    public Object braveArbitraryData;
+    public Object pvcArbitraryData;
 
     /**
      * The current resource to download, {@code urls[current]} and {@code offsets[current]}

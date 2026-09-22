@@ -53,19 +53,19 @@ class AboutActivity : AppCompatActivity() {
     /**
      * A placeholder fragment containing a simple view.
      */
-    class AboutFragment : BraveAboutFragment() {
+    class AboutFragment : PvcAboutFragment() {
         override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
         ): View {
             FragmentAboutBinding.inflate(inflater, container, false).apply {
-                braveAddSoftwareComponents(SOFTWARE_COMPONENTS)
+                pvcAddSoftwareComponents(SOFTWARE_COMPONENTS)
                 aboutAppVersion.text = BuildConfig.VERSION_NAME
-                braveMore.braveAppSignature.text = BuildConfig.APPLICATION_ID
-                braveMore.aboutAppBuildType.text = BuildConfig.BUILD_TYPE
-                braveAbout.braveAboutGithubLink.setOnClickListener {
-                    ShareUtils.openUrlInApp(requireContext(), getString(R.string.brave_github_url))
+                pvcMore.pvcAppSignature.text = BuildConfig.APPLICATION_ID
+                pvcMore.aboutAppBuildType.text = BuildConfig.BUILD_TYPE
+                pvcAbout.pvcAboutGithubLink.setOnClickListener {
+                    ShareUtils.openUrlInApp(requireContext(), getString(R.string.pvc_github_url))
                 }
                 return root
             }

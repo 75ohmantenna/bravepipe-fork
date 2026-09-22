@@ -1,6 +1,6 @@
 # Extractor service architecture
 
-BravePipe routes every remote URL through the bundled extractor. The application does not parse
+PVCPipe routes every remote URL through the bundled extractor. The application does not parse
 YouTube, BitChute, or Rumble responses itself.
 
 ## Request flow
@@ -12,7 +12,7 @@ YouTube, BitChute, or Rumble responses itself.
    extractor.
 5. The extractor fetches remote data and exposes the service-neutral models consumed by the app.
 
-The root Gradle build includes `bravepipeextractor-fork` as a composite build and substitutes the
+The root Gradle build includes `pvcpipe-extractor` as a composite build and substitutes the
 published extractor dependency. App builds and tests therefore always exercise the source in this
 repository.
 
@@ -36,7 +36,7 @@ fallbacks), `5d6b8c8cd` (collaborator follower counts), and `c7fb478d2` (Safari 
 Run extractor unit tests independently:
 
 ```sh
-./bravepipeextractor-fork/gradlew -p bravepipeextractor-fork :extractor:test
+./pvcpipe-extractor/gradlew -p pvcpipe-extractor :extractor:test
 ```
 
 Snapshot publications default to `<extractor-version>-SNAPSHOT`. Override that
@@ -55,5 +55,5 @@ kept separate from the reproducible gate. Run it when validating broader
 service compatibility:
 
 ```sh
-./bravepipeextractor-fork/gradlew -p bravepipeextractor-fork :extractor:test
+./pvcpipe-extractor/gradlew -p pvcpipe-extractor :extractor:test
 ```

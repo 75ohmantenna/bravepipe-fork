@@ -59,7 +59,7 @@ import us.shandian.giga.get.MissionRecoveryInfo;
 import us.shandian.giga.postprocessing.Postprocessing;
 import us.shandian.giga.service.DownloadManager.NetworkState;
 
-public class DownloadManagerService extends BraveDownloadManagerService {
+public class DownloadManagerService extends PvcDownloadManagerService {
 
     private static final String TAG = "DownloadManagerService";
 
@@ -430,8 +430,8 @@ public class DownloadManagerService extends BraveDownloadManagerService {
 
         handleConnectivityState(true);// first check the actual network status
 
-        if (Postprocessing.ALGORITHM_BRAVE_HLS_REMUXER.equals(psName)) {
-            braveLaunchHlsPreProcessor(mission, mManager);
+        if (Postprocessing.ALGORITHM_PVC_HLS_REMUXER.equals(psName)) {
+            pvcLaunchHlsPreProcessor(mission, mManager);
             return;
         }
 

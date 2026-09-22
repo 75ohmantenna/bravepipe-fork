@@ -10,7 +10,7 @@ pluginManagement {
         mavenCentral()
     }
 }
-rootProject.name = "org.seventyfiveohmantenna.bravepipefork"
+rootProject.name = "org.seventyfiveohmantenna.pvcpipe"
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -23,9 +23,9 @@ dependencyResolutionManagement {
 }
 include(":app")
 
-includeBuild("bravepipeextractor-fork") {
+includeBuild("pvcpipe-extractor") {
     dependencySubstitution {
-        substitute(module("com.github.75ohmantenna:bravepipeextractor-fork"))
+        substitute(module("com.github.75ohmantenna:pvcpipe-extractor"))
             .using(project(":extractor"))
     }
 }

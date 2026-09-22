@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Lifecycle;
 
-import org.schabi.newpipe.BraveDownloaderImplUtils;
+import org.schabi.newpipe.PvcDownloaderImplUtils;
 import org.schabi.newpipe.R;
 import org.schabi.newpipe.util.PermissionHelper;
 
@@ -56,7 +56,7 @@ final class LocalNetworkPermissionGate {
             return;
         }
         resolution.set(Single.fromCallable(() ->
-                BraveDownloaderImplUtils.requiresLocalNetwork(endpoint.host()))
+                PvcDownloaderImplUtils.requiresLocalNetwork(endpoint.host()))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(local -> {

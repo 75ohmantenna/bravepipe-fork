@@ -39,8 +39,8 @@ configure<ApplicationExtension> {
     namespace = "org.schabi.newpipe"
 
     defaultConfig {
-        applicationId = "org.seventyfiveohmantenna.bravepipefork"
-        resValue("string", "app_name", "BravePipe-fork")
+        applicationId = "org.seventyfiveohmantenna.pvcpipe"
+        resValue("string", "app_name", "PVCPipe")
         minSdk = 26
         targetSdk = 37
 
@@ -57,13 +57,13 @@ configure<ApplicationExtension> {
             isDebuggable = true
 
             applicationIdSuffix = ".debug"
-            resValue("string", "app_name", "BravePipe-fork Debug")
+            resValue("string", "app_name", "PVCPipe Debug")
         }
 
         release {
             System.getProperty("packageSuffix")?.let { suffix ->
                 applicationIdSuffix = suffix
-                resValue("string", "app_name", "BravePipe-fork $suffix")
+                resValue("string", "app_name", "PVCPipe $suffix")
             }
             isMinifyEnabled = true
             isShrinkResources = true
@@ -187,7 +187,7 @@ dependencies {
 
     /** NewPipe libraries **/
     implementation(libs.newpipe.nanojson)
-    implementation(libs.bravepipe.extractor)
+    implementation(libs.pvcpipe.extractor)
     implementation(libs.newpipe.filepicker)
 
     /** Checkstyle **/
@@ -292,10 +292,10 @@ dependencies {
     androidTestImplementation(libs.assertj.core)
 }
 
-// keep the changed dependencies for BravePipe-fork more
+// keep the changed dependencies for PVCPipe more
 // separate in hope of not getting to many merge conflicts
 val okHttpVersion: String = libs.versions.okhttp.get()
-// for JavaNetCookieJar see https://github.com/bravepipeproject/BravePipeExtractor/issues/123
+// for JavaNetCookieJar see https://github.com/75ohmantenna/pvcpipe-extractor/issues/123
 project.dependencies.implementation("com.squareup.okhttp3:okhttp-urlconnection:$okHttpVersion")
 // for hls support on rumble
 project.dependencies.implementation("com.github.evermind-zz:hlsdownloader:1.0.0")

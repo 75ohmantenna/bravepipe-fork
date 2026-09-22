@@ -14,7 +14,7 @@ import org.schabi.newpipe.R;
 import java.util.Arrays;
 import java.util.List;
 
-/** SponsorBlock categories supported by BravePipe and their presentation settings. */
+/** SponsorBlock categories supported by PVCPipe and their presentation settings. */
 public enum SponsorBlockCategory {
     SPONSOR("sponsor", R.string.sponsor_block_category_sponsor_key,
             R.string.sponsor_block_category_sponsor_color_key, R.color.sponsor_segment,

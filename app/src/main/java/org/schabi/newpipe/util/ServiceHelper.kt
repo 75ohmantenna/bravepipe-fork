@@ -20,7 +20,7 @@ import org.schabi.newpipe.extractor.search.filter.LibraryStringIds
 import org.schabi.newpipe.extractor.services.peertube.PeertubeInstance
 import org.schabi.newpipe.ktx.getStringSafe
 
-object ServiceHelper : BraveServiceHelper() {
+object ServiceHelper : PvcServiceHelper() {
     private val DEFAULT_FALLBACK_SERVICE: StreamingService = ServiceList.YouTube
 
     @JvmStatic
@@ -32,7 +32,7 @@ object ServiceHelper : BraveServiceHelper() {
             2 -> R.drawable.ic_placeholder_media_ccc
             3 -> R.drawable.ic_placeholder_peertube
             4 -> R.drawable.ic_placeholder_bandcamp
-            else -> braveGetIcon(serviceId, R.drawable.ic_circle)
+            else -> pvcGetIcon(serviceId, R.drawable.ic_circle)
         }
     }
 
@@ -171,5 +171,5 @@ object ServiceHelper : BraveServiceHelper() {
     fun getTranslatedFilterString(
         stringId: LibraryStringIds,
         context: Context
-    ): String = BraveServiceHelper.getTranslatedFilterString(stringId, context)
+    ): String = PvcServiceHelper.getTranslatedFilterString(stringId, context)
 }

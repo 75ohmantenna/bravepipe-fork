@@ -90,7 +90,7 @@ import us.shandian.giga.ui.common.Deleter;
 import us.shandian.giga.ui.common.ProgressDrawable;
 import us.shandian.giga.util.Utility;
 
-public class MissionAdapter extends BraveMissionAdapter implements Handler.Callback {
+public class MissionAdapter extends PvcMissionAdapter implements Handler.Callback {
     private static final String TAG = "MissionAdapter";
     private static final String UNDEFINED_PROGRESS = "--.-%";
     private static final String DEFAULT_MIME_TYPE = "*/*";

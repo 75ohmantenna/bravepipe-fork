@@ -150,7 +150,7 @@
             </org.schabi.newpipe.views.CustomCollapsingToolbarLayout>
 
             <!-- CONTENT -->
-            <org.schabi.newpipe.brave.views.BraveInterceptTouchRelativeLayout
+            <org.schabi.newpipe.pvc.views.PvcInterceptTouchRelativeLayout
                 android:id="@+id/detail_content_root_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -575,7 +575,7 @@
                         android:background="?attr/separator_color" />
 
                 </LinearLayout>
-            </org.schabi.newpipe.brave.views.BraveInterceptTouchRelativeLayout>
+            </org.schabi.newpipe.pvc.views.PvcInterceptTouchRelativeLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager.widget.ViewPager

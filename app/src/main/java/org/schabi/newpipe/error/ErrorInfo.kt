@@ -11,11 +11,11 @@ import java.net.UnknownHostException
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.TypeParceler
 import org.schabi.newpipe.R
-import org.schabi.newpipe.brave.feature.logcat.BraveLogcatDumper
+import org.schabi.newpipe.pvc.feature.logcat.PvcLogcatDumper
 import org.schabi.newpipe.extractor.Info
 import org.schabi.newpipe.extractor.ServiceList
 import org.schabi.newpipe.extractor.ServiceList.YouTube
-import org.schabi.newpipe.extractor.brave.BraveCloudFlareChallengeException
+import org.schabi.newpipe.extractor.pvc.PvcCloudFlareChallengeException
 import org.schabi.newpipe.extractor.exceptions.AccountTerminatedException
 import org.schabi.newpipe.extractor.exceptions.AgeRestrictedContentException
 import org.schabi.newpipe.extractor.exceptions.ContentNotAvailableException
@@ -40,7 +40,7 @@ import org.schabi.newpipe.util.text.getText
  */
 @Parcelize
 class ErrorInfo private constructor(
-    @TypeParceler<Array<String>, BraveErrorInfoTracesParceler>()
+    @TypeParceler<Array<String>, PvcErrorInfoTracesParceler>()
     val stackTraces: Array<String>,
     val userAction: UserAction,
     val request: String,
@@ -65,7 +65,7 @@ class ErrorInfo private constructor(
      * badly broken).
      */
     val openInBrowserUrl: String?,
-    val braveErrorInfoCreationTimestamp: Long
+    val pvcErrorInfoCreationTimestamp: Long
 ) : Parcelable {
 
     @JvmOverloads
@@ -76,7 +76,7 @@ class ErrorInfo private constructor(
         serviceId: Int? = null,
         openInBrowserUrl: String? = null
     ) : this(
-        BraveErrorInfoHelper.logStackTraces(throwable),
+        PvcErrorInfoHelper.logStackTraces(throwable),
         userAction,
         request,
         serviceId,
@@ -85,7 +85,7 @@ class ErrorInfo private constructor(
         isRetryable(throwable),
         (throwable as? ReCaptchaException)?.url,
         openInBrowserUrl,
-        BraveLogcatDumper.triggerLogCapture()
+        PvcLogcatDumper.triggerLogCapture()
     )
 
     @JvmOverloads
@@ -96,7 +96,7 @@ class ErrorInfo private constructor(
         serviceId: Int? = null,
         openInBrowserUrl: String? = null
     ) : this(
-        BraveErrorInfoHelper.logStackTraces(throwables),
+        PvcErrorInfoHelper.logStackTraces(throwables),
         userAction,
         request,
         serviceId,
@@ -105,7 +105,7 @@ class ErrorInfo private constructor(
         throwables.isEmpty() || throwables.any(::isRetryable),
         throwables.firstNotNullOfOrNull { it as? ReCaptchaException }?.url,
         openInBrowserUrl,
-        BraveLogcatDumper.triggerLogCapture()
+        PvcLogcatDumper.triggerLogCapture()
     )
 
     // constructor to manually build ErrorInfo when no throwable is available
@@ -117,10 +117,10 @@ class ErrorInfo private constructor(
         @StringRes message: Int
     ) :
         this(
-            BraveErrorInfoHelper.logStackTraces(stackTraces),
+            PvcErrorInfoHelper.logStackTraces(stackTraces),
             userAction, request, serviceId, ErrorMessage(message),
             true, false, null, null,
-            BraveLogcatDumper.triggerLogCapture()
+            PvcLogcatDumper.triggerLogCapture()
         )
 
     // constructor with only one throwable to extract service id and openInBrowserUrl from an Info
@@ -286,9 +286,9 @@ class ErrorInfo private constructor(
                 throwable is ExtractionException ->
                     ErrorMessage(R.string.parsing_error)
 
-                // BravePipe-fork: if enabled BraveRumbleCloudflareManager this Exception is rare
-                throwable is BraveCloudFlareChallengeException ->
-                    ErrorMessage(R.string.brave_rumble_cf_exception_info)
+                // PVCPipe: if enabled PvcRumbleCloudflareManager this Exception is rare
+                throwable is PvcCloudFlareChallengeException ->
+                    ErrorMessage(R.string.pvc_rumble_cf_exception_info)
 
                 // user actions (in case the exception is null or unrecognizable)
                 action == UserAction.UI_ERROR ->

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2026 BravePipe contributors
+ * SPDX-FileCopyrightText: 2026 PVCPipe contributors
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 

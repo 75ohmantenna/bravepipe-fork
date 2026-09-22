@@ -30,7 +30,7 @@ class MainPlayerGestureListener(
     private val playerUi: MainPlayerUi
 ) : BasePlayerGestureListener(playerUi), OnTouchListener {
     private var isMoving = false
-    private var braveGestureHelper = BraveMainPlayerGestureListenerHelper()
+    private var pvcGestureHelper = PvcMainPlayerGestureListenerHelper()
 
     override fun onTouch(v: View, event: MotionEvent): Boolean {
         super.onTouch(v, event)
@@ -164,7 +164,7 @@ class MainPlayerGestureListener(
             binding.brightnessRelativeLayout.animate(false, 200, AnimationType.SCALE_AND_ALPHA, 200)
         }
 
-        braveGestureHelper.onScrollEnd(binding, event)
+        pvcGestureHelper.onScrollEnd(binding, event)
     }
 
     override fun onScroll(
@@ -199,8 +199,8 @@ class MainPlayerGestureListener(
         isMoving = true
 
         // -- Brightness and Volume control --
-        if (braveGestureHelper.isInternalScrollVolumeEvent(binding, player.context, initialEvent)) {
-            braveGestureHelper.onInternalScrollVolumeEvent(binding, playerUi, distanceY)
+        if (pvcGestureHelper.isInternalScrollVolumeEvent(binding, player.context, initialEvent)) {
+            pvcGestureHelper.onInternalScrollVolumeEvent(binding, playerUi, distanceY)
         } else if (getDisplayHalfPortion(initialEvent) == DisplayPortion.RIGHT_HALF) {
             when (PlayerHelper.getActionForRightGestureSide(player.context)) {
                 player.context.getString(R.string.volume_control_key) ->

@@ -1,6 +1,6 @@
 package org.schabi.newpipe.util;
 
-import static org.schabi.newpipe.util.BraveStreamInfoWrapperHelper.braveIfStreamIsHlsCalcAndSetSize;
+import static org.schabi.newpipe.util.PvcStreamInfoWrapperHelper.pvcIfStreamIsHlsCalcAndSetSize;
 import static org.schabi.newpipe.extractor.utils.Utils.isNullOrEmpty;
 
 import android.content.Context;
@@ -252,13 +252,13 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
          * of all the streams in a wrapper.
          *
          * @param <X> the stream type's class extending {@link Stream}
-         * @param braveStreamInfo the current stream info
+         * @param pvcStreamInfo the current stream info
          * @param streamsWrapper the wrapper
          * @return a {@link Single} that returns a boolean indicating if any elements were changed
          */
         @NonNull
         public static <X extends Stream> Single<Boolean> fetchMoreInfoForWrapper(
-                final StreamInfo braveStreamInfo,
+                final StreamInfo pvcStreamInfo,
                 final StreamInfoWrapper<X> streamsWrapper) {
             final Callable<Boolean> fetchAndSet = () -> {
                 boolean hasChanged = false;
@@ -269,7 +269,7 @@ public class StreamItemAdapter<T extends Stream, U extends Stream> extends BaseA
                         continue;
                     }
 
-                    if (braveIfStreamIsHlsCalcAndSetSize(stream, braveStreamInfo, streamsWrapper)) {
+                    if (pvcIfStreamIsHlsCalcAndSetSize(stream, pvcStreamInfo, streamsWrapper)) {
                         hasChanged = true;
                         continue;
                     }

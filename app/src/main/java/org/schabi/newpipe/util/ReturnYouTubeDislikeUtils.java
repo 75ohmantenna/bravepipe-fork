@@ -11,7 +11,7 @@ import com.grack.nanojson.JsonParser;
 
 import org.schabi.newpipe.MainActivity;
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.BraveTimeoutInterceptor;
+import org.schabi.newpipe.PvcTimeoutInterceptor;
 import org.schabi.newpipe.extractor.ServiceList;
 import org.schabi.newpipe.extractor.stream.StreamInfo;
 
@@ -43,7 +43,7 @@ public final class ReturnYouTubeDislikeUtils {
         JsonObject response = null;
 
         try {
-            final String responseBody = BraveTimeoutInterceptor
+            final String responseBody = PvcTimeoutInterceptor
                     .get(API_URL + streamInfo.getId(), 3)
                     .responseBody();
 

@@ -33,7 +33,7 @@ import org.schabi.newpipe.util.text.setTextWithLinks
  * This activity is used to show error details and allow reporting them in various ways.
  * Use [ErrorUtil.openActivity] to correctly open this activity.
  */
-class ErrorActivity : BraveErrorActivity() {
+class ErrorActivity : PvcErrorActivity() {
     private lateinit var errorInfo: ErrorInfo
     private lateinit var currentTimeStamp: String
 
@@ -98,9 +98,9 @@ class ErrorActivity : BraveErrorActivity() {
 
         // overwrite here again -- just leave above alone for less upstream irritation
         // upstreams uses the current time, we use the time the error happened
-        braveGetErrorCreationTimestamp(currentTimeStamp, errorInfo)
+        pvcGetErrorCreationTimestamp(currentTimeStamp, errorInfo)
 
-        braveAddCopyLogcatLogButton(
+        pvcAddCopyLogcatLogButton(
             this,
             binding.errorReportCopyButton,
             errorInfo
@@ -123,7 +123,7 @@ class ErrorActivity : BraveErrorActivity() {
         binding.errorMessageView.setTextWithLinks(errorInfo.getMessage(this))
         binding.errorView.text = formErrorText(errorInfo.stackTraces)
 
-        if (!braveIsDumperEnabled()) {
+        if (!pvcIsDumperEnabled()) {
             // print stack trace once again for debugging:
             errorInfo.stackTraces.forEach { Log.e(TAG, it) }
         }
@@ -170,7 +170,7 @@ class ErrorActivity : BraveErrorActivity() {
                         .putExtra(Intent.EXTRA_EMAIL, arrayOf(ERROR_EMAIL_ADDRESS))
                         .putExtra(Intent.EXTRA_SUBJECT, errorEmailSubject)
                         .putExtra(Intent.EXTRA_TEXT, buildJson())
-                    braveAddLogcatLogAttachmentToMail(context, intent, errorInfo)
+                    pvcAddLogcatLogAttachmentToMail(context, intent, errorInfo)
                     ShareUtils.openIntentInApp(context, intent)
                 } else if (action == "GITHUB") { // open the NewPipe issue page on GitHub
                     ShareUtils.openUrlInApp(this, ERROR_GITHUB_ISSUE_URL)
@@ -216,7 +216,7 @@ class ErrorActivity : BraveErrorActivity() {
                 .value("version", BuildConfig.VERSION_NAME)
                 .value("os", osString)
                 .value("time", currentTimeStamp)
-                .array("exceptions", braveTruncateAsNeeded(errorInfo.stackTraces))
+                .array("exceptions", pvcTruncateAsNeeded(errorInfo.stackTraces))
                 .value("user_comment", binding.errorCommentBox.getText().toString())
                 .end()
                 .done()
@@ -299,6 +299,6 @@ class ErrorActivity : BraveErrorActivity() {
         private const val ERROR_EMAIL_ADDRESS = "crashreport@gmx.com"
         private const val ERROR_EMAIL_SUBJECT = "Exception in "
 
-        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/bravenewpipe/NewPipeExtractor/issues"
+        private const val ERROR_GITHUB_ISSUE_URL = "https://github.com/pvcpipe/NewPipeExtractor/issues"
     }
 }

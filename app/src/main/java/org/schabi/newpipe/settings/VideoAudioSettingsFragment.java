@@ -18,7 +18,7 @@ import org.schabi.newpipe.util.PermissionHelper;
 import java.util.LinkedList;
 import java.util.List;
 
-public class VideoAudioSettingsFragment extends BraveBasePreferenceFragment {
+public class VideoAudioSettingsFragment extends PvcBasePreferenceFragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listener;
 
     @Override

@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import org.schabi.newpipe.R;
-import org.schabi.newpipe.brave.fragments.BraveHostFragment;
+import org.schabi.newpipe.pvc.fragments.PvcHostFragment;
 import org.schabi.newpipe.databinding.FragmentVideoDetailBinding;
 import org.schabi.newpipe.extractor.NewPipe;
 import org.schabi.newpipe.extractor.comments.CommentsInfoItem;
@@ -123,7 +123,7 @@ final class DetailContentCoordinator {
         pageAdapter.clearAllItems();
 
         if (shouldShowComments(serviceId)) {
-            pageAdapter.addFragment(BraveHostFragment.newInstance(
+            pageAdapter.addFragment(PvcHostFragment.newInstance(
                     CommentsFragment.getInstance(serviceId, url, title)), COMMENTS_TAB_TAG,
                     R.drawable.ic_comment, R.string.comments_tab_description);
         }
@@ -256,8 +256,8 @@ final class DetailContentCoordinator {
 
     @Nullable
     static CommentsFragment resolveCommentsFragment(final Fragment tabFragment) {
-        final Fragment resolved = tabFragment instanceof BraveHostFragment
-                ? ((BraveHostFragment) tabFragment).getHostedFragment() : tabFragment;
+        final Fragment resolved = tabFragment instanceof PvcHostFragment
+                ? ((PvcHostFragment) tabFragment).getHostedFragment() : tabFragment;
         return resolved instanceof CommentsFragment ? (CommentsFragment) resolved : null;
     }
 }

@@ -10,7 +10,7 @@
       android:translateX="-2.5903084"
       android:translateY="-2.5903084">
     <path
-        android:pathData="M13.025,46.9066 L39.8923,31.3947 21.3196,20.6718v5.4648l8.943,5.1633 -12.4703,7.1998V10.4312L13.0244,6.0101Z"
+        android:pathData="M13.025,6.0101 L39.8923,21.522 21.3196,32.2449v-5.4648l8.943,-5.1633 -12.4703,-7.1998V42.4855L13.0244,46.9066Z"
         android:strokeAlpha="0.900798"
         android:strokeLineJoin="round"
         android:strokeWidth="0.616"
@@ -19,7 +19,7 @@
         android:strokeLineCap="butt">
     </path>
     <path
-        android:pathData="M13.025,46.9066 L39.8923,31.3947 21.3196,20.6718v5.4648l8.943,5.1633 -12.4703,7.1998V10.4312L13.0244,6.0101Z"
+        android:pathData="M13.025,6.0101 L39.8923,21.522 21.3196,32.2449v-5.4648l8.943,-5.1633 -12.4703,-7.1998V42.4855L13.0244,46.9066Z"
         android:strokeAlpha="0.998096"
         android:strokeLineJoin="round"
         android:strokeWidth="0.416"

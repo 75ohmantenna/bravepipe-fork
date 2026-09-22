@@ -122,7 +122,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public final class VideoDetailFragment
-        extends BraveVideoDetailFragment
+        extends PvcVideoDetailFragment
         implements BackPressable,
         PlayerServiceExtendedEventListener,
         OnKeyDownListener {
@@ -290,7 +290,7 @@ public final class VideoDetailFragment
     public View onCreateView(@NonNull final LayoutInflater inflater, final ViewGroup container,
                              final Bundle savedInstanceState) {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false);
-        braveSetBinding(binding);
+        pvcSetBinding(binding);
         return binding.getRoot();
     }
 
@@ -657,7 +657,7 @@ public final class VideoDetailFragment
 
     @Override
     public boolean onBackPressed() {
-        if (braveOnBackPressed()) {
+        if (pvcOnBackPressed()) {
             return true;
         }
 

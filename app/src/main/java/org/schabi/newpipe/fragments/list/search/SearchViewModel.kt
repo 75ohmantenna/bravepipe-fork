@@ -11,9 +11,9 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import org.schabi.newpipe.brave.feature.savesearchpresets.data.Entry
-import org.schabi.newpipe.brave.feature.savesearchpresets.data.EntryDatabase
-import org.schabi.newpipe.brave.feature.savesearchpresets.data.EntryStore
+import org.schabi.newpipe.pvc.feature.savesearchpresets.data.Entry
+import org.schabi.newpipe.pvc.feature.savesearchpresets.data.EntryDatabase
+import org.schabi.newpipe.pvc.feature.savesearchpresets.data.EntryStore
 import org.schabi.newpipe.extractor.NewPipe
 import org.schabi.newpipe.extractor.StreamingService
 import org.schabi.newpipe.extractor.search.filter.FilterItem

@@ -1,7 +1,7 @@
 package org.schabi.newpipe.fragments.detail;
 
 import org.junit.Test;
-import org.schabi.newpipe.brave.fragments.BraveHostFragment;
+import org.schabi.newpipe.pvc.fragments.PvcHostFragment;
 import org.schabi.newpipe.fragments.list.comments.CommentsFragment;
 
 import androidx.fragment.app.Fragment;
@@ -17,12 +17,12 @@ public class DetailContentCoordinatorTest {
     public void hostReturnsPendingFragmentBeforeAttachment() {
         final CommentsFragment comments = mock(CommentsFragment.class);
 
-        assertSame(comments, BraveHostFragment.newInstance(comments).getHostedFragment());
+        assertSame(comments, PvcHostFragment.newInstance(comments).getHostedFragment());
     }
 
     @Test
     public void resolvesCommentsFragmentFromHost() {
-        final BraveHostFragment host = mock(BraveHostFragment.class);
+        final PvcHostFragment host = mock(PvcHostFragment.class);
         final CommentsFragment comments = mock(CommentsFragment.class);
         when(host.getHostedFragment()).thenReturn(comments);
 

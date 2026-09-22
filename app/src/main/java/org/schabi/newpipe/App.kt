@@ -58,7 +58,7 @@ import org.schabi.newpipe.util.potoken.PoTokenProviderImpl
  * along with NewPipe.  If not, see <http://www.gnu.org/licenses/>.
  */
 open class App :
-    BraveCommonApp(),
+    PvcCommonApp(),
     SingletonImageLoader.Factory {
     var isFirstRun = false
         private set
@@ -122,7 +122,7 @@ open class App :
 
         configureRxJavaErrorHandler()
 
-        BraveDownloaderImplUtils.CONFIG.registerOnChanged(applicationContext)
+        PvcDownloaderImplUtils.CONFIG.registerOnChanged(applicationContext)
 
         YoutubeStreamExtractor.setPoTokenProvider(PoTokenProviderImpl)
     }
@@ -288,6 +288,6 @@ open class App :
 
     override fun onTerminate() {
         super.onTerminate()
-        BraveDownloaderImplUtils.CONFIG.unregisterOnChanged(applicationContext)
+        PvcDownloaderImplUtils.CONFIG.unregisterOnChanged(applicationContext)
     }
 }

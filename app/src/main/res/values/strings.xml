@@ -162,7 +162,7 @@
     <string name="youtube_restricted_mode_enabled_summary">YouTube provides a \"Restricted Mode\" which hides potentially mature content</string>
     <string name="restricted_video">This video is age restricted.\n\nTurn on \"%1$s\" in the settings if you want to see it.</string>
     <string name="restricted_video_no_stream">This video is age-restricted.
-\nDue to new YouTube policies with age-restricted videos, BravePipe-fork cannot access any of its video streams and thus is unable to play it.</string>
+\nDue to new YouTube policies with age-restricted videos, PVCPipe cannot access any of its video streams and thus is unable to play it.</string>
     <string name="duration_live">Live</string>
     <string name="downloads">Downloads</string>
     <string name="downloads_title">Downloads</string>
@@ -188,8 +188,8 @@
     <string name="just_once">Just Once</string>
     <string name="file">File</string>
     <string name="notifications">Notifications</string>
-    <string name="notification_channel_name">BravePipe-fork notification</string>
-    <string name="notification_channel_description">Notifications for BravePipe-fork\'s player</string>
+    <string name="notification_channel_name">PVCPipe notification</string>
+    <string name="notification_channel_description">Notifications for PVCPipe\'s player</string>
     <string name="hash_channel_name">Video hash notification</string>
     <string name="hash_channel_description">Notifications for video hashing progress</string>
     <string name="streams_notification_channel_name">New streams</string>
@@ -206,7 +206,7 @@
     <string name="recaptcha_cookies_cleared">reCAPTCHA cookies have been cleared</string>
     <string name="import_data_summary">Overrides your current history, subscriptions, playlists and (optionally) settings</string>
     <string name="export_data_summary">Export history, subscriptions, playlists and settings</string>
-    <string name="clear_cookie_summary">Clear cookies that BravePipe-fork stores when you solve a reCAPTCHA</string>
+    <string name="clear_cookie_summary">Clear cookies that PVCPipe stores when you solve a reCAPTCHA</string>
     <string name="clear_views_history_title">Clear watch history</string>
     <string name="clear_views_history_summary">Deletes the history of played streams and the playback positions</string>
     <string name="delete_view_history_alert">Delete entire watch history?</string>
@@ -246,7 +246,7 @@
     <string name="permission_display_over_apps_message">In order to use the Popup Player, please select %1$s in the following Android settings menu and enable %2$s.</string>
     <string name="permission_display_over_apps_permission_name">“Allow display over other apps”</string>
     <!-- error activity -->
-    <string name="error_report_notification_title">BravePipe-fork encountered an error, tap to report</string>
+    <string name="error_report_notification_title">PVCPipe encountered an error, tap to report</string>
     <string name="error_report_notification_toast">An error occurred, see the notification</string>
     <string name="sorry_string">Sorry, that should not have happened.</string>
     <string name="error_report_button_text">Report via e-mail</string>
@@ -327,7 +327,7 @@
     <string name="msg_name">Filename</string>
     <string name="msg_threads">Threads</string>
     <string name="msg_error">Error</string>
-    <string name="msg_running">BravePipe-fork Downloading</string>
+    <string name="msg_running">PVCPipe Downloading</string>
     <string name="msg_running_detail">Tap for details</string>
     <string name="msg_calculating_hash">Calculating hash</string>
     <string name="msg_wait">Please wait…</string>
@@ -350,7 +350,7 @@
     <string name="charset_letters_and_digits">Letters and digits</string>
     <string name="charset_most_special_characters">Most special characters</string>
     <!-- About -->
-    <string name="title_activity_about">About BravePipe-fork</string>
+    <string name="title_activity_about">About PVCPipe</string>
     <string name="title_licenses">Third-party Licenses</string>
     <string name="copyright">© %1$s by %2$s under %3$s</string>
     <string name="tab_about">About \u0026 FAQ</string>
@@ -361,11 +361,11 @@
     <string name="view_on_github">View on GitHub</string>
     <string name="website_title">Website</string>
     <string name="website_encouragement">Visit the NewPipe Website for more info and news.</string>
-    <string name="privacy_policy_title">BravePipe-fork\'s Privacy Policy</string>
-    <string name="privacy_policy_encouragement">The BravePipe-fork project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nBravePipe-fork\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
+    <string name="privacy_policy_title">PVCPipe\'s Privacy Policy</string>
+    <string name="privacy_policy_encouragement">The PVCPipe project takes your privacy very seriously. Therefore, the app does not collect any data without your consent.\nPVCPipe\'s privacy policy explains in detail what data is sent and stored when you send a crash report.</string>
     <string name="read_privacy_policy">Read privacy policy</string>
-    <string name="app_license_title">BravePipe-fork\'s License</string>
-    <string name="app_license">BravePipe-fork is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
+    <string name="app_license_title">PVCPipe\'s License</string>
+    <string name="app_license">PVCPipe is copyleft libre software: You can use, study, share, and improve it at will. Specifically you can redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</string>
     <string name="read_full_license">Read license</string>
     <string name="faq_title">Frequently asked questions</string>
     <string name="faq_description">If you are having trouble using the app, be sure to check out these answers to common questions!</string>
@@ -527,7 +527,7 @@
     <string name="percent">Percent</string>
     <string name="semitone">Semitone</string>
     <!-- GDPR dialog -->
-    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we hereby draw your attention to BravePipe-fork\'s privacy policy. Please read it carefully.
+    <string name="start_accept_privacy_policy">In order to comply with the European General Data Protection Regulation (GDPR), we hereby draw your attention to PVCPipe\'s privacy policy. Please read it carefully.
 \nYou must accept it to send us the bug report.</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
@@ -612,7 +612,7 @@
     <string name="error_http_unsupported_range">The server does not accept multi-threaded downloads, retry with @string/msg_threads = 1</string>
     <string name="error_http_not_found">Not found</string>
     <string name="error_postprocessing_failed">Post-processing failed</string>
-    <string name="error_postprocessing_stopped">BravePipe-fork was closed while working on the file</string>
+    <string name="error_postprocessing_stopped">PVCPipe was closed while working on the file</string>
     <string name="error_insufficient_storage">Not enough free space on device</string>
     <string name="error_insufficient_storage_left">No space left on device</string>
     <string name="error_progress_lost">Progress lost, because the file was deleted</string>
@@ -692,7 +692,7 @@
     <string name="feed_update_threshold_option_always_update">Always update</string>
     <string name="feed_load_error">Error loading feed</string>
     <string name="feed_load_error_account_info">Could not load feed for \'%s\'.</string>
-    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nBravePipe-fork will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
+    <string name="feed_load_error_terminated">The author\'s account has been terminated.\nPVCPipe will not be able to load this feed in the future.\nDo you want to unsubscribe from this channel?</string>
     <string name="feed_load_error_fast_unknown">The fast feed mode does not provide more info on this.</string>
     <string name="feed_use_dedicated_fetch_method_title">Fetch from dedicated feed when available</string>
     <string name="feed_use_dedicated_fetch_method_summary">Available in some services, it is usually much faster but may return a limited amount of items and often incomplete information (e.g. no duration, item type, no live status)</string>
@@ -700,7 +700,7 @@
     <string name="feed_use_dedicated_fetch_method_disable_button">Disable fast mode</string>
     <string name="feed_use_dedicated_fetch_method_help_text">Do you think feed loading is too slow\? If so, try enabling fast loading (you can change it in settings or by pressing the button below).
 \n
-\nBravePipe-fork offers two feed loading strategies:
+\nPVCPipe offers two feed loading strategies:
 \n• Fetching the whole subscription channel, which is slow but complete.
 \n• Using a dedicated service endpoint, which is fast but usually not complete.
 \n
@@ -713,7 +713,7 @@
     <string name="feed_show_hide_streams">Show/Hide streams</string>
     <string name="feed_fetch_channel_tabs">Fetch channel tabs</string>
     <string name="feed_fetch_channel_tabs_summary">Tabs to fetch when updating the feed. This option has no effect if a channel is updated using fast mode.</string>
-    <string name="content_not_supported">This content is not yet supported by BravePipe-fork.\n\nIt will hopefully be supported in a future version.</string>
+    <string name="content_not_supported">This content is not yet supported by PVCPipe.\n\nIt will hopefully be supported in a future version.</string>
     <string name="detail_sub_channel_thumbnail_view_description">Channel\'s avatar thumbnail</string>
     <string name="channel_created_by">Created by %s</string>
     <string name="video_detail_by">By %s</string>
@@ -726,12 +726,12 @@
     <string name="no_appropriate_file_manager_message_android_10">No appropriate file manager was found for this action.
 \nPlease install a Storage Access Framework compatible file manager</string>
     <string name="georestricted_content">This content is not available in your country.</string>
-    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by BravePipe-fork.</string>
-    <string name="private_content">This content is private, so it cannot be streamed or downloaded by BravePipe-fork.</string>
-    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by BravePipe-fork.</string>
+    <string name="soundcloud_go_plus_content">This is a SoundCloud Go+ track, at least in your country, so it cannot be streamed or downloaded by PVCPipe.</string>
+    <string name="private_content">This content is private, so it cannot be streamed or downloaded by PVCPipe.</string>
+    <string name="youtube_music_premium_content">This video is available only to YouTube Music Premium members, so it cannot be streamed or downloaded by PVCPipe.</string>
     <string name="account_terminated">Account terminated</string>
     <string name="account_terminated_service_provides_reason">Account terminated\n\n%1$s provides this reason: %2$s</string>
-    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by BravePipe-fork.</string>
+    <string name="paid_content">This content is only available to users who have paid, so it cannot be streamed or downloaded by PVCPipe.</string>
     <string name="featured">Featured</string>
     <string name="radio">Radio</string>
     <string name="auto_device_theme_title">Automatic (device theme)</string>
@@ -840,11 +840,11 @@
     </plurals>
     <string name="show_more">Show more</string>
     <string name="show_less">Show less</string>
-    <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since BravePipe-fork 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from BravePipe-fork 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of BravePipe-fork will not be able to import settings of exports from new versions anymore.</string>
+    <string name="import_settings_vulnerable_format">The settings in the export being imported use a vulnerable format that was deprecated since PVCPipe 0.27.0. Make sure the export being imported is from a trusted source, and prefer using only exports obtained from PVCPipe 0.27.0 or newer in the future. Support for importing settings in this vulnerable format will soon be removed completely, and then old versions of PVCPipe will not be able to import settings of exports from new versions anymore.</string>
     <string name="migration_info_6_7_title">SoundCloud Top 50 page removed</string>
     <string name="migration_info_6_7_message">SoundCloud has discontinued the original Top 50 charts. The corresponding tab has been removed from your main page.</string>
     <string name="migration_info_7_8_title">YouTube combined trending removed</string>
-    <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. BravePipe-fork replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
+    <string name="migration_info_7_8_message">YouTube has discontinued the combined trending page as of 21st July 2025. PVCPipe replaced the default trending page with the trending livestreams.\n\nYou can also select different trending pages in \"Settings > Content > Content of main page\".</string>
     <string name="trending_gaming">Gaming trends</string>
     <string name="trending_podcasts">Trending podcasts</string>
     <string name="trending_movies">Trending movies and shows</string>
@@ -928,10 +928,10 @@
     <string name="disable_error_reports_summary">Prevent all error reporting screens from appearing. This may result in the app behaving unexpectedly. <b>USE AT YOUR OWN RISK!</b></string>
     <string name="enable_return_youtube_dislike_title">Show Dislike Count</string>
     <string name="enable_return_youtube_dislike_summary">Use the ReturnYouTubeDislike API to show the amount of dislikes for a video. This only works for YouTube videos.\n<b>WARNING: Your IP address will be visible to the API. Use at your own risk!</b></string>
-    <string name="brave_about_fork">Due to restrictive project policy, the NewPipeTeam refuses to add platforms that they find offensive. This fork (BravePipe-fork) will not be as restrictive. As long as the platforms work in the spirit of free speech, they could be integrated. Nevertheless, platforms that promote pornography or other degrading things will <b>NOT</b> be included here. This fork will focus only on integrating other platforms. Unrelated patches will be rejected for now. Feel free to suggest which alternative platforms should be included. Any contribution (development/testing/bug report) is greatly appreciated. Currently additional platforms compared to NewPipe:</string>
-    <string name="brave_about_title">About this fork</string>
-    <string name="brave_github_url" translatable="false">https://github.com/75ohmantenna/bravepipe-fork</string>
-    <string name="brave_supported_platforms" translatable="false">\n\u2022 BitChute\n\u2022 Rumble</string>
+    <string name="pvc_about_fork">Due to restrictive project policy, the NewPipeTeam refuses to add platforms that they find offensive. This fork (PVCPipe) will not be as restrictive. As long as the platforms work in the spirit of free speech, they could be integrated. Nevertheless, platforms that promote pornography or other degrading things will <b>NOT</b> be included here. This fork will focus only on integrating other platforms. Unrelated patches will be rejected for now. Feel free to suggest which alternative platforms should be included. Any contribution (development/testing/bug report) is greatly appreciated. Currently additional platforms compared to NewPipe:</string>
+    <string name="pvc_about_title">About this fork</string>
+    <string name="pvc_github_url" translatable="false">https://github.com/75ohmantenna/pvcpipe</string>
+    <string name="pvc_supported_platforms" translatable="false">\n\u2022 BitChute\n\u2022 Rumble</string>
     <string name="search_filters_short">Short</string>
     <string name="search_filters_long">Long</string>
     <string name="search_filters_rumbles">Rumbles</string>
@@ -1013,37 +1013,37 @@
     <string name="search_filter_ui_style">Action Menu styled Dialog</string>
     <string name="search_filter_ui_legacy">Action Menu (legacy)</string>
     <string name="search_filter_ui_chip_dialog">Chip Dialog</string>
-    <string name="brave_settings">BravePipe-fork Settings</string>
-    <string name="brave_settings_host_replace_key" translatable="false">brave_settings_host_replace_key</string>
-    <string name="brave_settings_host_replace_dialog_title">Select the hosts you want to replace</string>
-    <string name="brave_settings_host_replace_title">Replace restricted hosts</string>
-    <string name="brave_settings_host_replace_summary">In some countries some hosts are restricted but can be replaced by others.</string>
-    <string name="brave_settings_internal_volume_key" translatable="false">brave_settings_internal_volume_key</string>
-    <string name="brave_settings_internal_volume_description"><![CDATA[Onscreen volume slider for loudness control, independent of Android’s system media volume. Swipe along the right edge of the player to reveal a dark grey control. The main system volume slider is still usable]]></string>
-    <string name="brave_settings_internal_volume_title">Internal volume control</string>
-    <string name="brave_settings_hide_paid_content_key" translatable="false">brave_settings_hide_paid_content_key</string>
-    <string name="brave_settings_hide_paid_content_description"><![CDATA[If enabled all Youtube/Rumble "members only/premium" videos will not be listed. Requires app restart on already loaded channels/search.]]></string>
-    <string name="brave_settings_hide_paid_content_title">Hide Paid Content Videos</string>
+    <string name="pvc_settings">PVCPipe Settings</string>
+    <string name="pvc_settings_host_replace_key" translatable="false">pvc_settings_host_replace_key</string>
+    <string name="pvc_settings_host_replace_dialog_title">Select the hosts you want to replace</string>
+    <string name="pvc_settings_host_replace_title">Replace restricted hosts</string>
+    <string name="pvc_settings_host_replace_summary">In some countries some hosts are restricted but can be replaced by others.</string>
+    <string name="pvc_settings_internal_volume_key" translatable="false">pvc_settings_internal_volume_key</string>
+    <string name="pvc_settings_internal_volume_description"><![CDATA[Onscreen volume slider for loudness control, independent of Android’s system media volume. Swipe along the right edge of the player to reveal a dark grey control. The main system volume slider is still usable]]></string>
+    <string name="pvc_settings_internal_volume_title">Internal volume control</string>
+    <string name="pvc_settings_hide_paid_content_key" translatable="false">pvc_settings_hide_paid_content_key</string>
+    <string name="pvc_settings_hide_paid_content_description"><![CDATA[If enabled all Youtube/Rumble "members only/premium" videos will not be listed. Requires app restart on already loaded channels/search.]]></string>
+    <string name="pvc_settings_hide_paid_content_title">Hide Paid Content Videos</string>
     <string name="update">Update</string>
     <string name="settings_category_comment_view_handling_title">Comment View Handling</string>
-    <string translatable="false" name="brave_settings_comment_replies_same_window_key">brave_settings_comment_replies_same_window_key</string>
-    <string name="brave_settings_comment_replies_same_window_title">Comment Replies same window</string>
-    <string name="brave_settings_comment_replies_same_window_summary">Insert comment replies into comments page.</string>
-    <string translatable="false" name="brave_settings_scroll_only_below_player_key">brave_settings_scroll_only_below_player_key</string>
-    <string name="brave_settings_scroll_only_below_player_title">Scroll only below player</string>
-    <string name="brave_settings_scroll_only_below_player_summary">Make video position fixed and only scroll comments/related streams/description/… in pager. (App restart required.)</string>
+    <string translatable="false" name="pvc_settings_comment_replies_same_window_key">pvc_settings_comment_replies_same_window_key</string>
+    <string name="pvc_settings_comment_replies_same_window_title">Comment Replies same window</string>
+    <string name="pvc_settings_comment_replies_same_window_summary">Insert comment replies into comments page.</string>
+    <string translatable="false" name="pvc_settings_scroll_only_below_player_key">pvc_settings_scroll_only_below_player_key</string>
+    <string name="pvc_settings_scroll_only_below_player_title">Scroll only below player</string>
+    <string name="pvc_settings_scroll_only_below_player_summary">Make video position fixed and only scroll comments/related streams/description/… in pager. (App restart required.)</string>
     <string name="channel_tab_podcasts">Podcasts</string>
-    <string name="brave_rumble_cf_exception_info">Rumble cloudflare error. Activate this setting if not already enabled: settings → brave settings → Handle Rumble cloudflare challenge</string>
-    <string name="brave_settings_handle_cf_challenge_category_title">Cloudflare challenge</string>
-    <string name="brave_settings_handle_cf_challenge_description">Sometimes Rumble needs cloudflare handling via WebView. Cookies are being used.</string>
-    <string name="brave_settings_handle_cf_challenge_title">Handle Rumble cloudflare challenge</string>
-    <string name="brave_settings_handle_cf_challenge_interactive_description">The window will disappear once a network call was successful.</string>
-    <string name="brave_settings_handle_cf_challenge_interactive_title">Show interactive WebView Floating Window.</string>
-    <string name="brave_settings_category_debug_handling_title">Debug Tools</string>
-    <string name="brave_settings_debug_logcat_viewer_title">Logcat Viewer</string>
-    <string name="brave_settings_debug_logcat_viewer_summary">View, filter and share BravePipe-fork\'s logcat output.</string>
-    <string name="brave_settings_debug_logcat_dumper_title">Logcat Dumper</string>
-    <string name="brave_settings_debug_logcat_dumper_summary">Include logcat output in error reporting and email.</string>
+    <string name="pvc_rumble_cf_exception_info">Rumble cloudflare error. Activate this setting if not already enabled: settings → pvc settings → Handle Rumble cloudflare challenge</string>
+    <string name="pvc_settings_handle_cf_challenge_category_title">Cloudflare challenge</string>
+    <string name="pvc_settings_handle_cf_challenge_description">Sometimes Rumble needs cloudflare handling via WebView. Cookies are being used.</string>
+    <string name="pvc_settings_handle_cf_challenge_title">Handle Rumble cloudflare challenge</string>
+    <string name="pvc_settings_handle_cf_challenge_interactive_description">The window will disappear once a network call was successful.</string>
+    <string name="pvc_settings_handle_cf_challenge_interactive_title">Show interactive WebView Floating Window.</string>
+    <string name="pvc_settings_category_debug_handling_title">Debug Tools</string>
+    <string name="pvc_settings_debug_logcat_viewer_title">Logcat Viewer</string>
+    <string name="pvc_settings_debug_logcat_viewer_summary">View, filter and share PVCPipe\'s logcat output.</string>
+    <string name="pvc_settings_debug_logcat_dumper_title">Logcat Dumper</string>
+    <string name="pvc_settings_debug_logcat_dumper_summary">Include logcat output in error reporting and email.</string>
     <string name="sort_order">Sort order</string>
     <string name="sort_by_name">Sort by name</string>
     <string name="sort_by_last_used">Sort by last used</string>
