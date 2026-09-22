@@ -52,7 +52,7 @@ class LicenseFragment : Fragment() {
         val binding = FragmentLicensesBinding.inflate(inflater, container, false)
         binding.licensesAppReadLicense.setOnClickListener {
             compositeDisposable.add(
-                showLicense(NEWPIPE_SOFTWARE_COMPONENT)
+                showLicense(PVCPIPE_SOFTWARE_COMPONENT)
             )
         }
         for (component in softwareComponents) {
@@ -112,7 +112,7 @@ class LicenseFragment : Fragment() {
                         .setOnDismissListener { activeSoftwareComponent = null }
                         .setPositiveButton(R.string.done) { dialog, _ -> dialog.dismiss() }
 
-                    if (softwareComponent != NEWPIPE_SOFTWARE_COMPONENT) {
+                    if (softwareComponent != PVCPIPE_SOFTWARE_COMPONENT) {
                         builder.setNeutralButton(R.string.open_website_license) { _, _ ->
                             ShareUtils.openUrlInApp(requireContext(), softwareComponent.link)
                         }
@@ -126,11 +126,11 @@ class LicenseFragment : Fragment() {
     companion object {
         private const val ARG_COMPONENTS = "components"
         private const val SOFTWARE_COMPONENT_KEY = "ACTIVE_SOFTWARE_COMPONENT"
-        private val NEWPIPE_SOFTWARE_COMPONENT = SoftwareComponent(
-            "NewPipe",
-            "2014-2023",
-            "Team NewPipe",
-            "https://newpipe.net/",
+        private val PVCPIPE_SOFTWARE_COMPONENT = SoftwareComponent(
+            "PVCPipe",
+            "2026",
+            "PVCPipe contributors",
+            "https://github.com/75ohmantenna/pvcpipe",
             StandardLicenses.GPL3,
             BuildConfig.VERSION_NAME
         )

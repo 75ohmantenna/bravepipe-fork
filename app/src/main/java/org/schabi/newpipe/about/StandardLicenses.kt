@@ -17,5 +17,14 @@ object StandardLicenses {
     val MIT = License("MIT License", "MIT", "mit.html")
 
     @JvmField
+    val MIT0 = License("MIT No Attribution License", "MIT-0", "mit_0.html")
+
+    @JvmField
     val EPL1 = License("Eclipse Public License, Version 1.0", "EPL 1.0", "epl1.html")
+
+    @JvmField
+    val BSD2 = License("BSD 2-Clause License", "BSD-2-Clause", "bsd_2_clause.html")
+
+    @JvmField
+    val BSD3 = License("BSD 3-Clause License", "BSD-3-Clause", "bsd_3_clause.html")
 }
